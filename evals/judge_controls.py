@@ -24,7 +24,7 @@ from types import SimpleNamespace
 import anthropic
 from dotenv import load_dotenv
 
-from src.cache import DiskCache
+from src.core.cache import DiskCache
 
 from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
 from .stats import wilson

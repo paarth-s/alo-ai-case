@@ -25,12 +25,12 @@ from datetime import date
 import anthropic
 from dotenv import load_dotenv
 
-from .cache import DiskCache
+from src.core.cache import DiskCache
 from .catalog import TOOLS as CATALOG_TOOLS
 from .catalog import Catalog
 from .customers import CustomerStore
 from .retrieve import VECTOR_DOMAINS, Retriever
-from .router import route
+from src.router.router import route
 
 load_dotenv()
 

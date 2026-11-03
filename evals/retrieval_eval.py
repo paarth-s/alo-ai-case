@@ -22,7 +22,7 @@ from src.customers import CustomerStore
 from src.embeddings import DEFAULT, SPECS, index_dir_for
 from src.rerank import MODELS as RERANKERS
 from src.retrieve import MODES, VECTOR_DOMAINS, Retriever
-from src.router import route
+from src.router.router import route
 
 from .common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
 

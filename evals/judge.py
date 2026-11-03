@@ -13,7 +13,7 @@ import time
 import anthropic
 from dotenv import load_dotenv
 
-from src.cache import DiskCache
+from src.core.cache import DiskCache
 
 load_dotenv()
 

@@ -7,7 +7,7 @@ latency and tokens (from the original call). Writes evals/results/router.json.
 import json
 import statistics
 
-from src.router import route
+from src.router.router import route
 
 from .common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
 from .pricing import cost
