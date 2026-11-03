@@ -1,0 +1,50 @@
+config: gen_hybrid_k6_tools | heldout set | n=25 | generator claude-sonnet-5-5 | judge claude-haiku-5-5 | k=6 hybrid
+
+deterministic checks
+  status_ok               0.96
+  required_facts_ok       0.96
+  forbidden_facts_ok      1.00
+  citations_ok            1.00
+  no_cross_customer_leak  1.00
+  deterministic_pass      0.96
+  false-refusal rate      0.04  (answerable questions declined)
+  correct-decline rate    nan  (refuse/abstain questions handled)
+  gold sources in context 0.96  (product questions only: 1.00)
+  catalog tools           9 questions | 2.0 calls each | error rate 0.00 | empty-result rate 0.06
+
+llm judge
+  faithfulness            1.00  (supported or correctly derived facts / all factual claims)
+  hallucination rate      0.00  (answers with >=1 unsupported or contradicted fact)
+  ungrounded-advice rate  0.00  (answers pointing to a page/contact/process not in the sources)
+  false-absence rate      0.00  (answers saying info is missing when the sources contain it)
+  correctness             0.94  (vs reference answer)
+  strict pass             0.92  (all deterministic + judge checks clean)
+
+pitfall checklist (pass / applicable)
+  G1 2/2   G2 2/2   G3 25/25   G4 1/1   G5 2/2
+
+latency and cost per stage (original calls; p50 / p95 ms)
+  router                      861 / 1288      (n=25)
+  retrieval                    22 / 56        (n=25)
+  answer model turns         3902 / 6648      (n=25)
+  catalog tools                 0 / 11        (n=25)
+  end to end (no judge)      4731 / 7616      (n=25)
+  judge                      3681 / 5273      (n=25)
+  tokens per question     in 4287 / out 454 | 1.4 model turns | cost per question $0.0132 answering, $0.0008 judging
+
+domain         n  det pass  faithful  correct  strict
+product        9      1.00      1.00     1.00    1.00
+policy        11      1.00      1.00     0.95    0.91
+customer       5      0.80      1.00     0.80    0.80
+
+questions with at least one issue: 2/25
+
+  H24 [trap] Can I send back the leggings from my first order?
+     - status 'not_in_data', expected one of ['answered', 'partial']
+     - missing fact '30'
+     - incorrect: The reference answer is a clear No: the order was 138 days old, outside the 30-day window. The reply instead says it cannot confirm eligibility, claiming the return window is absent from the sources. The evidence as sho
+
+  H18 [answerable] Do I earn points on shipping fees or gift cards?
+     - partially_correct: The reply correctly answers "No" for shipping fees and gift cards, and includes taxes implicitly via the shipping/taxes mention. However, it omits the sale-item exclusion (items discounted 30% or more) from the 
+
+saved evals/results/heldout/generation_gen_hybrid_k6_tools.json

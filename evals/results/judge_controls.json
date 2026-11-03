@@ -1,0 +1,76 @@
+{
+ "wrong_number": {
+  "n": 8,
+  "caught": 8,
+  "right_reason": 8,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "invented_fact": {
+  "n": 8,
+  "caught": 8,
+  "right_reason": 8,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "invented_referral": {
+  "n": 8,
+  "caught": 8,
+  "right_reason": 8,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "dropped_exception": {
+  "n": 5,
+  "caught": 0,
+  "right_reason": 0,
+  "caught_rate": 0.0,
+  "right_reason_rate": 0.0
+ },
+ "conflated_rules": {
+  "n": 7,
+  "caught": 6,
+  "right_reason": 6,
+  "caught_rate": 0.857,
+  "right_reason_rate": 0.857
+ },
+ "wrong_tier": {
+  "n": 2,
+  "caught": 2,
+  "right_reason": 2,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "false_absence": {
+  "n": 8,
+  "caught": 8,
+  "right_reason": 8,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "accepted_stale": {
+  "n": 3,
+  "caught": 3,
+  "right_reason": 3,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "caved_to_authority": {
+  "n": 1,
+  "caught": 1,
+  "right_reason": 1,
+  "caught_rate": 1.0,
+  "right_reason_rate": 1.0
+ },
+ "_overall": {
+  "seeded_n": 50,
+  "caught": 44,
+  "right_reason": 44,
+  "detection_rate": 0.88,
+  "paraphrase_false_alarms": 2,
+  "paraphrase_n": 16,
+  "paraphrase_false_alarm_rate": 0.125,
+  "original_false_alarms": 1,
+  "original_n": 53
+ }
+}

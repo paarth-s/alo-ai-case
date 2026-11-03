@@ -1,0 +1,18 @@
+config: hybrid_top10_router | heldout set | scored 25/25 questions (rest have no vector gold)
+
+group         n       R@1     R@5    R@10  MRR@10 NDCG@10
+overall      25      0.68    0.96    0.96    0.83    0.86
+random       25      0.03    0.13    0.26    0.09    0.12
+product       9      0.94    1.00    1.00    1.00    1.00
+policy       11      0.73    1.00    1.00    0.86    0.89
+customer      5      0.10    0.80    0.80    0.47    0.55
+easy          6      0.83    1.00    1.00    0.87    0.90
+medium       10      0.70    1.00    1.00    0.88    0.91
+hard          9      0.56    0.89    0.89    0.76    0.79
+R@1 ceiling 0.92 (questions need several chunks) | top-1 is a gold chunk (hit@1): 0.76
+
+incomplete recall@10: 1/25 questions
+  H24  routed=['customer', 'policy'] missing=['returns§1']
+       got ['returns§2.2', 'returns§8', 'returns§4.1', 'shipping§6', 'shipping§4', 'shipping§5', 'shipping§scope', 'shipping§2.4', 'returns§1.2', 'loyalty§4']
+retrieval latency: p50 8 ms | p95 10 ms
+saved evals/results/heldout/retrieval_hybrid_top10_router.json

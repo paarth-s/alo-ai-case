@@ -1,0 +1,1393 @@
+{
+ "label": "hybrid_rerank_top10_router",
+ "set": "heldout",
+ "k": 10,
+ "mode": "hybrid_rerank",
+ "routing": "router",
+ "embedder": "bge-small",
+ "reranker": "minilm",
+ "index_dir": "index",
+ "lex_weight": 1.0,
+ "rrf_k": 60,
+ "latency_ms": {
+  "p50": 680.1,
+  "p95": 1630.2
+ },
+ "r1_ceiling": 0.917,
+ "hit_at_1": 0.792,
+ "summary": {
+  "overall": {
+   "n": 24,
+   "R@1": 0.7083333333333334,
+   "R@5": 0.9166666666666666,
+   "R@10": 0.9583333333333334,
+   "MRR@10": 0.8392857142857143,
+   "NDCG@10": 0.8680555555555556
+  },
+  "random": {
+   "n": 24,
+   "R@1": 0.025255102040816324,
+   "R@5": 0.12627551020408162,
+   "R@10": 0.25255102040816324,
+   "MRR@10": 0.08408236172935694,
+   "NDCG@10": 0.11879899840882127
+  },
+  "product": {
+   "n": 9,
+   "R@1": 0.9444444444444444,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "MRR@10": 1.0,
+   "NDCG@10": 1.0
+  },
+  "policy": {
+   "n": 11,
+   "R@1": 0.7272727272727273,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "MRR@10": 0.8787878787878788,
+   "NDCG@10": 0.9090909090909091
+  },
+  "customer": {
+   "n": 4,
+   "R@1": 0.125,
+   "R@5": 0.5,
+   "R@10": 0.75,
+   "MRR@10": 0.36904761904761907,
+   "NDCG@10": 0.4583333333333333
+  },
+  "easy": {
+   "n": 6,
+   "R@1": 0.8333333333333334,
+   "R@5": 1.0,
+   "R@10": 1.0,
+   "MRR@10": 0.8888888888888888,
+   "NDCG@10": 0.9166666666666666
+  },
+  "medium": {
+   "n": 10,
+   "R@1": 0.7,
+   "R@5": 0.9,
+   "R@10": 1.0,
+   "MRR@10": 0.8476190476190476,
+   "NDCG@10": 0.8833333333333333
+  },
+  "hard": {
+   "n": 8,
+   "R@1": 0.625,
+   "R@5": 0.875,
+   "R@10": 0.875,
+   "MRR@10": 0.7916666666666666,
+   "NDCG@10": 0.8125
+  }
+ },
+ "rows": [
+  {
+   "id": "H01",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "What is the Moto Legging made of and how compressive is it?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "W3301R-BLK"
+   ],
+   "retrieved": [
+    "W3301R-BLK",
+    "W5561R-BLK",
+    "W5901R-BLK",
+    "W5766R-BLK",
+    "W6105R-BLK",
+    "W6201R-BLK",
+    "W4501R-BLK",
+    "W9201R-BLK",
+    "W5604R-BLK",
+    "W5801R-BLK"
+   ],
+   "scores": [
+    0.246,
+    -2.519,
+    -5.102,
+    -5.114,
+    -5.82,
+    -6.41,
+    -6.565,
+    -6.648,
+    -6.924,
+    -7.641
+   ],
+   "top1_score": 0.246,
+   "ms": 2150.4,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H02",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "Do you sell a water bottle, and how long does it keep drinks cold?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "ACC-BOTTLE-WHT"
+   ],
+   "retrieved": [
+    "ACC-BOTTLE-WHT",
+    "W5766R-BLK",
+    "W1501R-BLK",
+    "W1601R-BLK",
+    "M5501R-WHT",
+    "W2201R-BLK",
+    "M6801R-BLK",
+    "fabric:Alosoft",
+    "fabric:Airbrush",
+    "fabric:Conquer"
+   ],
+   "scores": [
+    3.489,
+    -11.082,
+    -11.143,
+    -11.15,
+    -11.151,
+    -11.163,
+    -11.173,
+    -11.194,
+    -11.198,
+    -11.2
+   ],
+   "top1_score": 3.489,
+   "ms": 1374.7,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H03",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "Which men's shorts have a 5 inch inseam?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "M6105R-BLK"
+   ],
+   "retrieved": [
+    "M6105R-BLK",
+    "M6201R-BLK",
+    "M5044R-BLK",
+    "M7301R-BLK",
+    "W5766R-BLK",
+    "W5604R-BLK",
+    "W4501R-BLK",
+    "W9201R-BLK",
+    "W5561R-BLK",
+    "W6201R-BLK"
+   ],
+   "scores": [
+    2.653,
+    0.127,
+    -0.753,
+    -5.523,
+    -8.155,
+    -8.75,
+    -8.81,
+    -8.82,
+    -8.845,
+    -9.146
+   ],
+   "top1_score": 2.653,
+   "ms": 931.6,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H04",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What's the softest fabric you offer, and what's it made of?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "fabric:Alosoft"
+   ],
+   "retrieved": [
+    "fabric:Alosoft",
+    "fabric:Alo Vapor",
+    "fabric:Alo Softsculpt",
+    "W6201R-BLK",
+    "W8801R-BLK",
+    "W6105R-BLK",
+    "M6801R-BLK",
+    "W9201R-BLK",
+    "fabric:Conquer",
+    "fabric:Airbrush"
+   ],
+   "scores": [
+    1.725,
+    0.532,
+    -1.044,
+    -2.222,
+    -4.662,
+    -5.233,
+    -5.363,
+    -5.394,
+    -6.563,
+    -6.799
+   ],
+   "top1_score": 1.725,
+   "ms": 1242.6,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H05",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Is there a flare-cut legging, and how long is the inseam?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "W7201R-BLK"
+   ],
+   "retrieved": [
+    "W7201R-BLK",
+    "W5801R-BLK",
+    "W4501R-BLK",
+    "W9201R-BLK",
+    "W5766R-BLK",
+    "W5604R-BLK",
+    "W6201R-BLK",
+    "W3301R-BLK",
+    "W5561R-BLK",
+    "W6105R-BLK"
+   ],
+   "scores": [
+    0.043,
+    -3.733,
+    -4.188,
+    -4.304,
+    -4.556,
+    -4.672,
+    -4.85,
+    -4.855,
+    -4.895,
+    -4.917
+   ],
+   "top1_score": 0.043,
+   "ms": 1630.2,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H06",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Which sports bra is designed to match the Suit Up legging?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "W2201R-BLK",
+    "W6034R-BLK"
+   ],
+   "retrieved": [
+    "W2201R-BLK",
+    "W6034R-BLK",
+    "W5766R-BLK",
+    "W1601R-BLK",
+    "W1501R-BLK",
+    "W5561R-BLK",
+    "W5604R-BLK",
+    "W5901R-BLK",
+    "W4501R-BLK",
+    "W5801R-BLK"
+   ],
+   "scores": [
+    7.539,
+    -0.104,
+    -4.439,
+    -4.585,
+    -4.631,
+    -4.895,
+    -4.926,
+    -5.144,
+    -5.431,
+    -5.635
+   ],
+   "top1_score": 7.539,
+   "ms": 1437.9,
+   "pool": 30,
+   "metrics": {
+    "R@1": 0.5,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.17900930487137381,
+    "NDCG@10": 0.18572471022081022
+   }
+  },
+  {
+   "id": "H07",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Which pants can I layer under my shorts?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "M5044R-BLK"
+   ],
+   "retrieved": [
+    "M5044R-BLK",
+    "M6105R-BLK",
+    "M6201R-BLK",
+    "M7301R-BLK",
+    "W5766R-BLK",
+    "W6034R-BLK",
+    "W5561R-BLK",
+    "W6105R-BLK",
+    "W4501R-BLK",
+    "W9201R-BLK"
+   ],
+   "scores": [
+    4.747,
+    -6.242,
+    -7.272,
+    -9.111,
+    -9.328,
+    -9.852,
+    -9.878,
+    -10.377,
+    -10.416,
+    -10.452
+   ],
+   "top1_score": 4.747,
+   "ms": 1124.5,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H08",
+   "domain": "product",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "How much is the Goddess Ribbed legging in the Airbrush version?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "W4501R-BLK"
+   ],
+   "retrieved": [
+    "W4501R-BLK",
+    "W8801R-BLK",
+    "W5604R-BLK",
+    "W3301R-BLK",
+    "W5801R-BLK",
+    "W5901R-BLK",
+    "W6105R-BLK",
+    "W1601R-BLK",
+    "W5766R-BLK",
+    "W5561R-BLK"
+   ],
+   "scores": [
+    6.528,
+    4.177,
+    2.578,
+    2.395,
+    1.924,
+    1.923,
+    -1.514,
+    -1.59,
+    -3.835,
+    -4.187
+   ],
+   "top1_score": 6.528,
+   "ms": 995.2,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H09",
+   "domain": "product",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "Which men's fabric is quick-drying and anti-odor?",
+   "routed": [
+    "product"
+   ],
+   "gold": [
+    "fabric:Conquer"
+   ],
+   "retrieved": [
+    "fabric:Conquer",
+    "M6201R-BLK",
+    "M5501R-WHT",
+    "M7301R-BLK",
+    "fabric:Alo Vapor",
+    "M6105R-BLK",
+    "fabric:Alosoft",
+    "M6801R-BLK",
+    "fabric:Airlift",
+    "fabric:Airbrush"
+   ],
+   "scores": [
+    7.47,
+    3.932,
+    3.301,
+    3.116,
+    0.694,
+    -1.667,
+    -4.73,
+    -5.487,
+    -5.556,
+    -5.695
+   ],
+   "top1_score": 7.47,
+   "ms": 1178.5,
+   "pool": 30,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.03333333333333333,
+    "R@5": 0.16666666666666666,
+    "R@10": 0.3333333333333333,
+    "MRR@10": 0.09763227513227513,
+    "NDCG@10": 0.15145197793627818
+   }
+  },
+  {
+   "id": "H10",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "How many days do I have to send something back?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a71"
+   ],
+   "retrieved": [
+    "returns\u00a73",
+    "returns\u00a74.1",
+    "returns\u00a71",
+    "shipping\u00a76",
+    "returns\u00a72.1",
+    "returns\u00a77",
+    "returns\u00a75",
+    "returns\u00a71.1",
+    "shipping\u00a72.2",
+    "returns\u00a78"
+   ],
+   "scores": [
+    -0.646,
+    -2.555,
+    -2.572,
+    -2.937,
+    -2.976,
+    -3.591,
+    -4.147,
+    -4.353,
+    -4.841,
+    -5.088
+   ],
+   "top1_score": -0.646,
+   "ms": 642.8,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 0.3333333333333333,
+    "NDCG@10": 0.5
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H11",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "What does it cost to get my order in two days?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "shipping\u00a72.2"
+   ],
+   "retrieved": [
+    "shipping\u00a72.2",
+    "shipping\u00a72.3",
+    "shipping\u00a71",
+    "shipping\u00a72.1",
+    "shipping\u00a74",
+    "loyalty\u00a75.a-list",
+    "shipping\u00a76",
+    "shipping\u00a72.5",
+    "shipping\u00a77",
+    "returns\u00a77"
+   ],
+   "scores": [
+    4.7,
+    -1.891,
+    -4.591,
+    -5.093,
+    -6.616,
+    -6.657,
+    -6.777,
+    -6.794,
+    -6.857,
+    -7.135
+   ],
+   "top1_score": 4.7,
+   "ms": 519.6,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H12",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "When do my loyalty points expire?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "loyalty\u00a76.3"
+   ],
+   "retrieved": [
+    "loyalty\u00a76.3",
+    "loyalty\u00a710",
+    "loyalty\u00a74.1",
+    "loyalty\u00a75.vip",
+    "loyalty\u00a76.2",
+    "loyalty\u00a73.2",
+    "loyalty\u00a74",
+    "loyalty\u00a72",
+    "loyalty\u00a75.a-list",
+    "loyalty\u00a76.1"
+   ],
+   "scores": [
+    7.546,
+    -0.535,
+    -2.389,
+    -2.953,
+    -2.997,
+    -3.046,
+    -3.332,
+    -3.788,
+    -6.709,
+    -6.865
+   ],
+   "top1_score": 7.546,
+   "ms": 706.1,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H13",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "How long do I have to cancel an order after placing it?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a78"
+   ],
+   "retrieved": [
+    "returns\u00a78",
+    "shipping\u00a75",
+    "shipping\u00a71",
+    "shipping\u00a74",
+    "shipping\u00a76",
+    "returns\u00a74.1",
+    "shipping\u00a72.2",
+    "returns\u00a72.1",
+    "returns\u00a77",
+    "shipping\u00a72.1"
+   ],
+   "scores": [
+    5.856,
+    1.604,
+    -0.079,
+    -0.394,
+    -2.974,
+    -3.853,
+    -4.572,
+    -4.954,
+    -5.333,
+    -5.405
+   ],
+   "top1_score": 5.856,
+   "ms": 940.6,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H14",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What's the minimum order for free international shipping?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "shipping\u00a73.1"
+   ],
+   "retrieved": [
+    "shipping\u00a73.1",
+    "shipping\u00a72.1",
+    "shipping\u00a72.5",
+    "shipping\u00a72.4",
+    "loyalty\u00a75.a-list",
+    "shipping\u00a73.3",
+    "shipping\u00a76",
+    "loyalty\u00a75.vip",
+    "shipping\u00a73.2",
+    "returns\u00a75"
+   ],
+   "scores": [
+    4.298,
+    2.251,
+    -1.943,
+    -3.393,
+    -4.541,
+    -5.258,
+    -5.776,
+    -6.043,
+    -6.083,
+    -6.31
+   ],
+   "top1_score": 4.298,
+   "ms": 492.2,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H15",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Do students get a discount?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "loyalty\u00a72",
+    "loyalty\u00a79"
+   ],
+   "retrieved": [
+    "loyalty\u00a79",
+    "loyalty\u00a72",
+    "loyalty\u00a78",
+    "loyalty\u00a76.2",
+    "loyalty\u00a75.a-list",
+    "loyalty\u00a77",
+    "returns\u00a76",
+    "returns\u00a71.2",
+    "loyalty\u00a7scope",
+    "loyalty\u00a71"
+   ],
+   "scores": [
+    0.957,
+    -4.13,
+    -7.808,
+    -8.424,
+    -9.869,
+    -10.074,
+    -10.558,
+    -10.581,
+    -10.863,
+    -10.908
+   ],
+   "top1_score": 0.957,
+   "ms": 451.4,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.5,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.11353694255479971,
+    "NDCG@10": 0.1137090062576389
+   }
+  },
+  {
+   "id": "H16",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "My package says delivered but I never received it. What should I do?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "shipping\u00a76"
+   ],
+   "retrieved": [
+    "shipping\u00a76",
+    "shipping\u00a75",
+    "shipping\u00a74",
+    "returns\u00a72.1",
+    "returns\u00a78",
+    "returns\u00a73",
+    "shipping\u00a73.3",
+    "returns\u00a74.1",
+    "shipping\u00a72.1",
+    "shipping\u00a72.2"
+   ],
+   "scores": [
+    -0.948,
+    -4.874,
+    -6.282,
+    -7.605,
+    -7.734,
+    -8.203,
+    -8.327,
+    -8.906,
+    -8.919,
+    -9.079
+   ],
+   "top1_score": -0.948,
+   "ms": 498.2,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H17",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What happens if I don't use my return label in time?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a72.1"
+   ],
+   "retrieved": [
+    "returns\u00a75",
+    "returns\u00a73",
+    "returns\u00a72.1",
+    "returns\u00a74.1",
+    "returns\u00a71.2",
+    "returns\u00a71.1",
+    "returns\u00a78",
+    "returns\u00a71",
+    "returns\u00a77",
+    "returns\u00a76"
+   ],
+   "scores": [
+    -3.491,
+    -3.699,
+    -3.998,
+    -6.426,
+    -6.639,
+    -7.18,
+    -7.449,
+    -7.79,
+    -7.892,
+    -8.776
+   ],
+   "top1_score": -3.491,
+   "ms": 674.7,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 0.3333333333333333,
+    "NDCG@10": 0.5
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H18",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "Do I earn points on shipping fees or gift cards?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "loyalty\u00a73.1"
+   ],
+   "retrieved": [
+    "loyalty\u00a73.1",
+    "loyalty\u00a75.vip",
+    "loyalty\u00a75.all-access",
+    "loyalty\u00a75.a-list",
+    "loyalty\u00a76.2",
+    "loyalty\u00a76.3",
+    "loyalty\u00a71",
+    "loyalty\u00a7scope",
+    "loyalty\u00a73.2",
+    "shipping\u00a73.1"
+   ],
+   "scores": [
+    2.369,
+    -3.641,
+    -4.21,
+    -5.599,
+    -7.527,
+    -8.158,
+    -8.212,
+    -8.618,
+    -9.009,
+    -9.612
+   ],
+   "top1_score": 2.369,
+   "ms": 640.6,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H19",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "My order arrived damaged. How do I report it?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a77",
+    "shipping\u00a76"
+   ],
+   "retrieved": [
+    "shipping\u00a76",
+    "returns\u00a77",
+    "shipping\u00a75",
+    "returns\u00a78",
+    "shipping\u00a74",
+    "returns\u00a72.1",
+    "returns\u00a74.1",
+    "returns\u00a71.1",
+    "returns\u00a74",
+    "returns\u00a73"
+   ],
+   "scores": [
+    6.212,
+    2.958,
+    -5.939,
+    -6.511,
+    -6.762,
+    -7.678,
+    -9.033,
+    -9.242,
+    -9.474,
+    -10.199
+   ],
+   "top1_score": 6.212,
+   "ms": 523.9,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.5,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.11353694255479971,
+    "NDCG@10": 0.1137090062576389
+   }
+  },
+  {
+   "id": "H20",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I get overnight delivery to a PO box?",
+   "routed": [
+    "policy"
+   ],
+   "gold": [
+    "shipping\u00a77"
+   ],
+   "retrieved": [
+    "shipping\u00a77",
+    "shipping\u00a72.3",
+    "shipping\u00a72.2",
+    "shipping\u00a72.4",
+    "shipping\u00a72.1",
+    "shipping\u00a76",
+    "shipping\u00a74",
+    "shipping\u00a71",
+    "shipping\u00a75",
+    "shipping\u00a73.2"
+   ],
+   "scores": [
+    3.415,
+    0.933,
+    -1.883,
+    -9.483,
+    -10.225,
+    -10.312,
+    -10.594,
+    -10.989,
+    -10.999,
+    -11.173
+   ],
+   "top1_score": 3.415,
+   "ms": 548.5,
+   "pool": 49,
+   "metrics": {
+    "R@1": 1.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H21",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I return the 7/8 leggings from my Black Friday order?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a71.2",
+    "returns\u00a76"
+   ],
+   "retrieved": [
+    "returns\u00a71.2",
+    "returns\u00a76",
+    "loyalty\u00a76.2",
+    "shipping\u00a71",
+    "shipping\u00a78",
+    "returns\u00a72.1",
+    "returns\u00a78",
+    "shipping\u00a76",
+    "returns\u00a74.1",
+    "returns\u00a72.2"
+   ],
+   "scores": [
+    -3.397,
+    -6.796,
+    -8.035,
+    -8.072,
+    -9.29,
+    -9.926,
+    -10.028,
+    -10.651,
+    -10.7,
+    -10.792
+   ],
+   "top1_score": -1.766,
+   "ms": 523.2,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.5,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 1.0,
+    "NDCG@10": 1.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.11353694255479971,
+    "NDCG@10": 0.1137090062576389
+   }
+  },
+  {
+   "id": "H22",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I return the water bottle I bought in January?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a71"
+   ],
+   "retrieved": [
+    "returns\u00a71.2",
+    "returns\u00a72.2",
+    "returns\u00a71",
+    "returns\u00a72.1",
+    "returns\u00a76",
+    "returns\u00a71.1",
+    "returns\u00a74",
+    "returns\u00a74.2",
+    "returns\u00a75",
+    "returns\u00a7scope"
+   ],
+   "scores": [
+    -9.007,
+    -9.683,
+    -9.828,
+    -10.011,
+    -10.145,
+    -10.249,
+    -10.827,
+    -11.112,
+    -11.128,
+    -11.129
+   ],
+   "top1_score": -9.007,
+   "ms": 485.0,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.0,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR@10": 0.3333333333333333,
+    "NDCG@10": 0.5
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H23",
+   "domain": "customer",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What perks come with my membership level?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "loyalty\u00a75.a-list"
+   ],
+   "retrieved": [
+    "loyalty\u00a74",
+    "shipping\u00a72.5",
+    "loyalty\u00a74.1",
+    "loyalty\u00a75.vip",
+    "loyalty\u00a71",
+    "loyalty\u00a72",
+    "loyalty\u00a75.a-list",
+    "loyalty\u00a7scope",
+    "loyalty\u00a77",
+    "loyalty\u00a75.all-access"
+   ],
+   "scores": [
+    -7.116,
+    -7.203,
+    -7.959,
+    -8.715,
+    -9.154,
+    -9.954,
+    -10.359,
+    -10.373,
+    -10.593,
+    -10.88
+   ],
+   "top1_score": -7.116,
+   "ms": 386.1,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.0,
+    "R@5": 0.0,
+    "R@10": 1.0,
+    "MRR@10": 0.14285714285714285,
+    "NDCG@10": 0.3333333333333333
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  },
+  {
+   "id": "H24",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I send back the leggings from my first order?",
+   "routed": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "returns\u00a71"
+   ],
+   "retrieved": [
+    "shipping\u00a74",
+    "loyalty\u00a75.vip",
+    "returns\u00a78",
+    "returns\u00a74.1",
+    "returns\u00a72.2",
+    "shipping\u00a76",
+    "shipping\u00a75",
+    "returns\u00a72.1",
+    "shipping\u00a72.2",
+    "returns\u00a74"
+   ],
+   "scores": [
+    -8.937,
+    -9.137,
+    -9.772,
+    -10.085,
+    -10.238,
+    -10.5,
+    -10.778,
+    -10.84,
+    -10.878,
+    -10.928
+   ],
+   "top1_score": -8.562,
+   "ms": 685.5,
+   "pool": 49,
+   "metrics": {
+    "R@1": 0.0,
+    "R@5": 0.0,
+    "R@10": 0.0,
+    "MRR@10": 0.0,
+    "NDCG@10": 0.0
+   },
+   "random": {
+    "R@1": 0.02040816326530612,
+    "R@5": 0.10204081632653061,
+    "R@10": 0.20408163265306123,
+    "MRR@10": 0.05977486232588273,
+    "NDCG@10": 0.09272570077731317
+   }
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+config: hybrid_top10_router | dev set | scored 31/36 questions (rest have no vector gold)
+
+group         n       R@1     R@5    R@10  MRR@10 NDCG@10
+overall      31      0.59    0.93    0.97    0.90    0.89
+random       31      0.03    0.13    0.25    0.11    0.13
+product      10      0.66    0.93    0.95    1.00    0.95
+policy       11      0.76    0.91    1.00    0.92    0.93
+customer      8      0.23    0.96    0.96    0.71    0.73
+adversarial   2      0.75    1.00    1.00    1.00    1.00
+easy          7      0.79    0.86    1.00    0.88    0.90
+medium       11      0.56    0.95    0.95    0.88    0.87
+hard         13      0.51    0.96    0.97    0.92    0.90
+R@1 ceiling 0.73 (questions need several chunks) | top-1 is a gold chunk (hit@1): 0.84
+
+incomplete recall@10: 2/31 questions
+  P4   routed=['product'] missing=['fabric:Airlift']
+       got ['fabric:Airbrush', 'W2201R-BLK', 'W5604R-BLK', 'W5801R-BLK', 'W6034R-BLK', 'W7201R-BLK', 'W1601R-BLK', 'W5901R-BLK', 'W1501R-BLK', 'W5766R-BLK']
+  C10  routed=['customer', 'policy'] missing=['loyalty§6.2']
+       got ['shipping§2.5', 'loyalty§6.1', 'loyalty§4', 'shipping§2.1', 'loyalty§6.3', 'shipping§3.1', 'shipping§2.2', 'shipping§2.4', 'shipping§7', 'loyalty§3.1']
+
+top-1 score (hybrid), should-answer: mean 0.03 (min 0.03) | should-decline: mean 0.03 (max 0.03)
+retrieval latency: p50 8 ms | p95 10 ms
+saved evals/results/retrieval_hybrid_top10_router.json

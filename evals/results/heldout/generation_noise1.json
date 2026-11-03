@@ -1,0 +1,2213 @@
+{
+ "label": "noise1",
+ "set": "heldout",
+ "generator": "claude-sonnet-5-5",
+ "judge": "claude-haiku-5-5",
+ "k": 6,
+ "mode": "hybrid",
+ "summary": {
+  "n": 25,
+  "status_ok": 0.96,
+  "required_facts_ok": 0.96,
+  "forbidden_facts_ok": 1,
+  "citations_ok": 1,
+  "no_cross_customer_leak": 1,
+  "deterministic_pass": 0.96,
+  "false_refusal_rate": 0.04,
+  "correct_decline_rate": NaN,
+  "gold_in_context": 0.96,
+  "gold_in_context_product": 1.0,
+  "questions_using_tools": 9,
+  "tool_calls_per_question": 1.7777777777777777,
+  "tool_error_rate": 0,
+  "tool_empty_rate": 0,
+  "faithfulness": 0.9955555555555555,
+  "hallucination_rate": 0.04,
+  "ungrounded_advice_rate": 0.04,
+  "false_absence_rate": 0,
+  "correctness": 0.96,
+  "strict_pass": 0.92,
+  "pitfall_pass": {
+   "G1": "2/2",
+   "G2": "2/2",
+   "G3": "25/25",
+   "G4": "1/1",
+   "G5": "2/2"
+  },
+  "stages": {
+   "router_ms": {
+    "n": 25,
+    "p50": 911.3,
+    "p95": 1164.0,
+    "mean": 897.3
+   },
+   "retrieval_ms": {
+    "n": 25,
+    "p50": 8.1,
+    "p95": 14.5,
+    "mean": 6.7
+   },
+   "generation_ms": {
+    "n": 25,
+    "p50": 4407.8,
+    "p95": 6136.0,
+    "mean": 4246.0
+   },
+   "catalog_tool_ms": {
+    "n": 25,
+    "p50": 0.0,
+    "p95": 8.5,
+    "mean": 2.2
+   },
+   "end_to_end_ms": {
+    "n": 25,
+    "p50": 5332.8,
+    "p95": 6896.3,
+    "mean": 5152.2
+   },
+   "judge_ms": {
+    "n": 25,
+    "p50": 3715.0,
+    "p95": 5047.6,
+    "mean": 3880.1
+   },
+   "turns_per_question": 1.36,
+   "answer_tokens": {
+    "in": 102124,
+    "out": 11282,
+    "n": 25
+   },
+   "cost_per_question_usd": {
+    "answering": 0.01281,
+    "judging": 0.00083
+   },
+   "questions_without_timings": 0
+  },
+  "ci95": {
+   "strict_pass": [
+    0.8,
+    1.0
+   ],
+   "deterministic_pass": [
+    0.88,
+    1.0
+   ],
+   "hallucination_rate": [
+    0.0,
+    0.12
+   ],
+   "faithfulness": [
+    0.987,
+    1.0
+   ],
+   "correctness": [
+    0.88,
+    1.0
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "H01",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "What is the Moto Legging made of and how compressive is it?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "The High-Waist Moto Legging (W3301R-BLK) is made of Airbrush fabric, which is 73% nylon and 27% spandex. It has medium compression, and the fit is listed as true to size. It also has 4-way stretch, and it's moisture-wicking and antimicrobial.",
+   "citations": [
+    "W3301R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "W3301R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1419.4,
+     "in": 1086,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 4759.0,
+     "in": 5666,
+     "out": 275,
+     "timed": true
+    },
+    "tool_ms": 0.3
+   },
+   "tool_calls": [
+    {
+     "name": "get_product",
+     "args": {
+      "query": "Moto Legging"
+     },
+     "ids": [
+      "W3301R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply directly states Airbrush fabric at 73% nylon / 27% spandex and medium compression, matching the reference answer. Extra details are accurate.",
+    "meta": {
+     "ms": 3715.0,
+     "in": 2570,
+     "out": 709
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H02",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "Do you sell a water bottle, and how long does it keep drinks cold?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Yes. We sell the Alo Sport Water Bottle for $48. Its double-wall vacuum insulation keeps drinks cold for 24 hours. It keeps hot drinks hot for 12 hours. It's stainless steel with a leak-proof lid and a wide mouth. It's a core item that's continuously stocked.",
+   "citations": [
+    "ACC-BOTTLE-WHT"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "ACC-BOTTLE-WHT",
+    "ACC-BOTTLE-WHT"
+   ],
+   "stats": {
+    "route": {
+     "ms": 920.7,
+     "in": 1091,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 3930.4,
+     "in": 5826,
+     "out": 363,
+     "timed": true
+    },
+    "tool_ms": 8.5
+   },
+   "tool_calls": [
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "water bottle"
+     },
+     "ids": [
+      "ACC-BOTTLE-WHT"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "category": "Accessories",
+      "keyword": "bottle"
+     },
+     "ids": [
+      "ACC-BOTTLE-WHT"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the product, the $48 price, and the 24-hour cold retention, matching the reference answer. It also adds the 12-hour hot figure, which is accurate. It omits the 24 oz capacity, which is optional.",
+    "meta": {
+     "ms": 3170.9,
+     "in": 2681,
+     "out": 777
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H03",
+   "domain": "product",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "Which men's shorts have a 5 inch inseam?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Only one men's short in the catalog has a 5 inch inseam: the 5\" Repetition Short (SKU M6105R-BLK), at $78.\n\n- Fabric: Conquer\n- Fit: Regular fit, mid-rise\n- Features: liner, side pockets, 4-way stretch, quick-dry, moisture-wicking\n- Best for: training, running, HIIT and the gym\n- Compression: Low-Medium\n- Availability: it's a core SKU and is continuously stocked.\n\nThe only other men's short in the catalog is the 7\" Circuit Short, which has a 7 inch inseam.",
+   "citations": [
+    "M6105R-BLK",
+    "M6201R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "M6105R-BLK",
+    "M6201R-BLK",
+    "M6105R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 832.3,
+     "in": 1085,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 4713.700000000001,
+     "in": 6155,
+     "out": 547,
+     "timed": true
+    },
+    "tool_ms": 3.4
+   },
+   "tool_calls": [
+    {
+     "name": "search_products",
+     "args": {
+      "gender": "Men",
+      "category": "Shorts",
+      "keyword": "5\" inseam",
+      "limit": 25
+     },
+     "ids": [
+      "M6105R-BLK"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "gender": "Men",
+      "category": "Shorts",
+      "limit": 25
+     },
+     "ids": [
+      "M6201R-BLK",
+      "M6105R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply clearly identifies the 5\" Repetition Short (M6105R-BLK) as the only men's short with a 5 inch inseam, matching the reference. Extra details are accurate and do not obscure the answer.",
+    "meta": {
+     "ms": 4218.2,
+     "in": 2993,
+     "out": 1173
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H04",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What's the softest fabric you offer, and what's it made of?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "The softest fabric is Alosoft. It's made of 55% Modal, 37% Polyester and 8% Spandex. It has a velvety, matte finish and light compression. It's designed for lounging, restorative yoga and low-impact movement. It has 4-way stretch and is moisture-wicking, antimicrobial and breathable. To care for it, machine wash cold, tumble dry low, and don't bleach or iron it.",
+   "citations": [
+    "fabric:Alosoft"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "fabric:Airlift",
+    "fabric:Airbrush",
+    "fabric:Alosoft",
+    "fabric:Alo Softsculpt",
+    "fabric:Conquer",
+    "fabric:Alo Vapor"
+   ],
+   "stats": {
+    "route": {
+     "ms": 683.7,
+     "in": 1086,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 4218.5,
+     "in": 6338,
+     "out": 293,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [
+    {
+     "name": "get_fabric",
+     "args": {},
+     "ids": [
+      "fabric:Airlift",
+      "fabric:Airbrush",
+      "fabric:Alosoft",
+      "fabric:Alo Softsculpt",
+      "fabric:Conquer",
+      "fabric:Alo Vapor"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply identifies Alosoft as the softest fabric and gives the exact composition (55% Modal, 37% Polyester, 8% Spandex), matching the reference answer. All other details are accurate to the catalog.",
+    "meta": {
+     "ms": 3173.4,
+     "in": 3306,
+     "out": 782
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H05",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Is there a flare-cut legging, and how long is the inseam?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Yes. The catalog has one flare-cut legging: the High-Waist Airlift Flare Legging (W7201R-BLK, $134). It's flared from the knee.\n\nInseam depends on size:\n- XXS, XS and S: 32 in\n- M, L and XL: 33 in",
+   "citations": [
+    "W7201R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "W7201R-BLK",
+    "W7201R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 767.8,
+     "in": 1088,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 4018.7,
+     "in": 5899,
+     "out": 340,
+     "timed": true
+    },
+    "tool_ms": 8.5
+   },
+   "tool_calls": [
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "flare",
+      "category": "Leggings"
+     },
+     "ids": [
+      "W7201R-BLK"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "flare"
+     },
+     "ids": [
+      "W7201R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply confirms a flare-cut legging exists, names the product, and gives the correct inseam by size (32 in for XXS/XS/S, 33 in for M/L/XL), matching the reference answer.",
+    "meta": {
+     "ms": 3167.0,
+     "in": 2721,
+     "out": 742
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H06",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Which sports bra is designed to match the Suit Up legging?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "The Airlift Suit Up Bra (SKU W2201R-BLK, $82) is the one designed to match the Airlift High-Waist Suit Up Legging (W6034R-BLK, $144). It's a medium-support bra. It has the same color-blocked design with contrast piping and is made from Airlift fabric. It also has removable padding and is moisture-wicking. Its listing says \"Designed to match Suit Up Legging.\"",
+   "citations": [
+    "W2201R-BLK",
+    "W6034R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "W6034R-BLK",
+    "W6034R-BLK",
+    "W2201R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1004.1,
+     "in": 1087,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 4407.8,
+     "in": 6397,
+     "out": 379,
+     "timed": true
+    },
+    "tool_ms": 18.4
+   },
+   "tool_calls": [
+    {
+     "name": "get_product",
+     "args": {
+      "query": "Suit Up legging"
+     },
+     "ids": [
+      "W6034R-BLK"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "Suit Up"
+     },
+     "ids": [
+      "W6034R-BLK",
+      "W2201R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply clearly identifies the Airlift Suit Up Bra as the bra designed to match the Airlift High-Waist Suit Up Legging, matching the reference answer, with all supporting details accurately drawn from the catalog.",
+    "meta": {
+     "ms": 3710.3,
+     "in": 3273,
+     "out": 899
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H07",
+   "domain": "product",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Which pants can I layer under my shorts?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "The Warrior Compression Pant (M5044R-BLK) is the pant in the catalog made for layering under shorts. It's listed at $88 and described as \"Can be worn alone or layered under shorts.\"\n\n- It's a men's pant with a tight compression fit and a mid-rise.\n- It has a 33.5 in inseam in all sizes.\n- It's made of 80% nylon and 20% spandex, with moisture-wicking fabric and flat-seam construction.\n\nMy searches found no other pants listed for layering under shorts. If you'd like, I can look for other options, such as leggings.",
+   "citations": [
+    "M5044R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "M5044R-BLK",
+    "ACC-MAT-BLK",
+    "M5044R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 922.6,
+     "in": 1081,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 5102.799999999999,
+     "in": 6118,
+     "out": 517,
+     "timed": true
+    },
+    "tool_ms": 6.7
+   },
+   "tool_calls": [
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "layer",
+      "limit": 25
+     },
+     "ids": [
+      "M5044R-BLK",
+      "ACC-MAT-BLK"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "category": "Pants",
+      "keyword": "under shorts"
+     },
+     "ids": [
+      "M5044R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the correct conclusion: the Warrior Compression Pant can be worn alone or layered under shorts, matching the reference. The extra details are accurate and the answer is not buried.",
+    "meta": {
+     "ms": 4624.5,
+     "in": 3004,
+     "out": 1028
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H08",
+   "domain": "product",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "How much is the Goddess Ribbed legging in the Airbrush version?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered",
+    "partial"
+   ],
+   "answer": "The High-Waist Goddess Ribbed Legging in Airbrush (W4501R-BLK) is $118. The other Goddess Ribbed legging in the catalog is the Alosoft version, which is $114. That one isn't Airbrush.",
+   "citations": [
+    "W4501R-BLK",
+    "W8801R-BLK"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "W4501R-BLK",
+    "W8801R-BLK",
+    "W4501R-BLK"
+   ],
+   "stats": {
+    "route": {
+     "ms": 982.0,
+     "in": 1091,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 5310.4,
+     "in": 6765,
+     "out": 351,
+     "timed": true
+    },
+    "tool_ms": 4.0
+   },
+   "tool_calls": [
+    {
+     "name": "get_product",
+     "args": {
+      "query": "Goddess Ribbed"
+     },
+     "ids": [
+      "W4501R-BLK",
+      "W8801R-BLK"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "keyword": "Goddess Ribbed",
+      "fabric": "Airbrush"
+     },
+     "ids": [
+      "W4501R-BLK"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the correct price of $118 for the Airbrush High-Waist Goddess Ribbed Legging and identifies the Alosoft version as a different product at $114, matching the reference answer.",
+    "meta": {
+     "ms": 3170.5,
+     "in": 3579,
+     "out": 700
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H09",
+   "domain": "product",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "Which men's fabric is quick-drying and anti-odor?",
+   "customer_id": null,
+   "route": [
+    "product"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Conquer is the men's fabric that is both quick-drying and anti-odor. It's Alo's men's performance fabric: lightweight, breathable, and made of 88% Polyester and 12% Spandex. It has 4-way stretch, wicks moisture, and has low-medium compression. It's built for training and high-movement activities.\n\nAlo Vapor, the other men's fabric, is moisture-wicking and ultra-breathable. Its listed properties don't include quick-dry or anti-odor.\n\nThese men's products are made with Conquer:\n- 7\" Circuit Short (M6201R-BLK), $68\n- Conquer Max Performance Jogger (M7301R-BLK), $128\n- Conquer Reform Crewneck Short Sleeve (M5501R-WHT), $78\n\nThe catalog search returned 3 matches, and all 3 are listed here.",
+   "citations": [
+    "fabric:Conquer",
+    "fabric:Alo Vapor",
+    "M6201R-BLK",
+    "M7301R-BLK",
+    "M5501R-WHT"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "fabric:Airlift",
+    "fabric:Airbrush",
+    "fabric:Alosoft",
+    "fabric:Alo Softsculpt",
+    "fabric:Conquer",
+    "fabric:Alo Vapor",
+    "M6201R-BLK",
+    "M7301R-BLK",
+    "M5501R-WHT"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1164.0,
+     "in": 1087,
+     "out": 36
+    },
+    "retrieve_ms": 0.0,
+    "model": {
+     "turns": 2,
+     "ms": 5028.5,
+     "in": 7349,
+     "out": 569,
+     "timed": true
+    },
+    "tool_ms": 4.0
+   },
+   "tool_calls": [
+    {
+     "name": "get_fabric",
+     "args": {},
+     "ids": [
+      "fabric:Airlift",
+      "fabric:Airbrush",
+      "fabric:Alosoft",
+      "fabric:Alo Softsculpt",
+      "fabric:Conquer",
+      "fabric:Alo Vapor"
+     ],
+     "error": null
+    },
+    {
+     "name": "search_products",
+     "args": {
+      "gender": "Men",
+      "keyword": "anti-odor",
+      "limit": 25
+     },
+     "ids": [
+      "M6201R-BLK",
+      "M7301R-BLK",
+      "M5501R-WHT"
+     ],
+     "error": null
+    }
+   ],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply states the right conclusion (Conquer, quick-dry and anti-odor, lightweight, breathable, 88% polyester / 12% spandex), matching the reference answer. The extra product list and Alo Vapor comparison are accurate additions.",
+    "meta": {
+     "ms": 4664.5,
+     "in": 4361,
+     "out": 1293
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H10",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "How many days do I have to send something back?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "You have 30 days from the original purchase date to start a standard return. The item has to be unworn, unwashed and unaltered, with the original tags attached and in sellable condition. You'll also need your order number or proof of purchase.\n\nTwo situations have different timing:\n- **Instant Exchange:** If you're offered this on the Returns Portal, you must drop the return off at UPS within 21 days. If you don't, your card is charged the full price of the replacement item.\n- **Defective or damaged items:** Contact customerservice@aloyoga.com or call (855) 793-3100 within 30 days of receiving the item. Include your order number, a description of the defect and photos. Reports made after 30 days are reviewed case by case and aren't guaranteed to be accepted.\n\nI couldn't see your order details, so I can't give you a specific deadline date. Count 30 days from your purchase date.",
+   "citations": [
+    "returns§1",
+    "returns§4.1",
+    "returns§7"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "returns§4.1",
+    "returns§3",
+    "shipping§6",
+    "shipping§3.2",
+    "returns§1",
+    "returns§7"
+   ],
+   "stats": {
+    "route": {
+     "ms": 921.5,
+     "in": 1078,
+     "out": 37
+    },
+    "retrieve_ms": 22.6,
+    "model": {
+     "turns": 1,
+     "ms": 4443.9,
+     "in": 2735,
+     "out": 555,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G1": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply leads with the correct conclusion: 30 days from original purchase date, with unworn/unwashed/tags-attached conditions stated. The extra Instant Exchange and defective-item timing is accurate and does not bury the core answer.",
+    "meta": {
+     "ms": 4294.1,
+     "in": 3587,
+     "out": 1187
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H11",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "What does it cost to get my order in two days?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Two-Day Shipping costs $15.00. It's available for U.S. addresses, but not PO Boxes or APO/FPO addresses.\n\nThe two days count from the day your order ships, not the day you order. Orders usually dispatch within 1–2 business days. Orders placed before 2:00 PM PT on a business day are processed that day. During peak promotions, processing can take 3–5 business days.\n\nIf you need it faster, Overnight/Next-Day is $25.00. Standard Shipping is free and takes 3–5 business days after shipment.",
+   "citations": [
+    "shipping§2.2",
+    "shipping§1",
+    "shipping§2.3",
+    "shipping§2.1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "shipping§2.2",
+    "shipping§2.3",
+    "shipping§2.4",
+    "shipping§2.1",
+    "shipping§1",
+    "shipping§3.2"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1069.8,
+     "in": 1080,
+     "out": 37
+    },
+    "retrieve_ms": 13.7,
+    "model": {
+     "turns": 1,
+     "ms": 4617.0,
+     "in": 2570,
+     "out": 571,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply leads with the correct conclusion, $15.00 for Two-Day Shipping, and gives the eligibility and timing context needed to answer the question. It omits the optional A-List/All Access free-shipping detail, which is not required. All claims are supported by the evidence.",
+    "meta": {
+     "ms": 3602.5,
+     "in": 3247,
+     "out": 986
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H12",
+   "domain": "policy",
+   "difficulty": "easy",
+   "type": "answerable",
+   "query": "When do my loyalty points expire?",
+   "customer_id": null,
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Points expire 24 months after the date they were earned. I can't see your account because no one is signed in, so I can't give you your own expiration dates or balance. Sign in to check them.\n\nOther details from the program terms:\n- You'll get an email reminder 60 days before your earliest-earned points expire.\n- Expired points can't be reinstated.",
+   "citations": [
+    "loyalty§6.3"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "loyalty§6.3",
+    "loyalty§4.1",
+    "loyalty§10",
+    "loyalty§3.2",
+    "loyalty§6.2",
+    "loyalty§3.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 720.1,
+     "in": 1078,
+     "out": 41
+    },
+    "retrieve_ms": 9.7,
+    "model": {
+     "turns": 1,
+     "ms": 2404.9,
+     "in": 2413,
+     "out": 231,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply states the core rule (24 months after earning) and the 60-day email reminder, matching the reference answer. Its account-specific caveat is accurate given no customer is signed in.",
+    "meta": {
+     "ms": 2787.1,
+     "in": 3022,
+     "out": 660
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H13",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "How long do I have to cancel an order after placing it?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "You have 1 hour after placing your order to cancel it. To do so, contact customer service within that hour. Once an order has been processed or shipped, it can't be cancelled or modified. If it has already shipped, you can start a return once it's delivered.",
+   "citations": [
+    "returns§8"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "shipping§5",
+    "shipping§1",
+    "shipping§4",
+    "returns§8",
+    "shipping§6",
+    "returns§2.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 823.4,
+     "in": 1083,
+     "out": 37
+    },
+    "retrieve_ms": 8.9,
+    "model": {
+     "turns": 1,
+     "ms": 2913.0,
+     "in": 2623,
+     "out": 198,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the standard rule (1 hour after placement, via contacting customer service) and the key limit (cannot cancel once processed or shipped), matching the reference answer. The extra return-after-delivery note is accurate and supported.",
+    "meta": {
+     "ms": 2616.1,
+     "in": 3215,
+     "out": 601
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H14",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What's the minimum order for free international shipping?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "International orders over $75 USD (before taxes and duties) ship free. For international orders under $75 USD, shipping rates are calculated at checkout based on your destination. International orders are fulfilled via DHL or a local courier partner.",
+   "citations": [
+    "shipping§3.1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "shipping§3.1",
+    "shipping§2.1",
+    "shipping§2.5",
+    "shipping§3.2",
+    "returns§5",
+    "shipping§2.4"
+   ],
+   "stats": {
+    "route": {
+     "ms": 710.3,
+     "in": 1081,
+     "out": 37
+    },
+    "retrieve_ms": 7.3,
+    "model": {
+     "turns": 1,
+     "ms": 2815.7,
+     "in": 2448,
+     "out": 197,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply states the standard rule that international orders over $75 USD (before taxes and duties) ship free, which matches the reference answer. The extra details on under-$75 rates and fulfillment partners are accurate and do not bury the answer.",
+    "meta": {
+     "ms": 2133.3,
+     "in": 3023,
+     "out": 509
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H15",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "Do students get a discount?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Yes. Students verified through Student Beans get 15% off full-price items.\n\n- The discount is for full-price items. It can't be stacked with other promotions or Alo Access redemptions, because community discounts are verified through third-party platforms.\n- One section says the student discount is one-time use per student account. Another lists it as an ongoing community discount. I can't tell from the sources which is correct, so check the terms when you verify through Student Beans.\n- One section also describes the 15% as \"on top of\" standard Access benefits. Another says it can't be combined with Access redemptions. I'd treat it as not combinable with point redemptions or promo codes.",
+   "citations": [
+    "loyalty§9",
+    "loyalty§2"
+   ],
+   "data_issues": [
+    "loyalty§2 says the student discount is one-time use per student account, but loyalty§9 lists it as a special ongoing discount.",
+    "loyalty§2 says the 15% is 'on top of' standard Access benefits, but loyalty§9 says community discounts can't be stacked with other promotions or Alo Access redemptions."
+   ],
+   "context_ids": [
+    "loyalty§9",
+    "loyalty§2",
+    "loyalty§8",
+    "loyalty§6.2",
+    "loyalty§7",
+    "returns§6"
+   ],
+   "stats": {
+    "route": {
+     "ms": 778.2,
+     "in": 1075,
+     "out": 37
+    },
+    "retrieve_ms": 8.1,
+    "model": {
+     "turns": 1,
+     "ms": 5032.4,
+     "in": 2503,
+     "out": 694,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 0.8888888888888888,
+    "unsupported": [
+     {
+      "claim": "The reason community discounts cannot be stacked is that they are verified through third-party platforms.",
+      "verdict": "contradicted",
+      "evidence": "The source states the third-party verification and the no-stacking rule as two separate facts; it does not say the verification causes the no-stacking restriction. The reply presents a causal link the source does not state."
+     }
+    ],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply leads with the correct conclusion: yes, verified students get 15% off full-price items through Student Beans, matching the reference. The extra caveats about conflicting sources are accurate and don't obscure the answer, though the \"treat as not combinable with point redemptions or promo codes\" advice is a reasonable reading of the sources.",
+    "meta": {
+     "ms": 4481.6,
+     "in": 3206,
+     "out": 1052
+    }
+   },
+   "det_pass": true,
+   "strict_pass": false
+  },
+  {
+   "id": "H16",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "My package says delivered but I never received it. What should I do?",
+   "customer_id": null,
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Contact Alo customer service as soon as you can. Packages marked \"Delivered\" but not received should be reported within 7 days of the delivery date. Reports made after that may not be eligible for reshipping or refund.\n\nHow to report it:\n1. Email customerservice@aloyoga.com or call (855) 793-3100.\n2. Include your order number and a description of the issue.\n3. Alo will work with the carrier to investigate. Resolution typically takes 5–10 business days for U.S. orders and longer for international orders.\n\nI can't see your order because no account is signed in. That means I can't tell you the delivery date or how many days are left in your 7-day window. Check the delivery date on your tracking and count from there.\n\nAlso check that the shipping address you entered at checkout was correct. Orders shipped to an incorrect address provided by the customer aren't eligible for reshipping or refund if the package is delivered or lost.",
+   "citations": [
+    "shipping§6",
+    "shipping§5"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "shipping§6",
+    "returns§2.1",
+    "shipping§5",
+    "returns§3",
+    "shipping§3.3",
+    "returns§8"
+   ],
+   "stats": {
+    "route": {
+     "ms": 951.6,
+     "in": 1084,
+     "out": 41
+    },
+    "retrieve_ms": 9.9,
+    "model": {
+     "turns": 1,
+     "ms": 3626.6,
+     "in": 2683,
+     "out": 417,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [
+     {
+      "claim": "Check the delivery date on your tracking and count from there.",
+      "verdict": "unsupported_advice",
+      "evidence": "Evidence never mentions tracking pages showing the delivery date; this is a process pointer not in sources (generic advice, though reasonable)."
+     }
+    ],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply leads with the core rule: report within 7 days of the delivery date, and notes late reports may not be eligible for reshipping or refund, matching the reference. It also gives the contact channels and steps. Only minor issue is the generic tracking advice, which is not in sources but is not a policy fabrication.",
+    "meta": {
+     "ms": 4300.1,
+     "in": 3487,
+     "out": 1125
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H17",
+   "domain": "policy",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What happens if I don't use my return label in time?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "If you don't drop your return off within 21 days of the label being generated, the label expires and Alo won't accept the item. This applies to the prepaid UPS labels for U.S. online returns.\n\nIf you chose an Instant Exchange, there's an extra consequence. The hold on your card is released once your return is dropped off at UPS. If you miss the 21-day deadline, your card will be charged the full amount of the replacement item.\n\nSeparately, returns must be initiated within 30 days of the original purchase date. I can't see a label or order date in the sources I have, so I can't tell you your exact deadline. Check the generation date of your label to work out when the 21 days end.\n\nThe sources don't say whether a new label can be generated after expiry. Contact Alo using the contact details in the sources if you need help with that. The only contact I have is customerservice@aloyoga.com, and the sources list it for international return inquiries.",
+   "citations": [
+    "returns§2.1",
+    "returns§4.1",
+    "returns§1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "returns§2.1",
+    "returns§5",
+    "returns§4.1",
+    "returns§1",
+    "returns§3",
+    "returns§1.2"
+   ],
+   "stats": {
+    "route": {
+     "ms": 732.2,
+     "in": 1081,
+     "out": 37
+    },
+    "retrieve_ms": 9.6,
+    "model": {
+     "turns": 1,
+     "ms": 4591.0,
+     "in": 2823,
+     "out": 553,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the core rule: labels expire 21 days after generation and items not dropped off by then are not accepted. It adds accurate Instant Exchange consequences and correctly flags missing customer-specific info. The 30-day initiation rule is accurate, though a side point.",
+    "meta": {
+     "ms": 3678.9,
+     "in": 3615,
+     "out": 970
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H18",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "Do I earn points on shipping fees or gift cards?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "No. You don't earn ALO Access points on either one. The base rate is 1 point per $1 USD spent. That rate doesn't apply to gift card purchases or to shipping fees and taxes. The same section says points also aren't earned on sale or discounted items (items discounted 30% or more). Points from returned orders are reversed.",
+   "citations": [
+    "loyalty§3.1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "loyalty§3.1",
+    "loyalty§4",
+    "loyalty§scope",
+    "returns§2.2",
+    "loyalty§6.2",
+    "shipping§3.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 721.6,
+     "in": 1085,
+     "out": 37
+    },
+    "retrieve_ms": 10.8,
+    "model": {
+     "turns": 1,
+     "ms": 2608.3,
+     "in": 3123,
+     "out": 230,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G5": "na"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply opens with the correct conclusion \"No\" and explicitly covers gift cards and shipping fees and taxes, plus the 30% sale exclusion. It states the standard 1 point per $1 rule before the exceptions, so it is not merely a list of exceptions. It matches the reference answer's key facts.",
+    "meta": {
+     "ms": 3855.2,
+     "in": 3791,
+     "out": 746
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H19",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "My order arrived damaged. How do I report it?",
+   "customer_id": null,
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "Sorry your order arrived damaged. To report it, contact customerservice@aloyoga.com or call (855) 793-3100. Include your order number, a description of the damage, and photos.\n\nTiming: Alo's returns policy asks you to report damaged or defective items within 30 days of receipt. If you contact Alo within that window, Alo covers return shipping and issues a full refund or replacement at no cost to you. Reports made after 30 days are reviewed case by case and aren't guaranteed to be accepted.\n\nAlso, if the carrier marked the package \"Delivered\" but you didn't receive it, report that within 7 days of the delivery date. Reports after 7 days may not be eligible for reshipping or refund.\n\nYou aren't signed in, so I can't see your order or its delivery date. I can't confirm whether you're still inside these windows.",
+   "citations": [
+    "returns§7",
+    "shipping§6"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "shipping§6",
+    "returns§7",
+    "shipping§4",
+    "returns§8",
+    "shipping§5",
+    "shipping§2.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 988.8,
+     "in": 1082,
+     "out": 41
+    },
+    "retrieve_ms": 7.6,
+    "model": {
+     "turns": 1,
+     "ms": 3019.7,
+     "in": 2478,
+     "out": 396,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the contact channels, the 30-day window from receipt, required details (order number, description, photos), and that Alo covers return shipping and issues a refund or replacement, matching the reference. The added 7-day carrier-delivered rule is accurate and relevant context.",
+    "meta": {
+     "ms": 3709.3,
+     "in": 3289,
+     "out": 967
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H20",
+   "domain": "policy",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I get overnight delivery to a PO box?",
+   "customer_id": null,
+   "route": [
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered",
+    "partial"
+   ],
+   "answer": "No, overnight delivery isn't available to PO Boxes. PO Boxes (and APO/FPO addresses) can only be shipped with Standard shipping. Expedited options, meaning 2-day and overnight, aren't offered for these address types. Standard shipping is free on U.S. orders and estimated at 3–5 business days after shipment.",
+   "citations": [
+    "shipping§7",
+    "shipping§2.3",
+    "shipping§2.1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "shipping§7",
+    "shipping§2.3",
+    "shipping§2.2",
+    "shipping§2.4",
+    "shipping§3.2",
+    "shipping§2.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1039.0,
+     "in": 1083,
+     "out": 37
+    },
+    "retrieve_ms": 10.1,
+    "model": {
+     "turns": 1,
+     "ms": 2507.4,
+     "in": 2484,
+     "out": 250,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G4": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply answers 'No' and states that PO Boxes and APO/FPO addresses are limited to Standard shipping, with 2-day and overnight unavailable, matching the reference answer. The extra standard-shipping details are accurate.",
+    "meta": {
+     "ms": 2823.7,
+     "in": 3173,
+     "out": 727
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H21",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I return the 7/8 leggings from my Black Friday order?",
+   "customer_id": "CUST-10041",
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered",
+    "partial"
+   ],
+   "answer": "No, the 7/8 High-Waist Airlift Legging from your Black Friday order (ALO-2024-881234) can't be returned or exchanged.\n\n- **Final Sale:** The item was bought at 30% off and is marked Final Sale. Alo's policy says items discounted 30% or more, including Black Friday purchases, can't be returned or exchanged under any circumstances. A Final Sale item's return is declined whatever the reason.\n- **Return window:** Even a non-final-sale item has to be returned within 30 days of purchase. You placed this order on 2024-11-28, so that window ended on 2024-12-28. Today is 2025-03-01, which is 93 days after purchase.\n\nI can't grant an exception to this policy. The Airlift Suit Up Bra in the same order is also Final Sale, so the same rules apply to it.",
+   "citations": [
+    "customer_record",
+    "returns§1.2",
+    "returns§6",
+    "returns§1"
+   ],
+   "data_issues": [
+    "The legging's SKU (W5766R-BLK) ends in BLK, which suggests black, but the item's color is listed as Vintage Pink. This doesn't change the answer."
+   ],
+   "context_ids": [
+    "customer_record",
+    "returns§1.2",
+    "returns§6",
+    "returns§2.1",
+    "shipping§8",
+    "returns§1",
+    "returns§4"
+   ],
+   "stats": {
+    "route": {
+     "ms": 751.7,
+     "in": 1089,
+     "out": 41
+    },
+    "retrieve_ms": 8.6,
+    "model": {
+     "turns": 1,
+     "ms": 6136.0,
+     "in": 3432,
+     "out": 839,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G1": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply concludes clearly that the 7/8 legging cannot be returned, because the Black Friday order was discounted 30% and marked Final Sale, matching the reference answer. It also supplies the supporting policy and the order facts.",
+    "meta": {
+     "ms": 4669.7,
+     "in": 4297,
+     "out": 1252
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H22",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I return the water bottle I bought in January?",
+   "customer_id": "CUST-10254",
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered",
+    "partial"
+   ],
+   "answer": "Unfortunately, no. The water bottle is outside the return window.\n\n- Your Alo Sport Water Bottle (24 oz, Blush) was in order ALO-2025-002887, placed on 2025-01-22.\n- Alo accepts returns within 30 days of the original purchase date. That window ran from 2025-01-22 to 2025-02-21.\n- Today is 2025-03-01, which is 38 days after purchase. The window closed about 8 days ago.\n- The bottle was full price, so it isn't final sale. The 30-day window is what rules it out.\n\nI can't grant an exception to the window. The sources I have don't list any other option for a bottle returned after 30 days.",
+   "citations": [
+    "customer_record",
+    "returns§1"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "returns§6",
+    "returns§5",
+    "returns§1",
+    "returns§2.1",
+    "returns§1.2",
+    "returns§4.1"
+   ],
+   "stats": {
+    "route": {
+     "ms": 746.2,
+     "in": 1082,
+     "out": 41
+    },
+    "retrieve_ms": 7.7,
+    "model": {
+     "turns": 1,
+     "ms": 4945.4,
+     "in": 3450,
+     "out": 593,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G2": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply gives the correct conclusion (no return), the purchase date, the 30-day window ending 2025-02-21, the 38 days elapsed, and notes the item was full price. This matches the reference answer fully.",
+    "meta": {
+     "ms": 4146.9,
+     "in": 4266,
+     "out": 1064
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H23",
+   "domain": "customer",
+   "difficulty": "medium",
+   "type": "answerable",
+   "query": "What perks come with my membership level?",
+   "customer_id": "CUST-10389",
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "You're an A-List member (445 points, within the 300–999 range), so you get all VIP benefits plus A-List perks:\n\n**A-List perks**\n- Free 2-day shipping on all U.S. orders\n- Priority customer service\n- Early access to new product drops (before the general public)\n- Exclusive A-List sales (deeper discounts than VIP-only events)\n- Invites to exclusive Alo events (fitness classes, pop-ups)\n\n**Included VIP benefits**\n- Welcome gift upon joining (subject to availability)\n- Birthday gift (redeemable within 30 days of your birthday)\n- Access to the Alo Wellness digital platform\n- Exclusive members-only sales (early access to select promotions)\n- 10% off your first order after joining\n- Free standard shipping on all U.S. orders\n\nYour order ALO-2024-870011 shipped with Free 2-Day (A-List benefit) shipping, which matches this perk.\n\nTiers are based on points earned over a rolling 12-month period. If your points fall below 300, a downgrade would happen at the next quarterly review, not immediately. The sources don't say how many of your 445 points are from the last 12 months, so I can't tell you whether your tier is at risk.",
+   "citations": [
+    "loyalty§4",
+    "shipping§2.5",
+    "loyalty§4.1",
+    "customer_record"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "shipping§2.5",
+    "loyalty§4",
+    "loyalty§2",
+    "loyalty§1",
+    "loyalty§4.1",
+    "loyalty§10"
+   ],
+   "stats": {
+    "route": {
+     "ms": 790.9,
+     "in": 1077,
+     "out": 41
+    },
+    "retrieve_ms": 8.2,
+    "model": {
+     "turns": 1,
+     "ms": 3890.4,
+     "in": 3419,
+     "out": 547,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G5": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply concludes Marcus is A-List, lists all VIP benefits plus the A-List perks (free 2-day shipping, priority service, early drops, A-List sales, event invites), matching the reference answer. The extra tier-downgrade context is accurate and does not obscure the answer.",
+    "meta": {
+     "ms": 5047.6,
+     "in": 4402,
+     "out": 1464
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  },
+  {
+   "id": "H24",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "trap",
+   "query": "Can I send back the leggings from my first order?",
+   "customer_id": "CUST-10103",
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "not_in_data",
+   "expected_status": [
+    "answered",
+    "partial"
+   ],
+   "answer": "I can't confirm whether the leggings can still be returned. The sources I have don't include the return window or the eligibility rules for online orders, and I won't guess at them.\n\nWhat I can see on your order:\n- ALO-2024-901882 was an online order. It was delivered on 2024-10-19, which is 133 days before today (2025-03-01).\n- The in-store return rules (original receipt, same store) apply only to in-store purchases, so they don't apply to this order.\n- The order notes say you used a 10% new member welcome code. I can't tell whether discounted items are treated differently for returns, because the sources don't say.\n\nThe sources do mention a Returns Portal, but they don't explain how to start an online return. I also don't have a contact for return eligibility questions. The only contact details I have are for lost or damaged shipments, so I can't point you to a verified contact for this question.",
+   "citations": [
+    "customer_record",
+    "returns§2.2"
+   ],
+   "data_issues": [
+    "The order notes say a 10% welcome code was used, but the subtotal and total ($180.00) equal the full item prices ($118 + $62) with no discount shown."
+   ],
+   "context_ids": [
+    "customer_record",
+    "returns§2.2",
+    "returns§8",
+    "returns§4.1",
+    "shipping§6",
+    "shipping§4",
+    "shipping§5"
+   ],
+   "stats": {
+    "route": {
+     "ms": 911.3,
+     "in": 1081,
+     "out": 41
+    },
+    "retrieve_ms": 10.4,
+    "model": {
+     "turns": 1,
+     "ms": 7453.3,
+     "in": 2786,
+     "out": 880,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 0.0,
+   "det": {
+    "status_ok": false,
+    "missing_facts": [
+     "30"
+    ],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": []
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G2": "pass"
+    },
+    "correctness": "incorrect",
+    "correctness_reason": "The reference answer concludes the leggings cannot be returned because the order is far outside the return window (138 days since placement). The reply never reaches this conclusion; it says it cannot confirm eligibility and does not state that the order is outside the window. The question is fundamentally about eligibility, so omitting the answer makes the reply incorrect. The reply also gives no usable answer despite the evidence in the record (placement 138 days ago) pointing to a no. Its absence claims are accurate, but the conclusion is missing.",
+    "meta": {
+     "ms": 4887.7,
+     "in": 3647,
+     "out": 1207
+    }
+   },
+   "det_pass": false,
+   "strict_pass": false
+  },
+  {
+   "id": "H25",
+   "domain": "customer",
+   "difficulty": "hard",
+   "type": "answerable",
+   "query": "Besides free 2-day shipping, what other perks come with my membership?",
+   "customer_id": "CUST-10254",
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "status": "answered",
+   "expected_status": [
+    "answered"
+   ],
+   "answer": "As an All Access member (2,104 points), you get these perks besides free 2-day shipping:\n\n- Priority processing, which comes with the free 2-day shipping\n- Priority customer service\n- Early access to new product drops, before the general public\n- First access to limited edition drops and collaborations\n- Exclusive A-List sales, with deeper discounts than VIP-only events\n- Exclusive members-only sales, with early access to select promotions\n- Invites to exclusive Alo events, such as fitness classes and pop-ups\n- Invite-only experiences, such as exclusive events and studio sessions\n- Access to private Alo Instagram content\n- Exclusive All Access gifts, which vary by season\n- Access to the Alo Wellness digital platform\n- A birthday gift, redeemable within 30 days of your birthday\n- Free standard shipping on U.S. orders\n- A welcome gift on joining (subject to availability) and 10% off your first order after joining. These are joining perks, so they may not apply to you now.\n\nTiers are based on points earned in a rolling 12-month period. All Access requires 1,000 or more points.",
+   "citations": [
+    "loyalty§4",
+    "shipping§2.5",
+    "customer_record"
+   ],
+   "data_issues": [],
+   "context_ids": [
+    "customer_record",
+    "shipping§2.5",
+    "loyalty§4",
+    "shipping§2.1",
+    "shipping§3.1",
+    "loyalty§1",
+    "loyalty§2"
+   ],
+   "stats": {
+    "route": {
+     "ms": 1079.8,
+     "in": 1089,
+     "out": 41
+    },
+    "retrieve_ms": 14.5,
+    "model": {
+     "turns": 1,
+     "ms": 3655.7,
+     "in": 3641,
+     "out": 497,
+     "timed": true
+    },
+    "tool_ms": 0.0
+   },
+   "tool_calls": [],
+   "gold_in_context": 1.0,
+   "det": {
+    "status_ok": true,
+    "missing_facts": [],
+    "forbidden_facts": [],
+    "bad_citations": [],
+    "no_citation": false,
+    "leaked_customers": [],
+    "numbers_not_in_context": [
+     "2,104"
+    ]
+   },
+   "judge": {
+    "faithfulness": 1.0,
+    "unsupported": [],
+    "unsupported_advice": [],
+    "false_absence": [],
+    "pitfall_fails": [],
+    "pitfalls": {
+     "G3": "pass",
+     "G5": "pass"
+    },
+    "correctness": "correct",
+    "correctness_reason": "The reply correctly identifies All Access status and 2,104 points, and lists priority processing, invite-only experiences, Instagram content, first access to limited drops, seasonal gifts, and all A-List/VIP benefits such as priority service, early drops, sales, events, birthday gift, and Wellness access. It covers everything in the reference answer.",
+    "meta": {
+     "ms": 6355.5,
+     "in": 4662,
+     "out": 1503
+    }
+   },
+   "det_pass": true,
+   "strict_pass": true
+  }
+ ]
+}

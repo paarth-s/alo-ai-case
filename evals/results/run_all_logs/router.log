@@ -1,0 +1,7 @@
+dev      n=36 pass 1.00 | exact match 0.81 | missed domains 0 | extra domains 7 | out-of-scope handled 1/1 | fallbacks 0
+         customer: P=0.667 R=1.0  policy: P=1.0 R=1.0  product: P=0.923 R=1.0
+         latency p50 843 ms / p95 1166 ms (n=36) | tokens/call {'in': 1085, 'out': 38}
+heldout  n=25 pass 1.00 | exact match 0.88 | missed domains 0 | extra domains 3 | out-of-scope handled 0/0 | fallbacks 0
+         customer: P=0.625 R=1.0  policy: P=1.0 R=1.0  product: P=1.0 R=1.0
+         latency p50 861 ms / p95 1288 ms (n=25) | tokens/call {'in': 1084, 'out': 38}
+saved evals/results/router.json

@@ -1,0 +1,674 @@
+{
+  "dataset_version": "2025-Q1",
+  "description": "Synthetic customer order history for Alo Yoga RAG case study exercise. All customer names, emails, and personal information are fictional. Order and product data is grounded in real Alo Yoga SKUs and policies.",
+  "customers": [
+    {
+      "customer_id": "CUST-10041",
+      "name": "Maya Patel",
+      "email": "maya.patel@example.com",
+      "loyalty_tier": "A-List",
+      "loyalty_points": 487,
+      "member_since": "2022-08-14",
+      "orders": [
+        {
+          "order_id": "ALO-2024-881234",
+          "order_date": "2024-11-28",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5766R-BLK",
+              "name": "7/8 High-Waist Airlift Legging",
+              "color": "Vintage Pink",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 118.00,
+              "was_discounted": true,
+              "discount_pct": 30,
+              "final_sale": true
+            },
+            {
+              "sku": "W2201R-BLK",
+              "name": "Airlift Suit Up Bra",
+              "color": "Black/White",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 82.00,
+              "was_discounted": true,
+              "discount_pct": 30,
+              "final_sale": true
+            }
+          ],
+          "subtotal": 140.00,
+          "shipping": 0.00,
+          "shipping_method": "Free Standard",
+          "total": 140.00,
+          "payment_method": "Visa ending 4821",
+          "delivery_address": "Los Angeles, CA",
+          "delivered_date": "2024-12-03",
+          "notes": "Black Friday order — both items are Final Sale"
+        },
+        {
+          "order_id": "ALO-2024-774120",
+          "order_date": "2024-09-10",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5561R-BLK",
+              "name": "High-Waist Airlift Legging",
+              "color": "Black",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 128.00,
+          "shipping": 0.00,
+          "shipping_method": "Free Standard",
+          "total": 128.00,
+          "payment_method": "Visa ending 4821",
+          "delivery_address": "Los Angeles, CA",
+          "delivered_date": "2024-09-15",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-660891",
+          "order_date": "2024-06-22",
+          "order_status": "Returned",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W6201R-BLK",
+              "name": "ALO Softsculpt High-Waist Legging",
+              "color": "Bone",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 134.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 134.00,
+          "shipping": 0.00,
+          "total": 134.00,
+          "payment_method": "Visa ending 4821",
+          "delivery_address": "Los Angeles, CA",
+          "return_date": "2024-07-01",
+          "return_reason": "Wrong size — ordered S but needed XS",
+          "refund_issued": true,
+          "refund_amount": 134.00,
+          "notes": "Return within 30-day window"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10082",
+      "name": "Jordan Kim",
+      "email": "jordankim88@example.com",
+      "loyalty_tier": "All Access",
+      "loyalty_points": 1342,
+      "member_since": "2021-03-05",
+      "orders": [
+        {
+          "order_id": "ALO-2025-001145",
+          "order_date": "2025-01-15",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5561R-BLK",
+              "name": "High-Waist Airlift Legging",
+              "color": "Navy",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "ACC-MAT-BLK",
+              "name": "Warrior Mat",
+              "color": "Black",
+              "size": "Standard",
+              "quantity": 1,
+              "unit_price": 148.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 276.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (All Access benefit)",
+          "total": 276.00,
+          "payment_method": "Mastercard ending 7734",
+          "delivery_address": "New York, NY",
+          "delivered_date": "2025-01-17",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-990012",
+          "order_date": "2024-12-26",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W7201R-BLK",
+              "name": "High-Waist Airlift Flare Legging",
+              "color": "Black",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 134.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "W1501R-BLK",
+              "name": "Airlift Intrigue Bra",
+              "color": "Black",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 72.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 206.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (All Access benefit)",
+          "total": 206.00,
+          "payment_method": "Mastercard ending 7734",
+          "delivery_address": "New York, NY",
+          "delivered_date": "2024-12-28",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-820341",
+          "order_date": "2024-04-27",
+          "order_status": "Delivered",
+          "channel": "In-Store",
+          "items": [
+            {
+              "sku": "W5766R-BLK",
+              "name": "7/8 High-Waist Airlift Legging",
+              "color": "Light Provence Blue",
+              "size": "M",
+              "quantity": 2,
+              "unit_price": 118.00,
+              "was_discounted": true,
+              "discount_pct": 30,
+              "final_sale": true
+            }
+          ],
+          "subtotal": 165.20,
+          "shipping": 0.00,
+          "total": 165.20,
+          "payment_method": "Visa ending 1122",
+          "store_location": "Alo SoHo, New York, NY",
+          "notes": "Aloversary Sale — Final Sale items"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10103",
+      "name": "Sofia Reyes",
+      "email": "sofia.reyes.fit@example.com",
+      "loyalty_tier": "VIP",
+      "loyalty_points": 156,
+      "member_since": "2024-08-01",
+      "orders": [
+        {
+          "order_id": "ALO-2024-901882",
+          "order_date": "2024-10-14",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5901R-BLK",
+              "name": "High-Waist Airbrush Legging",
+              "color": "Black",
+              "size": "XS",
+              "quantity": 1,
+              "unit_price": 118.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "W1601R-BLK",
+              "name": "Airbrush Strapless Bra",
+              "color": "Black",
+              "size": "XS",
+              "quantity": 1,
+              "unit_price": 62.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 180.00,
+          "shipping": 0.00,
+          "shipping_method": "Free Standard",
+          "total": 180.00,
+          "payment_method": "Visa ending 9901",
+          "delivery_address": "Miami, FL",
+          "delivered_date": "2024-10-19",
+          "notes": "First order — used 10% new member welcome code"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10177",
+      "name": "Ethan Brooks",
+      "email": "ethanbrooks_active@example.com",
+      "loyalty_tier": "A-List",
+      "loyalty_points": 612,
+      "member_since": "2023-01-20",
+      "orders": [
+        {
+          "order_id": "ALO-2025-010228",
+          "order_date": "2025-02-08",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "M7301R-BLK",
+              "name": "Conquer Max Performance Jogger",
+              "color": "Black",
+              "size": "L",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "M5501R-WHT",
+              "name": "Conquer Reform Crewneck Short Sleeve",
+              "color": "White",
+              "size": "L",
+              "quantity": 2,
+              "unit_price": 78.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 284.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (A-List benefit)",
+          "total": 284.00,
+          "payment_method": "Amex ending 3345",
+          "delivery_address": "Chicago, IL",
+          "delivered_date": "2025-02-10",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-755301",
+          "order_date": "2024-08-03",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "M6201R-BLK",
+              "name": "7\" Circuit Short",
+              "color": "Navy",
+              "size": "L",
+              "quantity": 1,
+              "unit_price": 68.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "M6105R-BLK",
+              "name": "5\" Repetition Short",
+              "color": "Black",
+              "size": "L",
+              "quantity": 1,
+              "unit_price": 78.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "M5044R-BLK",
+              "name": "Warrior Compression Pant",
+              "color": "Jet Black",
+              "size": "L",
+              "quantity": 1,
+              "unit_price": 88.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 234.00,
+          "shipping": 0.00,
+          "total": 234.00,
+          "payment_method": "Amex ending 3345",
+          "delivery_address": "Chicago, IL",
+          "delivered_date": "2024-08-08",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-631089",
+          "order_date": "2024-05-02",
+          "order_status": "Return Requested — Pending",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "M6801R-BLK",
+              "name": "ALO Vapor Crewneck Short Sleeve",
+              "color": "Black",
+              "size": "L",
+              "quantity": 1,
+              "unit_price": 68.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 68.00,
+          "shipping": 0.00,
+          "total": 68.00,
+          "payment_method": "Amex ending 3345",
+          "delivery_address": "Chicago, IL",
+          "delivered_date": "2024-05-07",
+          "return_initiated_date": "2024-05-30",
+          "return_reason": "Fit — runs small, would like to exchange for XL",
+          "notes": "Return initiated on day 23 — still within 30-day window. No direct exchange available, customer must re-order."
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10254",
+      "name": "Priya Nair",
+      "email": "priya.nair.wellness@example.com",
+      "loyalty_tier": "All Access",
+      "loyalty_points": 2104,
+      "member_since": "2020-11-12",
+      "orders": [
+        {
+          "order_id": "ALO-2025-002887",
+          "order_date": "2025-01-22",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5561R-BLK",
+              "name": "High-Waist Airlift Legging",
+              "color": "Candy Heart Pink",
+              "size": "XS",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "W6105R-BLK",
+              "name": "High-Waist Alosoft Lounge Legging",
+              "color": "Lavender",
+              "size": "XS",
+              "quantity": 1,
+              "unit_price": 98.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "ACC-BOTTLE-WHT",
+              "name": "Alo Sport Water Bottle",
+              "color": "Blush",
+              "size": "24 oz",
+              "quantity": 1,
+              "unit_price": 48.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 274.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (All Access benefit)",
+          "total": 274.00,
+          "payment_method": "Visa ending 6612",
+          "delivery_address": "San Francisco, CA",
+          "delivered_date": "2025-01-24",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-950002",
+          "order_date": "2024-12-01",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5766R-BLK",
+              "name": "7/8 High-Waist Airlift Legging",
+              "color": "Black",
+              "size": "XS",
+              "quantity": 3,
+              "unit_price": 82.60,
+              "was_discounted": true,
+              "discount_pct": 30,
+              "final_sale": true
+            },
+            {
+              "sku": "W5561R-BLK",
+              "name": "High-Waist Airlift Legging",
+              "color": "Navy",
+              "size": "XS",
+              "quantity": 2,
+              "unit_price": 89.60,
+              "was_discounted": true,
+              "discount_pct": 30,
+              "final_sale": true
+            }
+          ],
+          "subtotal": 427.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (All Access benefit)",
+          "total": 427.00,
+          "payment_method": "Visa ending 6612",
+          "delivery_address": "San Francisco, CA",
+          "delivered_date": "2024-12-03",
+          "notes": "Cyber Monday order — all items Final Sale. Large order — loyal customer, bulk buyer."
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10312",
+      "name": "Lena Johansson",
+      "email": "lena.j.active@example.com",
+      "loyalty_tier": "VIP",
+      "loyalty_points": 214,
+      "member_since": "2024-02-14",
+      "orders": [
+        {
+          "order_id": "ALO-2024-712445",
+          "order_date": "2024-07-18",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W8801R-BLK",
+              "name": "Alosoft Goddess Ribbed Legging",
+              "color": "Bone",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 114.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "W9201R-BLK",
+              "name": "High-Waist Alosoft Flow Legging",
+              "color": "Lavender",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 104.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 218.00,
+          "shipping": 0.00,
+          "shipping_method": "Free Standard",
+          "total": 218.00,
+          "payment_method": "PayPal",
+          "delivery_address": "Seattle, WA",
+          "delivered_date": "2024-07-24",
+          "notes": null
+        },
+        {
+          "order_id": "ALO-2024-812200",
+          "order_date": "2024-09-30",
+          "order_status": "Return Requested — Rejected",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5604R-BLK",
+              "name": "7/8 High-Waist Airbrush Legging",
+              "color": "White",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 114.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 114.00,
+          "shipping": 0.00,
+          "total": 114.00,
+          "payment_method": "PayPal",
+          "delivery_address": "Seattle, WA",
+          "delivered_date": "2024-10-05",
+          "return_initiated_date": "2024-11-08",
+          "return_reason": "Does not fit as expected",
+          "return_rejected_reason": "Return initiated 34 days after purchase — outside the 30-day return window",
+          "notes": "IMPORTANT: Return was initiated 34 days after purchase date, which is outside the 30-day policy window. Return was rejected."
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10389",
+      "name": "Marcus Webb",
+      "email": "marcuswebb.nyc@example.com",
+      "loyalty_tier": "A-List",
+      "loyalty_points": 445,
+      "member_since": "2023-06-01",
+      "orders": [
+        {
+          "order_id": "ALO-2024-870011",
+          "order_date": "2024-10-20",
+          "order_status": "Delivered",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "M7301R-BLK",
+              "name": "Conquer Max Performance Jogger",
+              "color": "Athletic Heather Grey",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "M6801R-BLK",
+              "name": "ALO Vapor Crewneck Short Sleeve",
+              "color": "Black",
+              "size": "M",
+              "quantity": 1,
+              "unit_price": 68.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "ACC-MAT-BLK",
+              "name": "Warrior Mat",
+              "color": "Midnight",
+              "size": "Standard",
+              "quantity": 1,
+              "unit_price": 148.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 344.00,
+          "shipping": 0.00,
+          "shipping_method": "Free 2-Day (A-List benefit)",
+          "total": 344.00,
+          "payment_method": "Apple Pay / Visa",
+          "delivery_address": "Brooklyn, NY",
+          "delivered_date": "2024-10-22",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST-10421",
+      "name": "Chloe Zhang",
+      "email": "chloe.zhang.sf@example.com",
+      "loyalty_tier": "VIP",
+      "loyalty_points": 72,
+      "member_since": "2025-01-05",
+      "orders": [
+        {
+          "order_id": "ALO-2025-005511",
+          "order_date": "2025-01-28",
+          "order_status": "In Transit",
+          "channel": "Online",
+          "items": [
+            {
+              "sku": "W5561R-BLK",
+              "name": "High-Waist Airlift Legging",
+              "color": "Winter Frost",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 128.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            },
+            {
+              "sku": "W1501R-BLK",
+              "name": "Airlift Intrigue Bra",
+              "color": "White",
+              "size": "S",
+              "quantity": 1,
+              "unit_price": 72.00,
+              "was_discounted": false,
+              "discount_pct": 0,
+              "final_sale": false
+            }
+          ],
+          "subtotal": 200.00,
+          "shipping": 0.00,
+          "shipping_method": "Free Standard",
+          "total": 200.00,
+          "payment_method": "Visa ending 0012",
+          "delivery_address": "San Francisco, CA",
+          "estimated_delivery": "2025-02-03",
+          "notes": "New customer — first order placed after email sign-up discount."
+        }
+      ]
+    }
+  ]
+}

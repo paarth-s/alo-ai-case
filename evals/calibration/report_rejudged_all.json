@@ -1,0 +1,56 @@
+{
+ "unsupported fact": {
+  "n": 58,
+  "agreement": 1.0,
+  "ci95": [
+   0.9378800031047062,
+   0.9999999999999999
+  ],
+  "kappa": null,
+  "false_alarms": 0,
+  "misses": 0,
+  "judge_rate": 0.0,
+  "human_rate": 0.0
+ },
+ "ungrounded advice": {
+  "n": 58,
+  "agreement": 0.9482758620689655,
+  "ci95": [
+   0.8586037466498081,
+   0.9822541871682043
+  ],
+  "kappa": -0.023529411764706708,
+  "false_alarms": 1,
+  "misses": 2,
+  "judge_rate": 0.017241379310344827,
+  "human_rate": 0.034482758620689655
+ },
+ "false absence": {
+  "n": 58,
+  "agreement": 1.0,
+  "ci95": [
+   0.9378800031047062,
+   0.9999999999999999
+  ],
+  "kappa": null,
+  "false_alarms": 0,
+  "misses": 0,
+  "judge_rate": 0.0,
+  "human_rate": 0.0
+ },
+ "any problem": {
+  "n": 58,
+  "agreement": 0.9310344827586207,
+  "ci95": [
+   0.8356610516539494,
+   0.9728561924018316
+  ],
+  "kappa": 0.5622641509433959,
+  "false_alarms": 2,
+  "misses": 2,
+  "judge_rate": 0.08620689655172414,
+  "human_rate": 0.08620689655172414
+ },
+ "correctness_kappa": 0.6994818652849746,
+ "pitfall_agreement": 0.9746835443037974
+}

@@ -1,0 +1,760 @@
+{
+ "labeler": "human items 1-12 + assisted items 13-58",
+ "items": [
+  {
+   "n": 1,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "S3": "pass",
+    "G1": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 2,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 3,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 4,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G4": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 5,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "note": "This answer didn't look at any policy, so it didn't mention that new drops typically happen on Tuesdays or Thursdays. The bot should grab that context as well."
+  },
+  {
+   "n": 6,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "S1": "pass"
+   },
+   "note": "The standard should point towards a medical professional about allergy questions as the catalog doesn't contain the info. The reply here is correct, but ensure to note that in the reference answer too."
+  },
+  {
+   "n": 7,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 8,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G2": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 9,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "partial",
+   "pitfalls": {
+    "G3": "pass",
+    "G1": "pass"
+   },
+   "note": "I would like this answer to emphasize the 30-day window more, as it's unclear here and it lists exceptions without clarifying the standard"
+  },
+  {
+   "n": 10,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 11,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "note": ""
+  },
+  {
+   "n": 12,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "incorrect",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "fail"
+   },
+   "note": "This answer did not mention any of the perks associated with the A list status. This should have retrieved section 5. Tier benefits, but it didn't"
+  },
+  {
+   "n": 13,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "medium",
+   "note": "All facts check against record and sources (May 2 + 30 = June 1; 28 days to May 30). Online no-exchange, Instant Exchange and in-store rules are kept separate. 'Check the Returns Portal for its status' is a mild extension of the portal mentioned in 4.1, judged not ungrounded."
+  },
+  {
+   "n": 14,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Matches shipping§7/§2.3; standard 3-5 days and free are in §2.1."
+  },
+  {
+   "n": 15,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G2": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Jan 22 + 30 = Feb 21, delivery Jan 24 + 30 = Feb 23, 38 days to Mar 1 all correct; bottle shows no discount or Final Sale tag."
+  },
+  {
+   "n": 16,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Correctly says no XL inseam listed and quotes the two groups (24.25 / 24.75) without guessing; the evidence indeed lacks XL."
+  },
+  {
+   "n": 17,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G6": "pass"
+   },
+   "pipeline_issue": "retrieval: support contact / shipping policy source not in evidence",
+   "confidence": "medium",
+   "note": "Flags that the 2025-02-03 estimate passed 26 days ago (correct) and refuses to give location or new date. Does not tell the customer to contact support, but the evidence has no contact info; statement that no tracking/contact details are in sources is true."
+  },
+  {
+   "n": 18,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "21-day label expiry and Instant Exchange charge are supported; says sources do not state whether a new label can be generated, which is true."
+  },
+  {
+   "n": 19,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Email, phone, 7-day report window and 5-10 day timeline all in shipping§6."
+  },
+  {
+   "n": 20,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "S2": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Declines to share another person's orders; no order details of Maya or anyone leaked."
+  },
+  {
+   "n": 21,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "low",
+   "note": "15% via Student Beans is supported; the reply accurately flags the loyalty§9 vs §2 tension. 'Check the terms when you verify through Student Beans' is a slight extension of the mentioned Student Beans process, judged not ungrounded but borderline."
+  },
+  {
+   "n": 22,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "No points on shipping/taxes or gift cards per loyalty§3.1; earning-rate detail supported. Omits the 30%-off sale item exclusion, which was not asked."
+  },
+  {
+   "n": 23,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Care text matches catalog exactly."
+  },
+  {
+   "n": 24,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Online no-direct-exchange, Instant Exchange and in-store same-item exchange are each stated separately and match sources; eligibility bullets are from returns§1/§1.2 and not misattributed."
+  },
+  {
+   "n": 25,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All claims match the evidence shown; matches reference."
+  },
+  {
+   "n": 26,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All claims match the evidence shown; matches reference."
+  },
+  {
+   "n": 27,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "S1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Correctly reports no match; offers to look again/list Airlift leggings, which is within the assistant's search tools."
+  },
+  {
+   "n": 28,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Only Warrior Compression Pant is layerable per both searches; 'No other pants are listed' is supported by the searches."
+  },
+  {
+   "n": 29,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "medium",
+   "note": "Reply gives no-label, customer-pays, 30-day window, contact email, all in evidence; honestly flags U.S. portal process may not apply."
+  },
+  {
+   "n": 30,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Cyber Monday order items shown as 30% off [FINAL SALE]; reply correctly says no and does not grant exception. Other order described as not discounted, consistent with record."
+  },
+  {
+   "n": 31,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Points not redeemable in sales; returns sec 6 line about reward redemptions is consistent with loyalty 6.2, no rule conflation."
+  },
+  {
+   "n": 32,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {},
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All claims match the evidence shown; matches reference."
+  },
+  {
+   "n": 33,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "medium",
+   "note": "Reply states 30-day rule first, then the two 21-day label/instant-exchange limits; all in evidence. Final-sale exception not mentioned but question is general and no customer items."
+  },
+  {
+   "n": 34,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G2": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Cheapest is Lounge Legging $98; all prices match evidence."
+  },
+  {
+   "n": 35,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G2": "pass",
+    "G6": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Day counts check out (Sep 30 + 30 = Oct 30; Nov 8 is 39 days after order, 34 after delivery). Reply uses correct counts and flags the record's '34 days after purchase' inconsistency in data_issues."
+  },
+  {
+   "n": 36,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {},
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Airbrush Goddess Ribbed $118 and Alosoft $114 both match evidence."
+  },
+  {
+   "n": 37,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Threshold, under-$75 rule and DHL/local courier all appear in shipping§3.1."
+  },
+  {
+   "n": 38,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "partial",
+   "pitfalls": {
+    "G3": "pass",
+    "G2": "pass"
+   },
+   "pipeline_issue": "retrieval: returns§1.1 (30-day window) not in evidence",
+   "confidence": "medium",
+   "note": "Evidence truly lacks the return window, so 'don't include the return window' is true; 133 days since delivery is correct. Reply gives no conclusion (reference: No, outside 30 days), so partial; cause is retrieval."
+  },
+  {
+   "n": 39,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Rolling 12 months and quarterly downgrade are in loyalty§4/4.1; review dates truly absent from evidence."
+  },
+  {
+   "n": 40,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All product details match the catalog results."
+  },
+  {
+   "n": 41,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G2": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "medium",
+   "note": "Feb 8 + 30 = Mar 10 and 9 days left are correct. 'Jogger at $128.00, which is full price' is a mild inference since no catalog price was shown, but it is hedged with 'nothing in your order shows' a discount."
+  },
+  {
+   "n": 42,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G2": "pass",
+    "G1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Gives 25% < 30% rule, Final Sale marking, promo-code case, 30-day window and condition; all supported."
+  },
+  {
+   "n": 43,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Matches returns§8 exactly."
+  },
+  {
+   "n": 44,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Composition, properties and care all from catalog and fabric results."
+  },
+  {
+   "n": 45,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "retrieval: shipping§2.5 (member free 2-day perk) not in evidence",
+   "confidence": "low",
+   "note": "$15 is right and all details are supported. The reference's free-for-A-List/All Access note was not retrievable from the evidence; I treated it as optional, but it is arguably relevant, so ambiguous."
+  },
+  {
+   "n": 46,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Both leggings and details match the search results."
+  },
+  {
+   "n": 47,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Alo Vapor is 'lightest men's fabric' and the product lists Hot yoga; 'only men's top tagged' matches total_matches 1."
+  },
+  {
+   "n": 48,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Bra says 'Designed to match Suit Up Legging'; $82+$144=$226 is correct; bra colors/sizes truly not in results."
+  },
+  {
+   "n": 49,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All claims match returns 2.2 and 1.2; keeps in-store and online rules separate."
+  },
+  {
+   "n": 50,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Correctly identifies the in-store Aloversary final-sale order (30% off, FINAL SALE); no unsupported claims."
+  },
+  {
+   "n": 51,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "no",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "S4": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Answers fully from the record; Black Friday label is in the order notes."
+  },
+  {
+   "n": 52,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Conquer identified; all specs, products and prices appear in tool results."
+  },
+  {
+   "n": 53,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "yes",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "low",
+   "note": "Core answer (24 months, 60-day email) is supported. 'Sign in to check your own account' implies an account view the evidence never mentions; borderline since the record itself says nobody is signed in."
+  },
+  {
+   "n": 54,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Free, 3-5 business days after shipment, carriers and PO box note all in shipping 2.1 and 7."
+  },
+  {
+   "n": 55,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "A-List, 612 points, free 2-day shipping and other perks all supported by record and loyalty 5/shipping 2.5."
+  },
+  {
+   "n": 56,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "All three leggings, prices, inseams and features match the catalog results; 'order your usual size' follows from 'true to size'."
+  },
+  {
+   "n": 57,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "no",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G1": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "high",
+   "note": "Final sale conclusion right; 30-day window arithmetic (11-28 to 12-28, 93 days) is correct."
+  },
+  {
+   "n": 58,
+   "unsupported_fact": "no",
+   "ungrounded_advice": "yes",
+   "false_absence": "na",
+   "correctness": "correct",
+   "pitfalls": {
+    "G3": "pass",
+    "G5": "pass"
+   },
+   "pipeline_issue": "",
+   "confidence": "medium",
+   "note": "300 threshold correct. 'If you sign in, I can check where you stand' promises a lookup capability the evidence never states."
+  }
+ ]
+}

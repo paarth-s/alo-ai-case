@@ -1,0 +1,7 @@
+anthropic==2.3.0
+python-dotenv==1.2.4
+numpy==1.26.4  # <2: onnxruntime 1.16 is built against numpy 1.x
+faiss-cpu==1.10.0
+onnxruntime==1.16.3
+tokenizers==0.15.2
+huggingface-hub==0.19.4

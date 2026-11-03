@@ -1,0 +1,1171 @@
+{
+ "dev": {
+  "n": 36,
+  "pass_rate": 1.0,
+  "exact_match": 0.806,
+  "missed_domains": 0,
+  "extra_domains": 7,
+  "out_of_scope": {
+   "n": 1,
+   "correct": 1
+  },
+  "per_domain": {
+   "customer": {
+    "precision": 0.667,
+    "recall": 1.0
+   },
+   "policy": {
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "product": {
+    "precision": 0.923,
+    "recall": 1.0
+   }
+  },
+  "fallbacks": 0,
+  "latency_ms": {
+   "p50": 843.1,
+   "p95": 1165.6,
+   "n": 36
+  },
+  "tokens_per_call": {
+   "in": 1085,
+   "out": 38
+  },
+  "failures": [],
+  "rows": [
+   {
+    "id": "P1",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1165.6,
+     "in": 1088,
+     "out": 36
+    }
+   },
+   {
+    "id": "P2",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 745.7,
+     "in": 1079,
+     "out": 36
+    }
+   },
+   {
+    "id": "P3",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 792.9,
+     "in": 1089,
+     "out": 36
+    }
+   },
+   {
+    "id": "P4",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 806.8,
+     "in": 1084,
+     "out": 36
+    }
+   },
+   {
+    "id": "P5",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 692.3,
+     "in": 1078,
+     "out": 36
+    }
+   },
+   {
+    "id": "P6",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1213.5,
+     "in": 1092,
+     "out": 36
+    }
+   },
+   {
+    "id": "P7",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1048.0,
+     "in": 1092,
+     "out": 36
+    }
+   },
+   {
+    "id": "P8",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1115.4,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "P9",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 753.8,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "P10",
+    "got": [
+     "policy",
+     "product"
+    ],
+    "expected": [
+     "policy",
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1089.8,
+     "in": 1083,
+     "out": 40
+    }
+   },
+   {
+    "id": "L1",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 782.9,
+     "in": 1073,
+     "out": 37
+    }
+   },
+   {
+    "id": "L2",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 902.2,
+     "in": 1090,
+     "out": 37
+    }
+   },
+   {
+    "id": "L3",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 1073.5,
+     "in": 1080,
+     "out": 41
+    }
+   },
+   {
+    "id": "L4",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 922.0,
+     "in": 1085,
+     "out": 41
+    }
+   },
+   {
+    "id": "L5",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 785.3,
+     "in": 1084,
+     "out": 41
+    }
+   },
+   {
+    "id": "L6",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1052.9,
+     "in": 1082,
+     "out": 37
+    }
+   },
+   {
+    "id": "L7",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 1133.7,
+     "in": 1082,
+     "out": 41
+    }
+   },
+   {
+    "id": "L8",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 851.9,
+     "in": 1082,
+     "out": 41
+    }
+   },
+   {
+    "id": "L9",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 802.3,
+     "in": 1080,
+     "out": 37
+    }
+   },
+   {
+    "id": "L10",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 946.6,
+     "in": 1091,
+     "out": 41
+    }
+   },
+   {
+    "id": "C1",
+    "got": [
+     "customer"
+    ],
+    "expected": [
+     "customer"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 692.3,
+     "in": 1074,
+     "out": 37
+    }
+   },
+   {
+    "id": "C2",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 843.1,
+     "in": 1082,
+     "out": 41
+    }
+   },
+   {
+    "id": "C3",
+    "got": [
+     "customer"
+    ],
+    "expected": [
+     "customer"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 750.9,
+     "in": 1073,
+     "out": 37
+    }
+   },
+   {
+    "id": "C4",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 604.5,
+     "in": 1087,
+     "out": 41
+    }
+   },
+   {
+    "id": "C5",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 733.0,
+     "in": 1087,
+     "out": 41
+    }
+   },
+   {
+    "id": "C6",
+    "got": [
+     "customer",
+     "policy",
+     "product"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "product"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 703.2,
+     "in": 1092,
+     "out": 44
+    }
+   },
+   {
+    "id": "C7",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1139.7,
+     "in": 1086,
+     "out": 41
+    }
+   },
+   {
+    "id": "C8",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 948.1,
+     "in": 1087,
+     "out": 41
+    }
+   },
+   {
+    "id": "C9",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 891.4,
+     "in": 1091,
+     "out": 41
+    }
+   },
+   {
+    "id": "C10",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 920.6,
+     "in": 1088,
+     "out": 41
+    }
+   },
+   {
+    "id": "A1",
+    "got": [],
+    "expected": [],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 919.0,
+     "in": 1083,
+     "out": 34
+    }
+   },
+   {
+    "id": "A2",
+    "got": [
+     "customer"
+    ],
+    "expected": [
+     "customer"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 796.9,
+     "in": 1080,
+     "out": 37
+    }
+   },
+   {
+    "id": "A3",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 755.5,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "A4",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 902.4,
+     "in": 1099,
+     "out": 41
+    }
+   },
+   {
+    "id": "A5",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 830.8,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "L11",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 799.7,
+     "in": 1078,
+     "out": 37
+    }
+   }
+  ]
+ },
+ "heldout": {
+  "n": 25,
+  "pass_rate": 1.0,
+  "exact_match": 0.88,
+  "missed_domains": 0,
+  "extra_domains": 3,
+  "out_of_scope": {
+   "n": 0,
+   "correct": 0
+  },
+  "per_domain": {
+   "customer": {
+    "precision": 0.625,
+    "recall": 1.0
+   },
+   "policy": {
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "product": {
+    "precision": 1.0,
+    "recall": 1.0
+   }
+  },
+  "fallbacks": 0,
+  "latency_ms": {
+   "p50": 860.7,
+   "p95": 1288.3,
+   "n": 25
+  },
+  "tokens_per_call": {
+   "in": 1084,
+   "out": 38
+  },
+  "failures": [],
+  "rows": [
+   {
+    "id": "H01",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1100.1,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "H02",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 925.2,
+     "in": 1091,
+     "out": 36
+    }
+   },
+   {
+    "id": "H03",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 918.2,
+     "in": 1085,
+     "out": 36
+    }
+   },
+   {
+    "id": "H04",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 860.7,
+     "in": 1086,
+     "out": 36
+    }
+   },
+   {
+    "id": "H05",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 973.5,
+     "in": 1088,
+     "out": 36
+    }
+   },
+   {
+    "id": "H06",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 823.2,
+     "in": 1087,
+     "out": 36
+    }
+   },
+   {
+    "id": "H07",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1023.0,
+     "in": 1081,
+     "out": 36
+    }
+   },
+   {
+    "id": "H08",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 919.3,
+     "in": 1091,
+     "out": 36
+    }
+   },
+   {
+    "id": "H09",
+    "got": [
+     "product"
+    ],
+    "expected": [
+     "product"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1984.1,
+     "in": 1087,
+     "out": 36
+    }
+   },
+   {
+    "id": "H10",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 845.1,
+     "in": 1078,
+     "out": 37
+    }
+   },
+   {
+    "id": "H11",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 694.1,
+     "in": 1080,
+     "out": 37
+    }
+   },
+   {
+    "id": "H12",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 708.0,
+     "in": 1078,
+     "out": 41
+    }
+   },
+   {
+    "id": "H13",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1288.3,
+     "in": 1083,
+     "out": 37
+    }
+   },
+   {
+    "id": "H14",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 919.2,
+     "in": 1081,
+     "out": 37
+    }
+   },
+   {
+    "id": "H15",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 724.2,
+     "in": 1075,
+     "out": 37
+    }
+   },
+   {
+    "id": "H16",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 783.5,
+     "in": 1084,
+     "out": 41
+    }
+   },
+   {
+    "id": "H17",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 706.8,
+     "in": 1081,
+     "out": 37
+    }
+   },
+   {
+    "id": "H18",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 850.4,
+     "in": 1085,
+     "out": 37
+    }
+   },
+   {
+    "id": "H19",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [
+     "customer"
+    ],
+    "fallback": false,
+    "meta": {
+     "ms": 920.9,
+     "in": 1082,
+     "out": 41
+    }
+   },
+   {
+    "id": "H20",
+    "got": [
+     "policy"
+    ],
+    "expected": [
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 785.7,
+     "in": 1083,
+     "out": 37
+    }
+   },
+   {
+    "id": "H21",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 903.9,
+     "in": 1089,
+     "out": 41
+    }
+   },
+   {
+    "id": "H22",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 731.2,
+     "in": 1082,
+     "out": 41
+    }
+   },
+   {
+    "id": "H23",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 793.1,
+     "in": 1077,
+     "out": 41
+    }
+   },
+   {
+    "id": "H24",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 809.8,
+     "in": 1081,
+     "out": 41
+    }
+   },
+   {
+    "id": "H25",
+    "got": [
+     "customer",
+     "policy"
+    ],
+    "expected": [
+     "customer",
+     "policy"
+    ],
+    "missed": [],
+    "extra": [],
+    "fallback": false,
+    "meta": {
+     "ms": 1168.1,
+     "in": 1089,
+     "out": 41
+    }
+   }
+  ]
+ }
+}

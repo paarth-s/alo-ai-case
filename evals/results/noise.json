@@ -1,0 +1,251 @@
+{
+ "repeats": 3,
+ "metrics": {
+  "dev.strict_pass": {
+   "mean": 0.8981481481481481,
+   "sd": 0.03207501495497916,
+   "min": 0.8611111111111112,
+   "max": 0.9166666666666666
+  },
+  "heldout.strict_pass": {
+   "mean": 0.92,
+   "sd": 0.0,
+   "min": 0.92,
+   "max": 0.92
+  },
+  "dev.deterministic_pass": {
+   "mean": 0.9537037037037037,
+   "sd": 0.016037507477489613,
+   "min": 0.9444444444444444,
+   "max": 0.9722222222222222
+  },
+  "heldout.deterministic_pass": {
+   "mean": 0.96,
+   "sd": 0.0,
+   "min": 0.96,
+   "max": 0.96
+  },
+  "dev.status_ok": {
+   "mean": 0.9629629629629629,
+   "sd": 0.016037507477489613,
+   "min": 0.9444444444444444,
+   "max": 0.9722222222222222
+  },
+  "heldout.status_ok": {
+   "mean": 0.9733333333333333,
+   "sd": 0.023094010767585053,
+   "min": 0.96,
+   "max": 1
+  },
+  "dev.faithfulness": {
+   "mean": 0.9954545454545455,
+   "sd": 0.0022338138905245177,
+   "min": 0.9930555555555556,
+   "max": 0.9974747474747475
+  },
+  "heldout.faithfulness": {
+   "mean": 0.9985185185185185,
+   "sd": 0.0025660011963983534,
+   "min": 0.9955555555555555,
+   "max": 1.0
+  },
+  "dev.hallucination_rate": {
+   "mean": 0.027777777777777776,
+   "sd": 0.0,
+   "min": 0.027777777777777776,
+   "max": 0.027777777777777776
+  },
+  "heldout.hallucination_rate": {
+   "mean": 0.013333333333333334,
+   "sd": 0.023094010767585032,
+   "min": 0,
+   "max": 0.04
+  },
+  "dev.ungrounded_advice_rate": {
+   "mean": 0,
+   "sd": 0.0,
+   "min": 0,
+   "max": 0
+  },
+  "heldout.ungrounded_advice_rate": {
+   "mean": 0.02666666666666667,
+   "sd": 0.023094010767585032,
+   "min": 0,
+   "max": 0.04
+  },
+  "dev.false_absence_rate": {
+   "mean": 0.009259259259259259,
+   "sd": 0.016037507477489603,
+   "min": 0,
+   "max": 0.027777777777777776
+  },
+  "heldout.false_absence_rate": {
+   "mean": 0.04,
+   "sd": 0.04,
+   "min": 0,
+   "max": 0.08
+  },
+  "dev.correctness": {
+   "mean": 0.9861111111111112,
+   "sd": 0.0,
+   "min": 0.9861111111111112,
+   "max": 0.9861111111111112
+  },
+  "heldout.correctness": {
+   "mean": 0.96,
+   "sd": 0.0,
+   "min": 0.96,
+   "max": 0.96
+  },
+  "dev.false_refusal_rate": {
+   "mean": 0.030303030303030304,
+   "sd": 0.0,
+   "min": 0.030303030303030304,
+   "max": 0.030303030303030304
+  },
+  "heldout.false_refusal_rate": {
+   "mean": 0.02666666666666667,
+   "sd": 0.023094010767585032,
+   "min": 0,
+   "max": 0.04
+  },
+  "dev.gold_in_context": {
+   "mean": 0.989247311827957,
+   "sd": 0.0,
+   "min": 0.989247311827957,
+   "max": 0.989247311827957
+  },
+  "heldout.gold_in_context": {
+   "mean": 0.96,
+   "sd": 0.0,
+   "min": 0.96,
+   "max": 0.96
+  }
+ },
+ "unstable": {
+  "dev": {
+   "strict_pass": [
+    "A2",
+    "C10",
+    "C5",
+    "C6",
+    "L6",
+    "P6",
+    "P9"
+   ],
+   "status": [
+    "L6",
+    "C6",
+    "C10"
+   ],
+   "route": [],
+   "n": 36
+  },
+  "heldout": {
+   "strict_pass": [],
+   "status": [
+    "H24"
+   ],
+   "route": [],
+   "n": 25
+  }
+ },
+ "tolerances": {
+  "dev.strict_pass": 0.064,
+  "heldout.strict_pass": 0.06,
+  "dev.deterministic_pass": 0.042,
+  "heldout.deterministic_pass": 0.06,
+  "dev.status_ok": 0.042,
+  "heldout.status_ok": 0.06,
+  "dev.faithfulness": 0.042,
+  "heldout.faithfulness": 0.06,
+  "dev.hallucination_rate": 0.042,
+  "heldout.hallucination_rate": 0.06,
+  "dev.ungrounded_advice_rate": 0.042,
+  "heldout.ungrounded_advice_rate": 0.06,
+  "dev.false_absence_rate": 0.042,
+  "heldout.false_absence_rate": 0.08,
+  "dev.correctness": 0.042,
+  "heldout.correctness": 0.06,
+  "dev.false_refusal_rate": 0.042,
+  "heldout.false_refusal_rate": 0.06,
+  "dev.gold_in_context": 0.042,
+  "heldout.gold_in_context": 0.06
+ },
+ "judge_noise": {
+  "unsupported_fact": {
+   "pairwise_agreement": 0.989,
+   "items_that_flip": 1
+  },
+  "ungrounded_advice": {
+   "pairwise_agreement": 1.0,
+   "items_that_flip": 0
+  },
+  "false_absence": {
+   "pairwise_agreement": 0.989,
+   "items_that_flip": 1
+  },
+  "correctness (3-way)": {
+   "pairwise_agreement": 0.966,
+   "items_that_flip": 3
+  },
+  "any problem": {
+   "pairwise_agreement": 0.954,
+   "items_that_flip": 4
+  }
+ },
+ "stages": {
+  "dev.router_ms": {
+   "p50": 878.3,
+   "p95": 1381.8
+  },
+  "heldout.router_ms": {
+   "p50": 878.5,
+   "p95": 1174.3
+  },
+  "dev.retrieval_ms": {
+   "p50": 8.5,
+   "p95": 13.9
+  },
+  "heldout.retrieval_ms": {
+   "p50": 8.2,
+   "p95": 16.4
+  },
+  "dev.generation_ms": {
+   "p50": 4940.1,
+   "p95": 10738.1
+  },
+  "heldout.generation_ms": {
+   "p50": 4317.5,
+   "p95": 5804.1
+  },
+  "dev.catalog_tool_ms": {
+   "p50": 0.0,
+   "p95": 0.4
+  },
+  "heldout.catalog_tool_ms": {
+   "p50": 0.0,
+   "p95": 7.3
+  },
+  "dev.end_to_end_ms": {
+   "p50": 5823.4,
+   "p95": 11519.7
+  },
+  "heldout.end_to_end_ms": {
+   "p50": 5236.3,
+   "p95": 6579.6
+  },
+  "dev.judge_ms": {
+   "p50": 4453.3,
+   "p95": 6214.1
+  },
+  "heldout.judge_ms": {
+   "p50": 3679.5,
+   "p95": 5012.5
+  }
+ },
+ "cost_per_question_usd": {
+  "answering": 0.01439,
+  "judging": 0.00088
+ }
+}

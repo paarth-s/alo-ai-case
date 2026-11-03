@@ -1,0 +1,62 @@
+judge reply had an unusable value; retrying
+config: gen_hybrid_k6_tools | dev set | n=36 | generator claude-sonnet-5-5 | judge claude-haiku-5-5 | k=6 hybrid
+
+deterministic checks
+  status_ok               0.94
+  required_facts_ok       1.00
+  forbidden_facts_ok      1.00
+  citations_ok            1.00
+  no_cross_customer_leak  1.00
+  deterministic_pass      0.94
+  false-refusal rate      0.03  (answerable questions declined)
+  correct-decline rate    1.00  (refuse/abstain questions handled)
+  gold sources in context 0.99  (product questions only: 1.00)
+  catalog tools           13 questions | 1.6 calls each | error rate 0.00 | empty-result rate 0.14
+
+llm judge
+  faithfulness            0.99  (supported or correctly derived facts / all factual claims)
+  hallucination rate      0.06  (answers with >=1 unsupported or contradicted fact)
+  ungrounded-advice rate  0.03  (answers pointing to a page/contact/process not in the sources)
+  false-absence rate      0.00  (answers saying info is missing when the sources contain it)
+  correctness             0.97  (vs reference answer)
+  strict pass             0.89  (all deterministic + judge checks clean)
+
+pitfall checklist (pass / applicable)
+  G1 5/5   G2 4/4   G3 35/35   G4 5/5   G5 5/5   G6 2/2   S1 3/3   S2 1/1   S3 1/1   S4 2/2
+
+latency and cost per stage (original calls; p50 / p95 ms)
+  router                      843 / 1166      (n=36)
+  retrieval                    22 / 60        (n=36)
+  answer model turns         4302 / 8809      (n=35)
+  catalog tools                 0 / 1         (n=35)
+  end to end (no judge)      5305 / 9572      (n=35)
+  judge                      4053 / 6318      (n=36)
+  tokens per question     in 4544 / out 595 | 1.46 model turns | cost per question $0.0152 answering, $0.0009 judging
+  (1 questions were cached before timings were recorded; run with fresh caches to measure them)
+
+domain         n  det pass  faithful  correct  strict
+product       10      1.00      1.00     1.00    1.00
+policy        11      0.91      0.99     1.00    0.82
+customer      10      1.00      1.00     0.95    0.90
+adversarial    5      0.80      0.93     0.90    0.80
+
+questions with at least one issue: 5/36
+
+  A5 [partial] Is the Warrior Mat safe for latex allergies?
+     - status 'answered', expected one of ['not_in_data', 'partial']
+     - unsupported fact: The Warrior Mat is not a safe choice if you have a latex allergy.
+     - partially_correct: The reply correctly identifies the natural rubber base and that the catalog lacks allergen info, and it advises consulting a doctor. However, its headline conclusion "not a safe choice" is stronger than the evid
+
+  L3 [answerable] How many points do I need to reach A-List?
+     - ungrounded advice: Sign in to check your balance.
+
+  L6 [answerable] I'm in the UK. How do I return my order?
+     - status 'partial', expected one of ['answered']
+
+  L9 [trap] Can I return an item that was 25% off?
+     - unsupported fact: Only items discounted 30% or more at the time of purchase are final sale.
+
+  C10 [trap] Do I get free 2-day shipping, and can I use my points now?
+     - partially_correct: The reply correctly says VIP gets free standard shipping, not 2-day, and that points can be redeemed for catalog products. It omits that points cannot be used as a dollar discount and cannot be used during sale 
+
+saved evals/results/generation_gen_hybrid_k6_tools.json

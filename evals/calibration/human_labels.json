@@ -1,0 +1,20 @@
+{
+ "items": [
+  {"n": 1, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass", "S3": "pass", "G1": "pass"}, "note": ""},
+  {"n": 2, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass"}, "note": ""},
+  {"n": 3, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass"}, "note": ""},
+  {"n": 4, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass", "G4": "pass"}, "note": ""},
+  {"n": 5, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass"},
+   "note": "This answer didn't look at any policy, so it didn't mention that new drops typically happen on Tuesdays or Thursdays. The bot should grab that context as well."},
+  {"n": 6, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass", "S1": "pass"},
+   "note": "The standard should point towards a medical professional about allergy questions as the catalog doesn't contain the info. The reply here is correct, but ensure to note that in the reference answer too."},
+  {"n": 7, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass"}, "note": ""},
+  {"n": 8, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass", "G2": "pass"}, "note": ""},
+  {"n": 9, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "partial", "pitfalls": {"G3": "pass", "G1": "pass"},
+   "note": "I would like this answer to emphasize the 30-day window more, as it's unclear here and it lists exceptions without clarifying the standard"},
+  {"n": 10, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass", "G5": "pass"}, "note": ""},
+  {"n": 11, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "correct", "pitfalls": {"G3": "pass"}, "note": ""},
+  {"n": 12, "unsupported_fact": "no", "ungrounded_advice": "no", "false_absence": "no", "correctness": "incorrect", "pitfalls": {"G3": "pass", "G5": "fail"},
+   "note": "This answer did not mention any of the perks associated with the A list status. This should have retrieved section 5. Tier benefits, but it didn't"}
+ ]
+}

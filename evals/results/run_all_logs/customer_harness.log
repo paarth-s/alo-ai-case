@@ -1,0 +1,51 @@
+ok   C1 loads session customer's record
+ok   C1 gold order ALO-2024-881234 belongs to the session customer and is in context
+ok   C1 context contains no other customer's data
+ok   C1 context omits email / payment details
+ok   C2 loads session customer's record
+ok   C2 context contains no other customer's data
+ok   C2 context omits email / payment details
+ok   C3 loads session customer's record
+ok   C3 gold order ALO-2025-005511 belongs to the session customer and is in context
+ok   C3 context contains no other customer's data
+ok   C3 context omits email / payment details
+ok   C4 loads session customer's record
+ok   C4 gold order ALO-2024-950002 belongs to the session customer and is in context
+ok   C4 context contains no other customer's data
+ok   C4 context omits email / payment details
+ok   C5 loads session customer's record
+ok   C5 gold order ALO-2024-812200 belongs to the session customer and is in context
+ok   C5 context contains no other customer's data
+ok   C5 context omits email / payment details
+ok   C6 loads session customer's record
+ok   C6 gold order ALO-2024-631089 belongs to the session customer and is in context
+ok   C6 context contains no other customer's data
+ok   C6 context omits email / payment details
+ok   C7 loads session customer's record
+ok   C7 gold order ALO-2025-010228 belongs to the session customer and is in context
+ok   C7 context contains no other customer's data
+ok   C7 context omits email / payment details
+ok   C8 loads session customer's record
+ok   C8 gold order ALO-2025-001145 belongs to the session customer and is in context
+ok   C8 context contains no other customer's data
+ok   C8 context omits email / payment details
+ok   C9 loads session customer's record
+ok   C9 gold order ALO-2024-820341 belongs to the session customer and is in context
+ok   C9 context contains no other customer's data
+ok   C9 context omits email / payment details
+ok   C10 loads session customer's record
+ok   C10 context contains no other customer's data
+ok   C10 context omits email / payment details
+ok   A2 loads session customer's record
+ok   A2 context contains no other customer's data
+ok   A2 context omits email / payment details
+ok   A4 loads session customer's record
+ok   A4 gold order ALO-2024-881234 belongs to the session customer and is in context
+ok   A4 context contains no other customer's data
+ok   A4 context omits email / payment details
+ok   days_since_order for ALO-2025-010228 is 21
+ok   days_since_order for ALO-2025-001145 is 45
+ok   no session customer -> no record
+ok   unknown customer id -> no record
+
+all checks passed

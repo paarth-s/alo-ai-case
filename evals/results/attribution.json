@@ -1,0 +1,211 @@
+{
+ "label": "gen_hybrid_k6_tools",
+ "n_questions": 61,
+ "n_failing": 6,
+ "primary": {
+  "eval": 1,
+  "generation": 3,
+  "retrieval": 2
+ },
+ "any_cause": {
+  "eval": 1,
+  "generation": 3,
+  "retrieval": 2
+ },
+ "failures": [
+  {
+   "set": "dev",
+   "id": "L6",
+   "query": "I'm in the UK. How do I return my order?",
+   "type": "answerable",
+   "primary": "eval",
+   "causes": [
+    "eval"
+   ],
+   "detail": {
+    "eval": "only the status expectation failed ('partial', expected ['answered'])"
+   },
+   "severity": 1,
+   "issues": [
+    "status 'partial', expected one of ['answered']"
+   ],
+   "route": [
+    "policy"
+   ],
+   "expected_domains": [
+    "policy"
+   ],
+   "gold": [
+    "returns§5"
+   ],
+   "gold_missing": [],
+   "status": "partial",
+   "answer": "For a UK order, the international returns policy applies. Your return must be dropped off within 30 days of the purchase date, and that has to include international shipping time. Here is what the sources say:\n\n- Alo doesn't provide prepaid return labels for international orders, so you pay all return shipping costs.\n- Alo isn't responsible for international returns that get lost.\n- The standard eligibility rules still apply. Items must be unworn, unwashed and unaltered, with original tags attached and in sellable condition.\n- For international return questions, email customerservice@aloyoga.com.\n\nThe sources don't give a return address or step-by-step instructions for international returns. The prepaid UPS label and portal steps in the sources are for U.S. online purchases, so they may not apply to you. I also don't have your order details, so I can't confirm your 30-day deadline. For the exact process, please contact customerservice@aloyoga.com."
+  },
+  {
+   "set": "dev",
+   "id": "L9",
+   "query": "Can I return an item that was 25% off?",
+   "type": "trap",
+   "primary": "generation",
+   "causes": [
+    "generation"
+   ],
+   "detail": {
+    "generation": "all needed sources present; reply still flagged"
+   },
+   "severity": 4,
+   "issues": [
+    "unsupported fact: Only items discounted 30% or more at the time of purchase are final sale."
+   ],
+   "route": [
+    "policy"
+   ],
+   "expected_domains": [
+    "policy"
+   ],
+   "gold": [
+    "returns§1.2",
+    "returns§6"
+   ],
+   "gold_missing": [],
+   "status": "answered",
+   "answer": "Yes, in general. An item bought at 25% off is below the 30% final-sale threshold, so the discount alone doesn't make it non-returnable. Only items discounted 30% or more at the time of purchase are final sale.\n\nIt can still be returned if it meets the standard requirements:\n- The return is started within 30 days of the original purchase date.\n- The item is unworn, unwashed and unaltered, with the original tags attached, and in sellable condition.\n- You have your order number or proof of purchase.\n\nSome things would still make it ineligible, whatever the discount:\n- The item was marked \"Final Sale\" at checkout. If so, the return is declined regardless of the reason.\n- The item is a bodysuit (including bodysuits with built-in shorts), underwear or intimates, a supplement or wellness consumable, a café or food item, or a gift card.\n- The item came from a third-party seller.\n- A promo code brought the total discount to 30% or more.\n\nFor online U.S. orders, start the return at returns.aloyoga.com with your order number and checkout email. You'll get a prepaid UPS label, which expires 21 days after it's generated. I can't see a specific order here, so check that your item doesn't fall into one of the exclusions above."
+  },
+  {
+   "set": "dev",
+   "id": "C10",
+   "query": "Do I get free 2-day shipping, and can I use my points now?",
+   "type": "trap",
+   "primary": "retrieval",
+   "causes": [
+    "retrieval"
+   ],
+   "detail": {
+    "retrieval": "gold not in context: ['loyalty§6.2']"
+   },
+   "severity": 3,
+   "issues": [
+    "partially_correct: The reply correctly says VIP gets free standard shipping, not 2-day, and that points can be redeemed for catalog products. It omits that points cannot be used as a dollar discount and cannot be used during sale periods, and it does not clearly say that the redemption is for reward products only. The core conclusions match the reference, so it is not incorrect, but the points answer is incomplete."
+   ],
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "expected_domains": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "loyalty§4",
+    "shipping§2.5",
+    "loyalty§6.2"
+   ],
+   "gold_missing": [
+    "loyalty§6.2"
+   ],
+   "status": "partial",
+   "answer": "**Free 2-day shipping:** No, not at your current tier. You're VIP with 156 points. VIP includes free standard shipping on U.S. orders, which takes an estimated 3–5 business days after shipment. Free 2-day shipping starts at A-List, which needs 300–999 points on a rolling 12-month basis.\n\n**Using your points:** Yes, you can redeem points for free products from the Alo Rewards catalog. Log in, open the rewards section in your account dashboard, and add an item to your cart with the \"Get Reward\" button. The sources don't list how many points each reward costs or any minimum balance. So I can't confirm which rewards 156 points will cover. The catalog in your dashboard will show that."
+  },
+  {
+   "set": "dev",
+   "id": "A5",
+   "query": "Is the Warrior Mat safe for latex allergies?",
+   "type": "partial",
+   "primary": "generation",
+   "causes": [
+    "generation"
+   ],
+   "detail": {
+    "generation": "all needed sources present; reply still flagged"
+   },
+   "severity": 4,
+   "issues": [
+    "status 'answered', expected one of ['not_in_data', 'partial']",
+    "unsupported fact: The Warrior Mat is not a safe choice if you have a latex allergy.",
+    "partially_correct: The reply correctly identifies the natural rubber base and that the catalog lacks allergen info, and it advises consulting a doctor. However, its headline conclusion \"not a safe choice\" is stronger than the evidence supports; the correct conclusion is that safety cannot be confirmed. The contradiction between the headline and the later \"I can't confirm it's safe\" muddles the central answer."
+   ],
+   "route": [
+    "product"
+   ],
+   "expected_domains": [
+    "product"
+   ],
+   "gold": [
+    "ACC-MAT-BLK"
+   ],
+   "gold_missing": [],
+   "status": "answered",
+   "answer": "The Warrior Mat is not a safe choice if you have a latex allergy. Its base is natural rubber, and the catalog lists the material as \"Natural rubber + PU leather top layer.\" The catalog doesn't say whether the mat is latex-free or has been tested for allergens. It doesn't say whether the natural rubber could trigger a latex allergy either. I can't confirm it's safe, so please check with your doctor before using it."
+  },
+  {
+   "set": "heldout",
+   "id": "H18",
+   "query": "Do I earn points on shipping fees or gift cards?",
+   "type": "answerable",
+   "primary": "generation",
+   "causes": [
+    "generation"
+   ],
+   "detail": {
+    "generation": "all needed sources present; reply still flagged"
+   },
+   "severity": 3,
+   "issues": [
+    "partially_correct: The reply correctly answers \"No\" for shipping fees and gift cards, and includes taxes implicitly via the shipping/taxes mention. However, it omits the sale-item exclusion (items discounted 30% or more) from the reference answer. The reference answer lists this as part of the core \"not earned\" rule, and the evidence states it explicitly. The core conclusion for the two items asked is correct, so this is close to correct, but the reply leaves out one of the listed non-earning categories. Grading as partially_correct is reasonable given the reference's emphasis, though the omission concerns an exception not asked about directly in the question."
+   ],
+   "route": [
+    "policy"
+   ],
+   "expected_domains": [
+    "policy"
+   ],
+   "gold": [
+    "loyalty§3.1"
+   ],
+   "gold_missing": [],
+   "status": "answered",
+   "answer": "No. You don't earn ALO Access points on either one. Shipping fees (and taxes) don't earn points, and neither do gift card purchases. The base rate is 1 point per $1 USD spent, and it applies only to eligible purchases such as full-price items on aloyoga.com, in U.S. Alo stores, or in the app."
+  },
+  {
+   "set": "heldout",
+   "id": "H24",
+   "query": "Can I send back the leggings from my first order?",
+   "type": "trap",
+   "primary": "retrieval",
+   "causes": [
+    "retrieval"
+   ],
+   "detail": {
+    "retrieval": "gold not in context: ['returns§1']"
+   },
+   "severity": 4,
+   "issues": [
+    "status 'not_in_data', expected one of ['answered', 'partial']",
+    "missing fact '30'",
+    "incorrect: The reference answer is a clear No: the order was 138 days old, outside the 30-day window. The reply instead says it cannot confirm eligibility, claiming the return window is absent from the sources. The evidence as shown does not contain the 30-day window, so the reply's abstention is defensible, but it fails to convey the conclusion the reference expects (not returnable). The reply therefore does not give the answer the question asks for."
+   ],
+   "route": [
+    "customer",
+    "policy"
+   ],
+   "expected_domains": [
+    "customer",
+    "policy"
+   ],
+   "gold": [
+    "returns§1"
+   ],
+   "gold_missing": [
+    "returns§1"
+   ],
+   "status": "not_in_data",
+   "answer": "I can't confirm whether the leggings can still be returned, because the policy excerpts I have don't include the return window or eligibility rules for online orders.\n\nHere is what your record shows:\n- The High-Waist Airbrush Legging (W5901R-BLK, Black, XS) was on order ALO-2024-901882. It was an online order placed 2024-10-14.\n- It was delivered 2024-10-19, which was 133 days ago as of today, 2025-03-01.\n- The order used a 10% new member welcome code. I can't say whether that affects return eligibility, because the sources don't say.\n\nThe in-store return rules (original receipt, same store) don't apply, because this was an online purchase. The sources also mention a Returns Portal with an Instant Exchange option. They don't say whether your order is still eligible for it.\n\nI'm sorry I can't give you a yes or no on the return itself."
+  }
+ ],
+ "worst": [
+  "dev/L9",
+  "dev/A5",
+  "heldout/H24"
+ ]
+}

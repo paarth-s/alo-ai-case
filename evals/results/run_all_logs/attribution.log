@@ -1,0 +1,51 @@
+6/61 questions did not pass cleanly (gen_hybrid_k6_tools)
+
+stage            primary cause  any cause
+retrieval                    2          2
+generation                   3          3
+eval                         1          1
+
+EVERY FAILURE
+  [dev    A5  ] sev 4 primary=generation    causes=['generation']  Is the Warrior Mat safe for latex allergies?
+        generation: all needed sources present; reply still flagged
+  [dev    L9  ] sev 4 primary=generation    causes=['generation']  Can I return an item that was 25% off?
+        generation: all needed sources present; reply still flagged
+  [heldoutH24 ] sev 4 primary=retrieval     causes=['retrieval']  Can I send back the leggings from my first order?
+        retrieval: gold not in context: ['returns§1']
+  [dev    C10 ] sev 3 primary=retrieval     causes=['retrieval']  Do I get free 2-day shipping, and can I use my points now?
+        retrieval: gold not in context: ['loyalty§6.2']
+  [heldoutH18 ] sev 3 primary=generation    causes=['generation']  Do I earn points on shipping fees or gift cards?
+        generation: all needed sources present; reply still flagged
+  [dev    L6  ] sev 1 primary=eval          causes=['eval']  I'm in the UK. How do I return my order?
+        eval: only the status expectation failed ('partial', expected ['answered'])
+
+THREE WORST (by severity), with the trace needed to write them up
+
+  dev/L9 [trap] severity 4: Can I return an item that was 25% off?
+    routed ['policy'] (expected ['policy']) | gold ['returns§1.2', 'returns§6'] | missing from context none
+    status answered | causes ['generation']
+    reply: Yes, in general. An item bought at 25% off is below the 30% final-sale threshold, so the discount alone doesn't make it non-returnable. Only items discounted 30% or more at the time of purchase are final sale.
+
+It can still be returned if it meets the standard...
+    - unsupported fact: Only items discounted 30% or more at the time of purchase are final sale.
+
+  dev/A5 [partial] severity 4: Is the Warrior Mat safe for latex allergies?
+    routed ['product'] (expected ['product']) | gold ['ACC-MAT-BLK'] | missing from context none
+    status answered | causes ['generation']
+    reply: The Warrior Mat is not a safe choice if you have a latex allergy. Its base is natural rubber, and the catalog lists the material as "Natural rubber + PU leather top layer." The catalog doesn't say whether the mat is latex-free or has been tested for allergens....
+    - status 'answered', expected one of ['not_in_data', 'partial']
+    - unsupported fact: The Warrior Mat is not a safe choice if you have a latex allergy.
+    - partially_correct: The reply correctly identifies the natural rubber base and that the catalog lacks allergen info, and it advises consulting a doctor. However, its headline conclusion "not a safe cho
+
+  heldout/H24 [trap] severity 4: Can I send back the leggings from my first order?
+    routed ['customer', 'policy'] (expected ['customer', 'policy']) | gold ['returns§1'] | missing from context ['returns§1']
+    status not_in_data | causes ['retrieval']
+    reply: I can't confirm whether the leggings can still be returned, because the policy excerpts I have don't include the return window or eligibility rules for online orders.
+
+Here is what your record shows:
+- The High-Waist Airbrush Legging (W5901R-BLK, Black, XS) wa...
+    - status 'not_in_data', expected one of ['answered', 'partial']
+    - missing fact '30'
+    - incorrect: The reference answer is a clear No: the order was 138 days old, outside the 30-day window. The reply instead says it cannot confirm eligibility, claiming the return window is absent from th
+
+saved evals/results/attribution.json

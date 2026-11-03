@@ -1,0 +1,25 @@
+{
+ "source": "max(0.03, 1.5 questions, 2 x sample SD) over 3 uncached repeats; see evals/results/noise.json",
+ "tolerances": {
+  "dev.strict_pass": 0.064,
+  "heldout.strict_pass": 0.06,
+  "dev.deterministic_pass": 0.042,
+  "heldout.deterministic_pass": 0.06,
+  "dev.status_ok": 0.042,
+  "heldout.status_ok": 0.06,
+  "dev.faithfulness": 0.042,
+  "heldout.faithfulness": 0.06,
+  "dev.hallucination_rate": 0.042,
+  "heldout.hallucination_rate": 0.06,
+  "dev.ungrounded_advice_rate": 0.042,
+  "heldout.ungrounded_advice_rate": 0.06,
+  "dev.false_absence_rate": 0.042,
+  "heldout.false_absence_rate": 0.08,
+  "dev.correctness": 0.042,
+  "heldout.correctness": 0.06,
+  "dev.false_refusal_rate": 0.042,
+  "heldout.false_refusal_rate": 0.06,
+  "dev.gold_in_context": 0.042,
+  "heldout.gold_in_context": 0.06
+ }
+}

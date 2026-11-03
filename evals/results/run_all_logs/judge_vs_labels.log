@@ -1,0 +1,48 @@
+judge reply missing ['pitfalls', 'correctness']; retrying
+58/58 items fully labelled
+
+dimension              agree     95% range   kappa  false alarms  misses  judge rate  human rate   (false alarm = judge flagged, human did not; miss = human flagged, judge did not)
+unsupported fact        1.00     0.94-1.00     n/a             0       0        0.00        0.00
+ungrounded advice       0.95     0.86-0.98   -0.02             1       2        0.02        0.03
+false absence           1.00     0.94-1.00     n/a             0       0        0.00        0.00
+any problem             0.93     0.84-0.97    0.56             2       2        0.09        0.09
+correctness (3-way)     0.97                  0.70
+pitfall verdicts        0.97   over 79 (item, pitfall) pairs where both sides gave a verdict
+
+priority set only (items 1-20, enriched for hard cases, n=20): 'any problem' agreement 0.90. The all-items rows above are the population estimates.
+
+disagreements (judge vs human):
+
+  item 10 [C10, ] any problem: judge=True human=False
+     question: Do I get free 2-day shipping, and can I use my points now?
+     judge said: The reply correctly states the customer is VIP with free standard shipping, not 2-day shipping, and that points can be redeemed for catalog reward products. How
+
+  item 13 [C6, ] any problem: judge=True human=False
+     question: I want to exchange my vapor shirt for a larger size. How do I do that?
+     judge said: ['The customer should check the Returns Portal for the return status.']
+     your note: All facts check against record and sources (May 2 + 30 = June 1; 28 days to May 30). Online no-exchange, Instant Exchange and in-store rules are kept separate. 'Check the Returns Portal for its status' is a mild extension of the portal mentioned in 4.1, judged not ungrounded.
+
+  item 13 [C6, ] ungrounded advice: judge=True human=False
+     question: I want to exchange my vapor shirt for a larger size. How do I do that?
+     judge said: ['The customer should check the Returns Portal for the return status.']
+     your note: All facts check against record and sources (May 2 + 30 = June 1; 28 days to May 30). Online no-exchange, Instant Exchange and in-store rules are kept separate. 'Check the Returns Portal for its status' is a mild extension of the portal mentioned in 4.1, judged not ungrounded.
+
+  item 53 [H12, ] any problem: judge=False human=True
+     question: When do my loyalty points expire?
+     judge said: The reply gives the core rule (24 months after earning) and the 60-day email reminder, matching the reference answer. It also correctly explains that account-sp
+     your note: Core answer (24 months, 60-day email) is supported. 'Sign in to check your own account' implies an account view the evidence never mentions; borderline since the record itself says nobody is signed in.
+
+  item 53 [H12, ] ungrounded advice: judge=False human=True
+     question: When do my loyalty points expire?
+     judge said: The reply gives the core rule (24 months after earning) and the 60-day email reminder, matching the reference answer. It also correctly explains that account-sp
+     your note: Core answer (24 months, 60-day email) is supported. 'Sign in to check your own account' implies an account view the evidence never mentions; borderline since the record itself says nobody is signed in.
+
+  item 58 [L3, ] any problem: judge=False human=True
+     question: How many points do I need to reach A-List?
+     judge said: The reply gives the correct conclusion: 300 points (the A-List range is 300–999) within a rolling 12-month period, which matches the reference. The extra earnin
+     your note: 300 threshold correct. 'If you sign in, I can check where you stand' promises a lookup capability the evidence never states.
+
+  item 58 [L3, ] ungrounded advice: judge=False human=True
+     question: How many points do I need to reach A-List?
+     judge said: The reply gives the correct conclusion: 300 points (the A-List range is 300–999) within a rolling 12-month period, which matches the reference. The extra earnin
+     your note: 300 threshold correct. 'If you sign in, I can check where you stand' promises a lookup capability the evidence never states.

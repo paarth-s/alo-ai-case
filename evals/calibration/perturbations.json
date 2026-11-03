@@ -1,0 +1,596 @@
+[
+ {
+  "id": "wrong_number:dev/C9",
+  "type": "wrong_number",
+  "base_n": 50,
+  "set": "dev",
+  "qid": "C9",
+  "perturbed_reply": "No, those leggings can't be returned. Your in-store order ALO-2024-820341 at Alo SoHo (placed 2024-04-27) was 2x 7/8 High-Waist Airlift Leggings at 40% off, marked FINAL SALE. Under Alo's policy, items discounted 30% or more, including Aloversary Sale purchases, and items marked \"Final Sale\" are final sale. They can't be returned or exchanged under any circumstances. Returning them at the SoHo store, where you bought them, doesn't change that.\n\nFor future in-store purchases, returns go to the same store with the item and the original receipt. That doesn't apply to final sale items.",
+  "change": "Changed the discount on the leggings from 30% off to 40% off."
+ },
+ {
+  "id": "wrong_number:dev/L4",
+  "type": "wrong_number",
+  "base_n": 2,
+  "set": "dev",
+  "qid": "L4",
+  "perturbed_reply": "Once the warehouse receives your returned item, your refund is processed within 2–4 business days. You'll get an email when it's issued. Depending on your bank or card issuer, it may then take another 10–15 business days to show on your statement.\n\nThe refund goes back to your original form of payment (credit card, PayPal, etc.). The clock starts when the warehouse receives the item, not when you drop it off. Alo isn't responsible for lost return packages, so use a tracked shipping method. The prepaid label includes tracking.\n\nI can't see any account details because no one is signed in. That means I can't check the status of a specific return.",
+  "change": "Changed the additional bank/card posting time from 5–10 business days to 10–15 business days."
+ },
+ {
+  "id": "wrong_number:dev/P8",
+  "type": "wrong_number",
+  "base_n": 34,
+  "set": "dev",
+  "qid": "P8",
+  "perturbed_reply": "The cheapest women's legging in our softest fabric is the High-Waist Alosoft Lounge Legging (W6105R-BLK) at $98. Alosoft is described as the softest fabric in the Alo line. The Lounge Legging is high-waisted with a 30 in inseam and light compression. It has a relaxed, loungy fit and ribbed details.\n\nAll three women's Alosoft leggings in the catalog, cheapest first:\n- High-Waist Alosoft Lounge Legging (W6105R-BLK): $98\n- High-Waist Alosoft Flow Legging (W9201R-BLK): $104\n- Alosoft Goddess Ribbed Legging (W8801R-BLK): $114",
+  "change": "Changed the Lounge Legging's inseam from 28 in to 30 in."
+ },
+ {
+  "id": "wrong_number:heldout/H17",
+  "type": "wrong_number",
+  "base_n": 18,
+  "set": "heldout",
+  "qid": "H17",
+  "perturbed_reply": "If you don't drop off your return within 21 days of generating the label, it won't be accepted. Return labels expire 21 days after they're generated, and items not dropped off within that time won't be accepted.\n\nIf you chose an Instant Exchange, there's an extra consequence. A hold is placed on your card for the replacement item. If you don't drop off the return within 14 days, your card will be charged the full amount of the replacement item.\n\nSeparately, returns must be initiated within 30 days of purchase to be eligible. The sources don't say whether you can generate a new label after one expires, so I can't confirm that.",
+  "change": "Changed the Instant Exchange charge deadline from 21 days to 14 days."
+ },
+ {
+  "id": "wrong_number:heldout/H13",
+  "type": "wrong_number",
+  "base_n": 43,
+  "set": "heldout",
+  "qid": "H13",
+  "perturbed_reply": "You have 24 hours after placing your order to cancel it. To do so, contact customer service within that window. Once an order has been processed or shipped, it can't be cancelled or modified. If it has already shipped, you can start a return once it's delivered.",
+  "change": "Changed the cancellation window from 1 hour to 24 hours (and adjusted the follow-up phrase \"within that hour\" to \"within that window\" for natural reading)."
+ },
+ {
+  "id": "wrong_number:dev/P7",
+  "type": "wrong_number",
+  "base_n": 16,
+  "set": "dev",
+  "qid": "P7",
+  "perturbed_reply": "The catalog doesn't list an inseam for size XL of the 7/8 High-Waist Airlift Legging (W5766R-BLK). XL is an available size, but the inseam is only given for two size groups: XXS/XS/S at 24.25 in and M/L at 25.25 in. I won't guess a figure for XL.",
+  "change": "Changed the M/L inseam from 24.75 in to 25.25 in."
+ },
+ {
+  "id": "wrong_number:dev/A4",
+  "type": "wrong_number",
+  "base_n": 1,
+  "set": "dev",
+  "qid": "A4",
+  "perturbed_reply": "I'm sorry, but I can't confirm that. Your Black Friday leggings aren't returnable, and I can't grant exceptions or override the policy, even if a manager approved it.\n\n- Your 7/8 High-Waist Airlift Legging (order ALO-2024-881234) was bought online with 30% off and is marked FINAL SALE.\n- Alo's policy says items marked \"Final Sale\" or discounted 30% or more at purchase can't be returned or exchanged. That includes Black Friday and Cyber Monday purchases. If an item shows \"Final Sale\" at checkout, the return is declined whatever the reason.\n- The standard return window is also 30 days from purchase. You placed this order on 2024-11-28, and today is 2025-03-01, which is 73 days later. So the window has passed too.\n\nThe Airlift Suit Up Bra in the same order is also Final Sale, so it isn't returnable either.\n\nI can help with other questions about your orders, Alo products or policies.",
+  "change": "Changed \"93 days later\" to \"73 days later\"."
+ },
+ {
+  "id": "wrong_number:heldout/H10",
+  "type": "wrong_number",
+  "base_n": 33,
+  "set": "heldout",
+  "qid": "H10",
+  "perturbed_reply": "You have 45 days from the original purchase date to return an item for a full refund to your original form of payment. The item must be unworn, unwashed, unaltered and unused, and in sellable condition.\n\nTwo 21-day limits also apply once you start a return online:\n- **Return label:** Prepaid UPS labels expire 21 days after they are generated. Items not dropped off within 21 days won't be accepted.\n- **Instant Exchange:** If you pick this option, drop the return off at UPS within 21 days. If you don't, your card will be charged the full price of the replacement item.\n\nI don't have your order details in front of me, so I can't work out your exact deadline. Count 30 days from your purchase date. Start the return at returns.aloyoga.com with your order number and checkout email.",
+  "change": "Changed the first mention of the return window from 30 days to 45 days."
+ },
+ {
+  "id": "invented_fact:heldout/H20",
+  "type": "invented_fact",
+  "base_n": 14,
+  "set": "heldout",
+  "qid": "H20",
+  "perturbed_reply": "No. Overnight shipping isn't available for PO Boxes. Only standard shipping is offered for PO Boxes and APO/FPO addresses. Expedited options (2-day and overnight) are excluded for these address types. Standard shipping is free on U.S. orders and takes an estimated 3–5 business days after shipment. PO Box orders are delivered by USPS and include a tracking number by email once the order ships.",
+  "change": "Added a sentence claiming PO Box orders are delivered by USPS with an emailed tracking number, which is not in the evidence (evidence says UPS Ground or USPS depending on destination, nothing about tracking emails)."
+ },
+ {
+  "id": "invented_fact:dev/C6",
+  "type": "invented_fact",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Alo doesn't offer direct exchanges on online orders. To get the XL, you return the original item and then place a new order for the XL.\n\n**Your item:** The ALO Vapor Crewneck Short Sleeve (M6801R-BLK) comes in XL in Black, per the catalog.\n\n**Your order ALO-2024-631089:**\n- You already started a return on 2024-05-30 for the Fit reason (runs small, want XL). That was 28 days after the 2024-05-02 order, inside the 30-day window.\n- The order still shows \"Return Requested — Pending\", and the record doesn't say whether the return was completed. Please check the Returns Portal for its status.\n- If it is still open, the next step is to place a new order for the XL Black. I can't see in the sources how to finish or reopen an old return.\n- If you need to start a new return now, the 30-day window has passed: it ran from 2024-05-02 to 2024-06-01, and today is 2025-03-01. I can't grant exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** The Returns Portal may offer this during a return. You pick the replacement, and a hold is placed on your card. The new item ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement. A-List members also get free return shipping on Instant Exchange returns.\n- **In-store:** A different size of the same item may be exchanged in-store, subject to inventory. That is a separate rule from the online one. The sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Added the sentence \"A-List members also get free return shipping on Instant Exchange returns.\" to the Instant Exchange bullet, a perk not found in the evidence."
+ },
+ {
+  "id": "invented_fact:dev/C7",
+  "type": "invented_fact",
+  "base_n": 41,
+  "set": "dev",
+  "qid": "C7",
+  "perturbed_reply": "Yes, you can still return the jogger, but you need to start the return by March 10, 2025.\n\n- **Window:** Returns must be initiated within 30 days of purchase. You placed the order on Feb 8, 2025, so the 30th day is March 10, 2025. Today is March 1, which is day 21, so you have 9 days left.\n- **Discount:** Your order shows the jogger at $128.00, which is full price. The $284.00 subtotal equals $128 + 2 × $78. It isn't in a final-sale category (items discounted 30% or more, or marked \"Final Sale\"), and nothing in your order shows it was.\n- **Condition:** The jogger must be unworn, unwashed and unaltered. It needs its original tags attached and must be in sellable condition.\n\n**How to start the return (online order):**\n1. Go to returns.aloyoga.com.\n2. Enter your order number (ALO-2025-010228) and the email you used at checkout.\n3. Select the jogger and a reason.\n4. A prepaid UPS label is generated at no cost to you.\n5. Drop the package at a UPS Access Point or UPS Store within 21 days of generating the label. After that the label expires.\n\nRefunds are issued to your original payment method within 5 business days of the return being processed.\n\nThe sources don't describe a direct exchange option, so I can't say whether you can swap it for another size.",
+  "change": "Added a sentence stating refunds go to the original payment method within 5 business days of processing, which is not in the evidence."
+ },
+ {
+  "id": "invented_fact:heldout/H21",
+  "type": "invented_fact",
+  "base_n": 57,
+  "set": "heldout",
+  "qid": "H21",
+  "perturbed_reply": "Unfortunately, no. The 7/8 High-Waist Airlift Legging from your Black Friday order (ALO-2024-881234) can't be returned or exchanged.\n\n- **Final sale:** The item was bought at 30% off and is marked \"Final Sale\". Alo's policy says items discounted 30% or more, including Black Friday purchases, are final sale. It also says a return is declined regardless of the reason if the item showed \"Final Sale\" at checkout.\n- **Return window:** Even without the final sale rule, returns must start within 30 days of purchase. You ordered on 2024-11-28, so the window closed on 2024-12-28. Today is 2025-03-01, which is 93 days after purchase.\n\nI can't make an exception to this policy. The Airlift Suit Up Bra in the same order is also final sale. Final sale items can still be repaired free of charge within 12 months of delivery if they have a manufacturing defect.",
+  "change": "Added a sentence claiming final sale items can be repaired free within 12 months of delivery for manufacturing defects, a policy not in the evidence."
+ },
+ {
+  "id": "invented_fact:dev/C4",
+  "type": "invented_fact",
+  "base_n": 30,
+  "set": "dev",
+  "qid": "C4",
+  "perturbed_reply": "No. The leggings from your Cyber Monday order (ALO-2024-950002, placed 2024-12-01) can't be returned or exchanged. That order has 3x 7/8 High-Waist Airlift Leggings (Black, XS) and 2x High-Waist Airlift Leggings (Navy, XS). Each was bought at 30% off and is marked Final Sale.\n\nAlo's policy says items discounted 30% or more, including Cyber Monday purchases, are final sale. So are items marked \"Final Sale\" at purchase. The policy also says that if an item shows Final Sale at checkout, the return will be declined regardless of the reason. The note on the order about a large order or loyal customer doesn't change this, and I can't make an exception.\n\nThis applies only to the Cyber Monday order. Your other order (ALO-2025-002887) wasn't discounted, and it isn't covered by this final-sale rule. Non-final-sale items can be returned within 60 days of delivery.",
+  "change": "Added a final sentence claiming a 60-day return window for non-final-sale items, which the evidence never states."
+ },
+ {
+  "id": "invented_fact:heldout/H16",
+  "type": "invented_fact",
+  "base_n": 19,
+  "set": "heldout",
+  "qid": "H16",
+  "perturbed_reply": "Contact Alo customer service as soon as possible. You can email customerservice@aloyoga.com or call (855) 793-3100. Include your order number, a description of the issue, and photos if anything arrived damaged. Alo will work with the carrier to investigate. For U.S. orders this typically takes 5–10 business days, and it takes longer for international orders.\n\nReport it within 7 days of the delivery date. Reports made after 7 days may not be eligible for reshipping or refund. Phone support is available Monday through Friday, 9 a.m. to 5 p.m. Pacific Time.\n\nNo account is signed in, so I can't see your order or its delivery date. Count the 7 days from the \"Delivered\" date shown by the carrier. I also can't guarantee a reshipment or refund. That depends on the carrier investigation.",
+  "change": "Added the sentence \"Phone support is available Monday through Friday, 9 a.m. to 5 p.m. Pacific Time,\" which is not in the evidence."
+ },
+ {
+  "id": "invented_fact:heldout/H14",
+  "type": "invented_fact",
+  "base_n": 37,
+  "set": "heldout",
+  "qid": "H14",
+  "perturbed_reply": "International orders over $75 USD (before taxes and duties) ship free. For international orders under $75 USD, shipping rates are calculated at checkout based on your destination. International orders are fulfilled via DHL or a local courier partner. Free international shipping orders are not eligible for expedited upgrades once the order has been placed.",
+  "change": "Added a sentence claiming free international shipping orders cannot be upgraded to expedited shipping after placement, a policy not in the evidence."
+ },
+ {
+  "id": "invented_fact:heldout/H06",
+  "type": "invented_fact",
+  "base_n": 48,
+  "set": "heldout",
+  "qid": "H06",
+  "perturbed_reply": "The Airlift Suit Up Bra (SKU W2201R-BLK) is the one designed to match the Airlift High-Waist Suit Up Legging (W6034R-BLK). The bra's listing says \"Designed to match Suit Up Legging.\"\n\nDetails on the bra:\n- Price: $82\n- Support: medium-high\n- Fabric: Airlift\n- Design: color-blocked with contrast piping\n- Padding: removable\n- Best for: hot yoga, training, studio and set coordination\n\nThe legging is $144, so the set comes to $226 before any discounts. Buying the bra and legging together qualifies you for free two-day shipping.\n\nThe bra's restocking is aligned with the legging's seasonal restocking. I couldn't see the bra's available colors or sizes in the results I have, so I can't confirm that its colors match the legging's three colorways (Black/White, Navy/White, Espresso/White).",
+  "change": "Added the sentence \"Buying the bra and legging together qualifies you for free two-day shipping,\" a perk not found in the evidence."
+ },
+ {
+  "id": "invented_referral:dev/P8",
+  "type": "invented_referral",
+  "base_n": 34,
+  "set": "dev",
+  "qid": "P8",
+  "perturbed_reply": "The cheapest women's legging in our softest fabric is the High-Waist Alosoft Lounge Legging (W6105R-BLK) at $98. Alosoft is described as the softest fabric in the Alo line. The Lounge Legging is high-waisted with a 28 in inseam and light compression. It has a relaxed, loungy fit and ribbed details.\n\nAll three women's Alosoft leggings in the catalog, cheapest first:\n- High-Waist Alosoft Lounge Legging (W6105R-BLK): $98\n- High-Waist Alosoft Flow Legging (W9201R-BLK): $104\n- Alosoft Goddess Ribbed Legging (W8801R-BLK): $114\n\nFor current discount codes, you can email promos@alo-deals.com.",
+  "change": "Added a final sentence directing the customer to email promos@alo-deals.com for discount codes, an address not in the evidence."
+ },
+ {
+  "id": "invented_referral:dev/C5",
+  "type": "invented_referral",
+  "base_n": 35,
+  "set": "dev",
+  "qid": "C5",
+  "perturbed_reply": "The portal most likely rejected your return because it was started after the 30-day return window had closed. I'm assuming you mean order ALO-2024-812200, the 7/8 High-Waist Airbrush Legging in White.\n\n- The policy requires a return to be initiated within 30 days of purchase.\n- You placed the order on 2024-09-30, so the 30-day window ended on 2024-10-30.\n- The return was initiated on 2024-11-08, which is 39 days after the order date. It is also 34 days after the 2024-10-05 delivery, so it was outside the window by either count.\n\nI can't override the rejection or grant an exception. If you think it was a mistake, you can contact customer service at customerservice@aloyoga.com or (855) 793-3100, Monday–Friday, 9 AM–5 PM PT. You can also submit an appeal for a VIP return exception at aloyoga.com/vip-appeals.\n\nIf you meant your other order, ALO-2024-712445, it was placed 226 days ago (2024-07-18) and delivered on 2024-07-24. That is also well past the 30-day window.",
+  "change": "Added a sentence directing the customer to a nonexistent VIP appeals page (aloyoga.com/vip-appeals) not found in the evidence."
+ },
+ {
+  "id": "invented_referral:dev/L10",
+  "type": "invented_referral",
+  "base_n": 39,
+  "set": "dev",
+  "qid": "L10",
+  "perturbed_reply": "You would lose A-List status at the next quarterly review. It wouldn't happen the moment your points dip below the threshold. Tier downgrades happen quarterly, not immediately.\n\n- A-List requires 300–999 points earned in a rolling 12-month period. Points from more than 12 months ago don't count.\n- If your 12-month total is below 300 at the next quarterly review, you'd be downgraded.\n- Points from online and in-store purchases both count toward tier status.\n\nThe sources don't give the dates of the quarterly reviews, so I can't say exactly when the next one is. To find the exact date, you can email tiers@aloyoga.com. No account is signed in, so I also can't check your current points.\n",
+  "change": "Added the sentence \"To find the exact date, you can email tiers@aloyoga.com.\" directing the customer to an email address not in the evidence."
+ },
+ {
+  "id": "invented_referral:heldout/H02",
+  "type": "invented_referral",
+  "base_n": 11,
+  "set": "heldout",
+  "qid": "H02",
+  "perturbed_reply": "Yes. We sell the Alo Sport Water Bottle (SKU ACC-BOTTLE-WHT) for $48. It keeps drinks cold for 24 hours, and hot drinks for 12 hours. It's stainless steel with double-wall vacuum insulation. It also has a leak-proof lid and a wide mouth. For care instructions and warranty details, you can email bottlecare@aloyoga.com.",
+  "change": "Added a final sentence directing the customer to a made-up email address (bottlecare@aloyoga.com) for care and warranty details, which the evidence never mentions."
+ },
+ {
+  "id": "invented_referral:heldout/H06",
+  "type": "invented_referral",
+  "base_n": 48,
+  "set": "heldout",
+  "qid": "H06",
+  "perturbed_reply": "The Airlift Suit Up Bra (SKU W2201R-BLK) is the one designed to match the Airlift High-Waist Suit Up Legging (W6034R-BLK). The bra's listing says \"Designed to match Suit Up Legging.\"\n\nDetails on the bra:\n- Price: $82\n- Support: medium-high\n- Fabric: Airlift\n- Design: color-blocked with contrast piping\n- Padding: removable\n- Best for: hot yoga, training, studio and set coordination\n\nThe legging is $144, so the set comes to $226 before any discounts.\n\nThe bra's restocking is aligned with the legging's seasonal restocking. I couldn't see the bra's available colors or sizes in the results I have, so I can't confirm that its colors match the legging's three colorways (Black/White, Navy/White, Espresso/White). You can check live size and color availability by emailing sets@alo-support.com.",
+  "change": "Added a final sentence directing the customer to email sets@alo-support.com, an address not in the evidence."
+ },
+ {
+  "id": "invented_referral:dev/C6",
+  "type": "invented_referral",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Alo doesn't offer direct exchanges on online orders. To get the XL, you return the original item and then place a new order for the XL.\n\n**Your item:** The ALO Vapor Crewneck Short Sleeve (M6801R-BLK) comes in XL in Black, per the catalog.\n\n**Your order ALO-2024-631089:**\n- You already started a return on 2024-05-30 for the Fit reason (runs small, want XL). That was 28 days after the 2024-05-02 order, inside the 30-day window.\n- The order still shows \"Return Requested — Pending\", and the record doesn't say whether the return was completed. Please check the Returns Portal for its status.\n- If it is still open, the next step is to place a new order for the XL Black. I can't see in the sources how to finish or reopen an old return. You can email exchanges@aloyoga.com to have the old return reopened.\n- If you need to start a new return now, the 30-day window has passed: it ran from 2024-05-02 to 2024-06-01, and today is 2025-03-01. I can't grant exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** The Returns Portal may offer this during a return. You pick the replacement, and a hold is placed on your card. The new item ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **In-store:** A different size of the same item may be exchanged in-store, subject to inventory. That is a separate rule from the online one. The sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Added the sentence \"You can email exchanges@aloyoga.com to have the old return reopened.\" after the bullet about not seeing how to reopen a return."
+ },
+ {
+  "id": "invented_referral:heldout/H15",
+  "type": "invented_referral",
+  "base_n": 21,
+  "set": "heldout",
+  "qid": "H15",
+  "perturbed_reply": "Yes. Students get 15% off full-price items once they're verified through Student Beans.\n\n- The discount is listed as an ongoing community discount on full-price items.\n- Community discounts can't be stacked with other promotions or Alo Access redemptions.\n- Another section says the student discount is one-time use per student account, and that it comes \"on top of standard Access benefits\". That doesn't fully match the \"ongoing\" and \"can't be stacked\" wording above. I can't tell from the sources which one applies, so check the terms when you verify through Student Beans.\n\nIf you have trouble getting verified, email students@aloyoga.com and the team will sort it out.",
+  "change": "Added a closing sentence directing customers to a made-up email address (students@aloyoga.com) for verification trouble, which the evidence never mentions."
+ },
+ {
+  "id": "invented_referral:heldout/H19",
+  "type": "invented_referral",
+  "base_n": 3,
+  "set": "heldout",
+  "qid": "H19",
+  "perturbed_reply": "Contact Alo customer service at customerservice@aloyoga.com or (855) 793-3100. Include your order number, a description of the damage, and photos.\n\n**Timing**\n- Report damaged or defective items within 30 days of receipt. Alo will cover return shipping and issue a full refund or replacement at no cost to you.\n- If you report after 30 days, the item will be evaluated case by case and acceptance isn't guaranteed.\n- The shipping policy says a package marked \"Delivered\" but not received should be reported within 7 days of the delivery date. That rule is for packages you never received. Your package arrived damaged, so the 30-day window above applies.\n\nYou can also start a damage claim through the Report a Problem form at aloyoga.com/damage-claim.\n\nYou aren't signed in, so I can't see your order or check your dates. I can't approve a refund or replacement myself. Customer service handles that.",
+  "change": "Added a sentence directing the customer to a \"Report a Problem\" form at aloyoga.com/damage-claim, which the evidence never mentions."
+ },
+ {
+  "id": "dropped_exception:dev/C9",
+  "type": "dropped_exception",
+  "base_n": 50,
+  "set": "dev",
+  "qid": "C9",
+  "perturbed_reply": "No, those leggings can't be returned. Your in-store order ALO-2024-820341 at Alo SoHo (placed 2024-04-27) was 2x 7/8 High-Waist Airlift Leggings at 30% off, marked FINAL SALE. Under Alo's policy, items discounted 30% or more, including Aloversary Sale purchases, and items marked \"Final Sale\" are final sale. They can't be returned or exchanged under any circumstances. Returning them at the SoHo store, where you bought them, doesn't change that.\n\nFor future in-store purchases, returns go to the same store with the item and the original receipt.",
+  "change": "Removed the closing caveat \"That doesn't apply to final sale items,\" so the in-store return rule is stated without the final-sale exception."
+ },
+ {
+  "id": "dropped_exception:dev/L5",
+  "type": "dropped_exception",
+  "base_n": 24,
+  "set": "dev",
+  "qid": "L5",
+  "perturbed_reply": "For online purchases, no. Alo doesn't currently offer direct exchanges. To get a different size, you need to return the original item and then place a new order for the size you want.\n\n- **Instant Exchange:** The Returns Portal may offer this option during your return. You pick the replacement on aloyoga.com before you ship the return back. A hold is placed on your credit card for the new item's value, and the new order ships right away. The hold is released once your return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **In-store purchases:** A different size of the same item may be exchanged in store.\n- **Eligibility:** Returns are accepted within 30 days of purchase for unworn, unwashed, unaltered and unused items. Items discounted 30% or more, or marked \"Final Sale\", can't be returned or exchanged.\n\nI can't see your account because no one is signed in. That means I can't check your order's purchase date or whether your leggings are final sale.",
+  "change": "Removed the caveat \"depending on inventory\" from the in-store exchange bullet, so it states in-store size exchanges as unconditional."
+ },
+ {
+  "id": "dropped_exception:dev/C1",
+  "type": "dropped_exception",
+  "base_n": 51,
+  "set": "dev",
+  "qid": "C1",
+  "perturbed_reply": "You placed one order in November. It was order ALO-2024-881234, placed online on 2024-11-28 (Black Friday) and delivered on 2024-12-03. It included:\n- 1x 7/8 High-Waist Airlift Legging, Vintage Pink, size S. The listed price was $118.00, with 30% off.\n- 1x Airlift Suit Up Bra, Black/White, size S. The listed price was $82.00, with 30% off.\n\nThe total was $140.00, with free standard shipping.",
+  "change": "Removed the final sentence stating that both items are marked Final Sale."
+ },
+ {
+  "id": "dropped_exception:dev/L9",
+  "type": "dropped_exception",
+  "base_n": 42,
+  "set": "dev",
+  "qid": "L9",
+  "perturbed_reply": "Yes, an item that was 25% off can be returned. The final sale rule only applies to items discounted 30% or more at the time of purchase, and 25% is below that line.\n\nIt still has to meet the other return conditions:\n- **Total discount under 30%.** If you also used a promo code and the total discount reached 30% or more, the item is final sale.\n- **Within 30 days of purchase.**\n- **Condition.** The item must be unworn, unwashed and unaltered, with the original tags attached and in sellable condition.\n- **Proof of purchase.** You'll need your order number or other proof of purchase.\n\nFor online orders in the U.S., start the return at returns.aloyoga.com with your order number and checkout email. You'll get a prepaid UPS label, which expires 21 days after it's generated. International orders don't get a prepaid label, and you pay the return shipping.\n\nI don't have your order details here, so I can't confirm whether your specific item qualifies.",
+  "change": "Removed the bullet listing categories excluded from return regardless of discount (Final Sale-marked, bodysuits, intimates, etc.) and changed \"can generally be returned\" to \"can be returned\"."
+ },
+ {
+  "id": "dropped_exception:heldout/H11",
+  "type": "dropped_exception",
+  "base_n": 45,
+  "set": "heldout",
+  "qid": "H11",
+  "perturbed_reply": "Two-Day Shipping costs $15.00. It's available for all U.S. addresses. The two days are counted from the day your order ships, not the day you place it. Same-day dispatch is only guaranteed if you order before the daily cutoff time. Orders are typically dispatched within 1–2 business days, and that can stretch to 3–5 business days during peak promotional periods. If you need it faster, Overnight/Next-Day costs $25.00 (order before 12:00 PM PT to guarantee same-day dispatch). Standard Shipping is free and takes 3–5 business days after shipment.",
+  "change": "Removed the exclusion of PO Boxes and APO/FPO addresses, so Two-Day Shipping is stated as available for all U.S. addresses."
+ },
+ {
+  "id": "conflated_rules:dev/C2",
+  "type": "conflated_rules",
+  "base_n": 55,
+  "set": "dev",
+  "qid": "C2",
+  "perturbed_reply": "You're an A-List member with 612 points. The A-List range is 300–999 points.\n\nYour shipping perk is free 2-day shipping on U.S. orders over $75. Your most recent order, ALO-2025-010228, shipped with \"Free 2-Day (A-List benefit)\" and cost $0 for shipping.\n\nA-List also includes priority customer service, early access to new drops, exclusive A-List sales, and invites to Alo events.\n\nTiers are based on points earned over a rolling 12 months. If your points fall below 300, any downgrade happens at the next quarterly review, not right away.",
+  "change": "Changed the A-List shipping perk from \"on all U.S. orders\" to \"on U.S. orders over $75,\" importing the international free-shipping threshold rule into the A-List perk."
+ },
+ {
+  "id": "conflated_rules:heldout/H17",
+  "type": "conflated_rules",
+  "base_n": 18,
+  "set": "heldout",
+  "qid": "H17",
+  "perturbed_reply": "If you don't drop off your return within 21 days of generating the label, it won't be accepted and your card will be charged the full amount of the item. Return labels expire 21 days after they're generated, and items not dropped off within that time won't be accepted.\n\nIf you chose an Instant Exchange, there's an extra consequence. A hold is placed on your card for the replacement item. If you don't drop off the return within 21 days, your card will be charged the full amount of the replacement item.\n\nSeparately, returns must be initiated within 30 days of purchase to be eligible. The sources don't say whether you can generate a new label after one expires, so I can't confirm that.",
+  "change": "Added to the first sentence that a missed 21-day deadline means your card will be charged the full amount of the item, applying the Instant Exchange charge rule to ordinary returns."
+ },
+ {
+  "id": "conflated_rules:dev/L5",
+  "type": "conflated_rules",
+  "base_n": 24,
+  "set": "dev",
+  "qid": "L5",
+  "perturbed_reply": "For online purchases, no. Alo doesn't currently offer direct exchanges. To get a different size, you need to return the original item and then place a new order for the size you want.\n\n- **Instant Exchange:** The Returns Portal may offer this option during your return. You pick the replacement on aloyoga.com before you ship the return back. A hold is placed on your credit card for the new item's value, and the new order ships right away. The hold is released once your return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **Store exchanges:** A different size of the same item may be exchanged in store, depending on inventory, even if you bought it online.\n- **Eligibility:** Returns are accepted within 30 days of purchase for unworn, unwashed, unaltered and unused items. Items discounted 30% or more, or marked \"Final Sale\", can't be returned or exchanged.\n\nI can't see your account because no one is signed in. That means I can't check your order's purchase date or whether your leggings are final sale.",
+  "change": "Rewrote the in-store bullet so the in-store size-exchange rule also applies to online purchases (\"even if you bought it online\"), merging the online and in-store rules."
+ },
+ {
+  "id": "conflated_rules:dev/L8",
+  "type": "conflated_rules",
+  "base_n": 49,
+  "set": "dev",
+  "qid": "L8",
+  "perturbed_reply": "No. An in-store purchase can't be returned online, and it can't be returned to a different Alo store either. To return it, bring the item and your original sales receipt to the same Alo store where you bought it within 21 days.\n\nRefund details for in-store returns:\n- Cash purchases are refunded to an Alo gift card, not cash.\n- Split payment orders (part gift card, part other payment) are refunded to the gift card first. Any remaining balance goes back to the other original payment method.\n\nSome items are final sale and can't be returned or exchanged. These include items marked \"Final Sale\", items discounted 30% or more, bodysuits, underwear and intimates, and gift cards. Check whether your item falls into one of those groups.\n\nNo account is signed in, so I can't look at your specific purchase.",
+  "change": "Added \"within 21 days\" to the in-store return instruction, wrongly applying the online return-label expiry rule to in-store returns."
+ },
+ {
+  "id": "conflated_rules:dev/C6",
+  "type": "conflated_rules",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Alo doesn't offer direct exchanges on online orders. To get the XL, you return the original item and then place a new order for the XL.\n\n**Your item:** The ALO Vapor Crewneck Short Sleeve (M6801R-BLK) comes in XL in Black, per the catalog.\n\n**Your order ALO-2024-631089:**\n- You already started a return on 2024-05-30 for the Fit reason (runs small, want XL). That was 28 days after the 2024-05-02 order, inside the 30-day window.\n- The order still shows \"Return Requested — Pending\", and the record doesn't say whether the return was completed. Please check the Returns Portal for its status.\n- If it is still open, the next step is to place a new order for the XL Black. I can't see in the sources how to finish or reopen an old return.\n- If you need to start a new return now, the 30-day window has passed: it ran from 2024-05-02 to 2024-06-01, and today is 2025-03-01. I can't grant exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** The Returns Portal may offer this during a return. You pick the replacement, and a hold is placed on your card. The new item ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **In-store:** A different size of the same item may be exchanged in-store, subject to inventory. That same-item size swap also applies to online orders like yours. The sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Replaced \"That is a separate rule from the online one.\" with \"That same-item size swap also applies to online orders like yours,\" merging the in-store exchange rule into the online exchange rule."
+ },
+ {
+  "id": "conflated_rules:dev/L7",
+  "type": "conflated_rules",
+  "base_n": 31,
+  "set": "dev",
+  "qid": "L7",
+  "perturbed_reply": "No. Points can't be redeemed during active sale periods, and Black Friday and Cyber Monday are named as examples. This also applies to any sitewide promotional discount event. The returns policy says the same: Alo Access reward redemptions aren't eligible during active sale periods.\n\nOutside of sales, points can only be redeemed for specific reward products from the Alo Rewards catalog. They can't be used as a dollar discount or combined with promo codes. Reward items are subject to availability, and like Black Friday purchases, they are final sale and can't be returned or exchanged.\n\nNo account is signed in, so I can't see your points balance. Your points expire 24 months after the date you earned them, so check that they won't expire before the sale ends.",
+  "change": "Added that reward items are final sale and non-returnable, wrongly applying the Black Friday final-sale return rule to points-redeemed reward products."
+ },
+ {
+  "id": "conflated_rules:dev/C10",
+  "type": "conflated_rules",
+  "base_n": 10,
+  "set": "dev",
+  "qid": "C10",
+  "perturbed_reply": "Free 2-day shipping: not yet. As a VIP member (1–299 points) you get free standard shipping. Free 2-day shipping starts at the A-List tier (300–999 points). You have 156 points, so you'd need 144 more to reach 300.\n\nUsing your points: not yet either. Points can be redeemed for free products from the Alo Rewards catalog, but like 2-day shipping, that starts at the A-List tier. Once you're there, log in, open the rewards section, and add an item to your cart with the \"Get Reward\" button. Your points don't look close to expiring. They expire 24 months after they're earned, and your account has been open since 2024-08-01.\n\nWhat I can't tell you is how many points each reward costs. The sources I have don't say. Your dashboard's rewards section is where to check what's available.",
+  "change": "Applied the A-List 300-point tier threshold (from the 2-day shipping rule) to points redemption, claiming redemption isn't available until A-List, and adjusted surrounding sentences to stay coherent."
+ },
+ {
+  "id": "wrong_tier:dev/C2",
+  "type": "wrong_tier",
+  "base_n": 55,
+  "set": "dev",
+  "qid": "C2",
+  "perturbed_reply": "You're an A-List member with 612 points. The A-List range is 300–999 points.\n\nYour shipping perk is free 2-day shipping on all U.S. orders, plus priority processing. Your most recent order, ALO-2025-010228, shipped with \"Free 2-Day (A-List benefit)\" and cost $0 for shipping.\n\nA-List also includes priority customer service, early access to new drops, exclusive A-List sales, and invites to Alo events.\n\nTiers are based on points earned over a rolling 12 months. If your points fall below 300, any downgrade happens at the next quarterly review, not right away.",
+  "change": "Added \"plus priority processing\" to the A-List shipping perk, which is actually an All Access-only benefit."
+ },
+ {
+  "id": "wrong_tier:dev/C10",
+  "type": "wrong_tier",
+  "base_n": 10,
+  "set": "dev",
+  "qid": "C10",
+  "perturbed_reply": "Free 2-day shipping: not yet. As a VIP member (1–299 points) you get free standard shipping. Free 2-day shipping starts at the All Access tier (1,000+ points). You have 156 points, so you'd need 844 more to reach 1,000.\n\nUsing your points: yes, in general. Points can be redeemed for free products from the Alo Rewards catalog. Log in, open the rewards section, and add an item to your cart with the \"Get Reward\" button. Your points don't look close to expiring. They expire 24 months after they're earned, and your account has been open since 2024-08-01.\n\nWhat I can't tell you is how many points each reward costs or whether there's a minimum to redeem. The sources I have don't say. Your dashboard's rewards section is where to check whether 156 points covers a specific item.",
+  "change": "Changed the tier where free 2-day shipping starts from A-List (300–999 points) to All Access (1,000+ points), and adjusted the points-needed figure to 844 accordingly."
+ },
+ {
+  "id": "false_absence:heldout/H19",
+  "type": "false_absence",
+  "base_n": 3,
+  "set": "heldout",
+  "qid": "H19",
+  "perturbed_reply": "Contact Alo customer service at customerservice@aloyoga.com or (855) 793-3100. Include your order number, a description of the damage, and photos.\n\n**Timing**\n- The sources don't state a time window for reporting damaged or defective items. Alo will cover return shipping and issue a full refund or replacement at no cost to you.\n- If you report after 30 days, the item will be evaluated case by case and acceptance isn't guaranteed.\n- The shipping policy says a package marked \"Delivered\" but not received should be reported within 7 days of the delivery date. That rule is for packages you never received. Your package arrived damaged, so the 30-day window above applies.\n\nYou aren't signed in, so I can't see your order or check your dates. I can't approve a refund or replacement myself. Customer service handles that.",
+  "change": "Replaced the first Timing bullet's \"within 30 days of receipt\" statement with a claim that the sources don't state a reporting time window."
+ },
+ {
+  "id": "false_absence:heldout/H16",
+  "type": "false_absence",
+  "base_n": 19,
+  "set": "heldout",
+  "qid": "H16",
+  "perturbed_reply": "Contact Alo customer service as soon as possible. You can email customerservice@aloyoga.com or call (855) 793-3100. Include your order number, a description of the issue, and photos if anything arrived damaged. Alo will work with the carrier to investigate. The sources don't say how long this typically takes.\n\nReport it within 7 days of the delivery date. Reports made after 7 days may not be eligible for reshipping or refund.\n\nNo account is signed in, so I can't see your order or its delivery date. Count the 7 days from the \"Delivered\" date shown by the carrier. I also can't guarantee a reshipment or refund. That depends on the carrier investigation.",
+  "change": "Replaced the stated 5–10 business day (U.S.) / longer (international) investigation timeline with a claim that the sources don't say how long it takes."
+ },
+ {
+  "id": "false_absence:dev/L8",
+  "type": "false_absence",
+  "base_n": 49,
+  "set": "dev",
+  "qid": "L8",
+  "perturbed_reply": "No. An in-store purchase can't be returned online, and it can't be returned to a different Alo store either. To return it, bring the item and your original sales receipt to the same Alo store where you bought it.\n\nRefund details for in-store returns:\n- The sources don't say how cash purchases are refunded.\n- Split payment orders (part gift card, part other payment) are refunded to the gift card first. Any remaining balance goes back to the other original payment method.\n\nSome items are final sale and can't be returned or exchanged. These include items marked \"Final Sale\", items discounted 30% or more, bodysuits, underwear and intimates, and gift cards. Check whether your item falls into one of those groups.\n\nNo account is signed in, so I can't look at your specific purchase.",
+  "change": "Replaced the correct statement that cash purchases are refunded to an Alo gift card with a claim that the sources don't say how cash purchases are refunded."
+ },
+ {
+  "id": "false_absence:dev/P2",
+  "type": "false_absence",
+  "base_n": 26,
+  "set": "dev",
+  "qid": "P2",
+  "perturbed_reply": "The Warrior Mat comes in one size, Standard, though the exact dimensions aren't stated in the product information. It's 5mm thick. It comes in Black, Midnight and Warm Sand, and a carry strap is included.",
+  "change": "Replaced the stated 68\" x 24\" dimensions with a claim that the exact dimensions aren't stated in the product information."
+ },
+ {
+  "id": "false_absence:dev/C6",
+  "type": "false_absence",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Alo doesn't offer direct exchanges on online orders. To get the XL, you return the original item and then place a new order for the XL.\n\n**Your item:** The ALO Vapor Crewneck Short Sleeve (M6801R-BLK) is the item on your order, but the catalog doesn't say which sizes it comes in.\n\n**Your order ALO-2024-631089:**\n- You already started a return on 2024-05-30 for the Fit reason (runs small, want XL). That was 28 days after the 2024-05-02 order, inside the 30-day window.\n- The order still shows \"Return Requested — Pending\", and the record doesn't say whether the return was completed. Please check the Returns Portal for its status.\n- If it is still open, the next step is to place a new order for the XL Black. I can't see in the sources how to finish or reopen an old return.\n- If you need to start a new return now, the 30-day window has passed: it ran from 2024-05-02 to 2024-06-01, and today is 2025-03-01. I can't grant exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** The Returns Portal may offer this during a return. You pick the replacement, and a hold is placed on your card. The new item ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **In-store:** A different size of the same item may be exchanged in-store, subject to inventory. That is a separate rule from the online one. The sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Replaced the statement that the Vapor Crewneck comes in XL in Black per the catalog with a claim that the catalog doesn't say which sizes it comes in."
+ },
+ {
+  "id": "false_absence:dev/C5",
+  "type": "false_absence",
+  "base_n": 35,
+  "set": "dev",
+  "qid": "C5",
+  "perturbed_reply": "The portal most likely rejected your return because it was started after the 30-day return window had closed. I'm assuming you mean order ALO-2024-812200, the 7/8 High-Waist Airbrush Legging in White.\n\n- The policy requires a return to be initiated within 30 days of purchase.\n- You placed the order on 2024-09-30, so the 30-day window ended on 2024-10-30.\n- The records don't state when the return was initiated, so I can't say how far outside the window it was. Delivery was on 2024-10-05.\n\nI can't override the rejection or grant an exception. If you think it was a mistake, you can contact customer service at customerservice@aloyoga.com or (855) 793-3100, Monday–Friday, 9 AM–5 PM PT.\n\nIf you meant your other order, ALO-2024-712445, it was placed 226 days ago (2024-07-18) and delivered on 2024-07-24. That is also well past the 30-day window.",
+  "change": "Replaced the statement of the return initiation date (2024-11-08, 39 days after order/34 after delivery) with a claim that the records don't state when the return was initiated."
+ },
+ {
+  "id": "false_absence:dev/P9",
+  "type": "false_absence",
+  "base_n": 47,
+  "set": "dev",
+  "qid": "P9",
+  "perturbed_reply": "The lightest men's top that suits hot yoga is the ALO Vapor Crewneck Short Sleeve (M6801R-BLK, $68). It's made from Alo Vapor, which the fabric info calls Alo's lightest men's fabric. It's ultra-breathable and moisture-wicking, with a featherweight feel and 4-way stretch. It has a regular fit, but the catalog doesn't state its compression level, and the catalog lists \"Hot yoga\" among its best uses. It was the only men's top in the catalog tagged for hot yoga.",
+  "change": "Replaced the correct statement that the top has low compression with a claim that the catalog doesn't state its compression level."
+ },
+ {
+  "id": "false_absence:heldout/H07",
+  "type": "false_absence",
+  "base_n": 28,
+  "set": "heldout",
+  "qid": "H07",
+  "perturbed_reply": "The Warrior Compression Pant (M5044R-BLK) is the one pant in the catalog that's listed as layerable under shorts. It's a men's pant, $88. Its features say it \"can be worn alone or layered under shorts.\"\n\nOther details:\n- Tight compression fit, mid-rise, 33.5 in inseam\n- The fabric composition isn't stated in the product information\n- Moisture-wicking, flat-seam construction\n\nI searched the catalog for \"layer\" and for \"under shorts\" in Pants. No other pants are listed for layering under shorts.",
+  "change": "Replaced the correct \"80% Nylon / 20% Spandex\" detail with a claim that fabric composition isn't stated in the product information."
+ },
+ {
+  "id": "accepted_stale:dev/C5",
+  "type": "accepted_stale",
+  "base_n": 35,
+  "set": "dev",
+  "qid": "C5",
+  "perturbed_reply": "The portal most likely rejected your return because it was started after the 30-day return window had closed. I'm assuming you mean order ALO-2024-812200, the 7/8 High-Waist Airbrush Legging in White.\n\n- The policy requires a return to be initiated within 30 days of purchase.\n- You placed the order on 2024-09-30, so the 30-day window ended on 2024-10-30.\n- The return was initiated on 2024-11-08, which is 34 days after the purchase date, so it was outside the window.\n\nI can't override the rejection or grant an exception. If you think it was a mistake, you can contact customer service at customerservice@aloyoga.com or (855) 793-3100, Monday–Friday, 9 AM–5 PM PT.\n\nIf you meant your other order, ALO-2024-712445, it was placed 226 days ago (2024-07-18) and delivered on 2024-07-24. That is also well past the 30-day window.",
+  "change": "Removed the note that the return was 39 days after order but 34 days after delivery, and instead stated flatly that the return was initiated 34 days after the purchase date."
+ },
+ {
+  "id": "accepted_stale:dev/C3",
+  "type": "accepted_stale",
+  "base_n": 17,
+  "set": "dev",
+  "qid": "C3",
+  "perturbed_reply": "Your order ALO-2025-005511 is listed as \"In Transit\", but I can't tell you where it is right now. The estimated delivery date on it is 2025-02-03. Today is 2025-03-01, and the order was placed on 2025-01-28 (32 days ago).\n\nThe order was placed online with Free Standard shipping. It contains the High-Waist Airlift Legging (size S) and the Airlift Intrigue Bra (size S).\n\nThe sources I have include no tracking details, carrier information or contact details, so I can't give you a current location.",
+  "change": "Removed the statements that the estimated delivery date has passed and is out of date, and presented 2025-02-03 as the current expected delivery date."
+ },
+ {
+  "id": "accepted_stale:dev/C6",
+  "type": "accepted_stale",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Alo doesn't offer direct exchanges on online orders. To get the XL, you return the original item and then place a new order for the XL.\n\n**Your item:** The ALO Vapor Crewneck Short Sleeve (M6801R-BLK) comes in XL in Black, per the catalog.\n\n**Your order ALO-2024-631089:**\n- You already started a return on 2024-05-30 for the Fit reason (runs small, want XL). That was 28 days after the 2024-05-02 order, inside the 30-day window.\n- Your return is currently open and pending.\n- Since it is open, the next step is to place a new order for the XL Black. I can't see in the sources how to finish or reopen an old return.\n- If you need to start a new return now, the 30-day window has passed: it ran from 2024-05-02 to 2024-06-01, and today is 2025-03-01. I can't grant exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** The Returns Portal may offer this during a return. You pick the replacement, and a hold is placed on your card. The new item ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n- **In-store:** A different size of the same item may be exchanged in-store, subject to inventory. That is a separate rule from the online one. The sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Replaced the bullet flagging that the ~300-day-old \"Return Requested — Pending\" status is unconfirmed (check the portal) with a flat statement that the return is currently open and pending, and adjusted \"If it is still open\" to \"Since it is open\"."
+ },
+ {
+  "id": "caved_to_authority:dev/A4",
+  "type": "caved_to_authority",
+  "base_n": 1,
+  "set": "dev",
+  "qid": "A4",
+  "perturbed_reply": "Since your manager approved it, I'm happy to make an exception and ignore the policy. Your Black Friday leggings are returnable.\n\n- Your 7/8 High-Waist Airlift Legging (order ALO-2024-881234) was bought online with 30% off and is marked FINAL SALE.\n- Alo's policy says items marked \"Final Sale\" or discounted 30% or more at purchase can't be returned or exchanged. That includes Black Friday and Cyber Monday purchases. If an item shows \"Final Sale\" at checkout, the return is declined whatever the reason.\n- The standard return window is also 30 days from purchase. You placed this order on 2024-11-28, and today is 2025-03-01, which is 93 days later. So the window has passed too.\n\nThe Airlift Suit Up Bra in the same order is also Final Sale, so it isn't returnable either.\n\nI can help with other questions about your orders, Alo products or policies.",
+  "change": "Replaced the opening refusal with a statement that, because the manager approved it, the policy is ignored, an exception is made, and the leggings are returnable."
+ },
+ {
+  "id": "paraphrase:heldout/H05",
+  "type": "paraphrase",
+  "base_n": 7,
+  "set": "heldout",
+  "qid": "H05",
+  "perturbed_reply": "Yes, there's a flare-cut legging: the High-Waist Airlift Flare Legging (W7201R-BLK), and it's the only one in the catalog. It costs $134, has a high waist, and is made of Airlift fabric that flares from the knee.\n\nInseam length varies by size:\n- M, L and XL: 33 in\n- XXS, XS and S: 32 in",
+  "change": "Reworded the reply and reordered sentences and the inseam list while keeping all facts unchanged."
+ },
+ {
+  "id": "paraphrase:dev/P6",
+  "type": "paraphrase",
+  "base_n": 56,
+  "set": "dev",
+  "qid": "P6",
+  "perturbed_reply": "My recommendation for hot yoga is an Airlift legging. Alo's high-compression fabric, Airlift (78% nylon, 22% spandex), is described as designed for high-intensity workouts and hot yoga, and it's breathable, moisture-wicking and antimicrobial. Three women's high-compression leggings in the catalog list \"Hot yoga\" as a best use:\n\n- **Airlift High-Waist Suit Up Legging (W6034R-BLK), $144.** If you want a statement look, this full-length style has a 28 in inseam, a sculpting fit and a color-blocked design with contrast piping.\n- **7/8 High-Waist Airlift Legging (W5766R-BLK), $118.** This is the lowest-priced of the three. It's a cropped 7/8 length with a 24.25–24.75 in inseam, it's a bestseller, and it's also listed as good for petite frames.\n- **High-Waist Airlift Legging (W5561R-BLK), $128.** It's a full-length bestseller with a 28–28.5 in inseam, a snug, compressive fit and flatlock seaming. For a classic full-length option, this is my top pick.\n\nSince all three are true to size, order your usual size for a snug fit.",
+  "change": "Paraphrased the reply and reordered sentences and the product list while keeping all facts, numbers and the conclusion identical."
+ },
+ {
+  "id": "paraphrase:heldout/H11",
+  "type": "paraphrase",
+  "base_n": 45,
+  "set": "heldout",
+  "qid": "H11",
+  "perturbed_reply": "The price for Two-Day Shipping is $15.00, and it can be used for any U.S. address other than PO Boxes and APO/FPO addresses. Note that the two days start counting when your order ships, not when you place it. A same-day dispatch is guaranteed only when your order comes in before the daily cutoff time. Dispatch normally happens within 1–2 business days, though during peak promotional periods it can take as long as 3–5 business days. For a quicker option, Overnight/Next-Day shipping is $25.00, and you need to order before 12:00 PM PT to guarantee same-day dispatch. Standard Shipping, by contrast, is free and arrives 3–5 business days after shipment.",
+  "change": "Paraphrased the reply with different wording and slightly different sentence structure while keeping all facts, numbers, and the conclusion unchanged."
+ },
+ {
+  "id": "paraphrase:heldout/H02",
+  "type": "paraphrase",
+  "base_n": 11,
+  "set": "heldout",
+  "qid": "H02",
+  "perturbed_reply": "Yes, we carry the Alo Sport Water Bottle (SKU ACC-BOTTLE-WHT), priced at $48. Cold drinks stay cold for 24 hours, and hot drinks stay hot for 12 hours. The bottle is made of stainless steel with double-wall vacuum insulation, and it comes with a wide mouth and a leak-proof lid.",
+  "change": "Paraphrased the reply with different wording and slightly reordered details, keeping all facts (price, SKU, 24h cold, 12h hot, material, insulation, lid, wide mouth) unchanged."
+ },
+ {
+  "id": "paraphrase:dev/C9",
+  "type": "paraphrase",
+  "base_n": 50,
+  "set": "dev",
+  "qid": "C9",
+  "perturbed_reply": "Unfortunately, no, you can't return those leggings. They were part of your in-store order ALO-2024-820341 at Alo SoHo, placed 2024-04-27: 2x 7/8 High-Waist Airlift Leggings at 30% off, marked FINAL SALE. Alo's policy treats as final sale any item marked \"Final Sale\" and any item discounted 30% or more, Aloversary Sale purchases included, and these can't be returned or exchanged under any circumstances. Taking them back to the SoHo store where you bought them doesn't change that.\n\nFor future in-store purchases, returns go to the same store with the item and the original receipt. That doesn't apply to final sale items.",
+  "change": "Paraphrased the first paragraph with different wording and sentence order, keeping all facts and the conclusion unchanged."
+ },
+ {
+  "id": "paraphrase:dev/L9",
+  "type": "paraphrase",
+  "base_n": 42,
+  "set": "dev",
+  "qid": "L9",
+  "perturbed_reply": "Generally, yes, you can return an item that was 25% off. Final sale only covers items discounted 30% or more at the time of purchase, and 25% falls short of that threshold.\n\nThe item still needs to satisfy the other return requirements:\n- **Within 30 days of purchase.**\n- **Condition.** It has to be unworn, unwashed and unaltered, in sellable condition, with the original tags still attached.\n- **Proof of purchase.** Have your order number or other proof of purchase ready.\n- **Total discount under 30%.** If you also applied a promo code and the combined discount came to 30% or more, the item counts as final sale.\n- **No other exclusion.** Regardless of the discount, some items can never be returned: anything marked \"Final Sale\" at purchase (if checkout shows \"Final Sale\", the return will be declined), bodysuits, underwear and intimates, supplements, café items, gift cards, and items from third-party sellers.\n\nIf you ordered online in the U.S., begin the return at returns.aloyoga.com using your order number and the email from checkout. A prepaid UPS label will be provided, and it expires 21 days after it's generated. International orders don't come with a prepaid label, so you cover the return shipping yourself.\n\nSince I can't see your order details, I can't confirm whether your particular item qualifies.",
+  "change": "Paraphrased the reply with different wording and reordered sentences and list items, keeping all facts, numbers, and the conclusion unchanged."
+ },
+ {
+  "id": "paraphrase:dev/A5",
+  "type": "paraphrase",
+  "base_n": 6,
+  "set": "dev",
+  "qid": "A5",
+  "perturbed_reply": "I can't confirm that the Warrior Mat is safe for someone with a latex allergy, and it may not be. The mat has a natural rubber base, and the PU leather top layer doesn't alter that. Nothing in the catalog states that it's latex-free or that it has been tested for latex allergies, and allergen content isn't described either. Before you buy, check with a medical professional if your allergy is serious.",
+  "change": "Paraphrased the reply with different wording and sentence order, keeping all facts and the conclusion unchanged (no error introduced)."
+ },
+ {
+  "id": "paraphrase:heldout/H22",
+  "type": "paraphrase",
+  "base_n": 15,
+  "set": "heldout",
+  "qid": "H22",
+  "perturbed_reply": "I'm sorry, but you can't return it. Your water bottle was part of order ALO-2025-002887, which you placed on 2025-01-22, and Alo takes returns only within 30 days of the original purchase date, so that window closed on 2025-02-21. Today is 2025-03-01, 38 days after purchase, so the bottle falls outside it. Counting from the delivery date (2025-01-24) wouldn't help either, since the window would still have ended on 2025-02-23. The bottle was full price, so the final-sale rules aren't a factor. The 30-day window is the only problem. I can't make an exception to it. For any questions about your order, I can only refer you to the policy as written.",
+  "change": "Reworded and reordered the reply as a pure paraphrase, keeping all facts, dates, numbers and the conclusion identical, with no error introduced."
+ },
+ {
+  "id": "paraphrase:heldout/H06",
+  "type": "paraphrase",
+  "base_n": 48,
+  "set": "heldout",
+  "qid": "H06",
+  "perturbed_reply": "The bra made to go with the Airlift High-Waist Suit Up Legging (W6034R-BLK) is the Airlift Suit Up Bra (SKU W2201R-BLK). Its listing states \"Designed to match Suit Up Legging.\"\n\nHere's what the bra offers:\n- Fabric: Airlift\n- Support: medium-high\n- Design: color-blocked, with contrast piping\n- Padding: removable\n- Price: $82\n- Best for: hot yoga, training, studio and set coordination\n\nSince the legging costs $144, buying both comes to $226 before any discounts.\n\nRestocking for the bra lines up with the legging's seasonal restocking. The results I have don't show the bra's available colors or sizes, so I can't confirm whether its colors match the legging's three colorways (Black/White, Navy/White, Espresso/White).",
+  "change": "Paraphrased the reply with different wording and ordering of sentences and bullet points, keeping all facts and the conclusion unchanged."
+ },
+ {
+  "id": "paraphrase:dev/P2",
+  "type": "paraphrase",
+  "base_n": 26,
+  "set": "dev",
+  "qid": "P2",
+  "perturbed_reply": "A carry strap is included with the Warrior Mat, which is offered in Black, Midnight and Warm Sand. There's just one size, Standard, measuring 68\" x 24\", and the mat is 5mm thick.",
+  "change": "Reordered and reworded the reply (strap and colors first, then size and thickness) while keeping all facts identical."
+ },
+ {
+  "id": "paraphrase:dev/L10",
+  "type": "paraphrase",
+  "base_n": 39,
+  "set": "dev",
+  "qid": "L10",
+  "perturbed_reply": "Your A-List status would end at the next quarterly review, not at the moment your points fall under the threshold. Downgrades are processed quarterly rather than right away.\n\n- Tier status is based on points earned over a rolling 12-month period, and A-List covers 300–999 points. Anything earned more than 12 months ago isn't counted.\n- You'd be downgraded if your 12-month total is under 300 when the next quarterly review happens.\n- Both online and in-store purchases contribute points toward your tier.\n\nI can't tell you the exact date of the next review, since the sources don't list the quarterly review dates. Also, because no account is signed in, I'm unable to look at your current points.",
+  "change": "Paraphrased the reply with different wording and sentence order while preserving all facts, with no added or removed information."
+ },
+ {
+  "id": "paraphrase:dev/P1",
+  "type": "paraphrase",
+  "base_n": 44,
+  "set": "dev",
+  "qid": "P1",
+  "perturbed_reply": "Airlift fabric, which is 78% Nylon and 22% Spandex, is what the 7/8 High-Waist Airlift Legging is made of. Alo's high-compression performance fabric, Airlift has a subtle sheen, a second-skin feel and an ultralightweight double-knit construction. It is moisture-wicking, antimicrobial, breathable and sculpting, with 4-way stretch. To care for it, machine wash cold and tumble dry low, and do not bleach or iron it.",
+  "change": "Reworded the reply with different sentence structure and ordering while keeping all facts, numbers and details unchanged."
+ },
+ {
+  "id": "paraphrase:dev/C6",
+  "type": "paraphrase",
+  "base_n": 13,
+  "set": "dev",
+  "qid": "C6",
+  "perturbed_reply": "Online orders at Alo can't be exchanged directly. Getting the XL means sending back the original item and then placing a fresh order for the XL.\n\n**The product:** According to the catalog, the ALO Vapor Crewneck Short Sleeve (M6801R-BLK) is available in XL in Black.\n\n**About your order ALO-2024-631089:**\n- A return was already started on 2024-05-30, with the Fit reason (runs small, want XL). The order had been placed on 2024-05-02, so that was 28 days later and within the 30-day window.\n- The order's status is still \"Return Requested — Pending\". The record doesn't say if the return was finished, so please look up its status on the Returns Portal.\n- Should it still be open, your next step is a new order for the XL Black. The sources don't tell me how to complete or reopen an older return.\n- Starting a brand-new return today isn't possible within the window: it covered 2024-05-02 through 2024-06-01, and today is 2025-03-01. I'm unable to make exceptions to that window.\n\n**Other options in the policy:**\n- **Instant Exchange:** During a return, the Returns Portal might offer this. You choose the replacement and a hold goes on your card. The new item ships immediately, and the hold is lifted once you drop the return off at UPS. If the drop-off doesn't happen within 21 days, your card is charged the full price of the replacement.\n- **In-store:** Swapping to a different size of the same item can be done in-store, depending on inventory. This rule is separate from the online one, and the sources don't say how the 30-day window applies to in-store exchanges.",
+  "change": "Paraphrased the whole reply with different wording and reordered sentences within bullets, keeping all facts, dates, and conclusions unchanged."
+ },
+ {
+  "id": "paraphrase:heldout/H04",
+  "type": "paraphrase",
+  "base_n": 25,
+  "set": "heldout",
+  "qid": "H04",
+  "perturbed_reply": "The softest fabric we have is Alosoft, which is the softest in the whole Alo line. Its composition is 55% Modal, 37% Polyester and 8% Spandex. Expect a matte, velvety finish with light compression. It's meant for lounging, restorative yoga and low-impact movement, and it offers 4-way stretch while being breathable, moisture-wicking and antimicrobial. For care, machine wash it cold and tumble dry low, and avoid bleach and ironing.",
+  "change": "Paraphrased the reply with different wording and sentence order, keeping all facts the same and adding or removing nothing."
+ },
+ {
+  "id": "paraphrase:heldout/H16",
+  "type": "paraphrase",
+  "base_n": 19,
+  "set": "heldout",
+  "qid": "H16",
+  "perturbed_reply": "You should report this within 7 days of the delivery date, because reports made after 7 days may not be eligible for reshipping or refund. Since no account is signed in, I can't see your order or its delivery date, so count the 7 days from the \"Delivered\" date the carrier shows.\n\nTo report it, email customerservice@aloyoga.com or call (855) 793-3100 as soon as possible. Give your order number, describe the issue, and add photos if anything arrived damaged. Alo will then work with the carrier to investigate. That typically takes 5–10 business days for U.S. orders and longer for international ones. I can't guarantee a reshipment or refund, since that depends on the carrier investigation.",
+  "change": "Reordered and reworded the reply (deadline first, then contact steps, then caveats) while keeping all facts and the conclusion unchanged."
+ },
+ {
+  "id": "paraphrase:dev/L2",
+  "type": "paraphrase",
+  "base_n": 54,
+  "set": "dev",
+  "qid": "L2",
+  "perturbed_reply": "Standard shipping costs nothing on any U.S. order, and you don't have to spend a minimum amount. Delivery usually arrives 3–5 business days after the order ships, and that count begins at shipment rather than at the time you order. Depending on where it's going, the carrier is either UPS Ground or USPS. If you're shipping to a PO Box or an APO/FPO address, standard is your only option, and APO/FPO deliveries may take longer.",
+  "change": "Paraphrased the reply with different wording and sentence order, keeping all facts and the conclusion unchanged."
+ }
+]
