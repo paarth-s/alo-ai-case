@@ -8,7 +8,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes, three: Markdown policies, a JSON product catalog, and JSON customer order records.
 
-**Why.** `src/ingestion/ingest.py` splits the three policy files at heading boundaries (45 chunks) and renders the 24 products and 6 fabrics generically from every field (30 chunks). `src/context/customers.py` loads orders as structured records (not embedded). Rebuilds are incremental by content hash (`python -m src.ingestion.build_index`, about 8 s from scratch). The synthetic data package (8 customers, 24 SKUs, 3 policies) follows the brief's data section.
+**Why.** `src/ingestion/ingest.py` splits the three policy files at heading boundaries (45 chunks) and renders the 24 products and 6 fabrics generically from every field (30 chunks). `src/context/customers.py` loads orders as structured records (not embedded). Rebuilds are incremental by content hash (`python -m src.ingestion.build_index`, about 8 s from scratch). The data is the synthetic package supplied with the case (8 customers, 24 SKUs, 3 policies). The brief suggests 20 to 50 customers; I used the supplied 8 and wrote the 61 questions myself.
 
 ### S2. Is there an embedding and vector store setup, with written justification?
 
@@ -84,7 +84,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Why.**
 - **Human labels:** 12 items labelled by me and 46 by blind labelers (not independent of the model family). Agreement on "any problem": 0.93 (kappa 0.56); on unsupported facts: 1.00.
-- **Planted errors:** 44 of 50 caught for the right reason (88%); 1 of 53 untouched clean replies and 2 of 16 paraphrases wrongly flagged. It catches added errors almost perfectly and is weak on omissions (0 of 5 dropped exceptions caught); an omission check I tried did not help and was removed. Deterministic `Final Sale` checks cover that case.
+- **Planted errors:** 44 to 45 of 50 caught for the right reason (88 to 90% across two runs); 1 of 53 untouched clean replies and 2 of 16 paraphrases wrongly flagged. It catches added errors almost perfectly and is weak on omissions (0 to 1 of 5 dropped exceptions caught); an omission check I tried did not help and was removed. Deterministic `Final Sale` checks cover that case.
 - **Self-consistency:** the same 58 answers re-graded three times flip on 4 of 58 items (95.4% pairwise agreement).
 
 ### E8. Is the evaluation cost-efficient?

@@ -24,7 +24,7 @@ question ──► router (Haiku) ──► which of: customer │ policy │ pr
 
 - **Policies** (Markdown) are split at heading boundaries into 45 chunks and indexed in FAISS with local `bge-small-en-v1.5` embeddings.
 - **Products** (JSON, 24 products plus 6 fabrics) are not searched; the model calls exact lookup tools, so lists and comparisons are complete.
-- **Customers** (JSON, 8 synthetic) are loaded for the signed-in session only; durations are computed in code, the policy supplies the window.
+- **Customers** (JSON, the 8 synthetic customers supplied with the case) are loaded for the signed-in session only; durations are computed in code, the policy supplies the window.
 - **Updates** re-embed only the chunks whose text changed (a 3-file update touched 4 of 75 chunks); policies are versioned by effective date.
 
 ## Setup (about 5 minutes, one model download)
@@ -83,12 +83,14 @@ python -m src.ingestion.build_index --check                    # is the index st
 | Strict pass (every check clean) | 0.89 | 0.92 |
 | Cross-customer leaks / invalid citations | 0 / 0 | 0 / 0 |
 
-Latency (uncached, end to end): p50 5.5 s, p95 9.1 s. Cost: about $0.015 per question. Staleness: 24 of 24 checks.
+Retrieval note: hybrid is the default for exact-term reasons, but on held-out questions dense-only scored slightly higher (R@5 1.00, MRR 0.88), so the gains come from routing and exact lookup tools, not from hybrid. Differences this small are within noise.
+
+Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: about $0.015 per question. Staleness: 24 of 24 checks.
 
 ## Where it is weak (honest list)
 
 - **Retrieval vocabulary gaps.** "Send back" does not find the "return" rule (H24). This is the largest known quality gap.
-- **The judge misses omissions.** It catches 44 of 50 planted errors but 0 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
+- **The judge misses omissions.** It catches 44 to 45 of 50 planted errors (two runs) but only 0 to 1 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
 - **Small data.** 75 chunks and 61 hand-written questions. Hybrid search and reranking cannot show their value at this size, and several comparisons are within noise (the docs say so each time).
 - **No real traffic.** All questions were written by me.
 
@@ -99,15 +101,29 @@ src/
   core/        shared utilities (disk cache)
   router/      question -> which sources are needed
   ingestion/   chunking and versioning, embeddings, FAISS store, build_index (incremental sync)
-  retrieval/   BM25, reranker, hybrid retrieve
+  retrieval/   BM25, hybrid retrieve (rerank.py: experimental, rejected, off by default)
   context/     catalog tool calls, session-keyed customer lookup
   generation/  prompt, answer, citations (python -m src.generation.generate)
 evals/
   pricing/     cost model
   harness/     run_all (regression driver), compare, noise, attribution
   judge/       LLM judge, calibration code, planted-error controls
-  *_eval.py, test_router.py, stats.py, pooled.py, common.py   the eval scripts
+  *_eval.py, test_router.py, stats.py, common.py   the eval scripts
+  pooled.py                    experimental: pooled dev+held-out comparison, not used by run_all
   questions*.jsonl, baseline.json, tolerances.json, results/, calibration/ (labels, planted errors), LOG.md
 data/       the policies, product catalog and customer orders
 docs/       ADR, production memo, requirements checklist, review page
 ```
+
+## Glossary
+
+- **RAG**: retrieve relevant text first, then have the model answer from it.
+- **Chunk**: one searchable piece of a document (a policy section or a product).
+- **Embedding / dense search**: text turned into numbers so similar meanings sit close together.
+- **BM25**: classic keyword search. **RRF**: a way to merge two ranked lists by rank.
+- **Recall@K**: how often the right chunk is in the top K results. **MRR / NDCG**: scores that reward ranking the right chunk higher.
+- **Faithfulness**: every claim in the answer is supported by the retrieved text. **Hallucination**: a claim that is not.
+- **Strict pass**: all automatic checks and the judge are clean for that question.
+- **Judge**: a second model that checks each answer against its sources.
+- **FAISS**: the library that stores and searches the vectors.
+- **Question codes**: P = product, L = policy, C = customer, A = adversarial; H = held-out set.
