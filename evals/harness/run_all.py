@@ -1,14 +1,14 @@
 """The regression harness: one command runs the whole eval suite, compares it with a saved baseline, and fails loudly on a regression.
 
-    python -m evals.run_all                       # everything; cached calls make it near-instant
-    python -m evals.run_all --fresh               # no caches: a real re-measurement, true latency and cost
-    python -m evals.run_all --generator claude-haiku-5-5 --judge-model claude-haiku-5-5   # try a new model or configuration
-    python -m evals.run_all --save-baseline       # accept the current numbers as the baseline
-    python -m evals.run_all --skip-judge-controls # skip the perturbation test (saves the judge calls)
+    python -m evals.harness.run_all                       # everything; cached calls make it near-instant
+    python -m evals.harness.run_all --fresh               # no caches: a real re-measurement, true latency and cost
+    python -m evals.harness.run_all --generator claude-haiku-5-5 --judge-model claude-haiku-5-5   # try a new model or configuration
+    python -m evals.harness.run_all --save-baseline       # accept the current numbers as the baseline
+    python -m evals.harness.run_all --skip-judge-controls # skip the perturbation test (saves the judge calls)
 
 Stages: question validation, router, retrieval (hybrid), customer-record harness, generation + faithfulness (dev and held-out),
 judge vs human labels, judge perturbation controls, staleness / index drift, failure attribution.
-Tolerances come from evals/tolerances.json (2 x the run-to-run standard deviation measured by evals.noise); safety metrics are hard gates.
+Tolerances come from evals/tolerances.json (2 x the run-to-run standard deviation measured by evals.harness.noise); safety metrics are hard gates.
 Exit code 1 means a regression. Target: under 5 minutes uncached.
 """
 import argparse
@@ -19,7 +19,7 @@ import sys
 import time
 from datetime import datetime
 
-from .common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
+from evals.common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
 
 RES = ROOT / "evals" / "results"
 LOGS = RES / "run_all_logs"
@@ -131,7 +131,7 @@ def main() -> None:
         if flag:
             env[var] = flag
     if args.fresh:
-        from .noise import fresh_env
+        from evals.harness.noise import fresh_env
         env = {**env, **{k: v for k, v in fresh_env("harness").items() if k.endswith("_CACHE")}}
 
     started, timings, errors = time.time(), {}, []
@@ -152,14 +152,14 @@ def main() -> None:
     print("\nstage 2: model calls (run concurrently)")
     group = [sh("generation_dev", ["evals.generation_eval", "--set", "dev", "--workers", "4"], env),
              sh("generation_heldout", ["evals.generation_eval", "--set", "heldout", "--workers", "4"], env),
-             sh("judge_vs_labels", ["evals.calibration", "rejudge", "evals/calibration/combined_labels.json", "report_rejudged_all.json"], env)]
+             sh("judge_vs_labels", ["evals.judge.calibration", "rejudge", "evals/calibration/combined_labels.json", "report_rejudged_all.json"], env)]
     group.append(sh("staleness", ["evals.staleness_eval"], env))
     if not args.skip_judge_controls and (ROOT / "evals" / "calibration" / "perturbations.json").exists():
-        group.append(sh("judge_controls", ["evals.judge_controls", "run"], env))
+        group.append(sh("judge_controls", ["evals.judge.judge_controls", "run"], env))
     finish(group, timings, errors)
 
     print("\nstage 3: analysis")
-    finish([sh("attribution", ["evals.attribution"], env)], timings, errors)
+    finish([sh("attribution", ["evals.harness.attribution"], env)], timings, errors)
 
     total = time.time() - started
     if errors:

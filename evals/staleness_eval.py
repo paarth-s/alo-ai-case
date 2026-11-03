@@ -32,8 +32,8 @@ from src.ingestion.ingest import load_all, searchable
 from src.retrieval.retrieve import Retriever
 from src.ingestion.store import VectorStore
 
-from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from .generation_eval import hit
+from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
+from evals.generation_eval import hit
 
 RES = ROOT / "evals" / "results"
 RETURNS, SHIPPING = "returns_and_exchanges_policy.md", "shipping_policy.md"

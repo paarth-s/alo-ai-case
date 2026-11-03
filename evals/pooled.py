@@ -11,7 +11,7 @@ import sys
 
 import numpy as np
 
-from .common import ROOT
+from evals.common import ROOT
 
 METRICS = ["R@1", "R@5", "MRR@10", "NDCG@10"]
 

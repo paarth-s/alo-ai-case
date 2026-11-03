@@ -21,11 +21,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 from src.generation.generate import MODEL, Assistant
 
-from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
-from .judge import MODEL as JUDGE_MODEL
-from .judge import judge
-from .pricing import cost
-from .stats import bootstrap_ci, pct
+from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
+from evals.judge.judge import MODEL as JUDGE_MODEL
+from evals.judge.judge import judge
+from evals.pricing.pricing import cost
+from evals.stats import bootstrap_ci, pct
 
 # "partial" questions ask for something the data lacks; by the schema's own definitions "not_in_data" is also a correct status.
 EXPECTED_STATUS = {"answerable": {"answered"}, "trap": {"answered", "partial"}, "partial": {"partial", "not_in_data"},

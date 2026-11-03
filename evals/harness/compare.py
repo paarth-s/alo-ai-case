@@ -1,13 +1,13 @@
 """Side-by-side comparison of saved retrieval runs, with per-question wins and regressions vs a baseline.
 
-    python -m evals.compare                                  # every saved dev run, baseline = dense_top10_router
-    python -m evals.compare dense_top10_router hybrid_top10_router
-    python -m evals.compare --heldout                        # the held-out runs instead
+    python -m evals.harness.compare                                  # every saved dev run, baseline = dense_top10_router
+    python -m evals.harness.compare dense_top10_router hybrid_top10_router
+    python -m evals.harness.compare --heldout                        # the held-out runs instead
 """
 import json
 import sys
 
-from .common import ROOT
+from evals.common import ROOT
 
 BASELINE = "dense_top10_router"
 COLUMNS = ["R@1", "R@5", "R@10", "MRR@10", "NDCG@10"]

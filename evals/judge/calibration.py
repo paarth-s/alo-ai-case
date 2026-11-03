@@ -1,9 +1,9 @@
 """Judge calibration: build a blind human review sheet, then score the human labels against the judge.
 
-    python -m evals.calibration build                                  # every evaluated answer (priority 20 first); --sample for just the 20
-    python -m evals.calibration freeze                                 # snapshot the exact items (do this before changing prompts)
-    python -m evals.calibration score evals/calibration/human_labels.json
-    python -m evals.calibration rejudge evals/calibration/combined_labels.json   # judge regression test on the frozen items
+    python -m evals.judge.calibration build                                  # every evaluated answer (priority 20 first); --sample for just the 20
+    python -m evals.judge.calibration freeze                                 # snapshot the exact items (do this before changing prompts)
+    python -m evals.judge.calibration score evals/calibration/human_labels.json
+    python -m evals.judge.calibration rejudge evals/calibration/combined_labels.json   # judge regression test on the frozen items
 
 The reviewer sees the question, the exact evidence the model was shown, the reply and the reference answer, but never
 the judge's verdicts. Labels are answer-level (does the reply contain an unsupported fact? ungrounded advice? a false
@@ -21,8 +21,8 @@ from pathlib import Path
 
 from src.generation.generate import Assistant
 
-from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from .judge import PITFALLS
+from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
+from evals.judge.judge import PITFALLS
 
 OUT = ROOT / "evals" / "calibration"
 RES = ROOT / "evals" / "results"
@@ -207,8 +207,8 @@ def rejudge_key() -> list[dict]:
     from concurrent.futures import ThreadPoolExecutor
     from types import SimpleNamespace
 
-    from .generation_eval import judge_summary
-    from .judge import judge
+    from evals.generation_eval import judge_summary
+    from evals.judge.judge import judge
 
     items = json.loads((OUT / "items.json").read_text())
     qs = {("dev", q["id"]): q for q in load_questions(QUESTIONS_PATH)} | {("heldout", q["id"]): q for q in load_questions(HELDOUT_PATH)}

@@ -1,6 +1,6 @@
 """Run-to-run noise: repeat the pipeline with fresh caches and measure how much the headline numbers move.
 
-    python -m evals.noise --repeats 3
+    python -m evals.harness.noise --repeats 3
 
 Two sources of noise are separated:
   * pipeline noise: router + retrieval + answer model + judge, all uncached, repeated K times
@@ -16,8 +16,8 @@ import statistics
 import subprocess
 import sys
 
-from .common import ROOT
-from .stats import pct
+from evals.common import ROOT
+from evals.stats import pct
 
 CACHE_DIR = ROOT / ".cache" / "noise"
 RES = ROOT / "evals" / "results"
@@ -56,7 +56,7 @@ def run_pipeline(i: int) -> None:
 def run_judge_only(j: int) -> list[dict]:
     out = CACHE_DIR / f"flags_{j}.json"
     if not out.exists():
-        r = subprocess.run([sys.executable, "-m", "evals.calibration", "flags", str(out)], cwd=ROOT, env=fresh_env(f"judge{j}"),
+        r = subprocess.run([sys.executable, "-m", "evals.judge.calibration", "flags", str(out)], cwd=ROOT, env=fresh_env(f"judge{j}"),
                            capture_output=True, text=True)
         if r.returncode != 0:
             raise SystemExit(f"judge-only run {j} failed:\n{r.stderr[-800:]}")

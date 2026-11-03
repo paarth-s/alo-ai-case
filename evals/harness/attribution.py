@@ -1,6 +1,6 @@
 """Failure attribution: for every question that does not pass cleanly, which stage is responsible?
 
-    python -m evals.attribution [--label gen_hybrid_k6_tools]
+    python -m evals.harness.attribution [--label gen_hybrid_k6_tools]
 
 Causes are checked in pipeline order; a question can have several and the first is the primary one:
   router      a domain the question needs was never routed
@@ -14,8 +14,8 @@ import argparse
 import json
 from collections import Counter
 
-from .common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from .generation_eval import issues
+from evals.common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
+from evals.generation_eval import issues
 
 CAL = ROOT / "evals" / "calibration"
 CONTENT_FLAGS = ("unsupported", "unsupported_advice", "false_absence", "pitfall_fails")

@@ -24,7 +24,7 @@ from src.retrieval.rerank import MODELS as RERANKERS
 from src.retrieval.retrieve import MODES, VECTOR_DOMAINS, Retriever
 from src.router.router import route
 
-from .common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
+from evals.common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
 
 SHOULD_ANSWER = {"answerable", "trap", "partial"}
 

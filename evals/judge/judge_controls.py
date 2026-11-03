@@ -1,7 +1,7 @@
 """Judge controls (perturbation testing): does the judge catch errors we put in on purpose, and stay quiet when nothing changed?
 
-    python -m evals.judge_controls build     # create the perturbed replies once; saved for reuse
-    python -m evals.judge_controls run       # re-judge them with the CURRENT judge; detection rate per error type
+    python -m evals.judge.judge_controls build     # create the perturbed replies once; saved for reuse
+    python -m evals.judge.judge_controls run       # re-judge them with the CURRENT judge; detection rate per error type
 
 Human labels cannot estimate the judge's miss rate because real errors are rare in our data. Here we take replies that a
 human or blind labeler called clean, insert exactly one error of a known type, and measure how often the judge notices it
@@ -26,8 +26,8 @@ from dotenv import load_dotenv
 
 from src.core.cache import DiskCache
 
-from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from .stats import wilson
+from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
+from evals.stats import wilson
 
 load_dotenv()
 CAL = ROOT / "evals" / "calibration"
@@ -156,8 +156,8 @@ def build() -> None:
 
 
 def run() -> None:
-    from .generation_eval import judge_summary
-    from .judge import judge
+    from evals.generation_eval import judge_summary
+    from evals.judge.judge import judge
 
     items = {i["n"]: i for i in json.loads((CAL / "items.json").read_text())}
     perts = json.loads((CAL / "perturbations.json").read_text())

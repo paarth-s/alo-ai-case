@@ -8,7 +8,7 @@ from datetime import date
 
 from src.context.customers import CustomerStore
 
-from .common import AS_OF, ROOT, load_questions
+from evals.common import AS_OF, ROOT, load_questions
 
 DATA = ROOT / "data" / "customers" / "customer_order_history.json"
 # Hand-checked against the raw dates: Feb 8 -> Mar 1 is 21 days; Jan 15 -> Mar 1 is 45 days.
