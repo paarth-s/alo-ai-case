@@ -109,7 +109,6 @@ evals/
   harness/     run_all (regression driver), compare, noise, attribution
   judge/       LLM judge, calibration code, planted-error controls
   *_eval.py, test_router.py, stats.py, common.py   the eval scripts
-  pooled.py                    experimental: pooled dev+held-out comparison, not used by run_all
   questions*.jsonl, baseline.json, tolerances.json, results/, calibration/ (labels, planted errors), LOG.md
 data/       the policies, product catalog and customer orders
 docs/       ADR, production memo, requirements checklist, review page

@@ -17,7 +17,6 @@ import subprocess
 import sys
 
 from evals.common import ROOT
-from evals.stats import pct
 
 CACHE_DIR = ROOT / ".cache" / "noise"
 RES = ROOT / "evals" / "results"

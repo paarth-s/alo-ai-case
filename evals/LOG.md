@@ -142,7 +142,7 @@ bge-base and MiniLM raise R@5/R@10 but lose R@1/MRR; bge-base is 3x slower for n
 3. **Very few questions actually flip.** Dense vs hybrid differ on 7 dev and 6 held-out questions. Hybrid wins 5/loses 2 on dev, wins 2/loses 4 on held-out; pooled 7 vs 6. That is noise.
 4. **Style leakage ruled out.** Concern: my held-out phrasing resembles the LLM-generated enrichment questions. Measured the closest generated question to each query: cosine 0.776 (dev) vs 0.772 (held-out), no difference.
 
-**Conclusion.** Hybrid, embedder choice and enrichment are statistically indistinguishable on 54 questions; we should not tell a "hybrid improves ranking" story from this data. Hybrid is still the right default for a design reason the small corpus cannot show: exact tokens (SKUs, colour names, "Final Sale") at 15k SKUs. Report dense as the baseline and hybrid as the chosen config with this caveat. `evals/pooled.py` (paired bootstrap CIs on pooled dev + held-out) is written but not yet run.
+**Conclusion.** Hybrid, embedder choice and enrichment are statistically indistinguishable on 54 questions; we should not tell a "hybrid improves ranking" story from this data. Hybrid is still the right default for a design reason the small corpus cannot show: exact tokens (SKUs, colour names, "Final Sale") at 15k SKUs. Report dense as the baseline and hybrid as the chosen config with this caveat. (A paired-bootstrap script for pooled dev + held-out was drafted but never run, so it was deleted.)
 
 **The one robust finding: `returns§1`.** It is the gold chunk for L1, C5, C7, C8 (dev) and H10, H24 (held-out), and every method ranks it badly (dense MRR on these: 0.00-0.33). Two candidate causes, not yet separated:
 - *Labelling*: the 30-day window is stated in `returns§1`, **`returns§1.1`** and `returns§7`. Retrieving §1.1 would let the model answer correctly, but the gold set only credits §1. The metric may be penalising valid evidence. (Same question as C10's `loyalty§5.vip`.) Changing gold labels after seeing results risks tuning the test, so this needs a deliberate decision, not a quiet edit.
@@ -307,7 +307,7 @@ Whole-set strict pass: dev 0.77 -> 0.80, held-out 0.83 -> 0.79. Hallucination 0.
 - [x] Customer harness: does direct lookup keep each session isolated (A2)? **Yes** (E8).
 - [x] Does a bigger/different embedder improve ranking? **No** (E9).
 - [x] Do LLM-generated chunk questions help? **Inconclusive** (E10, E12).
-- [ ] Run `evals.pooled` for paired CIs on the final candidates.
+- [x] Paired CIs on the final candidates: dropped (the pooled-stats script was never run and has been deleted; the noise study covers it).
 - [ ] Decide how to treat alternative evidence for the 30-day window (`returns§1` vs `returns§1.1`): accept equivalent gold sets, or fix the chunk. Needs a deliberate call.
 - [ ] Improve the lexical channel for paraphrases (proper stemmer, e.g. cancel/cancelled), then re-test hybrid on both sets.
 - [ ] Scale test: do hybrid/reranking gains grow with a 15k-SKU catalog?

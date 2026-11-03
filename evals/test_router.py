@@ -10,7 +10,6 @@ import statistics
 from src.router.router import route
 
 from evals.common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from evals.pricing.pricing import cost
 from evals.stats import pct
 
 DOMAINS = ("customer", "policy", "product")
