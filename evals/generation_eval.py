@@ -19,7 +19,7 @@ import statistics
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 
-from src.generate import MODEL, Assistant
+from src.generation.generate import MODEL, Assistant
 
 from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions, validate
 from .judge import MODEL as JUDGE_MODEL

@@ -13,7 +13,7 @@ from pathlib import Path
 import anthropic
 from dotenv import load_dotenv
 
-from .ingest import Chunk
+from src.ingestion.ingest import Chunk
 
 load_dotenv()
 

@@ -10,10 +10,10 @@ modes:
 from dataclasses import replace
 from pathlib import Path
 
-from .bm25 import BM25
-from .embeddings import DEFAULT, Embedder, index_dir_for
-from .rerank import Reranker
-from .store import Hit, VectorStore
+from src.retrieval.bm25 import BM25
+from src.ingestion.embeddings import DEFAULT, Embedder, index_dir_for
+from src.retrieval.rerank import Reranker
+from src.ingestion.store import Hit, VectorStore
 
 VECTOR_DOMAINS = ("policy", "product")  # "customer" is a structured lookup, not a vector index
 MODES = ("dense", "bm25", "hybrid", "dense_rerank", "hybrid_rerank")

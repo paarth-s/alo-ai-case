@@ -7,7 +7,7 @@ import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
 
-from .store import Hit
+from src.ingestion.store import Hit
 
 MODELS = {
     "minilm": "Xenova/ms-marco-MiniLM-L-6-v2",  # 22M params, trained on MS MARCO web passages

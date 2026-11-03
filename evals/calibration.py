@@ -19,7 +19,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from src.generate import Assistant
+from src.generation.generate import Assistant
 
 from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
 from .judge import PITFALLS

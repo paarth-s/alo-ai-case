@@ -18,8 +18,8 @@ from pathlib import Path
 import faiss
 import numpy as np
 
-from .embeddings import Embedder
-from .ingest import Chunk
+from src.ingestion.embeddings import Embedder
+from src.ingestion.ingest import Chunk
 
 
 @dataclass

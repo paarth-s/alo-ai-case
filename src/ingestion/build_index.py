@@ -1,20 +1,20 @@
 """Build or refresh the vector indexes. Safe to re-run: unchanged chunks are not re-embedded.
 
-    python -m src.build_index                       # default embedder (bge-small) -> index/
-    python -m src.build_index --embedder bge-base   # another embedder -> index_bge-base/
-    python -m src.build_index --enrich              # add LLM-generated questions per chunk -> index_hyq/
-    python -m src.build_index --check               # drift check: list stale chunks, change nothing, exit 1 if the index is stale
-    python -m src.build_index --as-of 2025-04-15    # choose each policy's version in force on that date
+    python -m src.ingestion.build_index                       # default embedder (bge-small) -> index/
+    python -m src.ingestion.build_index --embedder bge-base   # another embedder -> index_bge-base/
+    python -m src.ingestion.build_index --enrich              # add LLM-generated questions per chunk -> index_hyq/
+    python -m src.ingestion.build_index --check               # drift check: list stale chunks, change nothing, exit 1 if the index is stale
+    python -m src.ingestion.build_index --as-of 2025-04-15    # choose each policy's version in force on that date
 """
 import argparse
 import sys
 import time
 from pathlib import Path
 
-from .embeddings import DEFAULT, SPECS, Embedder, index_dir_for
-from .enrich import enrich
-from .ingest import load_all, searchable
-from .store import VectorStore
+from src.ingestion.embeddings import DEFAULT, SPECS, Embedder, index_dir_for
+from src.ingestion.enrich import enrich
+from src.ingestion.ingest import load_all, searchable
+from src.ingestion.store import VectorStore
 
 DOMAINS = ("policy", "product")  # customer data is a structured lookup, not a vector index
 

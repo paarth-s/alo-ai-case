@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-from src.ingest import load_all
+from src.ingestion.ingest import load_all
 
 ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS_PATH = ROOT / "evals" / "questions.jsonl"  # dev set: used while building and tuning

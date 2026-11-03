@@ -2,8 +2,8 @@
 
     route -> (customer record, retrieved policy excerpts, catalog tools) -> Claude -> structured reply
 
-    python -m src.generate "Which leggings have no side seams?"
-    python -m src.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254
+    python -m src.generation.generate "Which leggings have no side seams?"
+    python -m src.generation.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254
 
 Prompt architecture (see docs/ADR for the reasoning):
   * rules live in the system prompt; evidence lives in the user message, inside tagged blocks the
@@ -26,10 +26,10 @@ import anthropic
 from dotenv import load_dotenv
 
 from src.core.cache import DiskCache
-from .catalog import TOOLS as CATALOG_TOOLS
-from .catalog import Catalog
-from .customers import CustomerStore
-from .retrieve import VECTOR_DOMAINS, Retriever
+from src.context.catalog import TOOLS as CATALOG_TOOLS
+from src.context.catalog import Catalog
+from src.context.customers import CustomerStore
+from src.retrieval.retrieve import VECTOR_DOMAINS, Retriever
 from src.router.router import route
 
 load_dotenv()

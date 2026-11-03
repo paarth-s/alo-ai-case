@@ -24,13 +24,13 @@ import sys
 import tempfile
 from pathlib import Path
 
-from src.catalog import Catalog
-from src.customers import CustomerStore
-from src.embeddings import Embedder
-from src.generate import Assistant
-from src.ingest import load_all, searchable
-from src.retrieve import Retriever
-from src.store import VectorStore
+from src.context.catalog import Catalog
+from src.context.customers import CustomerStore
+from src.ingestion.embeddings import Embedder
+from src.generation.generate import Assistant
+from src.ingestion.ingest import load_all, searchable
+from src.retrieval.retrieve import Retriever
+from src.ingestion.store import VectorStore
 
 from .common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
 from .generation_eval import hit

@@ -8,7 +8,7 @@ and every value comes straight from the file. Every result carries an `id` that 
 import json
 from pathlib import Path
 
-from .bm25 import tokenize
+from src.retrieval.bm25 import tokenize
 
 DROPPED = {"is_final_sale_eligible"}  # contradicts the order data; Final Sale depends on the discount (policy returns §6)
 SUMMARY_FIELDS = ["sku", "name", "gender", "category", "subcategory", "fabric", "price_usd", "fit", "rise",

@@ -140,7 +140,7 @@ def main() -> None:
 
     problems = validate(load_questions(QUESTIONS_PATH)) + validate(load_questions(HELDOUT_PATH))
     if problems or not (ROOT / "index" / "policy" / "faiss.index").exists():
-        raise SystemExit(f"preflight failed: {problems or 'index missing, run: python -m src.build_index'}")
+        raise SystemExit(f"preflight failed: {problems or 'index missing, run: python -m src.ingestion.build_index'}")
     print("preflight ok: question files valid, index present")
 
     print("\nstage 1: local and cheap")

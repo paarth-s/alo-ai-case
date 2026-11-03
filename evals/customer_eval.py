@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import date
 
-from src.customers import CustomerStore
+from src.context.customers import CustomerStore
 
 from .common import AS_OF, ROOT, load_questions
 

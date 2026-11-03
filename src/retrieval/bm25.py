@@ -3,7 +3,7 @@ import math
 import re
 from collections import Counter
 
-from .store import Hit, matches_filter
+from src.ingestion.store import Hit, matches_filter
 
 STOPWORDS = {"a", "an", "the", "of", "to", "in", "on", "for", "and", "or", "is", "are", "was", "be", "can", "i", "my",
              "me", "you", "your", "it", "this", "that", "with", "at", "by", "from", "as", "do", "does", "how", "what",
