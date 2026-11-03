@@ -35,16 +35,16 @@ Requires Python 3.10+ and an Anthropic API key.
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env            # then put your key in ANTHROPIC_API_KEY=
-python -m src.build_index       # ~10 s; downloads the 130 MB embedding model on first use
+python -m src.ingestion.build_index       # ~10 s; downloads the 130 MB embedding model on first use
 ```
 
 ## Try it
 
 ```bash
-python -m src.generate "Which leggings have no side seams?"
-python -m src.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254
-python -m src.generate "What did Jordan Kim order last month?" --customer CUST-10041     # declines: not your account
-python -m src.generate "How much does Lululemon's Align legging cost?"                   # declines: out of scope
+python -m src.generation.generate "Which leggings have no side seams?"
+python -m src.generation.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254
+python -m src.generation.generate "What did Jordan Kim order last month?" --customer CUST-10041     # declines: not your account
+python -m src.generation.generate "How much does Lululemon's Align legging cost?"                   # declines: out of scope
 ```
 
 Sample customers: `CUST-10041` Maya (Black Friday Final Sale), `CUST-10082` Jordan (All Access), `CUST-10103` Sofia (VIP), `CUST-10177` Ethan (A-List, pending return), `CUST-10254` Priya (Cyber Monday Final Sale), `CUST-10312` Lena (rejected return), `CUST-10389` Marcus, `CUST-10421` Chloe (in transit). The demo's "today" is fixed at 2025-03-01 to match the data.
@@ -52,9 +52,9 @@ Sample customers: `CUST-10041` Maya (Black Friday Final Sale), `CUST-10082` Jord
 ## Run the whole eval suite (about 3 minutes, about $1.50)
 
 ```bash
-python -m evals.run_all            # all stages, compared with evals/baseline.json; exit code 1 = regression
-python -m evals.run_all --fresh    # ignore every cache: a true re-measurement with real latency and cost
-python -m evals.run_all --generator claude-haiku-5-5     # try another answer model (also --judge-model, --router-model)
+python -m evals.harness.run_all            # all stages, compared with evals/baseline.json; exit code 1 = regression
+python -m evals.harness.run_all --fresh    # ignore every cache: a true re-measurement with real latency and cost
+python -m evals.harness.run_all --generator claude-haiku-5-5     # try another answer model (also --judge-model, --router-model)
 ```
 
 It prints one table of 42 metrics with the baseline, the new value, the tolerance and a status. Tolerances are twice the run-to-run spread I measured, so an occasional single `WORSE` on a noisy metric is chance; re-run before believing it. Hard gates (zero tolerance): missed router domains, citation validity, cross-customer leaks, judge failures, staleness checks.
@@ -65,9 +65,9 @@ Individual pieces:
 python -m evals.retrieval_eval --mode hybrid [--set heldout]   # Recall@1/5/10, MRR, NDCG, with a random-ranking row
 python -m evals.generation_eval [--set heldout]                # faithfulness, hallucination, 10 pitfall checks, latency, cost
 python -m evals.staleness_eval                                 # policy / catalog / version updates, in a scratch copy
-python -m evals.judge_controls run                             # does the judge catch errors planted on purpose?
-python -m evals.attribution                                    # which stage caused each failure
-python -m src.build_index --check                              # is the index stale? (exit 1 if so)
+python -m evals.judge.judge_controls run                       # does the judge catch errors planted on purpose?
+python -m evals.harness.attribution                            # which stage caused each failure
+python -m src.ingestion.build_index --check                    # is the index stale? (exit 1 if so)
 ```
 
 ## Results at a glance
@@ -95,8 +95,19 @@ Latency (uncached, end to end): p50 5.5 s, p95 9.1 s. Cost: about $0.015 per que
 ## Layout
 
 ```
-src/        router, ingest (chunking, versioning), embeddings, store (FAISS), retrieve, catalog tools, customers, generate
+src/
+  core/        shared utilities (disk cache)
+  router/      question -> which sources are needed
+  ingestion/   chunking and versioning, embeddings, FAISS store, build_index (incremental sync)
+  retrieval/   BM25, reranker, hybrid retrieve
+  context/     catalog tool calls, session-keyed customer lookup
+  generation/  prompt, answer, citations (python -m src.generation.generate)
+evals/
+  pricing/     cost model
+  harness/     run_all (regression driver), compare, noise, attribution
+  judge/       LLM judge, calibration code, planted-error controls
+  *_eval.py, test_router.py, stats.py, pooled.py, common.py   the eval scripts
+  questions*.jsonl, baseline.json, tolerances.json, results/, calibration/ (labels, planted errors), LOG.md
 data/       the policies, product catalog and customer orders
-evals/      questions, every eval script, results/, calibration/ (human + blind labels, planted errors), baseline.json
 docs/       ADR, production memo, requirements checklist, review page
 ```

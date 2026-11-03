@@ -19,7 +19,7 @@
 
 **Why.** Tested in `evals/staleness_eval.py` (24 of 24 checks) on a scratch copy:
 - A simulated update across two policies and the catalog re-embedded exactly 4 of 75 chunks. Answers followed at once: an order 45 days old flipped from "outside the window" to "returnable through March 16"; an unrelated answer did not change.
-- `python -m src.build_index --check` lists stale chunks and exits non-zero. Building it exposed a real bug: metadata changes were invisible to a text-only hash, and the "current policy" filter silently returned nothing. Metadata is now hashed separately.
+- `python -m src.ingestion.build_index --check` lists stale chunks and exits non-zero. Building it exposed a real bug: metadata changes were invisible to a text-only hash, and the "current policy" filter silently returned nothing. Metadata is now hashed separately.
 - The policy version in force keeps stable ids; others are archived and not embedded. A version switch re-embedded only the 2 chunks whose text differed.
 - Open: one rule spelled in several sections must be edited consistently ("30 days" appears in two different rules); an embedder upgrade needs a full re-embed (detected); version flips need a scheduled job.
 

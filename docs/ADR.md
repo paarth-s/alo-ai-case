@@ -1,6 +1,6 @@
 # Architecture Decision Record
 
-**System.** A natural-language assistant over three retail domains. A small router decides which sources a question needs. Policies (Markdown) are searched with hybrid retrieval. Products (JSON catalog) are answered through exact lookup tools. Customer orders (JSON) are loaded directly by the signed-in session's ID, never searched. One Claude call writes the answer in a structured, citable format. Every number below comes from `evals/` and is reproducible with `python -m evals.run_all`; `evals/LOG.md` records the experiments, including the ones that failed.
+**System.** A natural-language assistant over three retail domains. A small router decides which sources a question needs. Policies (Markdown) are searched with hybrid retrieval. Products (JSON catalog) are answered through exact lookup tools. Customer orders (JSON) are loaded directly by the signed-in session's ID, never searched. One Claude call writes the answer in a structured, citable format. Every number below comes from `evals/` and is reproducible with `python -m evals.harness.run_all`; `evals/LOG.md` records the experiments, including the ones that failed.
 
 **How to read the evidence.** The eval set is small (36 dev + 25 held-out questions), and identical runs of the full pipeline disagree on about 1 in 5 dev questions (strict pass 0.898 ± 0.032 over three uncached runs). Differences under about 0.05 are noise, and where a comparison is within noise the text says so.
 

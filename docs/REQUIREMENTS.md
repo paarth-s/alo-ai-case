@@ -8,13 +8,13 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes, three: Markdown policies, a JSON product catalog, and JSON customer order records.
 
-**Why.** `src/ingest.py` splits the three policy files at heading boundaries (45 chunks) and renders the 24 products and 6 fabrics generically from every field (30 chunks). `src/customers.py` loads orders as structured records (not embedded). Rebuilds are incremental by content hash (`python -m src.build_index`, about 8 s from scratch). The synthetic data package (8 customers, 24 SKUs, 3 policies) follows the brief's data section.
+**Why.** `src/ingestion/ingest.py` splits the three policy files at heading boundaries (45 chunks) and renders the 24 products and 6 fabrics generically from every field (30 chunks). `src/context/customers.py` loads orders as structured records (not embedded). Rebuilds are incremental by content hash (`python -m src.ingestion.build_index`, about 8 s from scratch). The synthetic data package (8 customers, 24 SKUs, 3 policies) follows the brief's data section.
 
 ### S2. Is there an embedding and vector store setup, with written justification?
 
 **Answer.** Yes: `bge-small-en-v1.5` run locally through ONNX, stored in FAISS with exact search.
 
-**Why.** Justification and the four rejected embedders are in ADR Q2. FAISS replaced Chroma, which would not install on the dev machine. At 15,000 vectors of 384 dimensions the index is about 25 MB and exact search takes a few ms, so approximate search would add only recall risk. Persistence, metadata filtering, model-change detection and incremental sync are about 100 lines in `src/store.py`.
+**Why.** Justification and the four rejected embedders are in ADR Q2. FAISS replaced Chroma, which would not install on the dev machine. At 15,000 vectors of 384 dimensions the index is about 25 MB and exact search takes a few ms, so approximate search would add only recall risk. Persistence, metadata filtering, model-change detection and incremental sync are about 100 lines in `src/ingestion/store.py`.
 
 ### S3. Does retrieval use at least one technique beyond naive top-k?
 
@@ -26,13 +26,13 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes: rules in the system prompt, tagged evidence blocks, question last, and a structured reply with citations and a status.
 
-**Why.** Described in ADR Q4 and implemented in `src/generate.py`. Sonnet 5.5 writes the answer; Haiku 5.5 routes and judges. Policy numbers are never written into the prompt.
+**Why.** Described in ADR Q4 and implemented in `src/generation/generate.py`. Sonnet 5.5 writes the answer; Haiku 5.5 routes and judges. Policy numbers are never written into the prompt.
 
 ### S5. Is there a working demo interface?
 
-**Answer.** Yes, a CLI: `python -m src.generate "<question>" [--customer CUST-10254]`.
+**Answer.** Yes, a CLI: `python -m src.generation.generate "<question>" [--customer CUST-10254]`.
 
-**Why.** It prints the status, answer, citations, flagged data issues, routing and each catalog tool call. Example: `python -m src.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254` answers "No, Final Sale" and cites the order and the policy sections. Customers: `CUST-10041` (Maya), `CUST-10082` (Jordan), `CUST-10103` (Sofia), `CUST-10177` (Ethan), `CUST-10254` (Priya), `CUST-10312` (Lena), `CUST-10389` (Marcus), `CUST-10421` (Chloe). The brief allows a CLI as the interface.
+**Why.** It prints the status, answer, citations, flagged data issues, routing and each catalog tool call. Example: `python -m src.generation.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254` answers "No, Final Sale" and cites the order and the policy sections. Customers: `CUST-10041` (Maya), `CUST-10082` (Jordan), `CUST-10103` (Sofia), `CUST-10177` (Ethan), `CUST-10254` (Priya), `CUST-10312` (Lena), `CUST-10389` (Marcus), `CUST-10421` (Chloe). The brief allows a CLI as the interface.
 
 ### S6. Is the stack choice justified?
 
@@ -64,11 +64,11 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes, in `evals/FAILURE_ANALYSIS.md`: a lookup failure (H24), an overclaim about a latex allergy (A5), and an overgeneralised rule (L9).
 
-**Why.** They were chosen by the severity ranking in `evals/attribution.py`, not by hand. Each is traced through router, retrieval and generation. Across the six questions that did not pass cleanly in the final run: 2 retrieval, 3 generation, 1 eval-side, 0 router.
+**Why.** They were chosen by the severity ranking in `evals/harness/attribution.py`, not by hand. Each is traced through router, retrieval and generation. Across the six questions that did not pass cleanly in the final run: 2 retrieval, 3 generation, 1 eval-side, 0 router.
 
 ### E5. Is there a regression harness that re-runs the evals against a new model or configuration in under five minutes?
 
-**Answer.** Yes: `python -m evals.run_all`, 167 seconds with no caches.
+**Answer.** Yes: `python -m evals.harness.run_all`, 167 seconds with no caches.
 
 **Why.** It runs preflight, router, retrieval, customer harness, generation, judge-vs-labels, planted-error test, staleness and attribution, compares 42 metrics to `evals/baseline.json` with tolerances measured from run-to-run noise, and exits non-zero on a regression. `--generator`, `--judge-model` and `--router-model` swap models. I tested it both ways: unchanged passes; swapping the answerer to Haiku fails (strict pass 0.86 to 0.72) and surfaced two bugs in my own checks.
 

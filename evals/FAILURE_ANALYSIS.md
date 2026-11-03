@@ -1,6 +1,6 @@
 # Failure Analysis
 
-**What was analysed.** The final uncached run: 61 questions (36 dev, 25 held-out), 6 of which did not pass cleanly. `evals/attribution.py` assigns each failure to the first stage that explains it (router, then retrieval, then generation, then the eval itself) and ranks them by severity. The three below are the top three by that ranking, not hand-picked. I rate their real severity myself, because the ranking treats any unsupported claim as serious.
+**What was analysed.** The final uncached run: 61 questions (36 dev, 25 held-out), 6 of which did not pass cleanly. `evals/harness/attribution.py` assigns each failure to the first stage that explains it (router, then retrieval, then generation, then the eval itself) and ranks them by severity. The three below are the top three by that ranking, not hand-picked. I rate their real severity myself, because the ranking treats any unsupported claim as serious.
 
 | Stage | Failures | Which |
 |---|---|---|
