@@ -113,7 +113,12 @@ def make_assistant(tmp: Path, index_dir: Path) -> Assistant:
 
 def ask(a: Assistant, qs: dict, qid: str | None, text: str | None = None, customer: str | None = None) -> str:
     q = qs.get(qid) if qid else None
-    return a.answer(q["query"] if q else text, q["customer_id"] if q else customer).answer
+    for attempt in range(3):  # the answer model occasionally returns no valid reply; retry, then fail this check, not the run
+        try:
+            return a.answer(q["query"] if q else text, q["customer_id"] if q else customer).answer
+        except RuntimeError as e:
+            print(f"  note: model call failed (attempt {attempt + 1} of 3): {e}")
+    return "[no valid reply from the model]"
 
 
 def scenario_update(emb: CountingEmbedder, use_model: bool) -> None:

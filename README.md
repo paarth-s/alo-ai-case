@@ -54,6 +54,7 @@ Sample customers: `CUST-10041` Maya (Black Friday Final Sale), `CUST-10082` Jord
 ```bash
 python -m evals.harness.run_all            # all stages, compared with evals/baseline.json; exit code 1 = regression
 python -m evals.harness.run_all --fresh    # ignore every cache: a true re-measurement with real latency and cost
+# A cached run only checks the plumbing and scoring; use --fresh to measure a new model or prompt.
 python -m evals.harness.run_all --generator claude-haiku-5-5     # try another answer model (also --judge-model, --router-model)
 ```
 
@@ -100,7 +101,8 @@ Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: 
 src/
   core/        shared utilities (disk cache)
   router/      question -> which sources are needed
-  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync)
+  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync);
+               enrich.py: experimental (LLM-written chunk questions, inconclusive, off by default)
   retrieval/   BM25, hybrid retrieve (rerank.py: experimental, rejected, off by default)
   context/     catalog tool calls, session-keyed customer lookup
   generation/  prompt, answer, citations (python -m src.generation.generate)

@@ -191,7 +191,11 @@ def main() -> None:
         failed = bool(errors)
 
     for s in ("dev", "heldout"):
-        print(f"info {s}: end-to-end p95 {now.get(f'info.{s}.end_to_end_p95_ms')} ms | answer cost per question ${now.get(f'info.{s}.cost_per_question_usd')}")
+        p95, cost_q = now.get(f"info.{s}.end_to_end_p95_ms"), now.get(f"info.{s}.cost_per_question_usd")
+        if p95 is None or cost_q is None:  # a cached run replays answers without their original timings
+            print(f"info {s}: latency and cost not measured in a cached run (use --fresh)")
+        else:
+            print(f"info {s}: end-to-end p95 {p95:.0f} ms | answer cost per question ${cost_q:.4f}")
     print(f"info: {now['info.failing_questions']} questions did not pass cleanly (see evals/results/attribution.json)")
     (RES / "run_all_latest.json").write_text(json.dumps({"finished": datetime.now().isoformat(timespec="seconds"), "fresh": args.fresh, "seconds": round(total, 1),
                                                          "step_seconds": timings, "errors": errors, "metrics": now}, indent=1))
