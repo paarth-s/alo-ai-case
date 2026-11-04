@@ -28,7 +28,7 @@
 **Answer.** Out-of-scope questions are declined before retrieval. Otherwise retrieval always returns its top 6, so the safeguard is the model's structured status (`partial` or `not_in_data`), verified by a judge and a citation check, with human escalation as the planned fallback.
 
 **Why.**
-- A similarity threshold does not work: a nonexistent product scored 0.80 against a 0.71 average for real questions, and reranker scores overlap too.
+- A similarity threshold does not work: a nonexistent product scored 0.80 against a 0.71 average for real questions, and the scores of the cross-encoder reranker I tried and rejected overlap too (`evals/LOG.md` E6, E7).
 - For questions outside the data it works: all three refuse/abstain questions were handled, and the false-refusal rate is 3 to 4%.
 - It fails safely but unhelpfully when the section exists and was not found. For H24 ("send back the leggings from my first order") the 30-day rule ranked 11th to 20th, so the reply said it could not confirm, when the answer is "no, 138 days". This is the largest quality gap.
 - To close it: always include the core rules every return question needs, retry once with a rewritten query on `not_in_data`, and add a grounded support contact (designed, not built).

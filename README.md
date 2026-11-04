@@ -92,7 +92,7 @@ Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: 
 
 - **Retrieval vocabulary gaps.** "Send back" does not find the "return" rule (H24). This is the largest known quality gap.
 - **The judge misses omissions.** It catches 44 to 45 of 50 planted errors (two runs) but only 0 to 1 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
-- **Small data.** 75 chunks and 61 hand-written questions. Hybrid search and reranking cannot show their value at this size, and several comparisons are within noise (the docs say so each time).
+- **Small data.** 75 chunks and 61 hand-written questions. Hybrid search cannot show its value at this size, and several comparisons are within noise (the docs say so each time).
 - **No real traffic.** All questions were written by me.
 
 ## Layout
@@ -101,9 +101,8 @@ Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: 
 src/
   core/        shared utilities (disk cache)
   router/      question -> which sources are needed
-  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync);
-               enrich.py: experimental (LLM-written chunk questions, inconclusive, off by default)
-  retrieval/   BM25, hybrid retrieve (rerank.py: experimental, rejected, off by default)
+  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync)
+  retrieval/   BM25, hybrid retrieve
   context/     catalog tool calls, session-keyed customer lookup
   generation/  prompt, answer, citations (python -m src.generation.generate)
 evals/

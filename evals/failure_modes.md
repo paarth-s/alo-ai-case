@@ -12,7 +12,7 @@ This file is the spec for `evals/questions.jsonl`. Each question exists to catch
 |---|---|---|---|
 | R1 | Lexical / exact-term miss | Dense search ranks a semantically similar chunk above the one containing the exact phrase ("Final Sale", "no side seams", a SKU) | Policy and catalog queries hinge on specific terms. This is the main reason to add BM25 to the dense search. |
 | R2 | Near-duplicate entity confusion | Retrieves the Airbrush legging when asked about Airlift, or the full-length instead of the 7/8 | The catalog has many near-identical product names and shared fabric text. |
-| R3 | Incomplete recall on multi-match questions | A "which products..." question returns one or two of the matches | Top-k stops early. Tests whether k and reranking are tuned for list questions. |
+| R3 | Incomplete recall on multi-match questions | A "which products..." question returns one or two of the matches | Top-k stops early. Tests whether k is tuned for list questions. |
 | R4 | Single-source retrieval for a multi-source answer | Pulls from the returns policy but not the loyalty policy (or the reverse) | The README's planted policy-conflict trap. |
 | R5 | Lost section context from chunking | A chunk holds an exception or condition but not the heading or rule it modifies | Final Sale appears in both returns §1.2 and §6. Splitting it badly loses the rule. |
 | R6 | Wrong or missing customer record | Answers a personal question from policy text alone, or loads the wrong customer's orders | Domain 3 needs structured lookup, not vector search. |

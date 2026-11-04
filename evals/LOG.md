@@ -6,6 +6,8 @@ Conventions: eval "now" is **2025-03-01**; retrieval is scored on the 30/35 ques
 
 ---
 
+> Cleanup note: the rejected cross-encoder rerankers (E3, E7), index-time question enrichment (E10) and the fusion-weight and `--with-customer` flags (E11) were removed from the code after these experiments. Entries below are history and keep their numbers; the commands and files they name for those experiments no longer exist.
+
 ## 1. Environment & tooling issues
 
 | # | Issue | What happened | Resolution |

@@ -18,8 +18,7 @@ def tokenize(text: str) -> list[str]:
 class BM25:
     def __init__(self, records: list[dict], k1: float = 1.5, b: float = 0.75):
         self.records, self.k1, self.b = records, k1, b
-        # enriched chunks also expose their generated questions to the lexical index
-        self.docs = [Counter(tokenize(r["text"] + " " + " ".join(r["meta"].get("questions", [])))) for r in records]
+        self.docs = [Counter(tokenize(r["text"])) for r in records]
         self.lengths = [sum(d.values()) for d in self.docs]
         self.avg_len = sum(self.lengths) / max(len(self.lengths), 1)
         df = Counter(t for d in self.docs for t in d)

@@ -24,7 +24,7 @@
 
 **Root cause.** The question says "send back", and the policy says "return". There is no word overlap, so the keyword half of hybrid search could not help, and the word "order" pulled in shipping chunks that do match. The embedding half also ranked other returns chunks higher.
 
-**Why the evals did not prevent it.** They found it. The weakness of `returns§1` has been in the log since the first baseline (E1), and H24 failed all three uncached noise runs. It has survived every retrieval change: chunk merges, a title-prefix test, hybrid search, two rerankers, and LLM-generated chunk questions.
+**Why the evals did not prevent it.** They found it. The weakness of `returns§1` has been in the log since the first baseline (E1), and H24 failed all three uncached noise runs. It has survived every retrieval change: chunk merges, a title-prefix test, hybrid search, two rerankers, and LLM-generated chunk questions (the last three were tried and rejected, then removed from the code; numbers in `evals/LOG.md` E3, E7, E10).
 
 **Fix I would make.** Do not rely on retrieval for the few rules every return question needs. Keep a small, always-present "policy essentials" source (the return window and the Final Sale rule, about 150 tokens), built from the policy files so it cannot go stale. In parallel, add a query-rewrite retry whenever the reply is `not_in_data`.
 

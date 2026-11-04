@@ -36,7 +36,7 @@
 - **Superseded policy text:** an archived-version filter ensures the model never sees two conflicting rules.
 - **Exact terms** that embeddings blur ("Final Sale", SKU codes) are why BM25 is in the fusion. Honestly, hybrid vs dense is not distinguishable here (dev MRR 0.90 vs 0.87, held-out 0.83 vs 0.88). I kept it for scale reasons (SKU codes and colour names at 15,000 products), not because it won.
 - **Not solved: vocabulary mismatch.** "Send back" shares no words with "return", so H24 never retrieves the 30-day rule.
-- Rejected after measuring: two cross-encoder rerankers (MRR 0.75 and 0.80 vs 0.87 for hybrid alone, at 0.7 to 4.8 s per query), fusion-weight tuning (flat), and LLM-generated chunk questions (inconclusive).
+- Tried and rejected after measuring (the code is removed; experiments E3, E7, E10, E11 in `evals/LOG.md` keep the numbers): two cross-encoder rerankers (MRR 0.75 and 0.80 vs 0.87 for hybrid alone, at 0.7 to 4.8 s per query), fusion-weight tuning (flat), and LLM-generated chunk questions at index time (dev hybrid MRR 0.87 to 0.82, held-out the opposite way, so no claim).
 
 ### Q4. Prompt architecture: how is context injected, and how do you handle long or low-relevance retrieved context?
 
@@ -53,7 +53,7 @@
 **Answer.** Fix the vocabulary gap, test at real scale, and replace my hand-built evaluation data with real traffic.
 
 **Why.** In priority order:
-1. **Scale test.** Today every retriever sees 40 to 67% of a 75-chunk corpus, so hybrid and reranking are understated. Generate a 15,000-SKU catalog and a larger policy set and re-run the ablations.
+1. **Scale test.** Today every retriever sees 40 to 67% of a 75-chunk corpus, so hybrid search is understated (and a reranker, which was rejected here, might look different). Generate a 15,000-SKU catalog and a larger policy set and re-run the ablations.
 2. **Mine real queries** for the "send back" type of mismatch, then fix it with query rewriting or an embedder fine-tuned on (query, chunk) pairs.
 3. **A standing support-contact source** in every prompt, so a decline or a failed lookup still gives the customer a grounded next step.
 4. **A stronger judge.** 200+ human labels, plus a check for omitted caveats (my one attempt did not help), run on sampled live traffic.

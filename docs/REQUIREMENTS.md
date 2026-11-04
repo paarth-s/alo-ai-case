@@ -20,7 +20,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes, four: query routing, hybrid BM25 plus dense search fused by reciprocal rank, exact catalog tools, and an effective-date policy-version filter.
 
-**Why.** What each one fixes, and the two that did not earn their keep (rerankers, chunk-question enrichment), is in ADR Q3. Honest note: hybrid vs dense is within noise on this small corpus.
+**Why.** What each one fixes, and the two that were tried and rejected (cross-encoder rerankers, LLM-written chunk questions; code removed, numbers kept in `evals/LOG.md`), is in ADR Q3. Honest note: hybrid vs dense is within noise on this small corpus.
 
 ### S4. Does generation use a deliberate prompt architecture?
 

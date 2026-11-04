@@ -1,22 +1,19 @@
 """Retrieval over the vector domains, with each technique switchable so it can be ablated.
 
 modes:
-  dense          naive top-k by cosine similarity (the baseline)
-  bm25           lexical only
-  hybrid         dense + BM25 fused with reciprocal rank fusion
-  dense_rerank   dense candidates re-scored by a cross-encoder
-  hybrid_rerank  hybrid candidates re-scored by a cross-encoder
+  dense   naive top-k by cosine similarity (the baseline)
+  bm25    lexical only
+  hybrid  dense + BM25 fused with reciprocal rank fusion
 """
 from dataclasses import replace
 from pathlib import Path
 
 from src.retrieval.bm25 import BM25
 from src.ingestion.embeddings import DEFAULT, Embedder, index_dir_for
-from src.retrieval.rerank import Reranker
 from src.ingestion.store import Hit, VectorStore
 
 VECTOR_DOMAINS = ("policy", "product")  # "customer" is a structured lookup, not a vector index
-MODES = ("dense", "bm25", "hybrid", "dense_rerank", "hybrid_rerank")
+MODES = ("dense", "bm25", "hybrid")
 
 
 def rrf(rankings: list[list[Hit]], k: int = 60) -> list[Hit]:
@@ -31,16 +28,10 @@ def rrf(rankings: list[list[Hit]], k: int = 60) -> list[Hit]:
 
 
 class Retriever:
-    def __init__(self, index_dir: str | Path | None = None, reranker: str = "minilm", embedder: str = DEFAULT):
+    def __init__(self, index_dir: str | Path | None = None, embedder: str = DEFAULT):
         self.embedder = Embedder(embedder)
         self.stores = {d: VectorStore(Path(index_dir or index_dir_for(embedder)), d) for d in VECTOR_DOMAINS}
         self.bm25 = {d: BM25(s.records) for d, s in self.stores.items()}
-        self._reranker_name, self._reranker = reranker, None
-
-    @property
-    def reranker(self) -> Reranker:
-        self._reranker = self._reranker or Reranker(self._reranker_name)  # load only when a rerank mode is used
-        return self._reranker
 
     def retrieve(self, query: str, k: int = 5, domains=VECTOR_DOMAINS, where: dict | None = None,
                  mode: str = "dense", pool: int = 20, include_archived: bool = False) -> list[Hit]:
@@ -54,7 +45,5 @@ class Retriever:
             dense = self.stores[d].search(qvec, pool, w)
             lexical = self.bm25[d].search(query, pool, w)
             fused = rrf([dense, lexical])
-            candidates += {"dense": dense, "dense_rerank": dense, "bm25": lexical, "hybrid": fused, "hybrid_rerank": fused}[mode]
-        if mode.endswith("rerank"):  # reranking pools every routed domain, so scores are directly comparable
-            return self.reranker.rerank(query, candidates)[:k]
+            candidates += {"dense": dense, "bm25": lexical, "hybrid": fused}[mode]
         return sorted(candidates, key=lambda h: -h.score)[:k]
