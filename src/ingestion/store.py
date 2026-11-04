@@ -1,6 +1,6 @@
 """Persistent per-domain vector store on Chroma.
 
-Chroma gives us what FAISS did not: metadata filtering, on-disk persistence and upsert/delete by id. What it
+Chroma gives us metadata filtering, on-disk persistence and upsert/delete by id. What it
 does not do is decide *what* changed, so this wrapper keeps the incremental sync: only new or changed chunks
 are re-embedded, so a policy edit or catalog refresh never forces a full re-index.
 

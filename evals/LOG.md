@@ -33,7 +33,7 @@ Conventions: eval "now" is **2025-03-01**; retrieval is scored on the 30/35 ques
 |---|---|---|
 | Router | One Haiku call, forced tool-use, `domains` list; flags derived from it; empty list = out of scope; fail wide on error | A missed domain drops evidence; an extra one only costs a lookup. |
 | Embeddings | `BAAI/bge-small-en-v1.5`, local ONNX, query prefix | Free, 7 ms per small batch on CPU, strong retrieval benchmarks. |
-| Vector store | FAISS `IndexFlatIP` (exact), one index per domain | 15k SKUs x 384 dims is ~25 MB; exact search has no recall loss to explain. ANN only past ~1M vectors. |
+| Vector store | Chroma (switched from FAISS in E20), one collection per domain | 15k SKUs x 384 dims is ~25 MB; exact search has no recall loss to explain. ANN only past ~1M vectors. |
 | Policy chunking | Split at heading boundaries; chunk text = doc title + heading path + body; no overlap | Sections are 26-156 words, far under the 512-token limit; headings are the semantic boundaries; the prefix makes each chunk standalone. |
 | Product chunking | One chunk per SKU + one per fabric; fabric composition joined into the product chunk; sizes/colors excluded from the embedded text but shown to the LLM | Long variant lists carry little semantic signal. |
 | Staleness | Chunks keyed by content hash; sync re-embeds only new/changed chunks | Tested: editing one policy line re-embedded 1 of 79 chunks; unchanged rebuild embedded 0. |
@@ -319,3 +319,8 @@ Whole-set strict pass: dev 0.77 -> 0.80, held-out 0.83 -> 0.79. Hallucination 0.
 ### E19 addendum: clean-room verification (2026-11-02)
 Ran the README flow in a copy with no caches, index or results: index built in 8.3 s, demo answered, full harness 166 s, all 9 stages ran.
 The harness reported REGRESSION on one hard gate: `generation.dev.citations_ok` 0.972 vs 1.000. Cause: on L9 the model cited `returns§Final Sale Policy` (a heading name, not a chunk id). This is real run-to-run variation (L9 is one of the intermittent questions), not a setup bug. Baseline was not re-saved. Possible fix, not built: map unknown citation labels back to ids by heading, or retry once on invalid citations.
+
+### E20: swapped the FAISS store for Chroma (2025 build, after refactor)
+Why: Chroma installed cleanly on the second attempt (same numpy/onnxruntime pins), and a reviewer finds an established store easier to accept than a hand-built file store.
+Result: retrieval metrics identical to the FAISS baseline (dev R@5 0.933 / MRR 0.899 / NDCG 0.890; held-out 0.960 / 0.831 / 0.863). Search p50 8.4 -> 14.4 ms, p95 9.9 -> 20.4 ms. Index 200 KB -> 1.7 MB. Build 8.3 -> 9.1 s. `store.py` 112 -> 126 lines (the incremental sync is ours with either store). Staleness 24/24 on a standalone run; in the full harness one run crashed on a transient model failure ("no valid reply within 6 model turns") unrelated to the store.
+Note for T1 above: the original FAISS wrapper filtered inside the search with an ID selector, it did not post-filter.

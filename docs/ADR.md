@@ -64,7 +64,7 @@
 
 | Decision | Choice | Why |
 |---|---|---|
-| Vector store | FAISS, exact search (`IndexFlatIP`) | At this size exact search is simple and fast, and the store is about 100 lines of our own code. (Chroma also failed to install on the dev machine.) 15,000 vectors is about 25 MB and a few ms, so approximate search adds only recall risk. Filtering, persistence and incremental sync are about 100 lines of my own code. |
+| Vector store | Chroma (local, persistent, cosine) | An established store that gives persistence, metadata filtering inside the search, and upsert/delete by id, so we maintain no index files of our own. The hash-based incremental sync is still ours (about 125 lines in `store.py`), because no store decides what changed. I first built it on FAISS (exact search, a library not a database) and measured both: retrieval metrics were identical on dev and held-out; Chroma costs about 6 ms more per search. The rest of the code touches only `VectorStore`, so production can swap in pgvector (updates, access control, concurrent writers, fits AWS) by changing one file. Limits: Chroma's default index is approximate (exact in practice at 75 chunks; re-check recall at scale) and it is single-process. |
 | Framework | None; raw SDK calls | The corpus is tiny and every stage needs to be inspectable in a 45-minute walkthrough. |
 | Router | Haiku 5.5, forced tool call, empty list means out of scope, fails wide on error | A missed domain drops evidence; an extra one costs a lookup. |
 | Answer model | Sonnet 5.5 | Haiku scored 0.75 vs 0.86 strict pass and cost 14x less; not acceptable for customer-facing answers without more work. |

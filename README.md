@@ -22,7 +22,7 @@ question ──► router (Haiku) ──► which of: customer │ policy │ pr
                           all evidence ──► Sonnet 5.5, one structured reply: status, answer, citations, data_issues
 ```
 
-- **Policies** (Markdown) are split at heading boundaries into 45 chunks and indexed in FAISS with local `bge-small-en-v1.5` embeddings.
+- **Policies** (Markdown) are split at heading boundaries into 45 chunks and indexed in Chroma with local `bge-small-en-v1.5` embeddings.
 - **Products** (JSON, 24 products plus 6 fabrics) are not searched; the model calls exact lookup tools, so lists and comparisons are complete.
 - **Customers** (JSON, the 8 synthetic customers supplied with the case) are loaded for the signed-in session only; durations are computed in code, the policy supplies the window.
 - **Updates** re-embed only the chunks whose text changed (a 3-file update touched 4 of 75 chunks); policies are versioned by effective date.
@@ -100,7 +100,7 @@ Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: 
 src/
   core/        shared utilities (disk cache)
   router/      question -> which sources are needed
-  ingestion/   chunking and versioning, embeddings, FAISS store, build_index (incremental sync)
+  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync)
   retrieval/   BM25, hybrid retrieve (rerank.py: experimental, rejected, off by default)
   context/     catalog tool calls, session-keyed customer lookup
   generation/  prompt, answer, citations (python -m src.generation.generate)
@@ -124,5 +124,5 @@ docs/       ADR, production memo, requirements checklist, review page
 - **Faithfulness**: every claim in the answer is supported by the retrieved text. **Hallucination**: a claim that is not.
 - **Strict pass**: all automatic checks and the judge are clean for that question.
 - **Judge**: a second model that checks each answer against its sources.
-- **FAISS**: the library that stores and searches the vectors.
+- **Chroma**: the local vector database that stores and searches the vectors.
 - **Question codes**: P = product, L = policy, C = customer, A = adversarial; H = held-out set.

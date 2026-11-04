@@ -12,9 +12,9 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 ### S2. Is there an embedding and vector store setup, with written justification?
 
-**Answer.** Yes: `bge-small-en-v1.5` run locally through ONNX, stored in FAISS with exact search.
+**Answer.** Yes: `bge-small-en-v1.5` run locally through ONNX, stored in Chroma (local, persistent).
 
-**Why.** Justification and the four rejected embedders are in ADR Q2. FAISS replaced Chroma, which would not install on the dev machine. At 15,000 vectors of 384 dimensions the index is about 25 MB and exact search takes a few ms, so approximate search would add only recall risk. Persistence, metadata filtering, model-change detection and incremental sync are about 100 lines in `src/ingestion/store.py`.
+**Why.** Justification and the four rejected embedders are in ADR Q2. I built the store on FAISS first, then swapped in Chroma and re-ran every eval: retrieval metrics were identical (dev R@5 0.93, MRR 0.90; held-out R@5 0.96, MRR 0.83), search is about 6 ms slower, and the staleness checks pass 24 of 24. Chroma gives persistence and in-search metadata filtering; model-change detection and incremental sync (re-embed only changed chunks) are our code in `src/ingestion/store.py`. Production would use pgvector behind the same `VectorStore` interface.
 
 ### S3. Does retrieval use at least one technique beyond naive top-k?
 
@@ -36,7 +36,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 ### S6. Is the stack choice justified?
 
-**Answer.** No framework: raw SDK calls plus four small libraries (FAISS, onnxruntime, tokenizers, numpy).
+**Answer.** No framework: raw SDK calls plus four small libraries (Chroma, onnxruntime, tokenizers, numpy).
 
 **Why.** The corpus is small and each stage has to be inspectable and measurable in a 45-minute debrief. A framework would hide exactly the decisions the brief asks me to defend (chunking, fusion, prompt assembly). The cost is more code of my own: about 3,400 lines across `src/` and `evals/`.
 
