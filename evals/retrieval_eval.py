@@ -18,7 +18,6 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-from src.context.customers import CustomerStore
 from src.ingestion.embeddings import DEFAULT, SPECS, index_dir_for
 from src.retrieval.rerank import MODELS as RERANKERS
 from src.retrieval.retrieve import MODES, VECTOR_DOMAINS, Retriever
@@ -78,20 +77,14 @@ def main():
     ap.add_argument("--embedder", choices=list(SPECS), default=DEFAULT)
     ap.add_argument("--reranker", choices=list(RERANKERS), default="minilm")
     ap.add_argument("--index-dir", default=None)
-    ap.add_argument("--lex-weight", type=float, default=1.0, help="hybrid: weight of BM25 relative to dense")
-    ap.add_argument("--rrf-k", type=int, default=60, help="hybrid: reciprocal rank fusion constant")
-    ap.add_argument("--with-customer", action="store_true",
-                    help="append the session customer's loyalty tier to the retrieval query")
     ap.add_argument("--label", default=None)
     args = ap.parse_args()
     index_dir = args.index_dir or index_dir_for(args.embedder)
     tag = Path(index_dir).name.removeprefix("index").lstrip("_")
     label = args.label or "_".join(filter(None, [
         args.mode, tag, "rr-" + args.reranker if "rerank" in args.mode and args.reranker != "minilm" else "",
-        f"top{args.k}", args.routing, "cust" if args.with_customer else "",
-        f"lw{args.lex_weight:g}" if args.lex_weight != 1 else "", f"rk{args.rrf_k}" if args.rrf_k != 60 else ""]))
+        f"top{args.k}", args.routing]))
     results_dir = ROOT / "evals" / "results" / ("heldout" if args.set == "heldout" else "")
-    customers = CustomerStore(ROOT / "data" / "customers" / "customer_order_history.json")
 
     questions = load_questions(HELDOUT_PATH if args.set == "heldout" else QUESTIONS_PATH)
     if problems := validate(questions):
@@ -104,13 +97,10 @@ def main():
                    "oracle": lambda: q["expected_domains"],
                    "none": lambda: list(VECTOR_DOMAINS)}[args.routing]()
         text = q["query"]
-        if args.with_customer and "customer" in domains and (c := customers.get(q["customer_id"])):
-            text += f" (asked by a {c['loyalty_tier']} loyalty member)"  # many policy answers depend on tier
-        opts = {"mode": args.mode, "lex_weight": args.lex_weight, "rrf_k": args.rrf_k}
         start = time.perf_counter()
-        hits = retriever.retrieve(text, args.k, domains, **opts) if set(domains) & set(VECTOR_DOMAINS) else []
+        hits = retriever.retrieve(text, args.k, domains, mode=args.mode) if set(domains) & set(VECTOR_DOMAINS) else []
         ms = (time.perf_counter() - start) * 1000
-        top1 = retriever.retrieve(text, 1, **opts)  # unrouted, for the score-gap check below
+        top1 = retriever.retrieve(text, 1, mode=args.mode)  # unrouted, for the score-gap check below
         gold, ranked = set(q["gold_anchors"]), [h.id for h in hits]
         pool = sum(pool_sizes[d] for d in domains if d in pool_sizes)
         rows.append({"id": q["id"], "domain": q["domain"], "difficulty": q["difficulty"], "type": q["type"],
@@ -157,7 +147,7 @@ def main():
     out = results_dir / f"retrieval_{label}.json"
     out.write_text(json.dumps({"label": label, "set": args.set, "k": args.k, "mode": args.mode, "routing": args.routing,
                                "embedder": args.embedder, "reranker": args.reranker, "index_dir": index_dir,
-                               "lex_weight": args.lex_weight, "rrf_k": args.rrf_k, "latency_ms": latency,
+                               "latency_ms": latency,
                                "r1_ceiling": round(ceiling, 3), "hit_at_1": round(hit1, 3),
                                "summary": {g: {"n": n, **s} for g, (n, s) in summary.items()}, "rows": rows}, indent=1))
     print(f"saved {out.relative_to(ROOT)}")

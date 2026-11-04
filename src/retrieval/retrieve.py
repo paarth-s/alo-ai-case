@@ -19,13 +19,13 @@ VECTOR_DOMAINS = ("policy", "product")  # "customer" is a structured lookup, not
 MODES = ("dense", "bm25", "hybrid", "dense_rerank", "hybrid_rerank")
 
 
-def rrf(rankings: list[list[Hit]], weights: list[float] | None = None, k: int = 60) -> list[Hit]:
-    """Weighted reciprocal rank fusion: score = sum of w/(k+rank). Uses ranks only, so dense cosine and BM25
-    scores need no calibration. A smaller k rewards top ranks more steeply."""
+def rrf(rankings: list[list[Hit]], k: int = 60) -> list[Hit]:
+    """Reciprocal rank fusion: score = sum of 1/(k+rank). Uses ranks only, so dense cosine and BM25
+    scores need no calibration."""
     scores, first = {}, {}
-    for hits, w in zip(rankings, weights or [1.0] * len(rankings)):
+    for hits in rankings:
         for rank, h in enumerate(hits):
-            scores[h.id] = scores.get(h.id, 0) + w / (k + rank + 1)
+            scores[h.id] = scores.get(h.id, 0) + 1 / (k + rank + 1)
             first.setdefault(h.id, h)
     return [replace(first[i], score=s) for i, s in sorted(scores.items(), key=lambda x: -x[1])]
 
@@ -43,10 +43,8 @@ class Retriever:
         return self._reranker
 
     def retrieve(self, query: str, k: int = 5, domains=VECTOR_DOMAINS, where: dict | None = None,
-                 mode: str = "dense", pool: int = 20, lex_weight: float = 1.0, rrf_k: int = 60,
-                 include_archived: bool = False) -> list[Hit]:
-        """Top-k chunks over the routed domains. `pool` is how many candidates each retriever contributes;
-        `lex_weight` and `rrf_k` tune the hybrid fusion."""
+                 mode: str = "dense", pool: int = 20, include_archived: bool = False) -> list[Hit]:
+        """Top-k chunks over the routed domains. `pool` is how many candidates each retriever contributes."""
         assert mode in MODES, mode
         qvec = self.embedder.embed_query(query)
         candidates = []
@@ -55,7 +53,7 @@ class Retriever:
             w = {**(where or {}), "archived": False} if d == "policy" and not include_archived else where
             dense = self.stores[d].search(qvec, pool, w)
             lexical = self.bm25[d].search(query, pool, w)
-            fused = rrf([dense, lexical], [1.0, lex_weight], rrf_k)
+            fused = rrf([dense, lexical])
             candidates += {"dense": dense, "dense_rerank": dense, "bm25": lexical, "hybrid": fused, "hybrid_rerank": fused}[mode]
         if mode.endswith("rerank"):  # reranking pools every routed domain, so scores are directly comparable
             return self.reranker.rerank(query, candidates)[:k]

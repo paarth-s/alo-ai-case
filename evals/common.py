@@ -7,8 +7,6 @@ from src.ingestion.ingest import load_all
 ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS_PATH = ROOT / "evals" / "questions.jsonl"  # dev set: used while building and tuning
 HELDOUT_PATH = ROOT / "evals" / "questions_heldout.jsonl"  # never used for tuning decisions; reported at the end
-RESULTS_DIR = ROOT / "evals" / "results"
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)  # scripts write here; a fresh clone may not have it
 AS_OF = "2025-03-01"  # the fixed "today" for every date-dependent answer
 
 DOMAINS = {"product", "policy", "customer", "adversarial"}

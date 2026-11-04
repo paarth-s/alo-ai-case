@@ -12,7 +12,6 @@ The labelled file is a permanent regression test for the judge: re-score after a
 """
 import html
 import json
-import math
 import random
 import re
 import sys
@@ -23,6 +22,7 @@ from src.generation.generate import Assistant
 
 from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
 from evals.judge.judge import PITFALLS
+from evals.stats import wilson
 
 OUT = ROOT / "evals" / "calibration"
 RES = ROOT / "evals" / "results"
@@ -274,14 +274,6 @@ def kappa(a: list, b: list) -> float | None:
     ca, cb = Counter(a), Counter(b)
     pe = sum(ca[c] * cb[c] for c in set(a) | set(b)) / n ** 2
     return None if pe == 1 else (po - pe) / (1 - pe)
-
-
-def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    p = k / n
-    d = 1 + z * z / n
-    c = (p + z * z / (2 * n)) / d
-    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
-    return max(0, c - h), min(1, c + h)
 
 
 def score(path: str, report_name: str = "report.json", key: list | None = None) -> None:
