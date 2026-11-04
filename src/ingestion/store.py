@@ -1,13 +1,12 @@
-"""Persistent per-domain vector store on FAISS.
+"""Persistent per-domain vector store on Chroma.
 
-FAISS only does nearest-neighbour search, so this wrapper adds what a vector DB would give us:
-metadata filtering, on-disk persistence, and incremental sync (only new or changed chunks are
-re-embedded, so a policy edit or catalog refresh never forces a full re-index).
+Chroma gives us what FAISS did not: metadata filtering, on-disk persistence and upsert/delete by id. What it
+does not do is decide *what* changed, so this wrapper keeps the incremental sync: only new or changed chunks
+are re-embedded, so a policy edit or catalog refresh never forces a full re-index.
 
-Exact search (IndexFlatIP) is deliberate: at 15k SKUs x 384 dims it is ~25 MB and a few ms per
-query, and it has no recall loss to explain. An ANN index (HNSW/IVF) is only worth it past ~1M vectors.
+Search is cosine over Chroma's HNSW index (approximate in general, in practice exact at this size).
 
-Vectors are only reusable by the model that made them, so the store records the embedder's name and
+Vectors are only reusable by the model that made them, so the collection records the embedder's name and
 re-embeds everything if it changes (a model upgrade is the one case that does need a full re-index).
 """
 import hashlib
@@ -15,11 +14,14 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-import faiss
+import chromadb
 import numpy as np
+from chromadb.config import Settings
 
 from src.ingestion.embeddings import Embedder
 from src.ingestion.ingest import Chunk
+
+COLLECTION = "chunks"
 
 
 @dataclass
@@ -39,16 +41,30 @@ def matches_filter(meta: dict, where: dict | None) -> bool:
     return all(meta.get(f) in (v if isinstance(v, list) else [v]) for f, v in (where or {}).items())
 
 
+def _chroma_where(where: dict | None) -> dict | None:
+    clauses = [{f: {"$in": v if isinstance(v, list) else [v]}} for f, v in (where or {}).items()]
+    return None if not clauses else clauses[0] if len(clauses) == 1 else {"$and": clauses}
+
+
 class VectorStore:
     def __init__(self, root: Path, domain: str):
         self.dir = Path(root) / domain
-        self.records: list[dict] = []  # parallel to FAISS row order: id, hash, text, meta
-        self.index = None
-        self.model = None
-        if (self.dir / "faiss.index").exists():
-            self.index = faiss.read_index(str(self.dir / "faiss.index"))
-            self.records = json.loads((self.dir / "records.json").read_text())
-            self.model = (self.dir / "model.txt").read_text() if (self.dir / "model.txt").exists() else None
+        self.dir.mkdir(parents=True, exist_ok=True)
+        self.client = chromadb.PersistentClient(path=str(self.dir), settings=Settings(anonymized_telemetry=False))
+        self.col = self.client.get_or_create_collection(COLLECTION, metadata={"hnsw:space": "cosine"})
+        self.model = (self.col.metadata or {}).get("model")
+        self.records: list[dict] = self._records()  # id, hash, mhash, text, meta, in chunk order (BM25 reads these)
+
+    def _records(self, with_vectors: bool = False) -> list[dict]:
+        got = self.col.get(include=["documents", "metadatas"] + (["embeddings"] if with_vectors else []))
+        rows = []
+        for n, i in enumerate(got["ids"]):
+            m = dict(got["metadatas"][n])
+            row = {"id": i, "hash": m.pop("_hash"), "mhash": m.pop("_mhash"), "ord": m.pop("_ord"), "text": got["documents"][n], "meta": m}
+            if with_vectors:
+                row["vec"] = np.asarray(got["embeddings"][n], dtype="float32")
+            rows.append(row)
+        return sorted(rows, key=lambda r: r["ord"])
 
     def diff(self, chunks: list[Chunk], model: str | None = None) -> dict:
         """What would sync change? Compares source chunks with the index; embeds nothing, writes nothing. This is the
@@ -64,49 +80,47 @@ class VectorStore:
 
     def sync(self, chunks: list[Chunk], embedder: Embedder) -> dict:
         """Make the store match `chunks`. Embeds only chunks whose content hash is new."""
-        reuse = self.index is not None and self.model == embedder.name  # never reuse another model's vectors
-        old = {r["id"]: (r["hash"], i) for i, r in enumerate(self.records)} if reuse else {}
-        old_vecs = self.index.reconstruct_n(0, self.index.ntotal) if reuse and self.index.ntotal else None
+        reuse = bool(self.records) and self.model == embedder.name  # never reuse another model's vectors
+        if not reuse and self.records:
+            self.client.delete_collection(COLLECTION)
+            self.col = self.client.create_collection(COLLECTION, metadata={"hnsw:space": "cosine"})
+        old = {r["id"]: r for r in self._records(with_vectors=True)} if reuse else {}
 
-        to_embed = [c for c in chunks if old.get(c.id, (None,))[0] != c.content_hash]
+        to_embed = [c for c in chunks if c.id not in old or old[c.id]["hash"] != c.content_hash]
         too_long = [(c.id, n) for c in to_embed if (n := embedder.n_tokens(c.embed_text)) > embedder.max_tokens]
         if too_long:  # the model would silently cut these, so part of the chunk would never be searchable
             raise ValueError(f"embedded text exceeds the {embedder.max_tokens}-token window of {embedder.name}: {too_long}. "
                              "Shorten it, split the chunk, or embed a compact form (Chunk.embed_text).")
         fresh = dict(zip((c.id for c in to_embed), embedder.embed_passages([c.embed_text for c in to_embed])))
 
-        vecs = np.vstack([fresh[c.id] if c.id in fresh else old_vecs[old[c.id][1]] for c in chunks]) \
-            if chunks else np.zeros((0, embedder.dim), "float32")
-        old_meta = {r["id"]: r.get("mhash") for r in self.records} if reuse else {}
-        self.records = [{"id": c.id, "hash": c.content_hash, "mhash": meta_hash(c.meta), "text": c.text, "meta": c.meta} for c in chunks]
-        self.index, self.model = faiss.IndexFlatIP(embedder.dim), embedder.name
-        self.index.add(vecs)
-
-        self.dir.mkdir(parents=True, exist_ok=True)
-        faiss.write_index(self.index, str(self.dir / "faiss.index"))
-        (self.dir / "records.json").write_text(json.dumps(self.records, indent=1))
-        (self.dir / "model.txt").write_text(embedder.name)
-
         new_ids = {c.id for c in chunks}
+        if gone := [i for i in old if i not in new_ids]:
+            self.col.delete(ids=gone)
+        if chunks:
+            self.col.upsert(
+                ids=[c.id for c in chunks],
+                embeddings=[(fresh[c.id] if c.id in fresh else old[c.id]["vec"]).tolist() for c in chunks],
+                documents=[c.text for c in chunks],
+                metadatas=[{**{k: v for k, v in c.meta.items() if v is not None},  # Chroma has no null metadata
+                            "_hash": c.content_hash, "_mhash": meta_hash(c.meta), "_ord": n} for n, c in enumerate(chunks)])
+        self.col.modify(metadata={"model": embedder.name})
+        old_meta = {i: r.get("mhash") for i, r in old.items()}
+        self.model, self.records = embedder.name, self._records()
+
         return {
             "added": sum(c.id not in old for c in to_embed),
             "updated": sum(c.id in old for c in to_embed),
-            "removed": sum(i not in new_ids for i in old),
+            "removed": len(gone),
             "meta_refreshed": sum(1 for c in chunks if c.id in old and c.id not in fresh and old_meta.get(c.id) != meta_hash(c.meta)),
             "unchanged": len(chunks) - len(to_embed),
         }
 
     def search(self, query_vec: np.ndarray, k: int = 5, where: dict | None = None) -> list[Hit]:
-        """Top-k by cosine similarity. `where` filters on metadata (see matches_filter)."""
-        if not self.records:
+        """Top-k by cosine similarity. `where` filters on metadata inside the search (see matches_filter)."""
+        n = self.col.count()
+        if not n:
             return []
-        params = None
-        if where:
-            allowed = [i for i, r in enumerate(self.records) if matches_filter(r["meta"], where)]
-            if not allowed:
-                return []
-            params = faiss.SearchParameters()
-            params.sel = faiss.IDSelectorBatch(np.array(allowed, dtype="int64"))  # filter inside the search
-        scores, rows = self.index.search(query_vec, min(k, len(self.records)), params=params)
-        return [Hit(self.records[r]["id"], float(s), self.records[r]["text"], self.records[r]["meta"])
-                for s, r in zip(scores[0], rows[0]) if r != -1]
+        got = self.col.query(query_embeddings=query_vec.tolist(), n_results=min(k, n), where=_chroma_where(where),
+                             include=["documents", "metadatas", "distances"])
+        return [Hit(i, 1.0 - d, doc, {k_: v for k_, v in m.items() if not k_.startswith("_")})
+                for i, d, doc, m in zip(got["ids"][0], got["distances"][0], got["documents"][0], got["metadatas"][0])]
