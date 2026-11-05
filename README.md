@@ -73,15 +73,15 @@ python -m src.ingestion.build_index --check                    # is the index st
 
 ## Results at a glance
 
-61 questions: 36 dev, 25 held-out (22 policy, 19 product, 15 customer, 5 adversarial). Numbers are from one uncached run; identical runs move strict pass by about ±0.03.
+61 questions: 36 dev, 25 held-out (22 policy, 19 product, 15 customer, 5 adversarial). Numbers are from one fresh (uncached) run; identical runs move dev strict pass by about ±0.03, and one question is 0.04 on the 25-question held-out set.
 
 | | Dev | Held-out |
 |---|---|---|
 | Routing: missed domains | 0 | 0 |
 | Retrieval (hybrid): R@5 / MRR@10 | 0.93 / 0.90 | 0.96 / 0.83 |
 | Faithfulness | 0.99 | 1.00 |
-| Correctness vs reference | 0.97 | 0.94 |
-| Strict pass (every check clean) | 0.89 | 0.92 |
+| Correctness vs reference | 0.99 | 0.92 |
+| Strict pass (every check clean) | 0.86 | 0.84 |
 | Cross-customer leaks / invalid citations (baseline run; one later run had 1 invalid citation label, E19 addendum) | 0 / 0 | 0 / 0 |
 
 Retrieval note: hybrid is the default for exact-term reasons, but on held-out questions dense-only scored slightly higher (R@5 1.00, MRR 0.88), so the gains come from routing and exact lookup tools, not from hybrid. Differences this small are within noise.
@@ -91,7 +91,7 @@ Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: 
 ## Where it is weak (honest list)
 
 - **Retrieval vocabulary gaps.** "Send back" does not find the "return" rule (H24). This is the largest known quality gap.
-- **The judge misses omissions.** It catches 44 to 45 of 50 planted errors (two runs) but only 0 to 1 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
+- **The judge misses omissions.** It catches 44 to 47 of 50 planted errors (three runs) but only 0 to 2 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
 - **Small data.** 75 chunks and 61 hand-written questions. Hybrid search cannot show its value at this size, and several comparisons are within noise (the docs say so each time).
 - **No real traffic.** All questions were written by me.
 

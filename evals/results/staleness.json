@@ -12,7 +12,7 @@
    "id": "A0",
    "desc": "baseline answers use the old facts (30 days, $15, $128)",
    "ok": true,
-   "evidence": "{\"window\": \"Our standard return window is 30 days from the original purchase date. You get a\", \"ship\": \"Two-Day Shipping costs $15.00. It's available to all U.S. addresses, except PO B\", \"moto\": \"The High-Waist Moto Legging (W3301R-BLK) costs $128. It comes in Black, Navy and\"}"
+   "evidence": "{\"window\": \"Our return window is 30 days from the original purchase date. You'll get a full \", \"ship\": \"Two-Day Shipping costs $15.00. It's available to all U.S. addresses, except PO B\", \"moto\": \"The High-Waist Moto Legging (W3301R-BLK) is $128. It comes in Black, Navy and Es\"}"
   },
   {
    "id": "D1",
@@ -72,31 +72,31 @@
    "id": "A1",
    "desc": "the return window answer uses 60 days and none of the old wording",
    "ok": true,
-   "evidence": "Our standard return window is 60 days from the original purchase date. Returns get a full refund to the original form of payment. The item must be unworn, unwas"
+   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to your original form of payment. To qualify, the item must be unwo"
   },
   {
    "id": "A2",
    "desc": "a customer whose eligibility flips (Warrior Mat, 45 days old) is now told the window runs to March 16",
    "ok": true,
-   "evidence": "Yes. Your Warrior Mat is still within the return window, as long as it meets the condition requirements.\n\n- **Window:** Returns must be initiated within 60 days of the original purchase date. Your ord"
+   "evidence": "Yes, the Warrior Mat looks eligible for a return if it's unused. Your order was placed online on 2025-01-15, and the return window is 60 days from purchase, so it closes on 2025-03-16. Today is 2025-0"
   },
   {
    "id": "A3",
    "desc": "a second flipped customer (water bottle, 38 days old) is now told the window runs to March 23",
    "ok": true,
-   "evidence": "Yes, you can still return the Alo Sport Water Bottle (Blush, 24 oz) if it meets the condition requirements.\n\n**Window:** You bought it on order ALO-2025-002887 on 2025-01-22. Returns are accepted with"
+   "evidence": "Yes, you can return the water bottle, provided it's unused and in sellable condition with the original tags still attached.\n\n- **Window:** You bought the Alo Sport Water Bottle (Blush, 24 oz) in order"
   },
   {
    "id": "A4",
    "desc": "the two-day shipping answer uses $20 and not $15",
    "ok": true,
-   "evidence": "Two-Day Shipping costs $20.00. It's available for all U.S. addresses, but not PO Boxes or APO/FPO addresses. The two days count from the day your order ships, n"
+   "evidence": "Two-day shipping costs $20.00. It's available to all U.S. addresses except PO Boxes and APO/FPO addresses. The two days are counted from the day your order ship"
   },
   {
    "id": "A5",
    "desc": "the catalog tool returns the new price immediately, with no re-embedding (138, not 128)",
    "ok": true,
-   "evidence": "The High-Waist Moto Legging (W3301R-BLK) costs $138. It's a full-length legging in Airbrush fabric. It comes in Black, Navy and Espresso, in sizes XXS\u2013XL."
+   "evidence": "The High-Waist Moto Legging (SKU W3301R-BLK) costs $138. It comes in Black, Navy and Espresso, and in sizes XXS\u2013XL."
   },
   {
    "id": "A6",
@@ -120,7 +120,7 @@
    "id": "V2",
    "desc": "the answer as of 2025-03-01 says 30 days",
    "ok": true,
-   "evidence": "Alo's return window is 30 days from the original purchase date. Returns get a full refund to the original form of payment. To qualify, the item must be:\n- unwor"
+   "evidence": "Our standard return window is 30 days from the original purchase date. You get a full refund to your original form of payment. To qualify, the item must be:\n- u"
   },
   {
    "id": "V3",
@@ -138,7 +138,7 @@
    "id": "V5",
    "desc": "the answer as of 2025-04-15 says 60 days",
    "ok": true,
-   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to your original form of payment. The item must be unworn, unwashed"
+   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to the original form of payment. The item must be unworn, unwashed "
   },
   {
    "id": "F1",

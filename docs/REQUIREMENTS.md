@@ -58,7 +58,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes: faithfulness, hallucination rate, correctness, and a combined strict-pass rate, plus deterministic checks.
 
-**Why.** Dev / held-out: faithfulness 0.99 / 1.00, hallucination rate 0.06 / 0.00, correctness 0.97 / 0.94, strict pass 0.89 / 0.92, valid citations 1.00, cross-customer leaks 0. Strict pass moves ±0.03 between identical runs on dev, so read differences under 0.06 as noise. Ten pitfall checks (missing exception, date arithmetic, fabrication, conflated rules, wrong tier, stale data, out-of-scope, privacy, injection, over-refusal) are scored per question.
+**Why.** Dev / held-out: faithfulness 0.99 / 1.00, hallucination rate 0.06 / 0.04, correctness 0.99 / 0.92, strict pass 0.86 / 0.84, valid citations 1.00, cross-customer leaks 0. Strict pass moves ±0.03 between identical runs on dev, so read differences under 0.06 as noise; on the 25 held-out questions one question is 0.04, so a swing of two is still noise (the fresh run's H15 and H19 are borderline judge calls, see LOG E21). Ten pitfall checks (missing exception, date arithmetic, fabrication, conflated rules, wrong tier, stale data, out-of-scope, privacy, injection, over-refusal) are scored per question.
 
 ### E4. Is there a failure analysis of the three worst examples?
 
@@ -84,7 +84,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Why.**
 - **Human labels:** 12 items labelled by me and 46 by blind labelers (not independent of the model family). Agreement on "any problem": 0.93 (kappa 0.56); on unsupported facts: 1.00.
-- **Planted errors:** 44 to 45 of 50 caught for the right reason (88 to 90% across two runs); 1 of 53 untouched clean replies and 2 of 16 paraphrases wrongly flagged. It catches added errors almost perfectly and is weak on omissions (0 to 1 of 5 dropped exceptions caught); an omission check I tried did not help and was removed. Deterministic `Final Sale` checks cover that case.
+- **Planted errors:** 44 to 47 of 50 caught for the right reason (88 to 94% across three runs); 1 to 3 of 53 untouched clean replies and 1 to 2 of 16 paraphrases wrongly flagged. It catches added errors almost perfectly and is weak on omissions (0 to 2 of 5 dropped exceptions caught); an omission check I tried did not help and was removed. Deterministic `Final Sale` checks cover that case.
 - **Self-consistency:** the same 58 answers re-graded three times flip on 4 of 58 items (95.4% pairwise agreement).
 
 ### E8. Is the evaluation cost-efficient?

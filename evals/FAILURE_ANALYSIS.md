@@ -66,7 +66,7 @@
 
 1. **Retrieval, not generation, is the weak link for the failure that matters most.** H24 is a stable retrieval miss, and the model handles it honestly (`not_in_data`) instead of inventing an answer. Safe, but unhelpful.
 2. **The model's errors are small wording slips**, not fabricated facts: an "only", a safety verdict. Faithfulness is 0.99.
-3. **The judge is better at additions than omissions.** It caught 44 to 45 of 50 planted errors (two runs) but only 0 to 1 of 5 dropped exceptions, so a reply that quietly leaves out a caveat can pass. Deterministic checks protect the Final Sale cases.
+3. **The judge is better at additions than omissions.** It caught 44 to 47 of 50 planted errors (three runs) but only 0 to 2 of 5 dropped exceptions, so a reply that quietly leaves out a caveat can pass. Deterministic checks protect the Final Sale cases.
 
 ## What this eval cannot see
 
