@@ -1,129 +1,81 @@
 # Retail RAG Assistant
 
-A grounded question-answering assistant over three retail knowledge domains: **product facts**, **policies** (returns, shipping, loyalty) and **a customer's own orders**. The emphasis is on measuring it honestly: a regression harness, a validated judge, and a written account of where it breaks.
+A question-answering assistant over three retail domains: **product facts**, **policies** (returns, shipping, loyalty) and **a customer's own orders**. Every answer cites its sources. The emphasis is on measuring it honestly: a regression harness, a validated judge, and a written account of where it breaks.
 
-| Read this | For |
-|---|---|
-| [docs/ADR.md](docs/ADR.md) | The five design questions: chunking, embeddings, retrieval, prompts, what I'd do next |
-| [docs/PRODUCTION_MEMO.md](docs/PRODUCTION_MEMO.md) | Staleness, retrieval failure, latency, guardrails, observability |
-| [evals/FAILURE_ANALYSIS.md](evals/FAILURE_ANALYSIS.md) | The three worst failures, traced end to end |
-| [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | Every requirement in the brief, answered with evidence |
-| [docs/review.html](docs/review.html) | The same questions and answers, colour-coded for review (open in a browser) |
-| [evals/LOG.md](evals/LOG.md) | The lab notebook: every experiment, including the ones that failed |
+**Read:** [ADR](docs/ADR.md) (design decisions) · [Production memo](docs/PRODUCTION_MEMO.md) · [Failure analysis](evals/FAILURE_ANALYSIS.md) (3 worst cases) · [Requirements checklist](docs/REQUIREMENTS.md) · [Lab notebook](evals/LOG.md)
 
 ## How it works
 
 ```
-question ──► router (Haiku) ──► which of: customer │ policy │ product   (none = out of scope: fixed decline)
-                                   │          │          │
-              session customer id ─┘          │          └─► catalog tools: get_product, search_products, get_fabric
-              (never from the question)       └─► hybrid search: BM25 + bge-small, fused by rank (RRF),
-                                                  over the policy version in force on the as-of date
-                          all evidence ──► Sonnet 5.5, one structured reply: status, answer, citations, data_issues
+question ─► router (Haiku) ─► customer │ policy │ product   (none = out of scope: fixed decline)
+  customer: the signed-in session's own record (never an id typed in the question)
+  policy:   hybrid search (keywords + embeddings, merged by rank) over the policy version in force
+  product:  exact catalog lookups (get_product, search_products, get_fabric), not search
+all evidence ─► Sonnet 5.5 ─► one structured reply: status, answer, citations
 ```
 
-- **Policies** (Markdown) are split at heading boundaries into 45 chunks and indexed in Chroma with local `bge-small-en-v1.5` embeddings.
-- **Products** (JSON, 24 products plus 6 fabrics) are not searched; the model calls exact lookup tools, so lists and comparisons are complete.
-- **Customers** (JSON, the 8 synthetic customers supplied with the case) are loaded for the signed-in session only; durations are computed in code, the policy supplies the window.
-- **Updates** re-embed only the chunks whose text changed (a 3-file update touched 4 of 75 chunks); policies are versioned by effective date.
+Policies are split at headings into 45 chunks and stored in a FAISS index with local `bge-small` embeddings. Updates re-embed only changed chunks. Products and customers are structured data, so they are looked up, not searched.
 
-## Setup (about 5 minutes, one model download)
-
-Requires Python 3.10+ and an Anthropic API key.
+## Setup (about 5 minutes; Python 3.10+, an Anthropic API key)
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env            # then put your key in ANTHROPIC_API_KEY=
-python -m src.ingestion.build_index       # ~10 s; downloads the 130 MB embedding model on first use
+cp .env.example .env                       # put your key in ANTHROPIC_API_KEY=
+python -m src.ingestion.build_index        # ~10 s; downloads the 130 MB embedding model once
 ```
 
 ## Try it
 
 ```bash
+python -m src.web.app                      # web demo at http://127.0.0.1:8000 (interface only)
 python -m src.generation.generate "Which leggings have no side seams?"
-python -m src.generation.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254
-python -m src.generation.generate "What did Jordan Kim order last month?" --customer CUST-10041     # declines: not your account
-python -m src.generation.generate "How much does Lululemon's Align legging cost?"                   # declines: out of scope
+python -m src.generation.generate "Can I return my Cyber Monday leggings?" --customer CUST-10254
+python -m src.generation.generate "What did Jordan Kim order?" --customer CUST-10041   # declines: not your account
+python -m src.generation.generate "How much is Lululemon's Align legging?"             # declines: out of scope
 ```
 
-Sample customers: `CUST-10041` Maya (Black Friday Final Sale), `CUST-10082` Jordan (All Access), `CUST-10103` Sofia (VIP), `CUST-10177` Ethan (A-List, pending return), `CUST-10254` Priya (Cyber Monday Final Sale), `CUST-10312` Lena (rejected return), `CUST-10389` Marcus, `CUST-10421` Chloe (in transit). The demo's "today" is fixed at 2025-03-01 to match the data.
+Eight sample customers (`CUST-10041`, `10082`, `10103`, `10177`, `10254`, `10312`, `10389`, `10421`). "Today" is fixed at 2025-03-01 to match the data.
 
-## Run the whole eval suite (about 3 minutes, about $1.50)
+## Run the evals (about 3 minutes, about $1.50)
 
 ```bash
-python -m evals.harness.run_all            # all stages, compared with evals/baseline.json; exit code 1 = regression
-python -m evals.harness.run_all --fresh    # ignore every cache: a true re-measurement with real latency and cost
-# A cached run only checks the plumbing and scoring; use --fresh to measure a new model or prompt.
-python -m evals.harness.run_all --generator claude-haiku-5-5     # try another answer model (also --judge-model, --router-model)
+python -m evals.harness.run_all            # 10 stages, compared with evals/baseline.json; exit 1 = regression
+python -m evals.harness.run_all --fresh    # ignore caches: real latency and cost (a cached run only checks the plumbing)
+python -m evals.harness.run_all --generator claude-haiku-5-5   # try another answer model
 ```
 
-It prints one table of 42 metrics with the baseline, the new value, the tolerance and a status. Tolerances are twice the run-to-run spread I measured, so an occasional single `WORSE` on a noisy metric is chance; re-run before believing it. Hard gates (zero tolerance): missed router domains, citation validity, cross-customer leaks, judge failures, staleness checks.
+It prints each metric with its baseline, new value and tolerance. Tolerances come from measured run-to-run noise, so one `WORSE` on a noisy metric is worth re-running. Single pieces: `evals.retrieval_eval`, `evals.generation_eval`, `evals.staleness_eval`, `evals.judge.judge_controls run`, `src.ingestion.build_index --check`.
 
-Individual pieces:
-
-```bash
-python -m evals.retrieval_eval --mode hybrid [--set heldout]   # Recall@1/5/10, MRR, NDCG, with a random-ranking row
-python -m evals.generation_eval [--set heldout]                # faithfulness, hallucination, 10 pitfall checks, latency, cost
-python -m evals.staleness_eval                                 # policy / catalog / version updates, in a scratch copy
-python -m evals.judge.judge_controls run                       # does the judge catch errors planted on purpose?
-python -m evals.harness.attribution                            # which stage caused each failure
-python -m src.ingestion.build_index --check                    # is the index stale? (exit 1 if so)
-```
-
-## Results at a glance
-
-61 questions: 36 dev, 25 held-out (22 policy, 19 product, 15 customer, 5 adversarial). Numbers are from one fresh (uncached) run; identical runs move dev strict pass by about ±0.03, and one question is 0.04 on the 25-question held-out set.
+## Results (fresh run, 61 questions: 36 dev, 25 held-out)
 
 | | Dev | Held-out |
 |---|---|---|
-| Routing: missed domains | 0 | 0 |
-| Retrieval (hybrid): R@5 / MRR@10 | 0.93 / 0.90 | 0.96 / 0.83 |
+| Retrieval R@5 / MRR@10 | 0.93 / 0.90 | 0.96 / 0.83 |
 | Faithfulness | 0.99 | 1.00 |
 | Correctness vs reference | 0.99 | 0.92 |
 | Strict pass (every check clean) | 0.86 | 0.84 |
-| Cross-customer leaks / invalid citations (baseline run; one later run had 1 invalid citation label, E19 addendum) | 0 / 0 | 0 / 0 |
+| Cross-customer leaks / invalid citations | 0 / 0 | 0 / 0 |
 
-Retrieval note: hybrid is the default for exact-term reasons, but on held-out questions dense-only scored slightly higher (R@5 1.00, MRR 0.88), so the gains come from routing and exact lookup tools, not from hybrid. Differences this small are within noise.
+Identical runs move dev strict pass by about ±0.03; on 25 questions one is worth 0.04. Hybrid search is not measurably better than embeddings alone here; the gains come from routing and exact lookups. Latency p50 5.5 s, p95 9.1 s; about $0.015 per question; staleness 24/24 checks.
 
-Latency (uncached, end to end, mean of three runs): p50 5.5 s, p95 9.1 s. Cost: about $0.015 per question. Staleness: 24 of 24 checks.
+## Where it is weak
 
-## Where it is weak (honest list)
-
-- **Retrieval vocabulary gaps.** "Send back" does not find the "return" rule (H24). This is the largest known quality gap.
-- **The judge misses omissions.** It catches 44 to 47 of 50 planted errors (three runs) but only 0 to 2 of 5 dropped caveats; deterministic checks cover the Final Sale cases.
-- **Small data.** 75 chunks and 61 hand-written questions. Hybrid search cannot show its value at this size, and several comparisons are within noise (the docs say so each time).
-- **No real traffic.** All questions were written by me.
+- **Vocabulary gaps:** "send back" does not find the "return" rule (H24). Largest known gap.
+- **The judge misses omissions** (0 to 2 of 5 dropped caveats); fixed Final Sale checks cover those.
+- **Small data, no real traffic:** 75 chunks and 61 hand-written questions.
 
 ## Layout
 
 ```
-src/
-  core/        shared utilities (disk cache)
-  router/      question -> which sources are needed
-  ingestion/   chunking and versioning, embeddings, Chroma store, build_index (incremental sync)
-  retrieval/   BM25, hybrid retrieve
-  context/     catalog tool calls, session-keyed customer lookup
-  generation/  prompt, answer, citations (python -m src.generation.generate)
-evals/
-  pricing/     cost model
-  harness/     run_all (regression driver), noise, attribution
-  judge/       LLM judge, calibration code, planted-error controls
-  *_eval.py, test_router.py, stats.py, common.py   the eval scripts
-  questions*.jsonl, baseline.json, tolerances.json, results/, calibration/ (labels, planted errors), LOG.md
-data/       the policies, product catalog and customer orders
-docs/       ADR, production memo, requirements checklist, review page
+src/   core/ (cache) · router/ · ingestion/ (chunking, embeddings, FAISS store, build_index)
+       retrieval/ (BM25, hybrid) · context/ (catalog tools, customer lookup) · generation/ · web/
+evals/ harness/ (run_all, noise, attribution) · judge/ · pricing/ · *_eval.py · questions*.jsonl
+       baseline.json · results/ · calibration/ · LOG.md
+data/  policies, product catalog, customer orders (the synthetic package supplied with the case)
+docs/  ADR, production memo, requirements checklist, review.html (Q&A for review)
 ```
 
 ## Glossary
 
-- **RAG**: retrieve relevant text first, then have the model answer from it.
-- **Chunk**: one searchable piece of a document (a policy section or a product).
-- **Embedding / dense search**: text turned into numbers so similar meanings sit close together.
-- **BM25**: classic keyword search. **RRF**: a way to merge two ranked lists by rank.
-- **Recall@K**: how often the right chunk is in the top K results. **MRR / NDCG**: scores that reward ranking the right chunk higher.
-- **Faithfulness**: every claim in the answer is supported by the retrieved text. **Hallucination**: a claim that is not.
-- **Strict pass**: all automatic checks and the judge are clean for that question.
-- **Judge**: a second model that checks each answer against its sources.
-- **Chroma**: the local vector database that stores and searches the vectors.
-- **Question codes**: P = product, L = policy, C = customer, A = adversarial; H = held-out set.
+**RAG**: retrieve relevant text, then answer from it. **Chunk**: one searchable piece of a document. **Embedding**: text as numbers, so similar meanings sit close. **BM25**: keyword search. **Recall@K / MRR / NDCG**: how often, and how high, the right chunk is ranked. **Faithfulness**: every claim is supported by the sources. **Strict pass**: all automatic checks and the judge are clean. **Judge**: a second model that checks each answer against its sources. **Question codes**: P product, L policy, C customer, A adversarial, H held-out.

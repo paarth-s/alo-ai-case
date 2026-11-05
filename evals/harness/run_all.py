@@ -139,7 +139,7 @@ def main() -> None:
           f"{'FRESH (no caches)' if args.fresh else 'cached where possible'}\n")
 
     problems = validate(load_questions(QUESTIONS_PATH)) + validate(load_questions(HELDOUT_PATH))
-    if problems or not (ROOT / "index" / "policy" / "chroma.sqlite3").exists():
+    if problems or not (ROOT / "index" / "policy" / "faiss.index").exists():
         raise SystemExit(f"preflight failed: {problems or 'index missing, run: python -m src.ingestion.build_index'}")
     print("preflight ok: question files valid, index present")
 
