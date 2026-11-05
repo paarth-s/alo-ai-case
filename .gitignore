@@ -6,3 +6,4 @@ __pycache__/
 .cache/
 index/
 index_*/
+evals/results/run_all_logs/
