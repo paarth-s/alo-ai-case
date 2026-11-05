@@ -48,7 +48,7 @@
 **Answer.** Fix the vocabulary gap, test at real scale, and replace my hand-built evaluation data with real traffic.
 
 **Why.** In priority order:
-1. **Scale test.** Today every retriever sees 40 to 67% of a 75-chunk corpus, so hybrid and reranking are understated. Generate a 15,000-SKU catalog and a larger policy set and re-run the ablations. Grow the customer set too (8 supplied; the brief suggests 20 to 50).
+1. **Scale tests.** Today every retriever sees 40 to 67% of a 75-chunk corpus, so hybrid and reranking are understated. Generate a 15,000-SKU catalog and a larger policy set and re-run the ablations. Grow the customer set too (8 supplied; the brief suggests 20 to 50). I'd also likely add semantic search and a short description as the number of SKUs increases
 2. **Mine real queries** for "send back" type mismatches, then fix with query rewriting or an embedder fine-tuned on (query, chunk) pairs.
 3. **A standing support-contact source** in every prompt, so a decline still gives a grounded next step.
 4. **A stronger judge:** 200+ human labels and a check for omitted caveats (my one attempt did not help), run on sampled live traffic.
