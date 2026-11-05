@@ -107,7 +107,7 @@ src/
   generation/  prompt, answer, citations (python -m src.generation.generate)
 evals/
   pricing/     cost model
-  harness/     run_all (regression driver), compare, noise, attribution
+  harness/     run_all (regression driver), noise, attribution
   judge/       LLM judge, calibration code, planted-error controls
   *_eval.py, test_router.py, stats.py, common.py   the eval scripts
   questions*.jsonl, baseline.json, tolerances.json, results/, calibration/ (labels, planted errors), LOG.md
