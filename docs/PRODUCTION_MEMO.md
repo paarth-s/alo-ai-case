@@ -28,7 +28,7 @@
 **Answer.** Out-of-scope questions are declined before retrieval. Otherwise retrieval always returns its top 6, so the safeguard is the model's structured status (`partial` or `not_in_data`), verified by a judge and a citation check, with human escalation as the planned fallback.
 
 **Why.**
-- A similarity threshold does not work: a nonexistent product scored 0.80 against a 0.71 average for real questions, and the scores of the cross-encoder reranker I tried and rejected overlap too (`evals/LOG.md` E6, E7).
+- A similarity threshold does not work: a nonexistent product scored 0.80 against a 0.71 average for real questions, and reranker scores overlap too (LOG E6, E7).
 - For questions outside the data it works: all three refuse/abstain questions were handled, and the false-refusal rate is 3 to 4%.
 - It fails safely but unhelpfully when the section exists and was not found. For H24 ("send back the leggings from my first order") the 30-day rule ranked 11th to 20th, so the reply said it could not confirm, when the answer is "no, 138 days". This is the largest quality gap.
 - To close it: always include the core rules every return question needs, retry once with a rewritten query on `not_in_data`, and add a grounded support contact (designed, not built).
@@ -38,7 +38,7 @@
 **Answer.** Measured uncached (mean of three runs of 61 questions): p50 5.5 s and p95 9.1 s end to end. The answer model is about 84% of that, the router about 16%, and retrieval is negligible.
 
 **Why.**
-- p50 / p95 by stage: router 0.85 / 1.2 s; retrieval 8 to 22 / 15 to 60 ms; answer model 3.9 to 4.6 / 6.6 to 8.8 s (1.4 to 1.5 turns; product questions call tools). The judge is evaluation only.
+- p50 / p95 by stage: router 0.85 / 1.2 s; retrieval 8 to 22 / 15 to 60 ms; answer model 3.9 to 4.6 / 6.6 to 8.8 s (1.4 to 1.5 turns; product questions call tools).
 - Cost: $0.015 per question to answer, $0.0009 to judge; a full uncached eval run is about $1.50.
 - Levers, biggest first: stream the reply; a smaller or rule-based router; cache the system prompt; cap tool turns. A cheaper model is not free: Haiku 5.5 was 14x cheaper but 10 to 15 points lower on strict pass.
 
@@ -47,7 +47,7 @@
 **Answer.** Layers: the router sends out-of-scope questions to a fixed decline with no model call; customer data loads only for the signed-in session; the prompt forbids guessing, other customers' data and policy exceptions; every reply is checked for valid citations and for other customers' identifiers.
 
 **Why.**
-- Results: 0 cross-customer leaks and 100% valid citations in 61 questions; the competitor, other-customer, nonexistent-product and "my manager approved it" cases all behaved correctly. Asking about "Jordan Kim" in Maya's session loads only Maya's record.
+- Results: 0 cross-customer leaks and 100% valid citations in 61 questions (baseline run; one later run had 1 invalid citation label, E19 addendum); the competitor, other-customer, nonexistent-product and "my manager approved it" cases all behaved correctly.
 - The harness caught a cheaper answer model by its strict-pass drop, and exposed a false positive in my own leak check, now fixed. Model choice is gated by the harness, not price.
 - Gaps: only 5 adversarial questions; instructions hidden in data fields (an order note, a product description) are untested; the judge is an offline measure, not a runtime guard. Next step: run the cheap deterministic checks on every live reply.
 

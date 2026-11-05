@@ -82,7 +82,7 @@ python -m src.ingestion.build_index --check                    # is the index st
 | Faithfulness | 0.99 | 1.00 |
 | Correctness vs reference | 0.97 | 0.94 |
 | Strict pass (every check clean) | 0.89 | 0.92 |
-| Cross-customer leaks / invalid citations | 0 / 0 | 0 / 0 |
+| Cross-customer leaks / invalid citations (baseline run; one later run had 1 invalid citation label, E19 addendum) | 0 / 0 | 0 / 0 |
 
 Retrieval note: hybrid is the default for exact-term reasons, but on held-out questions dense-only scored slightly higher (R@5 1.00, MRR 0.88), so the gains come from routing and exact lookup tools, not from hybrid. Differences this small are within noise.
 
