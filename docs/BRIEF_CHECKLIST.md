@@ -62,9 +62,9 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 ### E4. Is there a failure analysis of the three worst examples?
 
-**Answer.** Yes, in `evals/FAILURE_ANALYSIS.md`: a lookup failure (H24), an overclaim about a latex allergy (A5), and an overgeneralised rule (L9).
+**Answer.** Yes, in `evals/FAILURE_ANALYSIS.md`: a retrieval miss (H24, "send back" vs "return"), over-hedging on a self-contradicting policy (H15), and a mislabelled status on a latex-allergy question (A5), each with the assistant's actual reply quoted.
 
-**Why.** They were chosen by the severity ranking in `evals/harness/attribution.py`, not by hand. Each is traced through router, retrieval and generation. Across the six questions that did not pass cleanly in the final run: 2 retrieval, 3 generation, 1 eval-side, 0 router.
+**Why.** They are the three questions that failed strict pass in all four uncached runs (the other six failures are intermittent and listed in a table). Each is traced through router, retrieval and generation. Across the nine questions that did not pass in the committed run: 2 retrieval, 6 generation, 1 eval-side, 0 router.
 
 ### E5. Is there a regression harness that re-runs the evals against a new model or configuration in under five minutes?
 
