@@ -144,16 +144,16 @@ def main() -> None:
     print("preflight ok: question files valid, index present")
 
     print("\nstage 1: local and cheap")
-    for name, argv in (("router", ["evals.test_router"]), ("retrieval_dev", ["evals.retrieval_eval", "--mode", "hybrid"]),
-                       ("retrieval_heldout", ["evals.retrieval_eval", "--mode", "hybrid", "--set", "heldout"]),
-                       ("customer_harness", ["evals.customer_eval"])):
+    for name, argv in (("router", ["evals.suites.router_eval"]), ("retrieval_dev", ["evals.suites.retrieval_eval", "--mode", "hybrid"]),
+                       ("retrieval_heldout", ["evals.suites.retrieval_eval", "--mode", "hybrid", "--set", "heldout"]),
+                       ("customer_harness", ["evals.suites.customer_eval"])):
         finish([sh(name, argv, env)], timings, errors)
 
     print("\nstage 2: model calls (run concurrently)")
-    group = [sh("generation_dev", ["evals.generation_eval", "--set", "dev", "--workers", "4"], env),
-             sh("generation_heldout", ["evals.generation_eval", "--set", "heldout", "--workers", "4"], env),
+    group = [sh("generation_dev", ["evals.suites.generation_eval", "--set", "dev", "--workers", "4"], env),
+             sh("generation_heldout", ["evals.suites.generation_eval", "--set", "heldout", "--workers", "4"], env),
              sh("judge_vs_labels", ["evals.judge.calibration", "rejudge", "evals/calibration/combined_labels.json", "report_rejudged_all.json"], env)]
-    group.append(sh("staleness", ["evals.staleness_eval"], env))
+    group.append(sh("staleness", ["evals.suites.staleness_eval"], env))
     if not args.skip_judge_controls and (ROOT / "evals" / "calibration" / "perturbations.json").exists():
         group.append(sh("judge_controls", ["evals.judge.judge_controls", "run"], env))
     finish(group, timings, errors)

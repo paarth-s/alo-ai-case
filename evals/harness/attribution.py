@@ -15,7 +15,7 @@ import json
 from collections import Counter
 
 from evals.common import HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from evals.generation_eval import issues
+from evals.suites.generation_eval import issues
 
 CAL = ROOT / "evals" / "calibration"
 CONTENT_FLAGS = ("unsupported", "unsupported_advice", "false_absence", "pitfall_fails")

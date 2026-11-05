@@ -156,7 +156,7 @@ def build() -> None:
 
 
 def run() -> None:
-    from evals.generation_eval import judge_summary
+    from evals.suites.generation_eval import judge_summary
     from evals.judge.judge import judge
 
     items = {i["n"]: i for i in json.loads((CAL / "items.json").read_text())}

@@ -2,7 +2,7 @@
 
     python docs/build_review.py
 
-The page is generated from the "### Q" blocks in REQUIREMENTS.md, ADR.md and PRODUCTION_MEMO.md, so it cannot drift from them.
+The page is generated from the "### Q" blocks in BRIEF_CHECKLIST.md, ADR.md and PRODUCTION_MEMO.md, so it cannot drift from them.
 Each block has the shape:   ### <id>. <question>   then   **Answer.** ...   then   **Why.** ...
 """
 import html
@@ -12,9 +12,9 @@ from pathlib import Path
 DOCS = Path(__file__).resolve().parent
 # (file, section heading to keep or None for all, label shown on the card, group heading in the page)
 SOURCES = [
-    ("REQUIREMENTS.md", "System: RAG implementation", "System", "1. The RAG system"),
+    ("BRIEF_CHECKLIST.md", "System: RAG implementation", "System", "1. The RAG system"),
     ("ADR.md", None, "ADR", "2. Architecture decision record"),
-    ("REQUIREMENTS.md", "Evaluation framework", "Eval", "3. The evaluation framework"),
+    ("BRIEF_CHECKLIST.md", "Evaluation framework", "Eval", "3. The evaluation framework"),
     ("PRODUCTION_MEMO.md", None, "Memo", "4. Reliability and production readiness"),
 ]
 
@@ -122,7 +122,7 @@ code{font:.88em ui-monospace,monospace;background:rgba(127,127,127,.18);padding:
 @media print{.bar{display:none}.card{break-inside:avoid}}
 </style></head><body>
 <header><h1>Case Study Review</h1>
-<div class="links">__COUNT__ questions from the brief. Source of truth: <a href="ADR.md">ADR.md</a> · <a href="PRODUCTION_MEMO.md">PRODUCTION_MEMO.md</a> · <a href="REQUIREMENTS.md">REQUIREMENTS.md</a> · <a href="../evals/FAILURE_ANALYSIS.md">FAILURE_ANALYSIS.md</a></div>
+<div class="links">__COUNT__ questions from the brief. Source of truth: <a href="ADR.md">ADR.md</a> · <a href="PRODUCTION_MEMO.md">PRODUCTION_MEMO.md</a> · <a href="BRIEF_CHECKLIST.md">BRIEF_CHECKLIST.md</a> · <a href="../evals/FAILURE_ANALYSIS.md">FAILURE_ANALYSIS.md</a></div>
 <div class="legend"><span class="chip q">Question</span><span class="chip a">Answer</span><span class="chip w">Why: the concise explanation and evidence</span></div></header>
 <div class="bar"><span><b id="done">0</b> / <b>__COUNT__</b> reviewed</span><button id="toggle">Hide explanations</button><button id="reset">Reset</button></div>
 __BODY__

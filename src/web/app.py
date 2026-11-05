@@ -41,6 +41,10 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             self._send(200, (HERE / "index.html").read_bytes(), "text/html; charset=utf-8")
+        elif self.path == "/design":
+            self._send(200, (HERE / "design.html").read_bytes(), "text/html; charset=utf-8")
+        elif self.path == "/metrics":
+            self._send(200, Path("evals/baseline.json").read_bytes(), "application/json")
         elif self.path == "/config":
             cfg = {"as_of": DEFAULT_AS_OF if isinstance(DEFAULT_AS_OF, str) else DEFAULT_AS_OF.isoformat(), "examples": EXAMPLES,
                    "customers": [{"id": c["customer_id"], "name": c["name"], "tier": c["loyalty_tier"]} for c in CUSTOMERS]}

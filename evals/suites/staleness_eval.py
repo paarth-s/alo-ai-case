@@ -1,8 +1,8 @@
 """Staleness and index-drift eval: when a policy or the catalog changes, does the system notice, update only what changed,
 and answer from the new facts?
 
-    python -m evals.staleness_eval             # about a dozen model calls
-    python -m evals.staleness_eval --no-model  # index and retrieval checks only, free
+    python -m evals.suites.staleness_eval             # about a dozen model calls
+    python -m evals.suites.staleness_eval --no-model  # index and retrieval checks only, free
 
 Everything runs in a scratch copy of the data and index; the real ones are never touched.
 
@@ -33,7 +33,7 @@ from src.retrieval.retrieve import Retriever
 from src.ingestion.store import VectorStore
 
 from evals.common import AS_OF, HELDOUT_PATH, QUESTIONS_PATH, ROOT, load_questions
-from evals.generation_eval import hit
+from evals.suites.generation_eval import hit
 
 RES = ROOT / "evals" / "results"
 RETURNS, SHIPPING = "returns_and_exchanges_policy.md", "shipping_policy.md"

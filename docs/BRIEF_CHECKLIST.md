@@ -30,7 +30,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 ### S5. Is there a working demo interface?
 
-**Answer.** Yes, a CLI: `python -m src.generation.generate "<question>" [--customer CUST-10254]`.
+**Answer.** Yes, two: a CLI, `python -m src.generation.generate "<question>" [--customer CUST-10254]`, and a small local web page, `python -m src.web.app` (http://127.0.0.1:8000, interface only), whose `/design` page shows each design choice, why it was chosen, and the live baseline metrics.
 
 **Why.** It prints the status, answer, citations, flagged data issues, routing and each catalog tool call. Example: `python -m src.generation.generate "Can I return the leggings I bought during Cyber Monday?" --customer CUST-10254` answers "No, Final Sale" and cites the order and the policy sections. Customers: `CUST-10041` (Maya), `CUST-10082` (Jordan), `CUST-10103` (Sofia), `CUST-10177` (Ethan), `CUST-10254` (Priya), `CUST-10312` (Lena), `CUST-10389` (Marcus), `CUST-10421` (Chloe). The brief allows a CLI as the interface.
 
@@ -38,13 +38,13 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** No framework: raw SDK calls plus four small libraries (FAISS, onnxruntime, tokenizers, numpy).
 
-**Why.** The corpus is small and each stage has to be inspectable and measurable in a 45-minute debrief. A framework would hide exactly the decisions the brief asks me to defend (chunking, fusion, prompt assembly). The cost is more code of my own: about 3,400 lines across `src/` and `evals/`.
+**Why.** The corpus is small and each stage has to be inspectable and measurable in a 45-minute debrief. A framework would hide exactly the decisions the brief asks me to defend (chunking, fusion, prompt assembly). The cost is more code of my own: about 3,200 lines across `src/` and `evals/`.
 
 ## Evaluation framework
 
 ### E1. Is there a question set of at least 20 queries across easy, medium and hard difficulty and all three domains?
 
-**Answer.** Yes: 61 questions. 36 dev (`evals/questions.jsonl`) and 25 held-out (`evals/questions_heldout.jsonl`).
+**Answer.** Yes: 61 questions. 36 dev (`evals/questions_dev.jsonl`) and 25 held-out (`evals/questions_heldout.jsonl`).
 
 **Why.** 22 policy, 19 product, 15 customer or cross-domain, 5 adversarial; 15 easy, 24 medium, 22 hard. Each question maps to named failure modes (`evals/failure_modes.md`), has gold source ids, a reference answer, and must-include and must-not-include facts. The held-out set was written before further tuning and is the fairer number. Changes made after seeing results are logged in `evals/LOG.md`: two questions added (L11, H25, marked `added: post-hoc` in the file), six reference answers edited after the human review (E15), and three gold labels remapped after a chunk merge (E16).
 

@@ -2,7 +2,7 @@
 
 Running record of what we built, what broke, what we tried and what we decided. Append as we go; this is the raw material for the ADR (`docs/`) and the failure analysis. Newest entries go at the bottom of each section.
 
-Conventions: eval "now" is **2025-03-01**; retrieval is scored on the 30/35 questions that have vector-index gold anchors (`evals/questions.jsonl`); result files live in `evals/results/`.
+Conventions: eval "now" is **2025-03-01**; retrieval is scored on the 30/35 questions that have vector-index gold anchors (`evals/questions_dev.jsonl`); result files live in `evals/results/`.
 
 ---
 
@@ -48,7 +48,7 @@ Conventions: eval "now" is **2025-03-01**; retrieval is scored on the 30/35 ques
 - First pass on 19 hand-written queries: 15/19. Fixed one genuine bug (competitor products routed to `product`: prompt now says `product` means Alo's own catalog). Deliberately did **not** tune for the other three to avoid contaminating the eval.
 - Metric changed to report **missed** vs **extra** domains separately (missed = serious, extra = minor).
 - On the final 35 eval questions: **34/35 pass**, 1 missed domain (P10 misses `policy`), 7 extra domains (mostly "my/I" questions that don't need the customer record).
-- The router test now reads `questions.jsonl` so there is one source of truth.
+- The router test now reads `questions_dev.jsonl` so there is one source of truth.
 
 ### E1 - Naive dense top-5 baseline (2026-11-02)
 Routed dense top-5 over the 30 scored questions.
@@ -107,7 +107,7 @@ R@1 0.48, R@5 0.84, R@10 0.89, MRR@10 0.80, NDCG@10 0.80 (vs hybrid 0.57 / 0.80 
 Yes, it is near saturation. Exact expected scores for random ranking over the searched chunks (mean 43 of 79 per question): **R@1 0.02, R@5 0.12, R@10 0.25, MRR@10 0.11, NDCG@10 0.13**. Dense scores 0.90 at R@10 against 0.25 random, so it is real signal, but retrieving 10 chunks covers ~23% of what is searched and leaves only 0.10 of headroom. R@1, MRR and NDCG have the headroom, so tuning targets those. The scorer now prints the random baseline as a row so no one reads R@10 in isolation.
 
 ### E8 - Customer harness (2026-11-02)
-`src/context/customers.py` + `evals/customer_eval.py`; 100% of deterministic checks pass (<1 s, no LLM).
+`src/context/customers.py` + `evals/suites/customer_eval.py`; 100% of deterministic checks pass (<1 s, no LLM).
 - Record is looked up by the **session** customer id only. Question A2 (Maya asks about Jordan Kim) loads Maya's record, and a check confirms no other customer's name, id or order ids appear in any context.
 - The prompt-facing render omits email, payment method and address.
 - Adds **durations only**, no policy logic: `days ago` for order and delivery, and "N days after order, M after delivery" for return requests. The 30-day rule stays in the retrieved policy, so seasonal policy edits need no code change. This removes calendar counting (G2) from the model without hard-coding policy.
@@ -151,7 +151,7 @@ bge-base and MiniLM raise R@5/R@10 but lose R@1/MRR; bge-base is 3x slower for n
 - *Chunk design*: the 43-word §1 intro is outscored by longer sibling sections.
 
 ### Step 6 - Generation + faithfulness (2026-11-02)
-Retrieval tuning stopped (hybrid + bge-small, k=6 excerpts shown to the model). Built `src/generation/generate.py` (route -> session customer record + retrieved excerpts -> one Sonnet 5.5 call, structured reply: `status`, `answer`, `citations`, `data_issues`) and `evals/generation_eval.py` + `evals/judge/judge.py` (Haiku 5.5 judge). Dev set runs end to end in ~70 s uncached, seconds when cached.
+Retrieval tuning stopped (hybrid + bge-small, k=6 excerpts shown to the model). Built `src/generation/generate.py` (route -> session customer record + retrieved excerpts -> one Sonnet 5.5 call, structured reply: `status`, `answer`, `citations`, `data_issues`) and `evals/suites/generation_eval.py` + `evals/judge/judge.py` (Haiku 5.5 judge). Dev set runs end to end in ~70 s uncached, seconds when cached.
 
 **Prompt architecture.** Rules in the system prompt, evidence in the user message inside `<customer_record>` / `<source id=...>` tags that the model is told to treat as data; question last, after the evidence; customer record from the *session*, never the query; policy numbers deliberately not hard-coded in the prompt (seasonal changes need no prompt edit); empty route short-circuits to a fixed decline with no model call.
 
@@ -284,7 +284,7 @@ Whole-set strict pass: dev 0.77 -> 0.80, held-out 0.83 -> 0.79. Hallucination 0.
 ### E19 - Judge omission audit (tried, removed), staleness eval, versioned policies, deliverable docs (2026-11-02)
 **Omission audit: no measurable gain, removed.** An explicit audit step (list the exceptions and conditions in the evidence that this customer's question depends on, flag essential ones the reply leaves out) was added to the judge and measured before and after on identical inputs. Original planted-error set: 45/50 before, 45/50 after (dropped exceptions 1/5 -> 2/5, in-sample). A fresh 22-case out-of-sample omission set: 10/22 before, 10/22 after (pure omissions only: 3/11 -> 4/11, one case, inside noise). False alarms on untouched originals 3/53 -> 2/53. The test set itself was unreliable for omissions: about half the fresh cases also flipped the verdict (any judge catches that), and in several the removed fact survives elsewhere in the reply or is arguably not essential to the question, so "judge is blind" and "this was not a real error" cannot be separated. The audit also coincided with more malformed judge replies. Decision (user's): remove the audit and the extra set, keep the 50-case set, document the weakness. The final uncached harness run caught 0/5 dropped exceptions (1/5 earlier), which is the judge's own noise. Mitigation that does work: deterministic `must_include: "Final Sale"` checks on C4, C9, A4.
 
-**Staleness and update-propagation eval (`evals/staleness_eval.py`, 24/24 checks, now a hard gate in the harness).** Scenario 1, a seasonal update across two policies and the catalog: drift check finds exactly the changed chunks; an incremental update embedded exactly 4 of 75 chunks (counted at the embedder); a catalog date bump refreshed 29 products' metadata with no embedding; new facts retrievable and old ones gone; answers flipped correctly (Warrior Mat order, 45 days old: "through March 16"; water bottle, 38 days: "through March 23"); the tool path returned the new price immediately; an unrelated answer was unchanged. Scenario 2, two policy versions: only the version in force on the as-of date is searchable; flipping the date re-embedded exactly the 2 chunks whose text differed; archived chunks wrongly indexed are still excluded at retrieval.
+**Staleness and update-propagation eval (`evals/suites/staleness_eval.py`, 24/24 checks, now a hard gate in the harness).** Scenario 1, a seasonal update across two policies and the catalog: drift check finds exactly the changed chunks; an incremental update embedded exactly 4 of 75 chunks (counted at the embedder); a catalog date bump refreshed 29 products' metadata with no embedding; new facts retrievable and old ones gone; answers flipped correctly (Warrior Mat order, 45 days old: "through March 16"; water bottle, 38 days: "through March 23"); the tool path returned the new price immediately; an unrelated answer was unchanged. Scenario 2, two policy versions: only the version in force on the as-of date is searchable; flipping the date re-embedded exactly the 2 chunks whose text differed; archived chunks wrongly indexed are still excluded at retrieval.
 
 **Versioned policies (kept, user's decision).** `doc_slug`, `read_version`, `load_all(as_of)`, `searchable()`: the version in force keeps the stable ids; older or not-yet-effective versions are archived under `returns@2025-Q2§1`-style ids, are not embedded, and are filtered at retrieval as defence in depth.
 
@@ -296,7 +296,7 @@ Whole-set strict pass: dev 0.77 -> 0.80, held-out 0.83 -> 0.79. Hallucination 0.
 
 **How many chunks to pass (user's question).** The pipeline already passes the top 6 policy chunks (`k=6`), not the top 1. Hybrid retrieval, share of needed chunks in the top k: dev 0.93 at k=5, 0.97 at k=6, flat after; held-out 0.96 from k=5. All needed chunks within the top 5: 51/56 questions; top 6: 52/56; top 8 and 10: 53/56; 3 questions never appear in the top 10 (H24's rule ranks 11-20). So k=6 buys one question over k=5 and larger k adds essentially nothing; the remaining misses need a targeted retry (wider search or rewritten query when the reply is `not_in_data`), not a bigger k. R@1 is low largely because many questions need several chunks (cap 0.73), which is why the harness gates on R@5, MRR and NDCG.
 
-**Deliverables written:** `README.md`, `docs/ADR.md`, `docs/PRODUCTION_MEMO.md`, `docs/REQUIREMENTS.md`, `evals/FAILURE_ANALYSIS.md`, and `docs/review.html` (generated by `docs/build_review.py` from the same Q/A blocks). Fresh baseline saved: 42 metrics, uncached run 167 s.
+**Deliverables written:** `README.md`, `docs/ADR.md`, `docs/PRODUCTION_MEMO.md`, `docs/BRIEF_CHECKLIST.md`, `evals/FAILURE_ANALYSIS.md`, and `docs/review.html` (generated by `docs/build_review.py` from the same Q/A blocks). Fresh baseline saved: 42 metrics, uncached run 167 s.
 
 ---
 

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design and Metrics</title>
+<style>
+  :root { --bg:#faf9f7; --card:#fff; --ink:#1d1d1f; --mute:#6b6b70; --line:#e4e2de; --accent:#2f5d50; --chip:#eef2ef; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161617; --card:#1f1f21; --ink:#f2f2f3; --mute:#9a9aa0; --line:#34343a; --accent:#7cc4ad; --chip:#26302c; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,sans-serif; }
+  main { max-width:860px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:1.35rem; margin:0 0 4px; }
+  a { color:var(--accent); }
+  .sub { color:var(--mute); font-size:.9rem; margin-bottom:20px; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:16px; }
+  h2 { font-size:1.05rem; margin:0 0 2px; }
+  .measures { color:var(--mute); font-size:.85rem; margin-bottom:10px; }
+  .choice { margin:8px 0 12px; }
+  .choice b { color:var(--accent); }
+  .why { color:var(--mute); font-size:.92rem; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th, td { text-align:left; padding:5px 8px; border-top:1px solid var(--line); }
+  th { color:var(--mute); font-weight:500; font-size:.8rem; border-top:0; }
+  td.n { font-variant-numeric:tabular-nums; text-align:right; } th.n { text-align:right; }
+  .tag { display:inline-block; background:var(--chip); border-radius:6px; padding:0 6px; font-size:.75rem; color:var(--mute); }
+  .note { color:var(--mute); font-size:.85rem; margin-top:8px; }
+  .gate { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Design choices and metrics</h1>
+  <div class="sub"><a href="/">&larr; back to the assistant</a> &middot; numbers come live from <code>evals/baseline.json</code> (<span id="saved">…</span>), 36 dev + 25 held-out questions. Full reasoning: <code>docs/ADR.md</code>.</div>
+  <div id="root">Loading…</div>
+</main>
+
+<script>
+// Each section: what it measures, the method we chose, why, and the baseline metrics for it.
+// m = metric key suffix after "<area>.<split>."; fmt = how to show it; good = "high" | "low" (only used for the hint).
+const pct = v => (v * 100).toFixed(0) + '%', dec = v => v.toFixed(2);
+const SECTIONS = [
+  { title: 'Routing', measures: 'Does each question reach the right sources?',
+    choice: 'A small model (Haiku 5.5) picks domains: customer, policy, product.',
+    why: 'Searching only the sources a question needs keeps other domains out of the prompt. A missed domain loses evidence, so we gate on zero misses; an extra domain only costs a lookup.',
+    rows: [['Missed domains (gate: 0)', 'router', 'missed_domains', v => v], ['Exact match', 'router', 'exact_match', pct]] },
+  { title: 'Retrieval (policies)', measures: 'Is the right policy section ranked near the top?',
+    choice: 'Hybrid search (BM25 keywords + bge-small embeddings, merged by rank), over headings-based chunks.',
+    why: 'Policy sections are self-contained rules, so splitting at headings beats arbitrary windows. Keywords catch exact terms like "Final Sale", embeddings catch paraphrase. Honest note: hybrid is not measurably better than embeddings alone at this size; we keep it for scale. Known gap: "send back" does not find "return".',
+    rows: [['Recall@5', 'retrieval', 'R@5', dec], ['MRR@10', 'retrieval', 'MRR@10', dec], ['NDCG@10', 'retrieval', 'NDCG@10', dec]] },
+  { title: 'Product and customer data', measures: 'Does the model see the complete, correct record?',
+    choice: 'Exact catalog tools (get_product, search_products, get_fabric); customer record loaded by session id, never searched.',
+    why: 'List and compare questions need every match, which top-k search cannot promise. Loading the customer by session means naming someone else in a question cannot change whose data is read.',
+    rows: [['Gold evidence in context', 'generation', 'gold_in_context', pct], ['Cross-customer leaks (gate)', 'generation', 'no_cross_customer_leak', v => v === 1 ? 'none' : 'LEAK']] },
+  { title: 'Generation quality', measures: 'Is the answer correct, supported and honest about gaps?',
+    choice: 'One Sonnet 5.5 call that must reply through a structured tool: status, answer, citations, data issues.',
+    why: 'Structure makes citations checkable by code and lets the model say "partial" or "not in data" instead of guessing. Strict pass means every automatic check and the judge are clean, so it is the harshest number.',
+    rows: [['Strict pass', 'generation', 'strict_pass', pct], ['Correctness vs reference', 'generation', 'correctness', pct], ['Faithfulness', 'generation', 'faithfulness', pct],
+           ['Hallucination rate (lower is better)', 'generation', 'hallucination_rate', pct], ['False refusal rate (lower is better)', 'generation', 'false_refusal_rate', pct],
+           ['Citations all valid (gate)', 'generation', 'citations_ok', v => v === 1 ? 'yes' : 'NO']] },
+  { title: 'Judge trust', measures: 'Can we believe the automatic grader?',
+    choice: 'An LLM judge checks every claim against its sources, validated against human labels and planted errors.',
+    why: 'An unvalidated judge is a number with no meaning. We measure agreement with human labels, whether it catches 50 deliberately planted errors, and how often it flags harmless paraphrases. It is weakest at spotting omitted caveats, so fixed rule checks cover Final Sale.',
+    single: [['Agreement with human labels', 'judge.agreement_any_problem', pct], ['Planted errors caught', 'judge.control_detection_rate', pct], ['False alarm on paraphrase (lower is better)', 'judge.paraphrase_false_alarm_rate', pct]] },
+  { title: 'Freshness', measures: 'Does a policy change change the answer?',
+    choice: 'Content-hash incremental index sync, archived policy versions filtered out of search.',
+    why: 'Only changed chunks are re-embedded, and the model never sees two conflicting versions of a rule. 24 checks edit policies and confirm the answers follow.',
+    single: [['Failed staleness checks (gate: 0)', 'staleness.failed_checks', v => v]] },
+  { title: 'Cost and latency', measures: 'What does one answer cost and how long does it take?',
+    choice: 'Haiku for routing, Sonnet for answering, local embeddings, a short tool loop.',
+    why: 'The cheap model does the small decision, the strong model writes the answer, and embeddings run on the machine for free. Only uncached runs measure these.',
+    rows: [['p95 latency', 'info', 'end_to_end_p95_ms', v => (v / 1000).toFixed(1) + ' s'], ['Cost per question', 'info', 'cost_per_question_usd', v => '$' + v.toFixed(3)]] },
+];
+
+fetch('/metrics').then(r => r.json()).then(b => {
+  document.getElementById('saved').textContent = 'saved ' + String(b.saved || '').slice(0, 10);
+  const M = b.metrics, get = k => M[k] === undefined ? '–' : M[k];
+  const cell = (v, f) => v === '–' ? '–' : f(v);
+  document.getElementById('root').innerHTML = SECTIONS.map(s => {
+    let table = '';
+    if (s.rows) table = `<table><tr><th>Metric</th><th class="n">Dev</th><th class="n">Held-out</th></tr>` +
+      s.rows.map(([label, area, m, f]) => `<tr><td>${label}</td><td class="n">${cell(get(`${area}.dev.${m}`), f)}</td><td class="n">${cell(get(`${area}.heldout.${m}`), f)}</td></tr>`).join('') + '</table>';
+    else table = `<table><tr><th>Metric</th><th class="n">Value</th></tr>` +
+      s.single.map(([label, k, f]) => `<tr><td>${label}</td><td class="n">${cell(get(k), f)}</td></tr>`).join('') + '</table>';
+    return `<section><h2>${s.title}</h2><div class="measures">${s.measures}</div>
+      <div class="choice"><b>Chosen:</b> ${s.choice}</div><div class="why"><b>Why:</b> ${s.why}</div>${table}</section>`;
+  }).join('') + `<p class="note">The eval set is small, so identical runs move dev strict pass by about ±0.03 and one held-out question is worth 0.04. Treat differences under 0.05 as noise.</p>`;
+}).catch(e => { document.getElementById('root').textContent = 'Could not load metrics: ' + e.message; });
+</script>
+</body>
+</html>

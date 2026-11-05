@@ -1,4 +1,4 @@
-"""Router accuracy on the labelled questions, dev and held-out.   python -m evals.test_router
+"""Router accuracy on the labelled questions, dev and held-out.   python -m evals.suites.router_eval
 
 A missed domain drops evidence (serious); an extra domain only costs a lookup (minor), except for out-of-scope
 questions, where any routing at all is a failure. Also reports per-domain precision/recall and the router's own

@@ -2,7 +2,7 @@
 
 Eval "now" date: **2025-03-01** (all 30-day window math is relative to this).
 
-This file is the spec for `evals/questions.jsonl`. Each question exists to catch at least one failure mode below; most failure modes are covered by several questions so a single lucky answer can't hide them. The exceptions (S2, S3, and thinly G6) are called out in the coverage check below.
+This file is the spec for `evals/questions_dev.jsonl`. Each question exists to catch at least one failure mode below; most failure modes are covered by several questions so a single lucky answer can't hide them. The exceptions (S2, S3, and thinly G6) are called out in the coverage check below.
 
 ## Failure modes
 

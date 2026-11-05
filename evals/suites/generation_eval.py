@@ -1,8 +1,8 @@
 """Generation + faithfulness eval.
 
-    python -m evals.generation_eval                  # dev set, hybrid retrieval, judge on
-    python -m evals.generation_eval --set heldout
-    python -m evals.generation_eval --no-judge       # deterministic checks only (free)
+    python -m evals.suites.generation_eval                  # dev set, hybrid retrieval, judge on
+    python -m evals.suites.generation_eval --set heldout
+    python -m evals.suites.generation_eval --no-judge       # deterministic checks only (free)
 
 Two layers per question:
   1. deterministic checks (no LLM): status, required / forbidden facts, citation validity, cross-customer leak

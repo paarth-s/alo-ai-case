@@ -2,7 +2,7 @@
 
 A question-answering assistant over three retail domains: **product facts**, **policies** (returns, shipping, loyalty) and **a customer's own orders**. Every answer cites its sources. The emphasis is on measuring it honestly: a regression harness, a validated judge, and a written account of where it breaks.
 
-**Read:** [ADR](docs/ADR.md) (design decisions) · [Production memo](docs/PRODUCTION_MEMO.md) · [Failure analysis](evals/FAILURE_ANALYSIS.md) (3 worst cases) · [Requirements checklist](docs/REQUIREMENTS.md) · [Lab notebook](evals/LOG.md)
+**Read:** [ADR](docs/ADR.md) (design decisions) · [Production memo](docs/PRODUCTION_MEMO.md) · [Failure analysis](evals/FAILURE_ANALYSIS.md) (3 worst cases) · [Brief checklist](docs/BRIEF_CHECKLIST.md) · [Lab notebook](evals/LOG.md)
 
 ## How it works
 
@@ -28,7 +28,7 @@ python -m src.ingestion.build_index        # ~10 s; downloads the 130 MB embeddi
 ## Try it
 
 ```bash
-python -m src.web.app                      # web demo at http://127.0.0.1:8000 (interface only)
+python -m src.web.app                      # web demo at http://127.0.0.1:8000 (interface only); /design shows choices and metrics
 python -m src.generation.generate "Which leggings have no side seams?"
 python -m src.generation.generate "Can I return my Cyber Monday leggings?" --customer CUST-10254
 python -m src.generation.generate "What did Jordan Kim order?" --customer CUST-10041   # declines: not your account
@@ -45,7 +45,7 @@ python -m evals.harness.run_all --fresh    # ignore caches: real latency and cos
 python -m evals.harness.run_all --generator claude-haiku-5-5   # try another answer model
 ```
 
-It prints each metric with its baseline, new value and tolerance. Tolerances come from measured run-to-run noise, so one `WORSE` on a noisy metric is worth re-running. Single pieces: `evals.retrieval_eval`, `evals.generation_eval`, `evals.staleness_eval`, `evals.judge.judge_controls run`, `src.ingestion.build_index --check`.
+It prints each metric with its baseline, new value and tolerance. Tolerances come from measured run-to-run noise, so one `WORSE` on a noisy metric is worth re-running. Single pieces: `evals.suites.retrieval_eval`, `evals.suites.generation_eval`, `evals.suites.staleness_eval`, `evals.judge.judge_controls run`, `src.ingestion.build_index --check`.
 
 ## Results (fresh run, 61 questions: 36 dev, 25 held-out)
 
@@ -70,10 +70,10 @@ Identical runs move dev strict pass by about ±0.03; on 25 questions one is wort
 ```
 src/   core/ (cache) · router/ · ingestion/ (chunking, embeddings, FAISS store, build_index)
        retrieval/ (BM25, hybrid) · context/ (catalog tools, customer lookup) · generation/ · web/
-evals/ harness/ (run_all, noise, attribution) · judge/ · pricing/ · *_eval.py · questions*.jsonl
+evals/ harness/ (run_all, noise, attribution) · judge/ · pricing/ · suites/ (the *_eval.py scripts) · questions_dev/heldout.jsonl
        baseline.json · results/ · calibration/ · LOG.md
 data/  policies, product catalog, customer orders (the synthetic package supplied with the case)
-docs/  ADR, production memo, requirements checklist, review.html (Q&A for review)
+docs/  ADR, production memo, brief checklist, review.html (the brief's questions with answers)
 ```
 
 ## Glossary

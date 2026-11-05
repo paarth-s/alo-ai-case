@@ -1,9 +1,9 @@
 """Score retrieval against the gold anchors in the question files.
 
-    python -m evals.retrieval_eval                          # routed dense top-10: the naive baseline
-    python -m evals.retrieval_eval --mode hybrid            # dense bm25 hybrid
-    python -m evals.retrieval_eval --set heldout            # the held-out questions (not used for tuning)
-    python -m evals.retrieval_eval --routing oracle         # use the labelled domains, to isolate retrieval from routing
+    python -m evals.suites.retrieval_eval                          # routed dense top-10: the naive baseline
+    python -m evals.suites.retrieval_eval --mode hybrid            # dense bm25 hybrid
+    python -m evals.suites.retrieval_eval --set heldout            # the held-out questions (not used for tuning)
+    python -m evals.suites.retrieval_eval --routing oracle         # use the labelled domains, to isolate retrieval from routing
 
 Questions with no vector gold (customer lookups, out-of-scope) are excluded from the metrics.
 A "random" row shows what a random ranking of the searched chunks would score, so no metric is read in isolation.

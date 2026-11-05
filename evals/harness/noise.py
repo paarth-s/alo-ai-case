@@ -43,7 +43,7 @@ def run_pipeline(i: int) -> None:
         procs = []
         for s, out in todo:
             log = open(CACHE_DIR / f"run{i}_{s}.log", "w")
-            procs.append((s, out, subprocess.Popen([sys.executable, "-m", "evals.generation_eval", "--set", s, "--label", f"noise{i}"],
+            procs.append((s, out, subprocess.Popen([sys.executable, "-m", "evals.suites.generation_eval", "--set", s, "--label", f"noise{i}"],
                                                    cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)))
         todo = [(s, out) for s, out, p in procs if p.wait() != 0 or not out.exists()]
         if not todo:

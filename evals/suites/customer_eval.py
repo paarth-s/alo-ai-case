@@ -1,6 +1,6 @@
 """Deterministic checks for the customer-record harness (no LLM, runs in under a second).
 
-    python -m evals.customer_eval
+    python -m evals.suites.customer_eval
 """
 import json
 import sys

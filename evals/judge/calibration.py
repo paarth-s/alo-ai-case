@@ -207,7 +207,7 @@ def rejudge_key() -> list[dict]:
     from concurrent.futures import ThreadPoolExecutor
     from types import SimpleNamespace
 
-    from evals.generation_eval import judge_summary
+    from evals.suites.generation_eval import judge_summary
     from evals.judge.judge import judge
 
     items = json.loads((OUT / "items.json").read_text())

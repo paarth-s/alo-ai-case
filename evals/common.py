@@ -5,7 +5,7 @@ from pathlib import Path
 from src.ingestion.ingest import load_all
 
 ROOT = Path(__file__).resolve().parent.parent
-QUESTIONS_PATH = ROOT / "evals" / "questions.jsonl"  # dev set: used while building and tuning
+QUESTIONS_PATH = ROOT / "evals" / "questions_dev.jsonl"  # dev set: used while building and tuning
 HELDOUT_PATH = ROOT / "evals" / "questions_heldout.jsonl"  # never used for tuning decisions; reported at the end
 AS_OF = "2025-03-01"  # the fixed "today" for every date-dependent answer
 
