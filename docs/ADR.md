@@ -20,7 +20,6 @@
 
 **Why.**
 - I compared bge-base, gte-small, all-MiniLM-L6 and e5-small on the dev set. None beat bge-small on the rank-sensitive metrics (hybrid MRR@10: 0.87 vs 0.86, 0.85, 0.85, 0.83). bge-base improved recall@5/10 slightly but lost on R@1 and MRR at about 3x the latency (28 ms vs 8 to 11 ms).
-- $$$Fill in a bit on the 
 
 ### Q3. Retrieval approach: what failure modes does your technique address that naive top-k does not?
 
