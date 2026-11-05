@@ -116,12 +116,11 @@ class Prepared:
 class Assistant:
     def __init__(self, retriever: Retriever | None = None, customers: CustomerStore | None = None,
                  catalog: Catalog | None = None, as_of: str = DEFAULT_AS_OF, k: int = 6, mode: str = "hybrid",
-                 product_mode: str = "tools", cache_path: str | None = None):
-        assert product_mode in ("tools", "chunks"), product_mode
+                 cache_path: str | None = None):
         self.retriever = retriever or Retriever()
         self.customers = customers or CustomerStore()
         self.catalog = catalog or Catalog()
-        self.as_of, self.k, self.mode, self.product_mode = date.fromisoformat(as_of), k, mode, product_mode
+        self.as_of, self.k, self.mode = date.fromisoformat(as_of), k, mode
         self.cache, self.client = DiskCache(cache_path or os.getenv("GENERATION_CACHE", ".cache/generation.json")), None
 
     def prepare(self, query: str, customer_id: str | None = None) -> Prepared:
@@ -131,7 +130,7 @@ class Assistant:
         if not domains:  # out of scope: nothing to retrieve, nothing to generate
             return Prepared(query, domains, "", "", [], Answer("declined", OUT_OF_SCOPE_REPLY, [], [], domains, stats=stats), stats=stats)
 
-        use_tools = "product" in domains and self.product_mode == "tools"
+        use_tools = "product" in domains  # product facts come from catalog tools, never from retrieved chunks
         blocks, ids = [], []
         if "customer" in domains:
             record = self.customers.render(customer_id, self.as_of)
@@ -226,9 +225,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("query")
     ap.add_argument("--customer", default=None, help="session customer id, e.g. CUST-10254")
-    ap.add_argument("--product-mode", choices=["tools", "chunks"], default="tools")
     args = ap.parse_args()
-    a = Assistant(product_mode=args.product_mode).answer(args.query, args.customer)
+    a = Assistant().answer(args.query, args.customer)
     print(json.dumps({"status": a.status, "answer": a.answer, "citations": a.citations, "data_issues": a.data_issues,
                       "routed": a.route, "tool_calls": [{"name": c["name"], "args": c["args"], "returned": c["ids"]} for c in a.tool_calls]},
                      indent=2, ensure_ascii=False))

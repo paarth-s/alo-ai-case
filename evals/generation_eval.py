@@ -140,19 +140,17 @@ def main():
     ap.add_argument("--set", choices=["dev", "heldout"], default="dev")
     ap.add_argument("--k", type=int, default=6, help="retrieved excerpts shown to the model")
     ap.add_argument("--mode", default="hybrid")
-    ap.add_argument("--product-mode", choices=["tools", "chunks"], default="tools",
-                    help="product facts via catalog tool calls, or via retrieved catalog chunks")
     ap.add_argument("--no-judge", action="store_true")
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--label", default=None)
     args = ap.parse_args()
-    label = args.label or f"gen_{args.mode}_k{args.k}" + ("_tools" if args.product_mode == "tools" else "")
+    label = args.label or f"gen_{args.mode}_k{args.k}_tools"
     questions = load_questions(HELDOUT_PATH if args.set == "heldout" else QUESTIONS_PATH)
     if problems := validate(questions):
         raise SystemExit("invalid question set:\n  " + "\n  ".join(problems))
     customers = json.loads((ROOT / "data" / "customers" / "customer_order_history.json").read_text())["customers"]
 
-    assistant = Assistant(as_of=AS_OF, k=args.k, mode=args.mode, product_mode=args.product_mode)
+    assistant = Assistant(as_of=AS_OF, k=args.k, mode=args.mode)
     prepared = [assistant.prepare(q["query"], q["customer_id"]) for q in questions]  # local and fast
     with ThreadPoolExecutor(args.workers) as pool:  # the LLM calls are what is slow, so only they run in parallel
         answers = list(pool.map(assistant.generate, prepared))

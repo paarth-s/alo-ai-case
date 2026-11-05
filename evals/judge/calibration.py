@@ -178,7 +178,7 @@ def build() -> None:
     if "--sample" not in sys.argv:
         items += rest_of(items)
     qs = {("dev", q["id"]): q for q in load_questions(QUESTIONS_PATH)} | {("heldout", q["id"]): q for q in load_questions(HELDOUT_PATH)}
-    assistant = Assistant(as_of=AS_OF, k=6, mode="hybrid", product_mode="tools")  # answers are cached, so this makes no API calls
+    assistant = Assistant(as_of=AS_OF, k=6, mode="hybrid")  # answers are cached, so this makes no API calls
     cards, key = [], []
     for it in items:
         q = qs[(it["set"], it["id"])]
@@ -251,7 +251,7 @@ def freeze() -> None:
     key = json.loads((OUT / "key.json").read_text())
     qs = {("dev", q["id"]): q for q in load_questions(QUESTIONS_PATH)} | {("heldout", q["id"]): q for q in load_questions(HELDOUT_PATH)}
     rows = {(r["set"], r["id"]): r for r in load_rows() if r["variant"] == "tools"}
-    assistant = Assistant(as_of=AS_OF, k=6, mode="hybrid", product_mode="tools")
+    assistant = Assistant(as_of=AS_OF, k=6, mode="hybrid")
     items = []
     for k in key:
         q, r = qs[(k["set"], k["id"])], rows[(k["set"], k["id"])]

@@ -108,7 +108,7 @@ def questions() -> dict:
 def make_assistant(tmp: Path, index_dir: Path) -> Assistant:
     return Assistant(retriever=Retriever(index_dir), customers=CustomerStore(tmp / "data" / "customers" / "customer_order_history.json"),
                      catalog=Catalog(tmp / "data" / "products" / "alo_product_catalog.json"), as_of=AS_OF, k=6, mode="hybrid",
-                     product_mode="tools", cache_path=str(tmp / "gen_cache.json"))  # a scratch cache: every answer is a real call
+                     cache_path=str(tmp / "gen_cache.json"))  # a scratch cache: every answer is a real call
 
 
 def ask(a: Assistant, qs: dict, qid: str | None, text: str | None = None, customer: str | None = None) -> str:
