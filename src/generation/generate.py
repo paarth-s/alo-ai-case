@@ -130,13 +130,13 @@ class Assistant:
         if not domains:  # out of scope: nothing to retrieve, nothing to generate
             return Prepared(query, domains, "", "", [], Answer("declined", OUT_OF_SCOPE_REPLY, [], [], domains, stats=stats), stats=stats)
 
-        use_tools = "product" in domains  # product facts come from catalog tools, never from retrieved chunks
+        use_tools = "product" in domains  # product facts come from catalog tools; only policy prose is retrieved
         blocks, ids = [], []
         if "customer" in domains:
             record = self.customers.render(customer_id, self.as_of)
             blocks.append(f"<customer_record>\n{record or 'Not available: no customer is signed in.'}\n</customer_record>")
             ids.append("customer_record")
-        retrieve_from = [d for d in domains if d in VECTOR_DOMAINS and not (use_tools and d == "product")]
+        retrieve_from = [d for d in domains if d in VECTOR_DOMAINS]
         if retrieve_from:
             started = time.perf_counter()
             hits = self.retriever.retrieve(query, self.k, retrieve_from, mode=self.mode)

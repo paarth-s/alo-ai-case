@@ -8,13 +8,13 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes, three: Markdown policies, a JSON product catalog, and JSON customer order records.
 
-**Why.** `src/ingestion/ingest.py` splits the three policy files at heading boundaries (45 chunks) and renders the 24 products and 6 fabrics generically from every field (30 chunks). `src/context/customers.py` loads orders as structured records (not embedded). Rebuilds are incremental by content hash (`python -m src.ingestion.build_index`, about 8 s from scratch). The data is the synthetic package supplied with the case (8 customers, 24 SKUs, 3 policies). The brief suggests 20 to 50 customers; I used the supplied 8 and wrote the 61 questions myself.
+**Why.** `src/ingestion/ingest.py` splits the three policy files at heading boundaries (45 chunks, embedded). The product catalog (24 products, 6 fabrics) and the customer orders are structured JSON, so they are loaded as typed records and queried with exact tools (`src/context/catalog.py`, `customers.py`), not embedded. Rebuilds are incremental by content hash (`python -m src.ingestion.build_index`, about 8 s from scratch). The data is the synthetic package supplied with the case (8 customers, 24 SKUs, 3 policies). The brief suggests 20 to 50 customers; I used the supplied 8 and wrote the 61 questions myself.
 
 ### S2. Is there an embedding and vector store setup, with written justification?
 
 **Answer.** Yes: `bge-small-en-v1.5` run locally through ONNX, stored in FAISS (exact search).
 
-**Why.** Justification and the four rejected embedders (code removed, numbers in `evals/LOG.md` E9) are in ADR Q2. Exact FAISS search has no recall loss to explain; persistence, metadata filtering and incremental sync (re-embed only changed chunks) are our code in `src/ingestion/store.py`. I also built the store on Chroma and re-ran every eval: identical retrieval metrics (dev R@5 0.93, MRR 0.90; held-out R@5 0.96, MRR 0.83), no code saved, and an install of 11 to 12 minutes against 24 seconds, so FAISS stays. Production would use pgvector behind the same `VectorStore` interface.
+**Why.** Justification and the four rejected embedders (code removed, numbers in `evals/LOG.md` E9) are in ADR Q2. Exact FAISS search has no recall loss to explain; persistence, metadata filtering and incremental sync (re-embed only changed chunks) are our code in `src/ingestion/store.py`. I also built the store on Chroma and re-ran every eval: identical retrieval metrics on every metric at the time, no code saved, and an install of 11 to 12 minutes against 24 seconds, so FAISS stays. Production would use pgvector behind the same `VectorStore` interface.
 
 ### S3. Does retrieval use at least one technique beyond naive top-k?
 
@@ -52,19 +52,19 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes: Recall@1/5/10, MRR@10 and NDCG@10, shown beside what a random ranking would score.
 
-**Why.** Hybrid retrieval, dev: R@1 0.59, R@5 0.93, R@10 0.97, MRR 0.90, NDCG 0.89 (random: 0.03, 0.13, 0.25, 0.11, 0.13). Held-out: 0.68, 0.96, 0.96, 0.83, 0.86. R@10 looks high but is nearly saturated on a 75-chunk corpus, and R@1 is capped at 0.73 because many questions need several chunks, so MRR and NDCG are the metrics to watch. Product retrieval is scored by "gold sources in context" (0.99 dev, 0.96 held-out), since products use tools.
+**Why.** Retrieval is scored on policy questions only, because policy text is the only thing searched (21 dev and 16 held-out questions have policy gold). Hybrid, dev: R@1 0.58, R@5 0.94, R@10 0.98, MRR 0.87, NDCG 0.87 (random: 0.02, 0.11, 0.22, 0.09, 0.11). Held-out: 0.53, 0.94, 0.94, 0.74, 0.79. R@10 is nearly saturated on a 45-chunk corpus, and R@1 is capped at 0.77 (dev) because many questions need several chunks, so MRR and NDCG are the metrics to watch. Dense alone scores MRR 0.83 dev and 0.88 held-out, so hybrid is not clearly better. Products use tools and are scored by "gold sources in context" (0.99 dev, 0.96 held-out). An earlier version also scored product questions against an embedded product index that answering never used; that inflated MRR (0.90 dev, 0.83 held-out), and I removed it.
 
 ### E3. Are there at least two generation metrics?
 
 **Answer.** Yes: faithfulness, hallucination rate, correctness, and a combined strict-pass rate, plus deterministic checks.
 
-**Why.** Dev / held-out: faithfulness 0.99 / 1.00, hallucination rate 0.06 / 0.04, correctness 0.99 / 0.92, strict pass 0.86 / 0.84, valid citations 1.00, cross-customer leaks 0. Strict pass moves ±0.03 between identical runs on dev, so read differences under 0.06 as noise; on the 25 held-out questions one question is 0.04, so a swing of two is still noise (the fresh run's H15 and H19 are borderline judge calls, see LOG E21). Ten pitfall checks (missing exception, date arithmetic, fabrication, conflated rules, wrong tier, stale data, out-of-scope, privacy, injection, over-refusal) are scored per question.
+**Why.** Dev / held-out: faithfulness 1.00 / 1.00, hallucination rate 0.06 / 0.00, correctness 0.99 / 0.94, strict pass 0.86 / 0.92, valid citations 1.00, cross-customer leaks 0. Strict pass moves ±0.03 between identical runs on dev, so read differences under 0.06 as noise; on the 25 held-out questions one question is 0.04, so a swing of two is still noise (H15 is a borderline judge call, see the failure analysis). Ten pitfall checks (missing exception, date arithmetic, fabrication, conflated rules, wrong tier, stale data, out-of-scope, privacy, injection, over-refusal) are scored per question.
 
 ### E4. Is there a failure analysis of the three worst examples?
 
 **Answer.** Yes, in `evals/FAILURE_ANALYSIS.md`: a retrieval miss (H24, "send back" vs "return"), over-hedging on a self-contradicting policy (H15), and a mislabelled status on a latex-allergy question (A5), each with the assistant's actual reply quoted.
 
-**Why.** They are the three questions that failed strict pass in all four uncached runs (the other six failures are intermittent and listed in a table). Each is traced through router, retrieval and generation. Across the nine questions that did not pass in the committed run: 2 retrieval, 6 generation, 1 eval-side, 0 router.
+**Why.** They are the three questions that failed strict pass in all four uncached runs (the other six failures are intermittent and listed in a table). Each is traced through router, retrieval and generation. Across the seven questions that did not pass in the committed run: 2 retrieval, 5 generation, 0 router.
 
 ### E5. Is there a regression harness that re-runs the evals against a new model or configuration in under five minutes?
 
@@ -83,7 +83,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 **Answer.** Yes, three ways: against human labels, with planted errors, and for self-consistency.
 
 **Why.**
-- **Human labels:** 12 items labelled by me and 46 by blind labelers (not independent of the model family). Agreement on "any problem": 0.93 (kappa 0.56); on unsupported facts: 1.00.
+- **Human labels:** 12 items labelled by me and 46 by blind labelers (not independent of the model family). Agreement on "any problem": 0.86 in the latest run and 0.93 in the one before (4 of 58 items flip between repeats); on unsupported facts: 1.00.
 - **Planted errors:** 44 to 47 of 50 caught for the right reason (88 to 94% across three runs); 1 to 3 of 53 untouched clean replies and 1 to 2 of 16 paraphrases wrongly flagged. It catches added errors almost perfectly and is weak on omissions (0 to 2 of 5 dropped exceptions caught); an omission check I tried did not help and was removed. Deterministic `Final Sale` checks cover that case.
 - **Self-consistency:** the same 58 answers re-graded three times flip on 4 of 58 items (95.4% pairwise agreement).
 

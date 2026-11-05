@@ -1,10 +1,10 @@
-"""Turn the raw data files into chunks: one per policy section, one per product, one per fabric.
+"""Turn the policy files into chunks, one per section.
 
-Chunk ids double as source anchors for the eval gold labels (e.g. "returns§6", "W5561R-BLK",
-"fabric:Airlift"), so re-chunking never invalidates the question set.
+Only policy prose is chunked and embedded. The product catalog and customer orders are structured data: they are
+loaded as-is and queried with exact lookups (src/context/), never searched. Chunk ids double as source anchors for
+the eval gold labels (e.g. "returns§6"), so re-chunking never invalidates the question set.
 """
 import hashlib
-import json
 import re
 from datetime import datetime
 from dataclasses import dataclass, field
@@ -20,7 +20,7 @@ DOC_SLUGS = {
 @dataclass
 class Chunk:
     id: str
-    domain: str  # "policy" | "product"
+    domain: str  # "policy" (the only vector domain)
     text: str  # what the LLM sees
     embed_text: str  # what gets embedded (can drop low-signal fields)
     meta: dict = field(default_factory=dict)
@@ -163,63 +163,8 @@ def policy_chunks(path: Path, archived: bool = False) -> list[Chunk]:
     return chunks
 
 
-# ---------- products ----------
-
-def _fmt(key: str, v) -> str:
-    if isinstance(v, list):
-        return ", ".join(map(str, v))
-    if isinstance(v, dict):  # inseam_by_size: {"XXS_XS_S": "28 in"} -> "XXS/XS/S: 28 in"
-        return "; ".join(f"{'all sizes' if k == 'all' else k.replace('_', '/')}: {x}" for k, x in v.items())
-    if isinstance(v, bool):
-        return "yes" if v else "no"
-    return f"${v}" if key == "price_usd" else str(v)
-
-
-def _render_product(p: dict, glossary: dict, with_variants: bool) -> str:
-    """Render every field generically, so new catalog attributes show up without code changes."""
-    out = [f"{p['name']} (SKU {p['sku']})"]
-    for k, v in p.items():
-        # is_final_sale_eligible is false for every SKU yet customers bought them as Final Sale:
-        # Final Sale depends on the discount at purchase (policy §6), so the policy owns that rule.
-        if k in ("sku", "name", "available_sizes", "available_colors", "is_final_sale_eligible") or v in (None, "N/A"):
-            continue
-        label = k.removeprefix("is_").replace("_usd", "").replace("_", " ").capitalize()
-        if k == "fabric" and v in glossary:  # join the fabric glossary in, so the fabric answer is local
-            g = glossary[v]
-            out.append(f"Fabric: {v} ({g['composition']}; {g['compression_level']} compression)")
-        else:
-            out.append(f"{label}: {_fmt(k, v)}")
-    if with_variants:  # long, low-signal lists: shown to the LLM but not embedded
-        out.append(f"Sizes: {', '.join(p.get('available_sizes', []))}")
-        out.append(f"Colors: {', '.join(p.get('available_colors', []))}")
-    return "\n".join(out)
-
-
-def product_chunks(path: Path) -> list[Chunk]:
-    cat = json.loads(path.read_text())
-    base = {"catalog_version": cat["catalog_version"], "last_updated": cat["last_updated"]}
-    glossary, chunks = cat["fabric_glossary"], []
-
-    for name, g in glossary.items():
-        text = (f"Fabric: {name}\n{g['description']}\nCompression: {g['compression_level']}. "
-                f"Finish: {g['finish']}.\nComposition: {g['composition']}\n"
-                f"Key properties: {', '.join(g['key_properties'])}\nCare: {g['care']}")
-        chunks.append(Chunk(f"fabric:{name}", "product", text, text, {"kind": "fabric", "fabric": name, **base}))
-
-    for p in cat["products"]:
-        chunks.append(Chunk(
-            id=p["sku"], domain="product",
-            text=_render_product(p, glossary, with_variants=True),
-            embed_text=_render_product(p, glossary, with_variants=False),
-            meta={"kind": "product", "sku": p["sku"], "name": p["name"], "gender": p["gender"],
-                  "category": p["category"], "subcategory": p["subcategory"], "fabric": p.get("fabric"),
-                  "price_usd": p["price_usd"], "is_bestseller": p.get("is_bestseller", False), **base},
-        ))
-    return chunks
-
-
 def load_all(data_dir: Path, as_of: str | None = None) -> list[Chunk]:
-    """All chunks. For each policy, the version in force on `as_of` (ISO date; default: the newest) keeps the stable ids and is
+    """All policy chunks. For each policy, the version in force on `as_of` (ISO date; default: the newest) keeps the stable ids and is
     searchable; every other version is archived. A version that is not yet effective is archived until its date arrives."""
     by_doc: dict[str, list[tuple[str, str, Path]]] = {}
     for path in sorted((data_dir / "policies").glob("*.md")):
@@ -232,7 +177,7 @@ def load_all(data_dir: Path, as_of: str | None = None) -> list[Chunk]:
         current = (in_force[-1] if in_force else versions[0])[2]  # nothing effective yet: fall back to the oldest rather than none
         for _, _, path in versions:
             chunks += policy_chunks(path, archived=path != current)
-    return chunks + product_chunks(data_dir / "products" / "alo_product_catalog.json")
+    return chunks
 
 
 def searchable(chunks: list[Chunk]) -> list[Chunk]:

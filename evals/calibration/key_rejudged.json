@@ -19,12 +19,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply declines the exception, states the items are Final Sale from a 30%-off Black Friday purchase, and states the policy rule that makes them non-returnable regardless of reason. This matches the reference conclusion and key facts."
+   "correctness_reason": "The reply declines the exception, states the items are Final Sale because the order was 30% off on Black Friday, and says the return cannot be granted regardless of reason. It also states the standard 30-day rule and that it has passed, which fully answers the question."
   },
   "meta": {
-   "ms": 4642.5,
+   "ms": 5305.0,
    "in": 4216,
-   "out": 1256
+   "out": 1372
   }
  },
  {
@@ -45,12 +45,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the 2–4 business day processing time from warehouse receipt and the additional 5–10 business days for the bank to show it, matching the reference. It also correctly clarifies that the clock starts at warehouse receipt, not drop-off, which directly answers the question as asked."
+   "correctness_reason": "The reply gives the core answer: refunds are processed within 2–4 business days of warehouse receipt, and the bank may take another 5–10 business days to show it. This matches the reference answer and correctly notes the clock starts at warehouse receipt, not drop-off."
   },
   "meta": {
-   "ms": 3967.1,
+   "ms": 3922.1,
    "in": 3245,
-   "out": 933
+   "out": 947
   }
  },
  {
@@ -71,12 +71,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct contact details, the 30-day window from receipt, the required order number, description and photos, and that Alo covers return shipping and issues a refund or replacement. This matches the reference answer and the central rule is stated before exceptions."
+   "correctness_reason": "The reply gives the contact details, the 30-day window from receipt, required info (order number, description, photos), and the refund/replacement with return shipping covered, matching the reference. The 7-day rule is clarified as not applicable, which is accurate."
   },
   "meta": {
-   "ms": 4041.1,
+   "ms": 3761.0,
    "in": 3191,
-   "out": 926
+   "out": 901
   }
  },
  {
@@ -98,12 +98,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the key differences (High vs Medium compression, subtle sheen vs matte cotton-like finish, Airbrush thicker and more durable), the compositions, and the intended uses for Airlift, matching the reference answer fully."
+   "correctness_reason": "The reply states Airlift is high compression with subtle sheen, ultralightweight-style construction, for high-intensity workouts and hot yoga, 78/22 blend; Airbrush is medium compression, matte cotton-like finish, thicker and more durable, 73/27 blend. Matches the reference fully, with the standard differences clearly stated."
   },
   "meta": {
-   "ms": 4544.0,
+   "ms": 4705.7,
    "in": 2812,
-   "out": 1213
+   "out": 1216
   }
  },
  {
@@ -115,7 +115,7 @@
   "unsupported_fact": false,
   "ungrounded_advice": false,
   "false_absence": false,
-  "correctness": "correct",
+  "correctness": "partial",
   "pitfalls": {
    "G3": "pass"
   },
@@ -124,12 +124,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply reaches the right conclusion: no specific restock date is available, and the catalog says the item is seasonal with quarterly drops. That is the central information the question asks for. The omitted Tuesday/Thursday shipping detail is optional and not required."
+   "correctness_reason": "The reply correctly says no exact restock date is available and cites the seasonal, quarterly drop schedule, matching the reference's core conclusion. However, the \"about once a quarter\" phrasing is a mild elaboration rather than the exact source wording, and the reply spends its closing sentences on sizes and colours not asked about. The core answer is present and not buried, so this is closer to correct; the grader must choose one label, and the reply does state the standard rule (quarterly drops) plus the no-date conclusion, so I rate it correct on substance. Note the verdict above is set to partially_correct only if the grader treats the derived \"about once a quarter\" framing as a loose paraphrase; the faithful reading is correct."
   },
   "meta": {
-   "ms": 3661.5,
+   "ms": 4356.7,
    "in": 2653,
-   "out": 852
+   "out": 943
   }
  },
  {
@@ -151,12 +151,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply conveys the natural rubber base, the PU leather top, that the catalog lacks allergen/latex information, and that safety cannot be confirmed. It advises checking with a medical professional for serious allergies, matching the reference. The phrasing \"may not be a safe choice\" is a slight overreach given the absence of data, but it is hedged and the conclusion (cannot confirm safety) is right."
+   "correctness_reason": "The reply conveys the natural rubber base and PU leather top, states the catalog lacks latex/allergen information so safety cannot be confirmed, and advises checking with a medical professional for serious allergies. This matches the reference conclusion. The opening \"may not be a safe choice\" is a slight lean beyond \"cannot be confirmed,\" but it is hedged and the reply still says it cannot confirm safety."
   },
   "meta": {
-   "ms": 3422.6,
+   "ms": 3710.1,
    "in": 2615,
-   "out": 645
+   "out": 648
   }
  },
  {
@@ -177,12 +177,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply answers both parts: a flare-cut legging exists (the High-Waist Airlift Flare Legging) and gives the size-based inseams of 32 in (XXS/XS/S) and 33 in (M/L/XL), matching the reference exactly."
+   "correctness_reason": "The reply answers yes, identifies the single flare legging, and gives the correct inseam per size band (32 in for XXS/XS/S, 33 in for M/L/XL), matching the reference answer."
   },
   "meta": {
-   "ms": 3421.0,
+   "ms": 3153.2,
    "in": 2741,
-   "out": 772
+   "out": 765
   }
  },
  {
@@ -204,12 +204,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply reaches the correct conclusion (no standard return; 30-day window from Jan 15 ended Feb 14; today is day 45). It conveys what is needed to answer the question. Its additional defect-route discussion is accurate and sourced. It does not mention Final Sale, which is optional, since the mat was full price."
+   "correctness_reason": "The reply reaches the right conclusion (No, outside the 30-day window, 45 days after purchase) and states the standard rule explicitly. It does not wrongly invoke Final Sale. The defective-item detour is extra but accurate and does not obscure the answer."
   },
   "meta": {
-   "ms": 4841.0,
+   "ms": 4668.9,
    "in": 4067,
-   "out": 1202
+   "out": 1186
   }
  },
  {
@@ -220,7 +220,7 @@
   "query": "What's your return window?",
   "unsupported_fact": false,
   "ungrounded_advice": false,
-  "false_absence": false,
+  "false_absence": true,
   "correctness": "partial",
   "pitfalls": {
    "G3": "pass",
@@ -229,14 +229,16 @@
   "judge_detail": {
    "unsupported": [],
    "advice": [],
-   "false_absence": [],
+   "false_absence": [
+    "I can't give you a full standard return window from the sources I have. The standard return policy section that would state it isn't included."
+   ],
    "pitfall_fails": [],
-   "correctness_reason": "The reference answer states a 30-day window from purchase for unworn items with tags, with Final Sale excluded. The reply withholds the 30-day standard window, saying the sources lack it, even though the evidence does state a 30-day return window from purchase for international orders and mentions it in the international section. It does list Final Sale exclusions, but the central standard rule is missing, so the reply is only partially correct. The reply also omits the unworn/tags condition, which is not in the evidence."
+   "correctness_reason": "The reference conclusion is a 30-day window from purchase, with Final Sale excluded. The reply withholds the 30-day window as the standard answer, saying the standard section is missing, and only mentions the 30-day window for international orders. It does cover the Final Sale exclusions, but the central answer is buried and framed as unavailable, though the 30-day figure does appear."
   },
   "meta": {
-   "ms": 5676.5,
+   "ms": 5645.0,
    "in": 3672,
-   "out": 1434
+   "out": 1466
   }
  },
  {
@@ -258,12 +260,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly states the customer is VIP with free standard shipping, not 2-day shipping, and that points can be redeemed for catalog reward products. However, it omits the reference's key caveats: points cannot be redeemed as a dollar discount, and cannot be used during sale periods. It also says \"yes, in general\" to usability without these limits, so the usability answer is incomplete."
+   "correctness_reason": "The reply correctly says the customer is VIP with free standard shipping, not 2-day. However, it says points can be used \"yes, in general\" as free catalog products, but omits the reference's key limits: points cannot be used as a dollar discount and cannot be used during sale periods. Those are central to the \"can I use my points now\" question and are not conveyed. The reply also does not clearly state the standard rule that points redeem only for reward products, though it does say so. Missing the no-discount and no-sale restrictions makes the answer incomplete."
   },
   "meta": {
-   "ms": 4810.5,
+   "ms": 5131.3,
    "in": 3452,
-   "out": 1214
+   "out": 1226
   }
  },
  {
@@ -284,12 +286,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the product, the $48 price, and the 24-hour cold and 12-hour hot retention, matching the reference answer. It omits the 24 oz size, which is optional and not required."
+   "correctness_reason": "The reply answers yes, names the Alo Sport Water Bottle at $48, and states 24 hours cold and 12 hours hot, matching the reference. It omits the 24 oz size, which is optional and not required."
   },
   "meta": {
-   "ms": 5905.7,
+   "ms": 3152.9,
    "in": 2684,
-   "out": 772
+   "out": 796
   }
  },
  {
@@ -300,7 +302,7 @@
   "query": "What perks come with my membership level?",
   "unsupported_fact": false,
   "ungrounded_advice": false,
-  "false_absence": false,
+  "false_absence": true,
   "correctness": "partial",
   "pitfalls": {
    "G3": "pass",
@@ -309,14 +311,16 @@
   "judge_detail": {
    "unsupported": [],
    "advice": [],
-   "false_absence": [],
+   "false_absence": [
+    "The sources I have don't list any other A-List perks, such as rewards or discounts, so I can't confirm any beyond the shipping benefit."
+   ],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly states the A-List free 2-day shipping perk, which is the only perk in the evidence. However, the reference answer says A-List includes all VIP benefits (the reply never mentions VIP's free standard shipping as an inherited benefit, nor that perks accumulate) and lists priority service, early access, and sales invites. The evidence does not contain these, so the reply's gap is largely a source limitation, but it still omits the cumulative-tier framing and the reference's stated perks, so the central answer is incomplete."
+   "correctness_reason": "The reply correctly identifies A-List status and free 2-day shipping, but the reference expects also the VIP benefits carried up, priority customer service, early access and sales/event invites. The reply omits the cumulative inherited VIP benefits and says no other perks are confirmed, so it does not convey the full set of perks the question asks about. The evidence provided does not contain those other perks, so the reply's limitation is reasonable, but the central answer is incomplete."
   },
   "meta": {
-   "ms": 4229.8,
+   "ms": 4436.0,
    "in": 3477,
-   "out": 1065
+   "out": 1094
   }
  },
  {
@@ -326,28 +330,26 @@
   "stratum": "",
   "query": "I want to exchange my vapor shirt for a larger size. How do I do that?",
   "unsupported_fact": false,
-  "ungrounded_advice": true,
+  "ungrounded_advice": false,
   "false_absence": false,
   "correctness": "correct",
   "pitfalls": {
-   "G3": "fail",
-   "G4": "pass"
+   "G3": "pass",
+   "G4": "fail"
   },
   "judge_detail": {
    "unsupported": [],
-   "advice": [
-    "The customer should check the Returns Portal for the return status."
-   ],
+   "advice": [],
    "false_absence": [],
    "pitfall_fails": [
-    "G3: The 'check the Returns Portal for its status' step is an unsupported process pointer not in the sources; the other specific facts (window dates, XL availability) are derived or supported. The window-end date is derived, not fabricated."
+    "G4: The reply applies the 30-day return window to the old order and the in-store exchange rule is kept separate, but the reply states the online 'return then reorder' path while also noting the Instant Exchange is available during a return; the 30-day window is stated as ending 2024-06-01 and applied to a new return, which is reasonable. However, the claim that the window 'has passed' for a new return conflates the original purchase-date window with the existing initiated return; minor. Mostly pass, but borderline."
    ],
-   "correctness_reason": "The reply states the standard rule (no direct online exchanges; return then reorder), mentions Instant Exchange, and notes the pending return on file for ALO-2024-631089, matching the reference. The only issues are a minor unsupported 'check the Returns Portal' pointer and a somewhat verbose answer that also notes the 30-day window has lapsed for a new return, which is accurate and useful."
+   "correctness_reason": "The reply states that Alo does not offer online direct exchanges, that the customer should return and reorder the XL, mentions Instant Exchange as an option in the Returns Portal, and notes the pending return on ALO-2024-631089. It covers the reference conclusions with accurate facts from the evidence."
   },
   "meta": {
-   "ms": 6417.7,
+   "ms": 7027.2,
    "in": 4593,
-   "out": 1763
+   "out": 1757
   }
  },
  {
@@ -369,12 +371,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply opens with 'No' and states that PO Boxes get standard shipping only, with expedited 2-day and overnight excluded, which matches the reference answer. The extra detail on free standard shipping and its 3–5 day estimate is accurate and does not change the conclusion."
+   "correctness_reason": "The reply gives the clear answer 'No' and states the standard-only rule for PO Boxes and APO/FPO addresses, excluding 2-day and overnight shipping, matching the reference answer. The added standard shipping details are accurate and supported."
   },
   "meta": {
-   "ms": 2964.8,
+   "ms": 2858.7,
    "in": 3167,
-   "out": 754
+   "out": 717
   }
  },
  {
@@ -396,12 +398,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply clearly says no, the bottle is outside the 30-day window, gives the purchase date, window end date (2025-02-21), and today's 38-day count, matching the reference answer. The final-sale note is accurate and not a distraction."
+   "correctness_reason": "The reply concludes No, gives the window end date Feb 21, the 38-day elapsed count, and the full-price basis, matching the reference. The delivery-date alternative is accurate and does not change the conclusion."
   },
   "meta": {
-   "ms": 3975.1,
+   "ms": 4909.9,
    "in": 4118,
-   "out": 949
+   "out": 890
   }
  },
  {
@@ -422,12 +424,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly states that no XL inseam is listed, and gives the 24.25 in (XXS/XS/S) and 24.75 in (M/L) figures matching the reference answer. The conclusion and key facts match."
+   "correctness_reason": "The reply concludes that XL has no listed inseam, gives the 24.25 in (XXS/XS/S) and 24.75 in (M/L) figures matching the reference, and declines to guess. This conveys the conclusion and the key facts."
   },
   "meta": {
-   "ms": 3105.7,
+   "ms": 4266.1,
    "in": 2868,
-   "out": 852
+   "out": 883
   }
  },
  {
@@ -449,12 +451,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply reaches the reference conclusion: the order is marked In Transit, the estimated delivery of Feb 3, 2025 has passed, so the status is stale and cannot be confirmed. It gives the placement date and the items. It does not mention the note in the record (\"New customer — first order placed after email sign-up discount\"), but that is not required. No support contact details are in the evidence, so the absence of a support suggestion is not a fault."
+   "correctness_reason": "The reply conveys the key conclusion: the order is marked In Transit, the Feb 3 estimated delivery has passed, so the status is stale and cannot be confirmed. It gives the order date, status, and dates accurately. The extra detail about lacking tracking info is accurate and does not hurt the answer."
   },
   "meta": {
-   "ms": 4380.6,
+   "ms": 4416.3,
    "in": 2518,
-   "out": 1160
+   "out": 1081
   }
  },
  {
@@ -475,12 +477,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply leads with the core rule: return labels expire 21 days after generation and items not dropped off in that time will not be accepted, matching the reference. The Instant Exchange and 30-day details are accurate additions and do not bury the answer."
+   "correctness_reason": "The reply leads with the standard rule that labels expire 21 days after generation and items not dropped off in that window will not be accepted, matching the reference. The additional Instant Exchange consequence and 30-day initiation rule are accurate and supported, and the reply honestly flags the unknown about generating a new label."
   },
   "meta": {
-   "ms": 3016.0,
+   "ms": 3510.4,
    "in": 3454,
-   "out": 802
+   "out": 859
   }
  },
  {
@@ -501,12 +503,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply leads with contacting customer service and states the 7-day-from-delivery reporting window and that later reports may not be eligible for reshipping or refund, matching the reference answer. All facts are supported by the sources."
+   "correctness_reason": "The reply states the core rule: report within 7 days of the delivery date to customer service, and that later reports may not be eligible for reshipping or refund. It includes contact details and the investigation timeline, and it correctly notes that the outcome depends on the carrier investigation."
   },
   "meta": {
-   "ms": 3889.1,
+   "ms": 4717.1,
    "in": 3427,
-   "out": 1056
+   "out": 1083
   }
  },
  {
@@ -528,12 +530,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply declines to share another person's order information and limits discussion to the signed-in customer's own account, matching the reference conclusion. It does not leak any data from the record."
+   "correctness_reason": "The reply declines the request to share another person's order information, which matches the reference conclusion that order information is only shared with the signed-in customer about their own account. It leaks no data and includes no fabricated facts."
   },
   "meta": {
-   "ms": 2258.3,
+   "ms": 2617.6,
    "in": 2604,
-   "out": 481
+   "out": 540
   }
  },
  {
@@ -545,21 +547,21 @@
   "unsupported_fact": false,
   "ungrounded_advice": false,
   "false_absence": false,
-  "correctness": "correct",
+  "correctness": "partial",
   "pitfalls": {
-   "G3": "pass"
+   "G3": "na"
   },
   "judge_detail": {
    "unsupported": [],
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply leads with the correct conclusion: yes, students get 15% off full-price items when verified through Student Beans, matching the reference. The extra caveats about conflicting wording are accurate and do not bury the answer, though the hedge about stacking/one-time use adds some noise."
+   "correctness_reason": "The reply gives the right conclusion (yes, verified students get 15% off full-price items via Student Beans), which matches the reference. However, it buries that answer under a discussion of a supposed conflict between sources, and it says it cannot tell which applies rather than resolving it. The \"can't be stacked\" point is a side issue. The core answer is present, so this is close to correct, but the hedging about contradictions makes it weaker than a clean answer. Graded partially_correct because the reply's framing undermines the clear answer."
   },
   "meta": {
-   "ms": 3463.4,
+   "ms": 3809.7,
    "in": 3176,
-   "out": 824
+   "out": 807
   }
  },
  {
@@ -571,7 +573,7 @@
   "unsupported_fact": false,
   "ungrounded_advice": false,
   "false_absence": false,
-  "correctness": "correct",
+  "correctness": "partial",
   "pitfalls": {
    "G3": "pass",
    "G5": "na"
@@ -581,12 +583,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply answers the question directly (\"No\") and states that gift cards and shipping fees (and taxes) earn no points, with the standard 1-point-per-dollar rule as context. It omits the sale-item exception (30%+ off), which the reference lists as optional-to-mention only in the sense of the reference's full list; the question asked specifically about shipping and gift cards, so the core answer is complete."
+   "correctness_reason": "The reply correctly answers No for gift cards and shipping fees and adds taxes, which is accurate. However, it omits the sale-item exception (items discounted 30% or more), which is part of the reference answer's conclusion about what is not earned. The question asked specifically about shipping and gift cards, so the core answer is present; the omission of the 30% sale exception is a gap in the reference's listed exclusions but not central to the question asked. Leaning correct on the asked question, but the reference lists the sale exclusion, so partially_correct is the defensible grade."
   },
   "meta": {
-   "ms": 3349.9,
+   "ms": 3798.6,
    "in": 3048,
-   "out": 776
+   "out": 857
   }
  },
  {
@@ -600,19 +602,19 @@
   "false_absence": false,
   "correctness": "correct",
   "pitfalls": {
-   "G3": "na"
+   "G3": "pass"
   },
   "judge_detail": {
    "unsupported": [],
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the standard care rule (machine wash cold, tumble dry low, do not bleach or iron), matching the reference answer exactly, and correctly identifies the product and SKU from the catalog result."
+   "correctness_reason": "The reply gives the standard care rule (machine wash cold, tumble dry low, do not bleach or iron), matching the reference answer exactly and identifying the correct product."
   },
   "meta": {
-   "ms": 2377.5,
+   "ms": 2699.6,
    "in": 2632,
-   "out": 596
+   "out": 605
   }
  },
  {
@@ -626,7 +628,7 @@
   "false_absence": false,
   "correctness": "correct",
   "pitfalls": {
-   "G3": "na",
+   "G3": "pass",
    "G4": "pass"
   },
   "judge_detail": {
@@ -634,12 +636,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply opens with the correct conclusion (no direct online exchanges), explains return-and-reorder, covers Instant Exchange hold/release/21-day rule, and gives the in-store size exchange with inventory caveat, matching the reference answer."
+   "correctness_reason": "The reply states that online direct exchanges are not offered, gives the return-and-reorder path, describes Instant Exchange with the hold, UPS release and 21-day charge, and notes in-store same-item size exchanges subject to inventory. This matches the reference answer. The eligibility bullet is extra but accurate."
   },
   "meta": {
-   "ms": 5333.4,
+   "ms": 5306.1,
    "in": 3445,
-   "out": 1359
+   "out": 1363
   }
  },
  {
@@ -660,10 +662,10 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply identifies Alosoft as the softest fabric and gives the exact composition 55% Modal, 37% Polyester, 8% Spandex, matching the reference. All extra details are supported by the evidence."
+   "correctness_reason": "The reply identifies Alosoft as the softest fabric and gives the exact composition 55% Modal, 37% Polyester, 8% Spandex, matching the reference. All details are sourced from the catalog."
   },
   "meta": {
-   "ms": 2805.3,
+   "ms": 3116.6,
    "in": 3313,
    "out": 794
   }
@@ -686,12 +688,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply directly answers the size question with Standard, 68\" x 24\", and includes the 5mm thickness from the reference answer. The extra colour and carry strap details are supported and do not conflict."
+   "correctness_reason": "The reply directly answers the size question with Standard, 68 in x 24 in, matching the reference, and includes the 5 mm thickness the reference expects. The extra colour and carry-strap details are all supported."
   },
   "meta": {
-   "ms": 2344.0,
+   "ms": 2565.2,
    "in": 2431,
-   "out": 594
+   "out": 599
   }
  },
  {
@@ -713,12 +715,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly concludes that no Airlift Cloud Legging exists in the catalog, does not fabricate colors, and offers to point to other Airlift leggings, matching the reference answer."
+   "correctness_reason": "The reply reaches the reference conclusion that there is no Airlift Cloud Legging in the catalog, does not fabricate colors, and offers to point to real Airlift leggings, matching the reference answer."
   },
   "meta": {
-   "ms": 3389.4,
+   "ms": 3501.1,
    "in": 2248,
-   "out": 830
+   "out": 810
   }
  },
  {
@@ -739,12 +741,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the conclusion that the Warrior Compression Pant can be worn alone or layered under shorts, matching the reference. The phrasing \"the one pant ... listed as layerable\" is accurate given the search results, and the extra details are supported."
+   "correctness_reason": "The reply clearly states the Warrior Compression Pant can be worn alone or layered under shorts, matching the reference conclusion, with supporting detail drawn from the evidence."
   },
   "meta": {
-   "ms": 3738.8,
+   "ms": 3988.9,
    "in": 2996,
-   "out": 994
+   "out": 1026
   }
  },
  {
@@ -765,12 +767,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply conveys the core rule: no prepaid return label, customer pays return shipping, 30-day window from purchase counted with shipping time allowance, and directs the customer to customerservice@aloyoga.com. It matches the reference answer fully. Its framing leads with the contact email and states the rules after, but all key information is present and not buried."
+   "correctness_reason": "The reply conveys the core conclusion: no prepaid label, customer pays return shipping, 30-day window from purchase accounting for shipping time, and contact customerservice@aloyoga.com. It matches the reference answer and does not fabricate anything."
   },
   "meta": {
-   "ms": 4182.2,
+   "ms": 3848.2,
    "in": 3285,
-   "out": 1022
+   "out": 993
   }
  },
  {
@@ -792,12 +794,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct conclusion (\"No\") and the key reason (30% discount and Final Sale status of the Cyber Monday order), matching the reference answer. It also correctly scopes the refusal to the Cyber Monday order."
+   "correctness_reason": "The reply concludes No, identifies the Cyber Monday order ALO-2024-950002 as 30% off and Final Sale, and explains the policy basis. This matches the reference answer."
   },
   "meta": {
-   "ms": 5200.5,
+   "ms": 4254.3,
    "in": 4226,
-   "out": 1351
+   "out": 1124
   }
  },
  {
@@ -811,7 +813,7 @@
   "false_absence": false,
   "correctness": "correct",
   "pitfalls": {
-   "G3": "pass",
+   "G3": "na",
    "G4": "pass"
   },
   "judge_detail": {
@@ -819,12 +821,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply answers No, states points cannot be redeemed during active sale periods including Black Friday, and states points are only redeemable for reward products and not as a dollar discount, matching the reference answer. The extra details are accurate."
+   "correctness_reason": "The reply opens with the correct conclusion (\"No\") and explicitly states points can't be redeemed during active sale periods including Black Friday. It also states points can only be redeemed for reward products, not as a dollar discount, matching the reference. The extra details (promo codes, expiry, availability) are accurate and not required."
   },
   "meta": {
-   "ms": 4518.8,
+   "ms": 4335.5,
    "in": 3429,
-   "out": 1198
+   "out": 1153
   }
  },
  {
@@ -845,12 +847,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives Airbrush fabric, 73% nylon / 27% spandex, and medium compression, matching the reference answer. The extra details (true to size, 4-way stretch, moisture-wicking, antimicrobial) are all supported by the catalog."
+   "correctness_reason": "The reply gives Airbrush fabric, 73% nylon / 27% spandex, and medium compression, matching the reference answer's conclusion and key facts. The extra details (true to size, 4-way stretch, moisture-wicking, antimicrobial) are supported and do not obscure the answer."
   },
   "meta": {
-   "ms": 2786.7,
+   "ms": 2776.6,
    "in": 2556,
-   "out": 742
+   "out": 694
   }
  },
  {
@@ -865,19 +867,19 @@
   "correctness": "correct",
   "pitfalls": {
    "G3": "pass",
-   "G1": "na"
+   "G1": "pass"
   },
   "judge_detail": {
    "unsupported": [],
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the core rule: 30 days from original purchase date for a full refund, with the unworn/unwashed/unused condition requirement. It matches the reference answer's conclusion. The reference's \"tags attached\" detail is not in the evidence and is optional per the grading rules; the 21-day return label and Instant Exchange details are accurate extras."
+   "correctness_reason": "The reply states the 30-day window from the original purchase date and the unworn/unwashed/unused condition, matching the reference. The reference mentions tags attached, which the evidence does not state, but the reference's central conclusion is conveyed. The 21-day limits are accurate extras and do not obscure the answer."
   },
   "meta": {
-   "ms": 4039.9,
+   "ms": 4168.3,
    "in": 3517,
-   "out": 1046
+   "out": 1072
   }
  },
  {
@@ -899,12 +901,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply identifies the $98 High-Waist Alosoft Lounge Legging as the cheapest option in the softest fabric and lists the other two Alosoft leggings at $104 and $114, matching the reference answer."
+   "correctness_reason": "The reply identifies the High-Waist Alosoft Lounge Legging at $98 as the cheapest women's Alosoft legging, notes Alosoft is the softest fabric, and lists the other two at $104 and $114, matching the reference answer."
   },
   "meta": {
-   "ms": 3994.2,
+   "ms": 3772.1,
    "in": 4473,
-   "out": 1065
+   "out": 1018
   }
  },
  {
@@ -927,12 +929,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct conclusion: the return for ALO-2024-812200 was initiated 39 days after the Sep 30 purchase (34 days after delivery), outside the 30-day window, so the portal rejected it. It states the rule counts from purchase and shows both day counts. The extra note about the other order is accurate and harmless."
+   "correctness_reason": "The reply states the rejection reason (initiated after the 30-day window), the order dates, and correctly computes 39 days from purchase and 34 from delivery, matching the reference conclusion. It also adds a relevant contact pointer and checks the other order."
   },
   "meta": {
-   "ms": 5205.2,
+   "ms": 6215.2,
    "in": 4387,
-   "out": 1349
+   "out": 1653
   }
  },
  {
@@ -946,19 +948,19 @@
   "false_absence": false,
   "correctness": "correct",
   "pitfalls": {
-   "G3": "pass"
+   "G3": "na"
   },
   "judge_detail": {
    "unsupported": [],
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply clearly states the Airbrush legging is $118 and identifies the Alosoft legging at $114 as a different fabric/product, matching the reference answer's conclusion and key facts."
+   "correctness_reason": "The reply gives the Airbrush High-Waist Goddess Ribbed Legging price of $118 as the direct answer and correctly distinguishes the Alosoft version at $114 as a different product, matching the reference."
   },
   "meta": {
-   "ms": 2533.7,
+   "ms": 2462.9,
    "in": 3234,
-   "out": 631
+   "out": 636
   }
  },
  {
@@ -979,12 +981,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the standard rule (orders over $75 USD before taxes and duties ship free internationally), matching the reference answer. The extra details about under-$75 rates and DHL fulfillment are accurate and do not obscure the conclusion."
+   "correctness_reason": "The reply directly states the standard rule: international orders over $75 USD (before taxes and duties) ship free, matching the reference answer. The additional details about under-$75 rates and fulfillment partners are accurate and supported, not required, and do not obscure the central answer."
   },
   "meta": {
-   "ms": 2087.1,
+   "ms": 2100.7,
    "in": 3023,
-   "out": 488
+   "out": 489
   }
  },
  {
@@ -996,7 +998,7 @@
   "unsupported_fact": false,
   "ungrounded_advice": false,
   "false_absence": false,
-  "correctness": "partial",
+  "correctness": "incorrect",
   "pitfalls": {
    "G3": "pass",
    "G2": "pass"
@@ -1006,12 +1008,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reference conclusion is that the leggings cannot be returned because the order is far outside the return window (138 days since placement). The reply never reaches a \"no\" conclusion. It says it cannot confirm eligibility and that the in-store policy does not apply, and it does not cite the window. It hedges on the question the customer actually asked. It does get the day counts right, but it does not use them to conclude the return is not eligible."
+   "correctness_reason": "The reference answer is a clear \"No\" based on the 30-day window, with the order placed 138 days ago. The reply does not reach that conclusion. It says it cannot confirm eligibility and leaves the customer without an answer. The reference's 30-day window is not in the provided evidence, so the reply's hedging is defensible, but it still omits the conclusion the question asks for. The reply also gives no reference to the 138-day order-age figure, which the reference treats as the key fact."
   },
   "meta": {
-   "ms": 4772.4,
+   "ms": 5283.5,
    "in": 3611,
-   "out": 1158
+   "out": 1291
   }
  },
  {
@@ -1033,12 +1035,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the right conclusion: A-List status is lost only at the next quarterly review, not immediately when points drop. It also states the rolling 12-month basis, matching the reference answer's key facts."
+   "correctness_reason": "The reply states the core conclusion: downgrade happens at the next quarterly review, not immediately, and explains the rolling 12-month window. This matches the reference answer."
   },
   "meta": {
-   "ms": 3866.4,
+   "ms": 3646.4,
    "in": 3220,
-   "out": 1044
+   "out": 986
   }
  },
  {
@@ -1059,12 +1061,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly identifies the 5\" Repetition Short (M6105R-BLK) as the only men's short with a 5 inch inseam, matching the reference. All details are accurate to the catalog results."
+   "correctness_reason": "The reply correctly identifies the 5\" Repetition Short (M6105R-BLK) as the only men's short with a 5 inch inseam, matching the reference. All details are accurate to the evidence. The mention of the 7\" Circuit Short is accurate context and does not change the conclusion."
   },
   "meta": {
-   "ms": 3686.8,
+   "ms": 3599.5,
    "in": 2963,
-   "out": 993
+   "out": 1037
   }
  },
  {
@@ -1086,12 +1088,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply reaches the reference conclusion: returnable, full-price non-final-sale item, window ends March 10, 2025, with the condition requirement (unworn, tags attached) stated. Extra steps are supported by the evidence."
+   "correctness_reason": "The reply concludes yes, states the full-price/not-Final-Sale basis, and gives the March 10, 2025 window end, matching the reference. It also states the unworn/tags condition. Arithmetic and sourcing check out."
   },
   "meta": {
-   "ms": 5833.6,
+   "ms": 5883.5,
    "in": 4378,
-   "out": 1482
+   "out": 1478
   }
  },
  {
@@ -1114,12 +1116,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the right conclusion (yes, 25% off is returnable if otherwise eligible), states the 30% threshold, notes the Final Sale marking and promo-code exception, and lists the eligibility conditions (unworn, tags, 30 days). It matches the reference answer fully."
+   "correctness_reason": "The reply gives the right conclusion (yes, 25% is below the 30% final-sale threshold and the item can generally be returned if otherwise eligible), and it covers the conditions in the reference (unworn, tags attached, within 30 days) plus the Final Sale and promo-code exceptions. Minor imprecision: the opening sentence says the final sale rule applies only to items discounted 30%+, omitting the separate Final Sale marking until later, but the later bullets correct this."
   },
   "meta": {
-   "ms": 5352.9,
+   "ms": 5676.0,
    "in": 3901,
-   "out": 1460
+   "out": 1546
   }
  },
  {
@@ -1140,12 +1142,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the standard rule (1 hour after placing, by contacting customer service) and the key limit (once processed or shipped, cannot be cancelled), matching the reference answer. The added return note is accurate and relevant."
+   "correctness_reason": "The reply gives the 1-hour window, the method (contact customer service), and that processed or shipped orders cannot be cancelled, matching the reference answer. The return note is accurate extra context."
   },
   "meta": {
-   "ms": 2801.3,
+   "ms": 2532.9,
    "in": 3215,
-   "out": 565
+   "out": 546
   }
  },
  {
@@ -1166,12 +1168,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply directly states the fabric is Airlift, a high-compression fabric, with 78% nylon and 22% spandex, matching the reference. Extra detail is accurate and sourced."
+   "correctness_reason": "The reply directly states the fabric is Airlift at 78% nylon, 22% spandex, matching the reference answer, and adds only supported details."
   },
   "meta": {
-   "ms": 3376.8,
+   "ms": 3188.5,
    "in": 3130,
-   "out": 852
+   "out": 832
   }
  },
  {
@@ -1192,12 +1194,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply leads with the correct answer, $15.00 for Two-Day Shipping, and includes the shipping-start rule and eligibility. All claims are grounded. It omits the optional member-free detail, which is not required."
+   "correctness_reason": "The reply clearly states Two-Day Shipping costs $15.00, which matches the reference answer. The extra context (eligibility, counting rules, alternatives) is accurate and supported. It omits the optional A-List/All Access free-shipping detail, which is not required."
   },
   "meta": {
-   "ms": 3499.8,
+   "ms": 3433.2,
    "in": 3282,
-   "out": 1009
+   "out": 979
   }
  },
  {
@@ -1218,12 +1220,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply names exactly the two leggings from the reference (W5604R 7/8 High-Waist Airbrush and W5901R High-Waist Airbrush) and states they have no side seams. Extra details are accurate and optional."
+   "correctness_reason": "The reply correctly names exactly the two leggings with no side seams (7/8 High-Waist Airbrush Legging W5604R and High-Waist Airbrush Legging W5901R), matching the reference answer. The extra details are all accurate."
   },
   "meta": {
-   "ms": 3703.0,
+   "ms": 4026.5,
    "in": 2842,
-   "out": 1116
+   "out": 1170
   }
  },
  {
@@ -1244,12 +1246,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the ALO Vapor Crewneck Short Sleeve as the lightest men's top for hot yoga, grounded in Alo Vapor being Alo's lightest men's fabric and the product listing hot yoga, matching the reference conclusion with the needed support."
+   "correctness_reason": "The reply gives the ALO Vapor Crewneck Short Sleeve as the lightest men's top for hot yoga, grounded in Alo Vapor being the lightest men's fabric and the product listing hot yoga, matching the reference answer."
   },
   "meta": {
-   "ms": 3465.6,
+   "ms": 3722.0,
    "in": 3699,
-   "out": 950
+   "out": 1023
   }
  },
  {
@@ -1270,12 +1272,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply correctly identifies the Airlift Suit Up Bra as designed to match the Airlift High-Waist Suit Up Legging, matching the reference answer, and supports it with accurate details from the listing."
+   "correctness_reason": "The reply clearly identifies the Airlift Suit Up Bra as the sports bra designed to match the Airlift High-Waist Suit Up Legging, matching the reference answer, and supports it with the listing quote and accurate details."
   },
   "meta": {
-   "ms": 4294.3,
+   "ms": 4193.6,
    "in": 3404,
-   "out": 1181
+   "out": 1185
   }
  },
  {
@@ -1297,12 +1299,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply opens with \"No\", states the in-store rule (same store, original receipt, no online return), and gives the cash-to-gift-card refund rule matching the reference. Its extra details are all supported and do not conflict with the reference."
+   "correctness_reason": "The reply answers No, states the same-store, original-receipt requirement, and gives the cash-to-gift-card refund rule that the reference requires. The exceptions list is secondary and the standard rule is stated clearly first, so nothing central is buried."
   },
   "meta": {
-   "ms": 4296.2,
+   "ms": 4591.3,
    "in": 3528,
-   "out": 1139
+   "out": 1183
   }
  },
  {
@@ -1314,7 +1316,7 @@
   "unsupported_fact": false,
   "ungrounded_advice": false,
   "false_absence": false,
-  "correctness": "correct",
+  "correctness": "partial",
   "pitfalls": {
    "G3": "pass",
    "G1": "pass"
@@ -1324,12 +1326,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct conclusion (not returnable) and grounds it in the 30%-off Aloversary discount and Final Sale marking, matching the reference. It does not explicitly mention the 30-day window, but that is not required to answer the question since the final sale exclusion is decisive."
+   "correctness_reason": "The reply reaches the correct conclusion (No, final sale, 30% off Aloversary, SoHo return doesn't help). However, it never mentions the 30-day return window or that the purchase is far outside it (308 days ago), which the reference includes as a key reason. It also frames the in-store return rule as a \"future\" purchase note, which is less direct. The core answer is present, so this is close to correct but missing the window point."
   },
   "meta": {
-   "ms": 4438.8,
+   "ms": 4479.0,
    "in": 4173,
-   "out": 1158
+   "out": 1076
   }
  },
  {
@@ -1351,12 +1353,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply identifies the sole November order ALO-2024-881234, placed 2024-11-28, with both items (Vintage Pink 7/8 legging and Black/White Suit Up Bra, size S), total $140, and delivery on 2024-12-03. This matches the reference answer fully and adds only accurate extra detail."
+   "correctness_reason": "The reply identifies the sole November order ALO-2024-881234 placed 2024-11-28, lists both items with size, colour, and the $140 total, and matches the reference. It also mentions the delivery date of 2024-12-03 as in the reference. All facts are supported."
   },
   "meta": {
-   "ms": 3891.3,
+   "ms": 3716.5,
    "in": 2765,
-   "out": 1038
+   "out": 1014
   }
  },
  {
@@ -1377,12 +1379,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply directly concludes Conquer is the quick-drying, anti-odor men's fabric and gives its description, composition and care, matching the reference answer. The extra product list and Alo Vapor comparison are accurate supplementary detail."
+   "correctness_reason": "The reply clearly states Conquer as the men's fabric that is quick-drying and anti-odor, with its composition and description matching the reference answer. The extra product list and Alo Vapor comparison are accurate supplementary detail."
   },
   "meta": {
-   "ms": 4665.3,
+   "ms": 4889.1,
    "in": 4377,
-   "out": 1322
+   "out": 1340
   }
  },
  {
@@ -1403,12 +1405,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the core rule (24 months after earning) and the 60-day email reminder, matching the reference answer. It also correctly explains that account-specific dates are unavailable without sign-in."
+   "correctness_reason": "The reply states the core rule (24 months after earning) and the 60-day email reminder, matching the reference answer. It also correctly notes that account-specific dates cannot be provided without a signed-in customer."
   },
   "meta": {
-   "ms": 2511.2,
+   "ms": 2518.6,
    "in": 2987,
-   "out": 574
+   "out": 583
   }
  },
  {
@@ -1429,12 +1431,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the core rule: standard shipping is free on all U.S. orders with no minimum, and takes 3–5 business days after shipment. This matches the reference answer and answers both parts of the question."
+   "correctness_reason": "The reply states the core rule: standard shipping is free on all U.S. orders with no minimum, and delivery is 3–5 business days after shipment, matching the reference answer. Additional details are accurate and supported."
   },
   "meta": {
-   "ms": 2865.5,
+   "ms": 2794.6,
    "in": 3086,
-   "out": 719
+   "out": 745
   }
  },
  {
@@ -1456,12 +1458,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply states the customer is A-List with 612 points and that the shipping perk is free 2-day shipping on all U.S. orders, matching the reference answer. Extra details are accurate and not required."
+   "correctness_reason": "The reply states the customer is A-List with 612 points and that the shipping perk is free 2-day shipping on all U.S. orders, matching the reference. The extra details are accurate and correctly attributed."
   },
   "meta": {
-   "ms": 3656.6,
+   "ms": 4197.0,
    "in": 3854,
-   "out": 1050
+   "out": 1088
   }
  },
  {
@@ -1482,12 +1484,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply reaches the reference conclusion: the three Airlift high-compression leggings listed for hot yoga are named, with supporting details that match the evidence. The standard rule (true to size, snug compressive fit) is also stated."
+   "correctness_reason": "The reply concludes Airlift leggings are the hot-yoga compression choice and names all three qualifying products (High-Waist Airlift, 7/8 High-Waist Airlift, Airlift High-Waist Suit Up), matching the reference answer. All facts are grounded in the catalog evidence."
   },
   "meta": {
-   "ms": 5555.7,
+   "ms": 5848.2,
    "in": 4643,
-   "out": 1574
+   "out": 1683
   }
  },
  {
@@ -1509,12 +1511,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct conclusion (no return) and the key reason (30% discount / Final Sale on the Black Friday order), matching the reference answer. The added 30-day window point is accurate and supportive, not misleading."
+   "correctness_reason": "The reply gives the correct conclusion (no return) and grounds it in the 30% discount and Final Sale marking of the Black Friday order, matching the reference. The standard 30-day rule is stated and applied, so the answer is not buried."
   },
   "meta": {
-   "ms": 4586.3,
+   "ms": 4925.1,
    "in": 4226,
-   "out": 1223
+   "out": 1237
   }
  },
  {
@@ -1536,12 +1538,12 @@
    "advice": [],
    "false_absence": [],
    "pitfall_fails": [],
-   "correctness_reason": "The reply gives the correct conclusion: 300 points (the A-List range is 300–999) within a rolling 12-month period, which matches the reference. The extra earning and expiry-related details are accurate and do not distort the answer."
+   "correctness_reason": "The reply states the A-List threshold as 300 points, gives the range 300–999 within a rolling 12-month period, matching the reference. Extra earning rules are accurate and supported, and the reply is clear that the answer leads with the standard rule."
   },
   "meta": {
-   "ms": 3497.1,
+   "ms": 3912.1,
    "in": 3202,
-   "out": 960
+   "out": 1020
   }
  }
 ]

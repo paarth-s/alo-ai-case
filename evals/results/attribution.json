@@ -1,33 +1,63 @@
 {
  "label": "gen_hybrid_k6_tools",
  "n_questions": 61,
- "n_failing": 9,
+ "n_failing": 7,
  "primary": {
-  "eval": 1,
-  "generation": 6,
+  "generation": 5,
   "retrieval": 2
  },
  "any_cause": {
-  "eval": 1,
-  "generation": 6,
+  "generation": 5,
   "retrieval": 2
  },
  "failures": [
   {
    "set": "dev",
+   "id": "P6",
+   "query": "I'm looking for a compression legging for hot yoga. What do you recommend?",
+   "type": "answerable",
+   "primary": "generation",
+   "causes": [
+    "generation"
+   ],
+   "detail": {
+    "generation": "all needed sources present; reply still flagged"
+   },
+   "severity": 4,
+   "issues": [
+    "unsupported fact: All three are true to size with a snug, compressive fit."
+   ],
+   "route": [
+    "product"
+   ],
+   "expected_domains": [
+    "product"
+   ],
+   "gold": [
+    "W5561R-BLK",
+    "W5766R-BLK",
+    "W6034R-BLK"
+   ],
+   "gold_missing": [],
+   "status": "answered",
+   "answer": "For hot yoga, I'd recommend an Airlift legging. Airlift is Alo's high-compression fabric, and its description says it's designed for high-intensity workouts and hot yoga. It's a 78% nylon, 22% spandex blend that's moisture-wicking, antimicrobial and breathable. The catalog lists three women's leggings that are high-compression, Airlift, and tagged for hot yoga:\n\n1. **High-Waist Airlift Legging (W5561R-BLK), $128.** Full-length with a 28–28.5 in inseam. It's a bestseller and has flatlock seaming and a double-layered waistband. Core colors are continuously in stock.\n2. **7/8 High-Waist Airlift Legging (W5766R-BLK), $118.** This is the cheapest of the three. It's a cropped 7/8 length with a 24.25–24.75 in inseam, and it's also tagged for petite frames. It's a bestseller. Core colors are continuously stocked, but limited-edition colors may sell out permanently.\n3. **Airlift High-Waist Suit Up Legging (W6034R-BLK), $144.** Full-length with a 28 in inseam, a color-blocked design with contrast piping, and a sculpting fit. Colorways update seasonally.\n\nAll three are true to size with a snug, compressive fit. If you want a classic full-length option, the High-Waist Airlift Legging is a good pick. If you prefer a shorter length or a lower price, choose the 7/8. If you want a statement look, choose the Suit Up."
+  },
+  {
+   "set": "dev",
    "id": "L6",
    "query": "I'm in the UK. How do I return my order?",
    "type": "answerable",
-   "primary": "eval",
+   "primary": "generation",
    "causes": [
-    "eval"
+    "generation"
    ],
    "detail": {
-    "eval": "only the status expectation failed ('partial', expected ['answered'])"
+    "generation": "all needed sources present; reply still flagged"
    },
-   "severity": 1,
+   "severity": 4,
    "issues": [
-    "status 'partial', expected one of ['answered']"
+    "status 'partial', expected one of ['answered']",
+    "unsupported fact: The standard rules still apply to international returns."
    ],
    "route": [
     "policy"
@@ -40,38 +70,7 @@
    ],
    "gold_missing": [],
    "status": "partial",
-   "answer": "For a UK (international) order, email customerservice@aloyoga.com for return help. The sources don't give a step-by-step international return process or a return address, so I can't confirm those.\n\nWhat the international returns policy does say:\n- **No prepaid label:** Alo doesn't provide prepaid return labels for international orders. You pay all return shipping costs.\n- **30-day window:** Your return must be dropped off within 30 days of the purchase date. Allow for international shipping time.\n- **Lost returns:** Alo isn't responsible for international returns that get lost.\n\nItems must also meet the standard eligibility rules:\n- Unworn, unwashed and unaltered.\n- Original tags still attached.\n- In sellable condition.\n- You have an order number or proof of purchase.\n\nThe prepaid UPS label and Returns Portal steps are for U.S. online purchases. They aren't described as applying to international orders, so I haven't included them here.\n\nIf your item arrived damaged or defective, contact customerservice@aloyoga.com or call (855) 793-3100 within 30 days of receipt. Include your order number, a description of the defect and photos."
-  },
-  {
-   "set": "dev",
-   "id": "C5",
-   "query": "I'm trying to return something but the portal rejected me. Why?",
-   "type": "trap",
-   "primary": "generation",
-   "causes": [
-    "generation"
-   ],
-   "detail": {
-    "generation": "all needed sources present; reply still flagged"
-   },
-   "severity": 4,
-   "issues": [
-    "unsupported fact: Account note says the return was '34 days after purchase'."
-   ],
-   "route": [
-    "customer",
-    "policy"
-   ],
-   "expected_domains": [
-    "customer",
-    "policy"
-   ],
-   "gold": [
-    "returns§1"
-   ],
-   "gold_missing": [],
-   "status": "answered",
-   "answer": "Your return was rejected because it was started outside the 30-day return window.\n\n- Order ALO-2024-812200 (7/8 High-Waist Airbrush Legging) was placed on 2024-09-30.\n- Our policy requires returns to be initiated within 30 days of the original purchase date, which here was 2024-10-30.\n- Your return was initiated on 2024-11-08, which is 39 days after the order date and 34 days after delivery on 2024-10-05.\n- The policy counts from the purchase date, so the return was outside the window either way.\n\nI can't override or make an exception to the window. If you have questions about the decision, you can contact customer service at customerservice@aloyoga.com or (855) 793-3100, Monday–Friday, 9 AM–5 PM PT.\n\nYour account note says the return was \"34 days after purchase\". That doesn't match the dates on your order. 34 days is the count from delivery, and the count from purchase is 39. The outcome is the same under the 30-day rule."
+   "answer": "For a UK (international) order, email customerservice@aloyoga.com for return instructions. The sources I have don't give a step-by-step process or a return address for international returns.\n\nWhat the policy does say:\n- **No prepaid label.** Alo doesn't provide prepaid return labels for international orders. The prepaid UPS label and portal steps in the policy apply to U.S. online purchases, not to your order.\n- **You pay return shipping.** International customers cover all return shipping costs.\n- **30-day window.** Your return must be dropped off within 30 days of the purchase date. Allow for international shipping time.\n- **Lost returns.** Alo isn't responsible for international returns that get lost.\n- **Item condition.** The standard rules still apply. Items must be unworn, unwashed and unaltered, with original tags attached and in sellable condition.\n\nI can't see your order in the information I have, so I can't tell you your exact deadline. Count 30 days from your purchase date."
   },
   {
    "set": "dev",
@@ -87,7 +86,7 @@
    },
    "severity": 3,
    "issues": [
-    "false absence claim: The policy excerpts I have don't state a return window"
+    "false absence claim: The policy excerpts don't state the 30-day return window."
    ],
    "route": [
     "customer",
@@ -104,7 +103,7 @@
    ],
    "gold_missing": [],
    "status": "answered",
-   "answer": "Alo doesn't offer direct exchanges for online orders, and your Vapor Crewneck (order ALO-2024-631089) was an online purchase. To get a larger size, you return the original item and then place a new order for the replacement. The ALO Vapor Crewneck Short Sleeve is listed in Black in XL at $68.\n\nHow it works:\n1. Go to returns.aloyoga.com and enter your order number and the email you used at checkout.\n2. Select the item and the reason. A prepaid UPS return label is generated at no cost.\n3. Drop the package at a UPS Access Point or UPS Store.\n4. Order the XL on aloyoga.com. The portal may also offer an Instant Exchange. If it does, you pick the XL before sending the return back, and a hold is placed on your card for the new item. Your new order ships right away, and the hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the replacement.\n\nYour account shows a return for this order, started on 2024-05-30, that is still \"Pending.\" Return labels expire 21 days after they are generated. If that label was generated on 2024-05-30, it would have expired around 2024-06-20. I can't see whether the item was ever dropped off. Your record also says the return is \"within the 30-day window,\" but the policy excerpts I have don't state a return window. Because of this, I can't confirm that the old request is still valid. I can't grant an exception or approve a late return. Please check the Returns Portal to see whether this return can still go ahead.\n\nIn-store size exchanges are a separate rule and only apply to in-store purchases. This order was online."
+   "answer": "Alo doesn't offer direct exchanges for online orders, so you'd return the Large and place a new order for the XL. Your ALO Vapor Crewneck Short Sleeve (Black) is available in XL in the catalog.\n\nYour steps for order ALO-2024-631089 (online):\n1. Return the original item through the Alo Returns Portal at returns.aloyoga.com. Enter your order number and checkout email, pick the item and reason, and print the free prepaid UPS label. Then drop the package at a UPS Access Point or UPS Store.\n2. Order the XL from aloyoga.com. The portal may offer an Instant Exchange. If it does, you pick the XL before shipping the return. A hold goes on your card for the new item, and the new order ships right away. The hold is released once the return is dropped off at UPS. If you don't drop it off within 21 days, your card is charged the full price of the XL.\n\nThings to check:\n- Your record shows this return as \"Return Requested — Pending\". It was started on 2024-05-30, almost 9 months ago. Return labels expire 21 days after they're generated and expired labels aren't accepted. If a label was generated then, it would have expired around 2024-06-20. My sources don't show whether a label was issued or whether the return is still active. I also can't confirm the 30-day return window in the record, because the policy excerpts I have don't state it. Order delivery was 2024-05-07, so a new return today would be well past 30 days after delivery.\n- In-store size exchanges are a separate process and don't apply to this online order.\n- I can't approve exceptions or override the policy."
   },
   {
    "set": "dev",
@@ -120,7 +119,7 @@
    },
    "severity": 3,
    "issues": [
-    "partially_correct: The reply correctly says the customer is VIP without 2-day shipping and that points can be redeemed for catalog rewards. It omits the reference's point that points cannot be used as a dollar discount and cannot be used during sale periods, and it does not state the standard rule for sale-period exclusions. It does not mention the free standard shipping on the customer's own tier in the conclusion beyond a passing mention, but it does include it. Central content is mostly there, with the redemption limits missing."
+    "partially_correct: The reply correctly says the customer is VIP with free standard shipping, not 2-day, and that points can be redeemed for free catalog products. However, it omits the important limitation from the reference that points cannot be used as a dollar discount and cannot be used during sale periods. The reply says \"can I use my points now?\" yes without qualifying that restriction, so the answer about points is incomplete. The 2-day shipping cost ($15) is optional and not required."
    ],
    "route": [
     "customer",
@@ -138,8 +137,8 @@
    "gold_missing": [
     "loyalty§6.2"
    ],
-   "status": "partial",
-   "answer": "Free 2-day shipping: no, not at your current tier. You're a VIP member with 156 points. VIP includes free standard shipping on U.S. orders. Free 2-day shipping starts at A-List, which is 300–999 points over a rolling 12 months.\n\nPoints: yes, you can redeem points for free products from the Alo Rewards catalog. To do it, log in, open the rewards section in your account dashboard, and add a reward to your cart with the \"Get Reward\" button.\n\nWhat I can't tell you is how many points each reward costs, or whether there's a minimum to redeem. The sources don't say. Check the rewards section of your dashboard to see which items 156 points covers. Points also expire 24 months after the date they were earned."
+   "status": "answered",
+   "answer": "Free 2-day shipping: no, not at your current tier. You're VIP with 156 points. Free 2-day shipping starts at A-List, which is 300–999 points. As a VIP you get free standard shipping on U.S. orders. Standard shipping takes an estimated 3–5 business days after shipment.\n\nPoints: yes, you can redeem points for free products from the Alo Rewards catalog. Log in, open the rewards section of your account dashboard, and add a reward to your cart with the \"Get Reward\" button. The sources don't list how many points each reward costs, so I can't say whether 156 points covers a particular item. The catalog in your dashboard shows what's available."
   },
   {
    "set": "dev",
@@ -153,11 +152,10 @@
    "detail": {
     "generation": "all needed sources present; reply still flagged"
    },
-   "severity": 4,
+   "severity": 2,
    "issues": [
     "status 'answered', expected one of ['not_in_data', 'partial']",
-    "forbidden fact 'hypoallergenic' present",
-    "unsupported fact: Natural rubber is a source of latex."
+    "forbidden fact 'hypoallergenic' present"
    ],
    "route": [
     "product"
@@ -170,7 +168,7 @@
    ],
    "gold_missing": [],
    "status": "answered",
-   "answer": "The Warrior Mat may not be safe for a latex allergy. Its base is natural rubber, and the catalog doesn't say whether it's latex-free or hypoallergenic. The catalog lists it as \"Natural rubber + PU leather top layer\", with a natural rubber base and a PU leather non-slip top. Natural rubber is a source of latex, but the catalog doesn't address allergen safety, so I can't confirm it's safe. If your allergy is significant, check with a medical professional before buying."
+   "answer": "The Warrior Mat may not be safe for a latex allergy. Its base is natural rubber, and the catalog doesn't say whether it is latex-free or hypoallergenic. The top layer is PU leather. Please check with your doctor before buying. I don't have any allergen or latex-safety information beyond the material listing."
   },
   {
    "set": "heldout",
@@ -186,9 +184,7 @@
    },
    "severity": 3,
    "issues": [
-    "false absence claim: The reply says it can't say for certain whether the discount can be used more than once.",
-    "false absence claim: The reply says it can't say exactly how the discount works alongside Access benefits.",
-    "partially_correct: The reply gives the correct conclusion (yes, 15% off full-price items via Student Beans), but it buries it under a discussion of apparent conflicts. It also claims uncertainty about the one-time-use limit and how the discount works with Access benefits, though the evidence states both explicitly. This weakens the answer and makes the presentation confusing, though the core answer is present."
+    "partially_correct: The reply gives the right headline (yes, 15% off via Student Beans), but it then hedges that the conclusion is uncertain on use limit and stacking, and tells the customer to check terms. The reference states a definitive yes with no caveats. The core answer is present, but it is buried under conflicting-policy caveats that the reference does not raise, so it is weaker than a clean correct answer. The conflicts it flags are real in the evidence, so the hedging is not fabricated."
    ],
    "route": [
     "policy"
@@ -202,67 +198,7 @@
    ],
    "gold_missing": [],
    "status": "answered",
-   "answer": "Yes. Students verified through Student Beans get 15% off full-price items.\n\nTwo of our sources describe it a little differently:\n- The Community Discounts section lists it as a special ongoing discount. It says community discounts can't be stacked with other promotions or Alo Access redemptions.\n- The How to Join section says the 15% is on top of standard Access benefits. It also says it is one-time use per student account.\n\nBecause of this difference, I can't say for certain whether the discount can be used more than once. I also can't say exactly how it works alongside Access benefits. Please check the terms when you verify through Student Beans."
-  },
-  {
-   "set": "heldout",
-   "id": "H18",
-   "query": "Do I earn points on shipping fees or gift cards?",
-   "type": "answerable",
-   "primary": "generation",
-   "causes": [
-    "generation"
-   ],
-   "detail": {
-    "generation": "all needed sources present; reply still flagged"
-   },
-   "severity": 3,
-   "issues": [
-    "partially_correct: The reply correctly answers No for gift cards and shipping fees, matching the core of the reference. However, it omits taxes-free nuance? No—it does mention taxes implicitly only in the source; the reply itself says \"shipping fees and taxes\" in the context of not earning. The main gap is that it does not mention the exclusion of sale items discounted 30% or more, which is in the reference answer. The reference lists this as a required part of the 'No' answer, but the customer's question was specifically about shipping and gift cards, so the core conclusion and needed information are present. Rated correct on the core question, with the sale-item exclusion being an omission from the reference's full statement."
-   ],
-   "route": [
-    "policy"
-   ],
-   "expected_domains": [
-    "policy"
-   ],
-   "gold": [
-    "loyalty§3.1"
-   ],
-   "gold_missing": [],
-   "status": "answered",
-   "answer": "No, you don't earn points on either one. Under ALO Access, points are not earned on gift card purchases or on shipping fees and taxes. The base rate is 1 point per $1 USD spent, and it applies to full-price purchases at aloyoga.com, full-price in-store purchases at Alo U.S. retail locations, and app purchases."
-  },
-  {
-   "set": "heldout",
-   "id": "H19",
-   "query": "My order arrived damaged. How do I report it?",
-   "type": "answerable",
-   "primary": "generation",
-   "causes": [
-    "generation"
-   ],
-   "detail": {
-    "generation": "all needed sources present; reply still flagged"
-   },
-   "severity": 4,
-   "issues": [
-    "unsupported fact: The 7-day rule does not apply to items that arrived damaged."
-   ],
-   "route": [
-    "customer",
-    "policy"
-   ],
-   "expected_domains": [
-    "policy"
-   ],
-   "gold": [
-    "returns§7",
-    "shipping§6"
-   ],
-   "gold_missing": [],
-   "status": "answered",
-   "answer": "You can report it by emailing customerservice@aloyoga.com or calling (855) 793-3100. Please do it within 30 days of receiving the item.\n\nWhat to include: your order number, a description of the damage or defect, and photos of the damage.\n\nWhat happens next:\n- Alo will cover return shipping and issue a full refund or replacement at no cost to you (returns§7).\n- Alo will work with the carrier to investigate. For U.S. orders this typically takes 5–10 business days, and it takes longer for international orders (shipping§6).\n- If you report a defect after 30 days, it will be reviewed case by case and isn't guaranteed to be accepted (returns§7).\n\nSeparate rule: a package marked \"Delivered\" that you never received should be reported within 7 days of the delivery date. That rule doesn't apply to an item that arrived damaged (shipping§6).\n\nYou aren't signed in, so I can't see your order or its delivery date. Please check that you're inside the 30-day window."
+   "answer": "Yes. Verified students get 15% off full-price items. You verify your student status through Student Beans.\n\nTwo details in our policies don't fully match, so I can't give you a definite answer on either:\n- **Use limit:** The Community Discounts section lists the student discount as an ongoing discount. The \"How to Join\" section says it is one-time use per student account.\n- **Stacking:** The \"How to Join\" section calls it an additional 15% on top of standard Access benefits. The Community Discounts section says community discounts can't be stacked with other promotions or Alo Access redemptions.\n\nCheck the terms when you verify through Student Beans to see which applies to you."
   },
   {
    "set": "heldout",
@@ -278,9 +214,8 @@
    },
    "severity": 4,
    "issues": [
-    "status 'not_in_data', expected one of ['answered', 'partial']",
     "missing fact '30'",
-    "incorrect: The reference answer is a clear No: the order was 138 days old, far outside the 30-day window. The reply never reaches that conclusion. It says it cannot confirm eligibility because the return window is missing from the sources, and it never mentions the 138-day order age or the 30-day window. The key conclusion is missing, so the reply fails the question. Its arithmetic and sourcing are accurate, but the conclusion is wrong or absent."
+    "incorrect: The reference answer is a clear \"No\": the order is far outside the return window. The reply refuses to give a conclusion and says it cannot confirm eligibility, instead of stating that the return is not possible. The evidence does not contain the 30-day window, so the reply's hedge is defensible, but it still omits the central answer the question asks for. Because the evidence lacks the window, the reply is weak but not wrong; grading it \"incorrect\" reflects that the conclusion is absent rather than a false statement. Under the rubric, omitting the central answer that the reference requires is incorrect."
    ],
    "route": [
     "customer",
@@ -296,13 +231,13 @@
    "gold_missing": [
     "returns§1"
    ],
-   "status": "not_in_data",
-   "answer": "I can't confirm whether the leggings can still be returned, because the policy excerpts I have don't state the return window or eligibility rules for online orders.\n\nWhat I can see on your order:\n- ALO-2024-901882 was an online order. The High-Waist Airbrush Legging (Black, XS) was $118.00.\n- It was delivered on 2024-10-19, which was 133 days before today (2025-03-01).\n- The in-store return rules (bring the item and receipt to the original store) don't apply to online orders.\n\nWithout the return window, I can't say whether 133 days is inside or outside it. I also can't grant an exception. The excerpts mention a Returns Portal, but only in the context of the Instant Exchange option. They don't explain how to start a standard online return.\n\nThere's also a discrepancy in your order record. The order note says a 10% new member welcome code was used. But the subtotal ($118 + $62 = $180) and the total ($180) are the same, and no discount is shown. I can't tell what refund amount would apply to the leggings."
+   "status": "partial",
+   "answer": "I can't confirm whether you can still return the leggings, because the sources I have don't include the return window or the eligibility rules for online returns.\n\nWhat I can see:\n- The High-Waist Airbrush Legging (W5901R-BLK, size XS) was in your first order, ALO-2024-901882. It was an online order placed 2024-10-14 and delivered 2024-10-19, which was 133 days ago.\n- The order notes say you used a 10% new member welcome code. I can't tell whether that code affects return eligibility, because the sources don't say.\n- The in-store return rules (original receipt, same store) apply only to in-store purchases, so they don't apply to this online order.\n- Alo's policy says that once an order has shipped, you start a return after it is delivered. The sources don't describe the online steps or the deadline.\n\nTo find out whether the 133 days is within the window, please check Alo's full online returns policy. I can't approve an exception or guarantee a refund."
   }
  ],
  "worst": [
-  "dev/C5",
-  "dev/A5",
-  "heldout/H19"
+  "dev/P6",
+  "dev/L6",
+  "heldout/H24"
  ]
 }

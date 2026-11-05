@@ -1,5 +1,5 @@
 """Staleness and index-drift eval: when a policy or the catalog changes, does the system notice, update only what changed,
-and answer from the new facts?
+and answer from the new facts? (Policies are embedded, so they need re-indexing; the catalog is read live, so it must not.)
 
     python -m evals.suites.staleness_eval             # about a dozen model calls
     python -m evals.suites.staleness_eval --no-model  # index and retrieval checks only, free
@@ -8,7 +8,7 @@ Everything runs in a scratch copy of the data and index; the real ones are never
 
 Scenario 1, a seasonal update lands on two policies and the catalog at once:
   returns window 30 -> 60 days (touches two sections), two-day shipping $15 -> $20, Moto Legging $128 -> $138.
-  D  drift detection finds exactly the chunks whose text changed, and nothing when nothing changed
+  D  drift detection finds exactly the policy chunks whose text changed, nothing when nothing changed, and nothing for a catalog edit
   I  an incremental update re-embeds exactly those chunks (counted at the embedder), not the whole index
   R  the new text is retrievable and the old text is not
   A  answers use the new facts, including ones that flip a customer's eligibility; an unrelated answer does not change
@@ -87,14 +87,14 @@ def build(data_dir: Path, index_dir: Path, emb: CountingEmbedder, as_of: str | N
     emb.count = 0
     chunks = load_all(data_dir, as_of)
     chunks = chunks if include_archived else searchable(chunks)
-    stats = {d: VectorStore(index_dir, d).sync([c for c in chunks if c.domain == d], emb) for d in ("policy", "product")}
+    stats = {d: VectorStore(index_dir, d).sync([c for c in chunks if c.domain == d], emb) for d in ("policy",)}
     return {"stats": stats, "embedded": emb.count}
 
 
 def drift(data_dir: Path, index_dir: Path, as_of: str | None = None) -> dict:
     chunks = searchable(load_all(data_dir, as_of))
     out = {"updated": [], "meta_changed": [], "added": [], "removed": []}
-    for d in ("policy", "product"):
+    for d in ("policy",):
         r = VectorStore(index_dir, d).diff([c for c in chunks if c.domain == d], "bge-small")
         for k in out:
             out[k] += r[k]
@@ -143,28 +143,28 @@ def scenario_update(emb: CountingEmbedder, use_model: bool) -> None:
         for old, new in swaps:
             t = t.replace(old, new)
         return t
-    expected = sorted(i for i, c in old_chunks.items() if c.domain == "policy" and swapped(c.text) != c.text) + ["W3301R-BLK"]
+    expected = sorted(i for i, c in old_chunks.items() if c.domain == "policy" and swapped(c.text) != c.text)
 
     edit(tmp / "data" / "policies" / RETURNS, WINDOW_EDITS)
     edit(tmp / "data" / "policies" / SHIPPING, [SHIPPING_EDIT])
     cat_path = tmp / "data" / "products" / "alo_product_catalog.json"
     cat = json.loads(cat_path.read_text())
-    cat["last_updated"] = "2025-03-15"  # a real catalog update bumps this, which changes every product's metadata
+    cat["last_updated"] = "2025-03-15"  # a real catalog update bumps this too
     next(p for p in cat["products"] if p["sku"] == "W3301R-BLK")["price_usd"] = 138
     cat_path.write_text(json.dumps(cat, indent=2, ensure_ascii=False))
 
     d = drift(tmp / "data", index)
     check("D1", "drift check finds exactly the chunks whose text changed", sorted(d["updated"]) == sorted(expected),
           f"found {sorted(d['updated'])}, expected {sorted(expected)}")
-    check("D2", "a catalog date bump shows up as metadata-only drift, not as text changes",
-          len(d["meta_changed"]) >= 29 and not set(d["meta_changed"]) & set(d["updated"]), f"{len(d['meta_changed'])} metadata-only")
+    check("D2", "a catalog edit (price change, date bump) causes no index drift: the catalog is read live, not embedded",
+          not d["meta_changed"] and not set(d["updated"]) - set(expected), f"{len(d['meta_changed'])} metadata-only, updated {sorted(d['updated'])}")
     check("D3", "nothing is added or removed by a text edit", not d["added"] and not d["removed"], str(d))
 
     second = build(tmp / "data", index, emb)
     check("I1", f"incremental update embeds exactly the {len(expected)} changed chunks (of {sum(first['stats'][x]['added'] for x in first['stats'])} in the index)",
           second["embedded"] == len(expected), f"embedded {second['embedded']}, expected {len(expected)}")
-    check("I2", "the metadata-only chunks were refreshed without re-embedding",
-          sum(s["meta_refreshed"] for s in second["stats"].values()) >= 29, str({k: v["meta_refreshed"] for k, v in second["stats"].items()}))
+    check("I2", "the catalog edit re-embedded nothing: only the changed policy chunks were embedded",
+          second["embedded"] == len(expected) and not any(s["meta_refreshed"] for s in second["stats"].values()), str(second["stats"]))
     check("I3", "after the update the drift check is clean", not any(drift(tmp / "data", index).values()), str(drift(tmp / "data", index)))
 
     r = Retriever(index)
@@ -220,6 +220,8 @@ def scenario_versions(emb: CountingEmbedder, use_model: bool) -> None:
     after = build(tmp / "data", index, emb, "2025-04-15")
     check("V3", f"flipping the as-of date to 2025-04-15 re-embeds only the {len(changed)} chunks whose text differs between versions",
           after["embedded"] == len(changed), f"embedded {after['embedded']}, expected {changed}")
+    check("V3b", "chunks whose text is unchanged but whose version metadata changed are refreshed without re-embedding",
+          after["stats"]["policy"]["meta_refreshed"] >= 1 and after["embedded"] == len(changed), str(after["stats"]))
     texts = " ".join(h.text for h in Retriever(index).retrieve("What is your return window?", 6, ["policy"], mode="hybrid"))
     check("V4", "as of 2025-04-15 only the Q2 rule (60 days) is searchable", "within 60 days" in texts and "within 30 days" not in texts, texts[:120])
     if use_model:

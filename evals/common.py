@@ -23,7 +23,9 @@ def load_questions(path: Path = QUESTIONS_PATH) -> list[dict]:
 
 def validate(questions: list[dict], data_dir: Path = ROOT / "data") -> list[str]:
     """Return a list of problems; empty means every label points at something real."""
-    chunk_ids = {c.id for c in load_all(data_dir)}
+    chunk_ids = {c.id for c in load_all(data_dir)}  # policy sections (embedded)
+    catalog = json.loads((data_dir / "products" / "alo_product_catalog.json").read_text())  # products and fabrics (tool lookups)
+    chunk_ids |= {p["sku"] for p in catalog["products"]} | {f"fabric:{n}" for n in catalog["fabric_glossary"]}
     customers = json.loads((data_dir / "customers" / "customer_order_history.json").read_text())["customers"]
     orders = {o["order_id"] for c in customers for o in c["orders"]}
     cust_ids = {c["customer_id"] for c in customers}
@@ -40,7 +42,7 @@ def validate(questions: list[dict], data_dir: Path = ROOT / "data") -> list[str]
         if q["domain"] not in DOMAINS or q["difficulty"] not in DIFFICULTIES or q["type"] not in TYPES:
             problems.append(f"{qid}: bad domain/difficulty/type")
         problems += [f"{qid}: unknown route {d!r}" for d in q["expected_domains"] if d not in ROUTES]
-        problems += [f"{qid}: gold anchor {a!r} is not a chunk id" for a in q["gold_anchors"] if a not in chunk_ids]
+        problems += [f"{qid}: gold anchor {a!r} is neither a policy chunk nor a catalog id" for a in q["gold_anchors"] if a not in chunk_ids]
         problems += [f"{qid}: gold order {o!r} not in customer data" for o in q["gold_customer"] if o not in orders]
         if q["customer_id"] and q["customer_id"] not in cust_ids:
             problems.append(f"{qid}: unknown customer {q['customer_id']!r}")

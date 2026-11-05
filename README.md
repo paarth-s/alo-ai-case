@@ -2,7 +2,7 @@
 
 A question-answering assistant over three retail domains: **product facts**, **policies** (returns, shipping, loyalty) and **a customer's own orders**. Every answer cites its sources. The emphasis is on measuring it honestly: a regression harness, a validated judge, and a written account of where it breaks.
 
-**Read:** [ADR](docs/ADR.md) (design decisions) · [Production memo](docs/PRODUCTION_MEMO.md) · [Failure analysis](evals/FAILURE_ANALYSIS.md) (3 worst cases) · [Brief checklist](docs/BRIEF_CHECKLIST.md) · [Lab notebook](evals/LOG.md)
+**Read:** [ADR](docs/ADR.md) (design decisions) · [Production memo](docs/PRODUCTION_MEMO.md) · [Failure analysis](evals/FAILURE_ANALYSIS.md) (3 worst cases) · [Evaluation walkthrough](docs/EVALUATION.md) · [Brief checklist](docs/BRIEF_CHECKLIST.md) · [Lab notebook](evals/LOG.md)
 
 ## How it works
 
@@ -51,19 +51,19 @@ It prints each metric with its baseline, new value and tolerance. Tolerances com
 
 | | Dev | Held-out |
 |---|---|---|
-| Retrieval R@5 / MRR@10 | 0.93 / 0.90 | 0.96 / 0.83 |
-| Faithfulness | 0.99 | 1.00 |
-| Correctness vs reference | 0.99 | 0.92 |
-| Strict pass (every check clean) | 0.86 | 0.84 |
+| Policy retrieval R@5 / MRR@10 (21 dev, 16 held-out questions) | 0.94 / 0.87 | 0.94 / 0.74 |
+| Faithfulness | 1.00 | 1.00 |
+| Correctness vs reference | 0.99 | 0.94 |
+| Strict pass (every check clean) | 0.86 | 0.92 |
 | Cross-customer leaks / invalid citations | 0 / 0 | 0 / 0 |
 
-Identical runs move dev strict pass by about ±0.03; on 25 questions one is worth 0.04. Hybrid search is not measurably better than embeddings alone here; the gains come from routing and exact lookups. Latency p50 5.5 s, p95 9.1 s; about $0.015 per question; staleness 24/24 checks.
+Identical runs move dev strict pass by about ±0.03; on 25 questions one is worth 0.04. Retrieval covers policy text only (products and orders are exact lookups, scored in the generation eval). Hybrid search is not better than embeddings alone on this small policy set (held-out MRR 0.74 vs 0.88); the gains come from routing and exact lookups. Latency p50 5.5 s, p95 9.1 s; about $0.015 per question; staleness 25/25 checks.
 
 ## Where it is weak
 
 - **Vocabulary gaps:** "send back" does not find the "return" rule (H24). Largest known gap.
 - **The judge misses omissions** (0 to 2 of 5 dropped caveats); fixed Final Sale checks cover those.
-- **Small data, no real traffic:** 75 chunks and 61 hand-written questions.
+- **Small data, no real traffic:** 45 policy chunks and 61 hand-written questions.
 
 ## Layout
 
@@ -73,7 +73,7 @@ src/   core/ (cache) · router/ · ingestion/ (chunking, embeddings, FAISS store
 evals/ harness/ (run_all, noise, attribution) · judge/ · pricing/ · suites/ (the *_eval.py scripts) · questions_dev/heldout.jsonl
        baseline.json · results/ · calibration/ · LOG.md
 data/  policies, product catalog, customer orders (the synthetic package supplied with the case)
-docs/  ADR, production memo, brief checklist, review.html (the brief's questions with answers)
+docs/  ADR, production memo, evaluation walkthrough, brief checklist, review.html (the brief's questions with answers)
 ```
 
 ## Glossary

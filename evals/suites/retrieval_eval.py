@@ -5,7 +5,9 @@
     python -m evals.suites.retrieval_eval --set heldout            # the held-out questions (not used for tuning)
     python -m evals.suites.retrieval_eval --routing oracle         # use the labelled domains, to isolate retrieval from routing
 
-Questions with no vector gold (customer lookups, out-of-scope) are excluded from the metrics.
+Only policy chunks are searched, so only policy anchors are scored. Anchors that are not in the index (catalog SKUs, which
+the tools serve) are ignored, and questions left with no anchor (customer lookups, product lookups, out-of-scope) are
+excluded; products are scored by gold-in-context in the generation eval.
 A "random" row shows what a random ranking of the searched chunks would score, so no metric is read in isolation.
 """
 import argparse
@@ -80,6 +82,7 @@ def main():
 
     retriever, rows = Retriever(), []
     pool_sizes = {d: len(s.records) for d, s in retriever.stores.items()}
+    indexed = {r["id"] for s in retriever.stores.values() for r in s.records}
     for q in questions:
         domains = {"router": lambda: route(q["query"]).domains,
                    "oracle": lambda: q["expected_domains"],
@@ -89,7 +92,7 @@ def main():
         hits = retriever.retrieve(text, args.k, domains, mode=args.mode) if set(domains) & set(VECTOR_DOMAINS) else []
         ms = (time.perf_counter() - start) * 1000
         top1 = retriever.retrieve(text, 1, mode=args.mode)  # unrouted, for the score-gap check below
-        gold, ranked = set(q["gold_anchors"]), [h.id for h in hits]
+        gold, ranked = set(q["gold_anchors"]) & indexed, [h.id for h in hits]
         pool = sum(pool_sizes[d] for d in domains if d in pool_sizes)
         rows.append({"id": q["id"], "domain": q["domain"], "difficulty": q["difficulty"], "type": q["type"],
                      "query": q["query"], "routed": domains, "gold": sorted(gold), "retrieved": ranked,
@@ -99,7 +102,7 @@ def main():
                      "random": random_score(pool, len(gold), args.k) if gold and pool >= len(gold) else None})
 
     scored = [r for r in rows if r["metrics"]]
-    print(f"config: {label} | {args.set} set | scored {len(scored)}/{len(rows)} questions (rest have no vector gold)")
+    print(f"config: {label} | {args.set} set | scored {len(scored)}/{len(rows)} questions (rest have no policy gold)")
 
     groups = defaultdict(list)
     for r in scored:

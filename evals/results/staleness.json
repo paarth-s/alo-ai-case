@@ -1,6 +1,6 @@
 {
- "passed": 24,
- "total": 24,
+ "passed": 25,
+ "total": 25,
  "checks": [
   {
    "id": "D0",
@@ -12,37 +12,37 @@
    "id": "A0",
    "desc": "baseline answers use the old facts (30 days, $15, $128)",
    "ok": true,
-   "evidence": "{\"window\": \"Our return window is 30 days from the original purchase date. You'll get a full \", \"ship\": \"Two-Day Shipping costs $15.00. It's available to all U.S. addresses, except PO B\", \"moto\": \"The High-Waist Moto Legging (W3301R-BLK) is $128. It comes in Black, Navy and Es\"}"
+   "evidence": "{\"window\": \"Our standard return window is 30 days from the original purchase date. You get a\", \"ship\": \"Two-Day Shipping costs $15.00. It's available for all U.S. addresses, but not PO\", \"moto\": \"The High-Waist Moto Legging (W3301R-BLK) costs $128. It comes in Black, Navy and\"}"
   },
   {
    "id": "D1",
    "desc": "drift check finds exactly the chunks whose text changed",
    "ok": true,
-   "evidence": "found ['W3301R-BLK', 'returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2'], expected ['W3301R-BLK', 'returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2']"
+   "evidence": "found ['returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2'], expected ['returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2']"
   },
   {
    "id": "D2",
-   "desc": "a catalog date bump shows up as metadata-only drift, not as text changes",
+   "desc": "a catalog edit (price change, date bump) causes no index drift: the catalog is read live, not embedded",
    "ok": true,
-   "evidence": "29 metadata-only"
+   "evidence": "0 metadata-only, updated ['returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2']"
   },
   {
    "id": "D3",
    "desc": "nothing is added or removed by a text edit",
    "ok": true,
-   "evidence": "{'updated': ['returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2', 'W3301R-BLK'], 'meta_changed': ['ACC-BOTTLE-WHT', 'ACC-MAT-BLK', 'M5044R-BLK', 'M5501R-WHT', 'M6105R-BLK', 'M6201R-BLK', 'M6801R-BLK', 'M7301R-BLK', 'W1501R-BLK', 'W1601R-BLK', 'W2201R-BLK', 'W4501R-BLK', 'W5561R-BLK', 'W5604R-BLK', 'W5766R-BLK', 'W5801R-BLK', 'W5901R-BLK', 'W6034R-BLK', 'W6105R-BLK', 'W6201R-BLK', 'W7201R-BLK', 'W8801R-BLK', 'W9201R-BLK', 'fabric:Airbrush', 'fabric:Airlift', 'fabric:Alo Softsculpt', 'fabric:Alo Vapor', 'fabric:Alosoft', 'fabric:Conquer'], 'added': [], 'removed': []}"
+   "evidence": "{'updated': ['returns\u00a71', 'returns\u00a75', 'shipping\u00a72.2'], 'meta_changed': [], 'added': [], 'removed': []}"
   },
   {
    "id": "I1",
-   "desc": "incremental update embeds exactly the 4 changed chunks (of 75 in the index)",
+   "desc": "incremental update embeds exactly the 3 changed chunks (of 45 in the index)",
    "ok": true,
-   "evidence": "embedded 4, expected 4"
+   "evidence": "embedded 3, expected 3"
   },
   {
    "id": "I2",
-   "desc": "the metadata-only chunks were refreshed without re-embedding",
+   "desc": "the catalog edit re-embedded nothing: only the changed policy chunks were embedded",
    "ok": true,
-   "evidence": "{'policy': 0, 'product': 29}"
+   "evidence": "{'policy': {'added': 0, 'updated': 3, 'removed': 0, 'meta_refreshed': 0, 'unchanged': 42}}"
   },
   {
    "id": "I3",
@@ -72,31 +72,31 @@
    "id": "A1",
    "desc": "the return window answer uses 60 days and none of the old wording",
    "ok": true,
-   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to your original form of payment. To qualify, the item must be unwo"
+   "evidence": "Alo's return window is 60 days from the original purchase date. You'll get a full refund to your original form of payment if the item is unworn, unwashed, unalt"
   },
   {
    "id": "A2",
    "desc": "a customer whose eligibility flips (Warrior Mat, 45 days old) is now told the window runs to March 16",
    "ok": true,
-   "evidence": "Yes, the Warrior Mat looks eligible for a return if it's unused. Your order was placed online on 2025-01-15, and the return window is 60 days from purchase, so it closes on 2025-03-16. Today is 2025-0"
+   "evidence": "Yes, the Warrior Mat from order ALO-2025-001145 is still within the return window, as long as it meets the condition requirements.\n\n**Dates:** The order was placed on 2025-01-15. Returns must be initi"
   },
   {
    "id": "A3",
    "desc": "a second flipped customer (water bottle, 38 days old) is now told the window runs to March 23",
    "ok": true,
-   "evidence": "Yes, you can return the water bottle, provided it's unused and in sellable condition with the original tags still attached.\n\n- **Window:** You bought the Alo Sport Water Bottle (Blush, 24 oz) in order"
+   "evidence": "Yes, you can return the water bottle, as long as it meets the condition requirements. It's in order ALO-2025-002887, placed 2025-01-22, which is 38 days ago. The 60-day return window runs to 2025-03-2"
   },
   {
    "id": "A4",
    "desc": "the two-day shipping answer uses $20 and not $15",
    "ok": true,
-   "evidence": "Two-day shipping costs $20.00. It's available to all U.S. addresses except PO Boxes and APO/FPO addresses. The two days are counted from the day your order ship"
+   "evidence": "Two-Day Shipping costs $20.00. It's available for all U.S. addresses, but not PO Boxes or APO/FPO addresses. The two days are counted from the day your order sh"
   },
   {
    "id": "A5",
    "desc": "the catalog tool returns the new price immediately, with no re-embedding (138, not 128)",
    "ok": true,
-   "evidence": "The High-Waist Moto Legging (SKU W3301R-BLK) costs $138. It comes in Black, Navy and Espresso, and in sizes XXS\u2013XL."
+   "evidence": "The High-Waist Moto Legging (W3301R-BLK) costs $138. It's a full-length legging in Airbrush fabric. It comes in Black, Navy and Espresso, in sizes XXS\u2013XL."
   },
   {
    "id": "A6",
@@ -120,13 +120,19 @@
    "id": "V2",
    "desc": "the answer as of 2025-03-01 says 30 days",
    "ok": true,
-   "evidence": "Our standard return window is 30 days from the original purchase date. You get a full refund to your original form of payment. To qualify, the item must be:\n- u"
+   "evidence": "Our standard return window is 30 days from the original purchase date. You get a full refund to the original form of payment.\n\nTo be eligible, the item must be:"
   },
   {
    "id": "V3",
    "desc": "flipping the as-of date to 2025-04-15 re-embeds only the 2 chunks whose text differs between versions",
    "ok": true,
    "evidence": "embedded 2, expected ['returns\u00a71', 'returns\u00a75']"
+  },
+  {
+   "id": "V3b",
+   "desc": "chunks whose text is unchanged but whose version metadata changed are refreshed without re-embedding",
+   "ok": true,
+   "evidence": "{'policy': {'added': 0, 'updated': 2, 'removed': 0, 'meta_refreshed': 12, 'unchanged': 43}}"
   },
   {
    "id": "V4",
@@ -138,7 +144,7 @@
    "id": "V5",
    "desc": "the answer as of 2025-04-15 says 60 days",
    "ok": true,
-   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to the original form of payment. The item must be unworn, unwashed "
+   "evidence": "Our standard return window is 60 days from the original purchase date. You get a full refund to your original form of payment. To qualify, the item must be unwo"
   },
   {
    "id": "F1",

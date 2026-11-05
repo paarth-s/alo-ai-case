@@ -13,7 +13,7 @@ from src.ingestion.embeddings import INDEX_DIR, NAME, Embedder
 from src.ingestion.ingest import load_all, searchable
 from src.ingestion.store import VectorStore
 
-DOMAINS = ("policy", "product")  # customer data is a structured lookup, not a vector index
+DOMAINS = ("policy",)  # products and customers are structured data (exact lookups), not vector indexes
 
 
 def main() -> None:

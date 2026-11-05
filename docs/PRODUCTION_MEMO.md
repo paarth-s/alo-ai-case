@@ -1,6 +1,6 @@
 # Reliability and Production Readiness Memo
 
-**Bottom line.** The assistant is accurate on the data it has (faithfulness 0.99, no cross-customer leak in 61 questions, 24/24 staleness checks) but is not production-ready. Its main weakness is retrieval, not generation: when the right policy section is not found, the model says it cannot answer. That is safe, but unhelpful.
+**Bottom line.** The assistant is accurate on the data it has (faithfulness 0.99, no cross-customer leak in 61 questions, 25/25 staleness checks) but is not production-ready. Its main weakness is retrieval, not generation: when the right policy section is not found, the model says it cannot answer. That is safe, but unhelpful.
 
 | Top risk | Covered in this repo | Still open |
 |---|---|---|
@@ -15,7 +15,7 @@
 
 Chunks are keyed by a content hash, so an update re-embeds only what changed. A drift check detects an index that no longer matches its source, catalog facts are read live, and policies are versioned by effective date.
 
-- Tested in `evals/suites/staleness_eval.py` (24 of 24 checks). A simulated update across two policies and the catalog re-embedded 4 of 75 chunks, and answers followed at once: an order 45 days old flipped from "outside the window" to "returnable through March 16".
+- Tested in `evals/suites/staleness_eval.py` (25 of 25 checks). A simulated update across two policies and the catalog re-embedded 3 of 45 policy chunks (the catalog edit re-embedded nothing, because products are read live), and answers followed at once: an order 45 days old flipped from "outside the window" to "returnable through March 16".
 - `python -m src.ingestion.build_index --check` lists stale chunks and exits non-zero. Building it exposed a bug: metadata changes were invisible to a text-only hash. Metadata is now hashed separately.
 - Open: a rule repeated in several sections must be edited in each; an embedder upgrade needs a full re-embed (detected); version flips need a scheduled job.
 

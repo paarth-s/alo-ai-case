@@ -12,7 +12,7 @@ from src.retrieval.bm25 import BM25
 from src.ingestion.embeddings import INDEX_DIR, Embedder
 from src.ingestion.store import Hit, VectorStore
 
-VECTOR_DOMAINS = ("policy", "product")  # "customer" is a structured lookup, not a vector index
+VECTOR_DOMAINS = ("policy",)  # products and customers are structured data: exact lookups, not vector indexes
 MODES = ("dense", "bm25", "hybrid")
 
 

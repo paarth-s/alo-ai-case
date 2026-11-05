@@ -22,17 +22,17 @@
  },
  "dropped_exception": {
   "n": 5,
-  "caught": 2,
-  "right_reason": 2,
-  "caught_rate": 0.4,
-  "right_reason_rate": 0.4
+  "caught": 1,
+  "right_reason": 1,
+  "caught_rate": 0.2,
+  "right_reason_rate": 0.2
  },
  "conflated_rules": {
   "n": 7,
-  "caught": 7,
-  "right_reason": 7,
-  "caught_rate": 1.0,
-  "right_reason_rate": 1.0
+  "caught": 6,
+  "right_reason": 6,
+  "caught_rate": 0.857,
+  "right_reason_rate": 0.857
  },
  "wrong_tier": {
   "n": 2,
@@ -64,13 +64,13 @@
  },
  "_overall": {
   "seeded_n": 50,
-  "caught": 47,
-  "right_reason": 47,
-  "detection_rate": 0.94,
-  "paraphrase_false_alarms": 2,
+  "caught": 45,
+  "right_reason": 45,
+  "detection_rate": 0.9,
+  "paraphrase_false_alarms": 1,
   "paraphrase_n": 16,
-  "paraphrase_false_alarm_rate": 0.125,
-  "original_false_alarms": 3,
+  "paraphrase_false_alarm_rate": 0.062,
+  "original_false_alarms": 2,
   "original_n": 53
  }
 }
