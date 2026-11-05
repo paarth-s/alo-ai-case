@@ -6,4 +6,3 @@ __pycache__/
 .cache/
 index/
 index_*/
-.venv-chroma/

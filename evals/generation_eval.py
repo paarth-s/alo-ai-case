@@ -39,8 +39,12 @@ def hit(text: str, pattern: str) -> bool:
     return any(alt.strip().lower() in text.lower() for alt in pattern.split("|"))
 
 
+def expected_status(q: dict) -> set[str]:
+    return EXPECTED_STATUS[q["type"]] | ({"declined"} if "S3" in q["failure_modes"] else set())
+
+
 def deterministic(q: dict, a, customers: list[dict]) -> dict:
-    expected = set(EXPECTED_STATUS[q["type"]]) | ({"declined"} if "S3" in q["failure_modes"] else set())
+    expected = expected_status(q)
     text = a.answer
     cited = [c.strip("[] ") for c in a.citations]
     bad_cites = [c for c in cited if c not in a.context_ids]
@@ -156,9 +160,8 @@ def main():
 
     rows = []
     for q, a, j in zip(questions, answers, judged):
-        expected = set(EXPECTED_STATUS[q["type"]]) | ({"declined"} if "S3" in q["failure_modes"] else set())
         r = {"id": q["id"], "domain": q["domain"], "difficulty": q["difficulty"], "type": q["type"], "query": q["query"],
-             "customer_id": q["customer_id"], "route": a.route, "status": a.status, "expected_status": sorted(expected),
+             "customer_id": q["customer_id"], "route": a.route, "status": a.status, "expected_status": sorted(expected_status(q)),
              "answer": a.answer, "citations": a.citations, "data_issues": a.data_issues, "context_ids": a.context_ids,
              "stats": a.stats,
              "tool_calls": [{"name": c["name"], "args": c["args"], "ids": c["ids"], "error": c["error"]} for c in a.tool_calls],
