@@ -2,7 +2,6 @@
 
     python -m evals.retrieval_eval                          # routed dense top-10: the naive baseline
     python -m evals.retrieval_eval --mode hybrid            # dense bm25 hybrid
-    python -m evals.retrieval_eval --embedder bge-base      # another embedder (build its index first)
     python -m evals.retrieval_eval --set heldout            # the held-out questions (not used for tuning)
     python -m evals.retrieval_eval --routing oracle         # use the labelled domains, to isolate retrieval from routing
 
@@ -15,9 +14,7 @@ import math
 import statistics
 import time
 from collections import defaultdict
-from pathlib import Path
 
-from src.ingestion.embeddings import DEFAULT, SPECS, index_dir_for
 from src.retrieval.retrieve import MODES, VECTOR_DOMAINS, Retriever
 from src.router.router import route
 
@@ -72,21 +69,16 @@ def main():
     ap.add_argument("--set", choices=["dev", "heldout"], default="dev")
     ap.add_argument("--mode", choices=MODES, default="dense")
     ap.add_argument("--routing", choices=["router", "oracle", "none"], default="router")
-    ap.add_argument("--embedder", choices=list(SPECS), default=DEFAULT)
-    ap.add_argument("--index-dir", default=None)
     ap.add_argument("--label", default=None)
     args = ap.parse_args()
-    index_dir = args.index_dir or index_dir_for(args.embedder)
-    tag = Path(index_dir).name.removeprefix("index").lstrip("_")
-    label = args.label or "_".join(filter(None, [
-        args.mode, tag, f"top{args.k}", args.routing]))
+    label = args.label or f"{args.mode}_top{args.k}_{args.routing}"
     results_dir = ROOT / "evals" / "results" / ("heldout" if args.set == "heldout" else "")
 
     questions = load_questions(HELDOUT_PATH if args.set == "heldout" else QUESTIONS_PATH)
     if problems := validate(questions):
         raise SystemExit("invalid question set:\n  " + "\n  ".join(problems))
 
-    retriever, rows = Retriever(index_dir, args.embedder), []
+    retriever, rows = Retriever(), []
     pool_sizes = {d: len(s.records) for d, s in retriever.stores.items()}
     for q in questions:
         domains = {"router": lambda: route(q["query"]).domains,
@@ -142,8 +134,7 @@ def main():
     results_dir.mkdir(parents=True, exist_ok=True)
     out = results_dir / f"retrieval_{label}.json"
     out.write_text(json.dumps({"label": label, "set": args.set, "k": args.k, "mode": args.mode, "routing": args.routing,
-                               "embedder": args.embedder, "index_dir": index_dir,
-                               "latency_ms": latency,
+                                                              "latency_ms": latency,
                                "r1_ceiling": round(ceiling, 3), "hit_at_1": round(hit1, 3),
                                "summary": {g: {"n": n, **s} for g, (n, s) in summary.items()}, "rows": rows}, indent=1))
     print(f"saved {out.relative_to(ROOT)}")

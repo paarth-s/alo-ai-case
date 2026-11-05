@@ -9,7 +9,7 @@ from dataclasses import replace
 from pathlib import Path
 
 from src.retrieval.bm25 import BM25
-from src.ingestion.embeddings import DEFAULT, Embedder, index_dir_for
+from src.ingestion.embeddings import INDEX_DIR, Embedder
 from src.ingestion.store import Hit, VectorStore
 
 VECTOR_DOMAINS = ("policy", "product")  # "customer" is a structured lookup, not a vector index
@@ -28,9 +28,9 @@ def rrf(rankings: list[list[Hit]], k: int = 60) -> list[Hit]:
 
 
 class Retriever:
-    def __init__(self, index_dir: str | Path | None = None, embedder: str = DEFAULT):
-        self.embedder = Embedder(embedder)
-        self.stores = {d: VectorStore(Path(index_dir or index_dir_for(embedder)), d) for d in VECTOR_DOMAINS}
+    def __init__(self, index_dir: str | Path = INDEX_DIR):
+        self.embedder = Embedder()
+        self.stores = {d: VectorStore(Path(index_dir), d) for d in VECTOR_DOMAINS}
         self.bm25 = {d: BM25(s.records) for d, s in self.stores.items()}
 
     def retrieve(self, query: str, k: int = 5, domains=VECTOR_DOMAINS, where: dict | None = None,

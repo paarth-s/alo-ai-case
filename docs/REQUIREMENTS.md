@@ -14,7 +14,7 @@ Each requirement from the case brief, as a question with a direct answer and the
 
 **Answer.** Yes: `bge-small-en-v1.5` run locally through ONNX, stored in Chroma (local, persistent).
 
-**Why.** Justification and the four rejected embedders are in ADR Q2. I built the store on FAISS first, then swapped in Chroma and re-ran every eval: retrieval metrics were identical (dev R@5 0.93, MRR 0.90; held-out R@5 0.96, MRR 0.83), search is about 6 ms slower, and the staleness checks pass 24 of 24. Chroma gives persistence and in-search metadata filtering; model-change detection and incremental sync (re-embed only changed chunks) are our code in `src/ingestion/store.py`. Production would use pgvector behind the same `VectorStore` interface.
+**Why.** Justification and the four rejected embedders (code removed, numbers in `evals/LOG.md` E9) are in ADR Q2. I built the store on FAISS first, then swapped in Chroma and re-ran every eval: retrieval metrics were identical (dev R@5 0.93, MRR 0.90; held-out R@5 0.96, MRR 0.83), search is about 6 ms slower, and the staleness checks pass 24 of 24. Chroma gives persistence and in-search metadata filtering; model-change detection and incremental sync (re-embed only changed chunks) are our code in `src/ingestion/store.py`. Production would use pgvector behind the same `VectorStore` interface.
 
 ### S3. Does retrieval use at least one technique beyond naive top-k?
 

@@ -21,8 +21,8 @@
 **Answer.** `BAAI/bge-small-en-v1.5` (33M parameters, 384 dimensions), run locally through ONNX.
 
 **Why.**
-- I compared bge-base, gte-small, all-MiniLM-L6 and e5-small on the dev set. None beat bge-small on the rank-sensitive metrics (hybrid MRR@10: 0.87 vs 0.86, 0.85, 0.85, 0.83). bge-base improved recall@5/10 slightly but lost on R@1 and MRR at about 3x the latency (28 ms vs 8 to 11 ms).
-- The gaps are inside the noise on 30 scored questions, so the tie-break is the cheapest, fastest and simplest option: free, no network, deterministic, and no data leaves the machine.
+- I tried bge-base, gte-small, all-MiniLM-L6 and e5-small on the dev set (code removed; LOG E9). None beat bge-small on the rank-sensitive metrics (hybrid MRR@10: 0.87 vs 0.86, 0.85, 0.85, 0.83). bge-base improved recall@5/10 slightly but lost on R@1 and MRR at about 3x the latency (28 ms vs 8 to 11 ms).
+- The gaps are inside the noise on 30 scored questions, so the tie-break is the simplest option: free, no network, deterministic, nothing leaves the machine.
 - Rejected: hosted embedding APIs (cost, latency, data egress, no measured gain), and bge-large (1.3 GB, slower, no evidence it would help here).
 - Caveat: that comparison ran on an earlier chunking, though the direction was consistent. The index stores the model name and re-embeds fully on a change, because vectors from different models are not comparable.
 
